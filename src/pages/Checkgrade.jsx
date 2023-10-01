@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 
 const Register = () => {
@@ -51,10 +51,81 @@ const Register = () => {
   };
 
   const [data, setData] = useState([
-    { id: 1, name: 'John Doe', age: 30 },
-    { id: 2, name: 'Jane Smith', age: 25 },
-    { id: 3, name: 'Alice Johnson', age: 35 },
+    {
+      year: 'ปีการศึกษา 2566 ภาคการศึกษาที่ 1',
+      subjects: [
+        { id: '001', name: 'วิชา A', score: 85, grade: 'A', result: 'ดีเด่น' },
+        { id: '002', name: 'วิชา B', score: 92, grade: 'A', result: 'ดีมาก' },
+        { id: '003', name: 'วิชา C', score: 78, grade: 'B', result: 'ดี' },
+        // เพิ่มข้อมูลผลการเรียนตามต้องการ
+      ],
+    },
   ]);
+
+  const [subjectObject, setSubjectObject] = useState({
+    "2560": [
+      "เทอม1",
+      "เทอม2"
+    ],
+    "2561": [
+      "เทอม1",
+      "เทอม2"
+    ],
+    "2562": [
+      "เทอม1",
+      "เทอม2"
+    ],
+    "2563": [
+      "เทอม1",
+      "เทอม2"
+    ],
+    "2564": [
+      "เทอม1",
+      "เทอม2"
+    ],
+    "2565": [
+      "เทอม1",
+      "เทอม2"
+    ]
+  });
+
+  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedSemester, setSelectedSemester] = useState("");
+  const [chapters, setChapters] = useState([]);
+  const handleYearChange = (event) => {
+    const selectedYearValue = event.target.value;
+    setSelectedYear(selectedYearValue);
+    setSelectedSemester("");
+    if (selectedYearValue) {
+      const semesters = subjectObject[selectedYearValue];
+      setChapters(semesters);
+    } else {
+      setChapters([]); // เมื่อไม่ได้เลือกปีการศึกษาให้ล้าง chapters
+    }
+  };
+  
+  const handleSemesterChange = (event) => {
+    const selectedSemesterValue = event.target.value;
+    setSelectedSemester(selectedSemesterValue);
+  };
+
+  // const handleYearChange = (event) => {
+  //   const selectedYearValue = event.target.value;
+  //   setSelectedYear(selectedYearValue);
+  //   setSelectedSemester("");
+  //   setChapters([]);
+  //   if (selectedYearValue) {
+  //     const semesters = Object.keys(subjectObject[selectedYearValue]);
+  //     setChapters(semesters);
+  //   }
+  // };
+
+  // const handleSemesterChange = (event) => {
+  //   const selectedSemesterValue = event.target.value;
+  //   setSelectedSemester(selectedSemesterValue);
+  // };
+  
+  
   
   return (
     <>
@@ -80,26 +151,90 @@ const Register = () => {
       <div className="container mt-5">
         <div className="d-flex align-items-center">
           <h2 className="ms-3 mb-0">ระบบตรวจสอบผลการเรียน</h2>
+        </div><br />
+
+        {/* <div>
+
+          <form name="form1" id="form1" action="/action_page.php">
+            ปีการศึกษา: <select name="school_year" id="school_year">
+              <option value="" selected="selected">เลือกปีการศึกษา</option>
+            </select>
+
+
+            ภาคเรียนที่: <select name="semester" id="semester">
+              <option value="" selected="selected">เลือกภาคเรียน</option>
+            </select>
+          </form>
+        </div> */}
+
+        <div>
+          ปีการศึกษา:
+          <select value={selectedYear} onChange={handleYearChange}>
+            <option value="">เลือกปีการศึกษา</option>
+            {Object.keys(subjectObject).map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
+
+          ภาคเรียนที่:
+          <select value={selectedSemester} onChange={handleSemesterChange}>
+            <option value="">เลือกภาคเรียน</option>
+            {chapters.map((semester) => (
+              <option key={semester} value={semester}>
+                {semester}
+              </option>
+            ))}
+          </select>
         </div>
         
         <br /> {/* เพิ่มแท็ก <br /> เพื่อสร้างการเว้นบรรทัด */}
         <table className="table-bordered"> {/* เพิ่ม className="table-bordered" */}
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Age</th>
+        
+
+        <thead>          
+          <tr>
+            <th colSpan="9" style={{ textAlign: 'center' }}>{data[0].year}</th>
+          </tr>
+
+          <tr>
+            <th rowSpan="3">รหัสวิชา</th>
+            <th rowSpan="3">ชื่อวิชา</th>
+            <th rowSpan="3">หน่วยกิต</th>
+            <th colSpan="4" style={{ textAlign: 'center' }}>ผลการเรียน</th>
+            <th rowSpan="3">คะแนนรวม</th>
+            <th rowSpan="3">เกรด</th>
+          </tr>
+          <tr>
+            <th colSpan="2">ระหว่างภาค</th>
+            <th colSpan="2">ปลายภาค</th>
+          </tr>
+          <tr>
+            <th>เต็ม</th>
+            <th>ได้</th>
+            <th>เต็ม</th>
+            <th>ได้</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {data[0].subjects.map((subject) => (
+            <tr key={subject.id}>
+              <td>{subject.id}</td>
+              <td>{subject.name}</td>
+              <td>{subject.credits}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>{subject.totalScore}</td>
+              <td>{subject.grade}</td>
             </tr>
-          </thead>
-          <tbody>
-            {data.map((row) => (
-              <tr key={row.id}>
-                <td>{row.id}</td>
-                <td>{row.name}</td>
-                <td>{row.age}</td>
-              </tr>
-            ))}
-          </tbody>
+          ))}
+        </tbody><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+
         </table>
       </div>
     </>
