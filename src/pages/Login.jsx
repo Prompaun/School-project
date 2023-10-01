@@ -5,14 +5,13 @@ import { Link } from 'react-router-dom';
 import Card_role_login from '../components/Card_role_login';
 
 function Login() {
-  const linkStyle = {
-    color: 'gray',
-    textDecoration: 'none'
-  };
-
+  
   const containerStyle = {
     position: 'relative',
+    display: 'flex', // Set display to flex to arrange items horizontally
+    alignItems: 'center', // Align items vertically in the center
   };
+
 
   const textOverlayStyle = {
     position: 'absolute',
@@ -32,22 +31,18 @@ function Login() {
 
   return (
     <>
-      <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-        <div className="container">
-          <Link className="navbar-brand" to="/">
-            <img src={logoImage} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
-            โรงเรียนฤทธิยะวรรณาลัย (ประถม)
-          </Link>
-        </div>
-      </nav>
+      <Navbar/>
       <div style={containerStyle}>
-        <img src="src\images\school_bg.png" alt="School Background" width="1899" height="480" style={imageStyle} />
+        <img src="src\images\school_bg.png" alt="School Background" width="1899" height="320" style={imageStyle}/>
         <div style={textOverlayStyle}>
-          <h2 style={{ textAlign: 'left' }}>ระบบจัดการสารสนเทศ</h2>
+          <h2 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '56px' }}>ระบบจัดการสารสนเทศ</h2>
         </div>
       </div>
+      <br></br>
+      <br></br>
       <h1 className="text-header text-center">เข้าสู่ระบบ</h1>
       <br></br>
+
         <Card_role_login />
     </>
 
