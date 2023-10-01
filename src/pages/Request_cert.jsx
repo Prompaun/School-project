@@ -57,13 +57,11 @@ function Request_cert() {
          {/* <h5 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '32px' }}>บริการสำหรับผู้ปกครอง</h5> */}
         </div>
       </div>
-      <br></br>
       {/* <div className="container mt-5">
         <div className="d-flex align-items-center justify-content-center">
           <h2 className="ms-3 mb-0"></h2>
         </div>
       </div> */}
-      <br></br>
 
         {/* <h2 class="card-heading px-3 d-flex justify-content-center" style={{ fontWeight: 'bold'}}>ฟอร์มยื่นคำร้องขอใบรับรอง</h2> */}
       <div class="container d-flex justify-content-center">

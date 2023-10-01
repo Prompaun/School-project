@@ -86,7 +86,7 @@ const History_request = () => {
           </Link>
           <div className="nav navbar-nav navbar-right">
             <span className='nav-link'>
-              <Link to='/Register' style={linkStyle}>Register</Link> | <Link to='/Login' style={linkStyle}>Log in</Link>
+            <Link to='/Parent_menu' style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>เลือกเมนู</Link>
             </span>
           </div>
         </div>

@@ -137,7 +137,7 @@ const Checkgrade = () => {
           </Link>
           <div className="nav navbar-nav navbar-right">
             <span className='nav-link'>
-              <Link to='/Register' style={linkStyle}>Register</Link> | <Link to='/Login' style={linkStyle}>Log in</Link>
+            <Link to='/Login/login_student/Select_role_user' style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>หน้าแรก</Link>
             </span>
           </div>
         </div>
@@ -148,6 +148,7 @@ const Checkgrade = () => {
       </div>
 
       {/* เพิ่มฟอร์มการลงทะเบียน */}
+      
       <div className="container mt-5">
         <div className="d-flex align-items-center">
           <h2 className="ms-3 mb-0">ระบบตรวจสอบผลการเรียน</h2>
