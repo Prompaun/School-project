@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import schoolBackground from '../components/school_background'; // เปลี่ยนชื่อ component เป็นตามนี้
 import school_logo from "../images/IMG_5416.png";
-
+import school_bg from "../images/school_bg.png";
+import Navbar from '../components/Navbar'
 
 const login_student = () => {
     const linkStyle = {
@@ -55,58 +56,58 @@ const login_student = () => {
 
     return (
         <>
-            <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-                <div className="container">
-                    <Link className="navbar-brand" to="/">
-                        <img src={school_logo} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" style={{ float: 'left', marginRight: '10px' }} />
-                        <span style={{ marginLeft: '0px' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</span>
-                    </Link>
-                    <div className="nav navbar-nav navbar-right">
-                        <span className='nav-link'>
-                            <Link to='/Register' style={linkStyle}>Register</Link> | <Link to='/Login' style={linkStyle}>Log in</Link>
-                        </span>
-                    </div>
-                </div>
-            </nav>
+            <Navbar/>
             <div style={containerStyle}>
-                <img src="src\images\school_bg.png" alt="School Background" width="1899" height="480" style={imageStyle} />
-                <div style={textOverlayStyle}>ระบบบริการข้อมูลสำหรับนักเรียนและผู้ปกครอง</div>
+                <img src={school_bg} alt="School Background" width="1899" height="320" style={imageStyle} />
+                <div style={textOverlayStyle}>
+                    <h2 style={{ textAlign: 'center',fontWeight: 'bold' ,fontSize: '56px'}}>ระบบบริการข้อมูล</h2>
+                    <h5 style={{ textAlign: 'center',fontWeight: 'bold' ,fontSize: '32px'}}>สำหรับนักเรียนและผู้ปกครอง</h5>
+                    </div>
             </div>
-
+          
             {/* เพิ่มฟอร์มการลงทะเบียน */}
             {/* <div class="list-group"> */}
             <div className="container mt-5">
-                <div className="d-flex align-items-center">
-                    <img src="src\images\IMG_5416.png" alt="Register Image" width="100" height="100" />
-                    <h2 className="ms-3 mb-0">โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h2>
-                </div>
-
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-3 d-flex">
-                        <label htmlFor="username" className="form-label me-3">Username: </label>
-                        <input
-                            type="text"
-                            className="form-control" // สามารถใช้ w-50 w-25, w-10 หรือค่าอื่นๆ ตามที่ต้องการ
-                            id="username"
-                            name="username"
-                            value={formData.username}
-                            onChange={handleInputChange}
-                            required />
-                    </div>
-                    <div className="mb-3 d-flex">
-                        <label htmlFor="password" className="form-label me-3">Password: </label>
-                        <input
-                            type="password"
-                            className="form-control" // สามารถใช้ w-50 w-25, w-10 หรือค่าอื่นๆ ตามที่ต้องการ
-                            id="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleInputChange}
-                            required />
-                    </div>
-                    <button type="submit" className="btn btn-primary float-end">Log in</button>
-                </form>
+    <div className="card mx-auto mt-5" style={{ boxShadow: '1px 2px 12px 4px rgba(0, 0, 0, 0.2)' }}>
+        <div className="card-body">
+            <div className="d-flex align-items-center">
+                <img src={school_logo} alt="Register Image" width="100" height="100" />
+                <h2 className="ms-3 mb-0">โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h2>
             </div>
+
+            <form onSubmit={handleSubmit}>
+                <div className="mb-3 d-flex">
+                    <label htmlFor="username" className="form-label me-3">Username: </label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="username"
+                        name="username"
+                        value={formData.username}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+                <div className="mb-3 d-flex">
+                    <label htmlFor="password" className="form-label me-3">Password: </label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        id="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleInputChange}
+                        required
+                    />
+                </div>
+                <Link to="Select_role_user">
+                <button type="submit" className="btn btn-primary float-end">Log in</button>
+                </Link>
+            </form>
+        </div>
+    </div>
+</div>
+
             {/* </div> */}
         </>
     );

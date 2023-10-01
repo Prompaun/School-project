@@ -1,12 +1,9 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
 import logoImage from '../images/IMG_5416.png';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-const Navbar = () => {
-  const linkStyle = {
-    color: 'gray',
-    textDecoration: 'none'
-  };
+import School_bg from "../images/school_bg.png"
 
+function Select_role_user() {
   const containerStyle = {
     position: 'relative',
   };
@@ -26,9 +23,8 @@ const Navbar = () => {
   const imageStyle = {
     filter: 'brightness(25%)',
   };
-
   return (
-    <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+    <><nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
       <div className="container">
         <Link className="navbar-brand" to="/">
           {/* Logo and School Name */}
@@ -37,14 +33,22 @@ const Navbar = () => {
             <h5 style={{ textAlign: 'right', marginLeft: '10px', marginBottom: '0' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
           </div>
         </Link>
-        <div className="nav navbar-nav navbar-right">
-          <span className='nav-link'>
+        {/* <div className="nav navbar-nav navbar-right"> */}
+          {/* <span className='nav-link'>
             <Link to='/Register' style={linkStyle}>Register</Link> | <Link to='/Login' style={linkStyle}>Log in</Link>
-          </span>
-        </div>
+          </span> */}
+        {/* </div> */}
       </div>
     </nav>
-  );
+    <div style={containerStyle}>
+    <img src={School_bg} alt="School Background" width="1899" height="320" style={imageStyle}/>
+    <div style={textOverlayStyle}>
+    <h2 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '56px' }}>ระบบจัดการสารสนเทศ</h2>
+    <h5 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '32px' }}>บริการสำหรับนักเรียนและผู้ปกครอง</h5>
+    </div>
+  </div>
+  </>
+  )
 }
 
-export default Navbar
+export default Select_role_user

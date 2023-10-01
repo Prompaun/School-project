@@ -1,13 +1,9 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import schoolBackground from '../components/school_background'; // เปลี่ยนชื่อ component เป็นตามนี้
+import Navbar from '../components/Navbar'
 
 const Register = () => {
-  const linkStyle = {
-    color: 'gray',
-    textDecoration: 'none'
-  };
-
   const containerStyle = {
     position: 'relative',
   };
@@ -53,74 +49,67 @@ const Register = () => {
 
   return (
     <>
-      <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-        <div className="container">
-          <Link className="navbar-brand" to="/">
-            <img src="src\images\IMG_5416.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top" style={{ float: 'left', marginRight: '10px' }} />
-            <span style={{ marginLeft: '0px' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</span>
-          </Link>
-          <div className="nav navbar-nav navbar-right">
-            <span className='nav-link'>
-              <Link to='/Register' style={linkStyle}>Register</Link> | <Link to='/Login' style={linkStyle}>Log in</Link>
-            </span>
-          </div>
-        </div>
-      </nav> 
+      <Navbar/>
       <div style={containerStyle}>
-        <img src="src\images\school_bg.png" alt="School Background" width="1899" height="480" style={imageStyle}/>
-        <div style={textOverlayStyle}>ระบบรับสมัครนักเรียนแบบออนไลน์ เพื่อเข้าศึกษาระดับประถมศึกษาปีที่ 1</div>
+        <img src="src\images\school_bg.png" alt="School Background" width="1899" height="320" style={imageStyle}/>
+        <div style={textOverlayStyle}>
+        <h2 style={{ textAlign: 'center',fontWeight: 'bold' ,fontSize: '56px'}}>ระบบรับสมัครนักเรียนแบบออนไลน์</h2>
+        <h5 style={{ textAlign: 'center',fontWeight: 'bold' ,fontSize: '32px'}}>เพื่อเข้าศึกษาระดับประถมศึกษาปีที่ 1</h5>
+        </div>
       </div>
 
       {/* เพิ่มฟอร์มการลงทะเบียน */}
+      <br></br>
       <div className="container mt-5">
-        <div className="d-flex align-items-center">
+        <div className="d-flex align-items-center justify-content-center">
           <h2 className="ms-3 mb-0">สร้างบัญชีผู้ใช้งาน</h2>
         </div>
         
-        <br /> {/* เพิ่มแท็ก <br /> เพื่อสร้างการเว้นบรรทัด */}
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3 d-flex">
-            <label htmlFor="username" className="form-label me-3">เลขประจำตัวประชาชน (ผู้สมัครเข้าศึกษา): </label>
-            <input
-              type="text"
-              className="form-control w-50"
-              id="username"
-              name="username"
-              value={formData.username}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="mb-3 d-flex">
-            <label htmlFor="password" className="form-label me-3">รหัสผ่าน: </label>
-            <input
-              type="password"
-              className="form-control w-50"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="mb-3 d-flex">
-            <label htmlFor="password" className="form-label me-3">ยืนยันรหัสผ่าน: </label>
-            <input
-              type="password"
-              className="form-control w-50"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              required
-            />
-    </div>
-    <button type="submit" className="btn btn-primary float-end">สร้างบัญชีและดำเนินการต่อ</button>
-  </form>
+       {/* เพิ่มแท็ก <br /> เพื่อสร้างการเว้นบรรทัด */}
+        <div className="card mx-auto mt-5"style={{ boxShadow: '1px 2px 12px 4px rgba(0, 0, 0, 0.2)' }}>
+  <div className="card-body">
+    <form onSubmit={handleSubmit} className="w-100">
+      <div className="mb-3">
+        <label htmlFor="username" className="form-label custom-font">เลขประจำตัวประชาชน (ผู้สมัครเข้าศึกษา): </label>
+        <input
+          type="text"
+          className="form-control"
+          id="username"
+          name="username"
+          value={formData.username}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="password" className="form-label custom-font">รหัสผ่าน: </label>
+        <input
+          type="password"
+          className="form-control"
+          id="password"
+          name="password"
+          value={formData.password}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="confirmPassword" className="form-label custom-font">ยืนยันรหัสผ่าน: </label>
+        <input
+          type="password"
+          className="form-control"
+          id="confirmPassword"
+          name="confirmPassword"
+          value={formData.confirmPassword}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <button type="submit" className="btn btn-primary custom-font">สร้างบัญชีและดำเนินการต่อ</button>
+    </form>
+  </div>
 </div>
-
-
-    {/* </div> */}
+</div>
     </>
   );
 }

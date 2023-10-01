@@ -22,13 +22,13 @@ const Card_role_login = () => {
       return (
         <div className="card-container">
           {obj.map((item, index) => (
-            <div key={index} className="card">
+            <div key={index} className="card-menu"style={{ boxShadow: '1px 2px 12px 4px rgba(0, 0, 0, 0.2)' }}>
               <NavLink to={item.path} onClick={handleClick}>
-              <img src={item.imageUrl} className="card-img-top" alt={item.text} />
+              <img src={item.imageUrl} className="card-img-top" alt={item.text} /></NavLink>
               <div className="card-body">
-                <p className="card-text">{item.text}</p>
+                <p className="card-text"style={{ textAlign: 'center' }}>{item.text}</p>
               </div>
-              </NavLink>
+              {/* </NavLink> */}
             </div>
           ))}
         </div>

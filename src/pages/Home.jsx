@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../components/Card';
+import Navbar from '../components/Navbar';
 
 const Home = () => {
   const linkStyle = {
@@ -30,26 +31,22 @@ const Home = () => {
 
   return (
     <>
-      <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-        <div className="container">
-          <Link className="navbar-brand" to="/">
-            <img src="src\images\IMG_5416.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
-            โรงเรียนฤทธิยะวรรณาลัย (ประถม)
-          </Link>
-          <div className="nav navbar-nav navbar-right">
-            <span className='nav-link'>
-              <Link to='/Register' style={linkStyle}>Register</Link> | <Link to='/Login' style={linkStyle}>Log in</Link>
-            </span>
-          </div>
-        </div>
-      </nav> 
+      <Navbar/>
       <div style={containerStyle}>
-        <img src="src\images\school_bg.png" alt="School Background" width="1899" height="480" style={imageStyle}/>
+        <img src="src\images\school_bg.png" alt="School Background" width="1899" height="320" style={imageStyle}/>
         <div style={textOverlayStyle}>
-          <h2 style={{ textAlign: 'left' }}>ระบบจัดการสารสนเทศ</h2>
+          <h2 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '56px'}}>ระบบจัดการสารสนเทศ</h2>
         </div>
       </div>
+      <ul class="list-inline small">
+        <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+        <li class="list-inline-item m-0"><i class="fa fa-star-o text-gray"></i></li>
+      </ul>
       <h1 class="text-header text-center">ประชาสัมพันธ์</h1>
+      <ul class="list-inline small">
+        <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+        <li class="list-inline-item m-0"><i class="fa fa-star-o text-gray"></i></li>
+      </ul>
       <div class="d-flex justify-content-center">
             <ul class="list-group">
                 <li class="list-group-item"> <Card /></li>
