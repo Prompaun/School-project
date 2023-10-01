@@ -1,25 +1,34 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom'
 
 const Card_role_login = () => {
     const [obj, setObj] = useState([
         {
           text: "นักเรียน / ผู้ปกครอง",
-          imageUrl: "src/images/student_icon.png" // แทนที่ด้วย URL รูปภาพจริง
+          imageUrl: "src/images/student_icon.png", // แทนที่ด้วย URL รูปภาพจริง
+          path: "/Login/login_student"
         },
         {
           text: "บุคลากร",
-          imageUrl: "src/images/teacher_icon.png" // แทนที่ด้วย URL รูปภาพจริง
+          imageUrl: "src/images/teacher_icon.png", // แทนที่ด้วย URL รูปภาพจริง
+          path: "/Login/login_student"
         }
       ]);
+
+      function handleClick() {
+        console.log('Link clicked!');
+      }
     
       return (
         <div className="card-container">
           {obj.map((item, index) => (
             <div key={index} className="card">
+              <NavLink to={item.path} onClick={handleClick}>
               <img src={item.imageUrl} className="card-img-top" alt={item.text} />
               <div className="card-body">
                 <p className="card-text">{item.text}</p>
               </div>
+              </NavLink>
             </div>
           ))}
         </div>

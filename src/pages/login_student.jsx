@@ -1,9 +1,10 @@
-export default login_student;
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import schoolBackground from '../components/school_background'; // เปลี่ยนชื่อ component เป็นตามนี้
+import school_logo from "../images/IMG_5416.png";
 
 
-export const login_student = () => {
+const login_student = () => {
     const linkStyle = {
         color: 'gray',
         textDecoration: 'none'
@@ -57,7 +58,7 @@ export const login_student = () => {
             <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
                 <div className="container">
                     <Link className="navbar-brand" to="/">
-                        <img src="src\images\IMG_5416.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top" style={{ float: 'left', marginRight: '10px' }} />
+                        <img src={school_logo} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" style={{ float: 'left', marginRight: '10px' }} />
                         <span style={{ marginLeft: '0px' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</span>
                     </Link>
                     <div className="nav navbar-nav navbar-right">
@@ -110,3 +111,5 @@ export const login_student = () => {
         </>
     );
 };
+
+export default login_student;
