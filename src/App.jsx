@@ -9,6 +9,7 @@ import Student_menu from './pages/Student_menu'
 import Checkgrade from './pages/Checkgrade'
 import Parent_menu from './pages/Parent_menu'
 import Request_cert from './pages/Request_cert'
+import History_request from './pages/History_request'
 
 // import select_role_user from './pages/select_role_user'
 
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
         <Route path="/Parent_menu" element={<Parent_menu />} />
         <Route path="/Checkgrade" element={<Checkgrade/>} />
         <Route path="/Request_cert" element={<Request_cert/>} />
+        <Route path="/History_request" element={<History_request/>} />
 
 
     </>

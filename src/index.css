@@ -21,7 +21,9 @@ p {
 body{
   font-family: 'Kanit', sans-serif;
 }
-
+.card-heading{
+  font-family: 'Kanit', sans-serif;
+}
 .card-container {
   display: flex;
   justify-content: center; /* ให้การ์ดมาอยู่ตรงกลาง */
@@ -69,3 +71,16 @@ body{
   padding: 10px 20px; /* ขนาด Padding ของปุ่ม (บน-ล่าง, ซ้าย-ขวา) */
 }
 
+.custom-select {
+  font-family: 'Kanit', sans-serif;
+  /* Additional styles can be added here */
+  width: 350px;
+  height: 35px;
+
+}
+
+.custom-body {
+  font-family: 'Kanit', sans-serif;
+  /* Additional styles can be added here */
+
+}

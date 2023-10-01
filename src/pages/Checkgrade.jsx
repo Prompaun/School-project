@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 
-const Register = () => {
+const Checkgrade = () => {
   const linkStyle = {
     color: 'gray',
     textDecoration: 'none'
@@ -54,9 +54,9 @@ const Register = () => {
     {
       year: 'ปีการศึกษา 2566 ภาคการศึกษาที่ 1',
       subjects: [
-        { id: '001', name: 'วิชา A', score: 85, grade: 'A', result: 'ดีเด่น' },
-        { id: '002', name: 'วิชา B', score: 92, grade: 'A', result: 'ดีมาก' },
-        { id: '003', name: 'วิชา C', score: 78, grade: 'B', result: 'ดี' },
+        { id: '001', name: 'วิชา A', score: 85, credits:'0.5', between_full:'80', final_full:'20', between_get:'79', final_get:'20', totalScore:'99', grade: 'A', result: 'ดีเด่น' },
+        { id: '002', name: 'วิชา B', score: 92, credits:'1', between_full:'70', final_full:'30', between_get:'56', final_get:'24',  totalScore:'80', grade: 'A', result: 'ดีมาก' },
+        { id: '003', name: 'วิชา C', score: 78, credits:'1', between_full:'70', final_full:'30', between_get:'53', final_get:'20', totalScore:'73', grade: 'B', result: 'ดี' },
         // เพิ่มข้อมูลผลการเรียนตามต้องการ
       ],
     },
@@ -189,8 +189,8 @@ const Register = () => {
           </select>
         </div>
         
-        <br /> {/* เพิ่มแท็ก <br /> เพื่อสร้างการเว้นบรรทัด */}
-        <table className="table-bordered"> {/* เพิ่ม className="table-bordered" */}
+        <br /> {/* เพิ่มแท็ก <br /> เพื่อสร้างการเว้นบรรทัด margin: 'auto', */}
+        <table className="table-bordered" style={{ textAlign: 'center' }}>
         
 
         <thead>          
@@ -224,10 +224,10 @@ const Register = () => {
               <td>{subject.id}</td>
               <td>{subject.name}</td>
               <td>{subject.credits}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>{subject.between_full}</td>
+              <td>{subject.between_get}</td>
+              <td>{subject.final_full}</td>
+              <td>{subject.final_get}</td>
               <td>{subject.totalScore}</td>
               <td>{subject.grade}</td>
             </tr>
@@ -240,6 +240,4 @@ const Register = () => {
     </>
   );
 }
-
-
-export default Register;
+export default Checkgrade

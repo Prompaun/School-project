@@ -2,7 +2,7 @@ import React, { useState }from 'react'
 import { NavLink } from 'react-router-dom';
 import Checkgrade_icon from "../images/check_grade.png"
 import Request_cert from "../images/request_cert.png"
-import History_request from "../images/history_request.png"
+import History_request_icon from "../images/history_request.png"
 import health_icon from "../images/health_icon.png"
 
 
@@ -20,8 +20,8 @@ function Card_menu_parent() {
           },
           {
             text: "ตรวจสอบประวัติการขอใบรับรอง",
-            imageUrl: History_request, // แทนที่ด้วย URL รูปภาพจริง
-            path: "/Checkgrade"
+            imageUrl: History_request_icon, // แทนที่ด้วย URL รูปภาพจริง
+            path: "/History_request"
           },
           {
             text: "ผลการตรวจสุขภาพของนักเรียน",

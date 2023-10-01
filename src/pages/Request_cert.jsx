@@ -1,9 +1,14 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Link } from 'react-router-dom';
 import logoImage from '../images/IMG_5416.png';
 import School_bg from "../images/school_bg.png"
-
+import Upload_img from "../images/Upload_img.png"
 function Request_cert() {
+    const [selectedOption, setSelectedOption] = useState('ระบุหมายเหตุ');
+
+    const handleSelectChange = (event) => {
+      setSelectedOption(event.target.value);
+    };
     const linkStyle = {
         color: 'gray',
         textDecoration: 'none'
@@ -58,41 +63,103 @@ function Request_cert() {
           <h2 className="ms-3 mb-0"></h2>
         </div>
       </div> */}
+      <br></br>
+
+        {/* <h2 class="card-heading px-3 d-flex justify-content-center" style={{ fontWeight: 'bold'}}>ฟอร์มยื่นคำร้องขอใบรับรอง</h2> */}
       <div class="container d-flex justify-content-center">
-	<div class="card mx-5 my-5">
-		<div class="card-body px-2">
-			<h2 class="card-heading px-3">เลือกประเภทใบรับรอง</h2>
-			{/* <h5 class="card-subheading px-3 pb-3">It's quick and easy.</h5> */}
-			<form>
-			<div class="row rone">
-				<div class="form-group col-md-5 fone">
-					<input type="text" class="form-control" placeholder="First name"/>
-				</div>
-				<div class="form-group col-md-5 ftwo">
-					<input type="text" class="form-control ml-3" placeholder="Last name"/>
-				</div>
-			</div>
-			<div class="row rtwo">
-				<div class="form-group col-md-12 fthree">
-					<input type="email" class="form-control" placeholder="Mobile number or Email"/>
-					<small class="text-muted"><p class="para1 pt-2 pl-1">You'll need to confirm that email or phone belongs to you.</p></small>
-				</div>
-			</div>
-			<div class="row rthree">
-				<div class="form-group col-md-5 ffour">
-					<input type="password" class="form-control" placeholder="Password"/>
-				</div>
-				<div class="form-group col-md-5 ffive">
-					<input type="password" class="form-control ml-3" placeholder="Confirm password"/>
-				</div>
-				<small class="text-muted px-3"><p class="para2 pl-3">Use 8 or more characters with a mix of letters,numbers &<br></br>symbols</p></small>
-			</div>
-			<div class="row rfour">
-				<div class="col-md-4 ml-3">
-					<button type="submit" class="btn btn-primary mt-3"><span>Next step</span></button>
-				</div>
-			</div>
-			</form>
+	<div class="card mx-5 my-5" style={{ width: "700px"}}>
+		{/* <div class="card-body px-1"> */}
+        
+        <div class="card-body">
+
+			{/* <h2 class="card-heading px-3">อัปโหลดรูปภาพนักเรียน</h2> */}
+            {/* <label class="form-label" for="customFile">อัปโหลดรูปภาพนักเรียน</label>
+            <div>
+                <div class="mb-4 d-flex ">
+                    <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
+                    alt="example placeholder" style={{ width: "300px"}} />
+                </div>
+                <div class="d-flex">
+                    <div class="btn btn-primary btn-rounded">
+                        <label class="form-label text-white m-1" for="customFile1">Choose file</label>
+                        <input type="file" class="form-control d-none" id="customFile1" />
+                    </div>
+                </div>
+            </div> */}
+
+			<label class="card-heading px-3" style={{fontSize: '28px',fontWeight: 'bold'}}>เลือกประเภทใบรับรอง</label>
+            <br></br>
+            <br></br>
+
+			<div class="form-group col-md-15 fone">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                    <label class="form-check-label custom-body" style={{ fontSize: '18px'}} for="flexCheckDefault">
+                        กรณีขอใบรับรองการเป็นนักเรียน (ปพ.7)
+                    </label>
+                    </div>
+                    <div className="mb-3 d-flex w-50 px-3">
+                        <input
+                            type="text"
+                            className="form-control ml-3 px-3"
+                            placeholder="จำนวน"
+                        />
+                        <h5 className="ms-2 mt-2 custom-body" style={{ fontSize: '18px'}}>ฉบับ</h5>
+                    </div>
+                      
+                    <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"/>
+                    <label class="form-check-label custom-body" style={{ fontSize: '18px'}} for="flexCheckChecked">
+                        กรณีขอหนังสือรับรองผลการเรียนรายวิชา
+                    </label>
+                    </div>
+                    <div className="mb-3 d-flex w-50 px-3">
+                        <input
+                            type="text"
+                            className="form-control ml-3 px-3"
+                            placeholder="จำนวน"
+                        />
+                        <h5 className="ms-2 mt-2 custom-body"style={{ fontSize: '18px'}}>ฉบับ</h5>
+                    </div>
+                    <br></br>
+                    <h1 class="card-heading px-3" style={{fontSize: '20px'}}>ต้องการขอเอกสารครั้งนี้เพื่อ</h1>
+                    <div class="h-screen flex justify-left bg-gray-900">
+                    {/* <div class="container d-flex justify-content-center align-items-center"> */}
+
+                    <div class="dropdown px-3">
+                    <select value={selectedOption} onChange={handleSelectChange} class="custom-select ">
+                        <option value="ระบุหมายเหตุ">ระบุหมายเหตุ</option>
+                        <option value="เพื่อใช้ในการขอทุนการศึกษา">เพื่อใช้ในการขอทุนการศึกษา</option>
+                        <option value="เพื่อใช้ในการสมัครเข้าศึกษาต่อ">เพื่อใช้ในการสมัครเข้าศึกษาต่อ</option>
+                    </select>
+                        
+                    {/* </div> */}
+
+                        
+
+                </div>
+            </div>
+            <br></br>
+            <br></br>
+            {/* <label class="form-label custom-body" for="customFile">อัปโหลดรูปภาพนักเรียน</label>
+             */}
+             <h1 class="card-heading px-3" style={{fontSize: '20px'}}>อัปโหลดรูปภาพนักเรียน</h1>
+            <input type="file" class="form-control px-3" id="customFile" />
+            <br></br>
+            
+            <h2 class="card-heading px-3"style={{ fontSize: '20px'}}>หมายเหตุ</h2>
+            <h5 class="card-heading px-3"style={{ fontSize: '16px'}}>1. กรอกข้อมูลให้ครบถ้วนและชัดเจน</h5>
+            <h5 class="card-heading px-3"style={{ fontSize: '16px'}}>2. รูปถ่ายต้องถ่ายไว้ไม่เกิน 6 เดือน</h5>
+            <h5 class="card-heading px-3"style={{ fontSize: '16px'}}>3. รูปถ่ายนักเรียนปัจจุบันต้องแต่งกายถูกต้องตามระเบียบของโรงเรียน</h5>
+            </div>
+			{/* <div class="row rfour">
+				<div class="col-md-4 ml-3"> */}
+                <Link to="/Parent_menu">
+					<button type="submit" class="btn btn-primary float-end" style={{ textAlign: 'right'}}><span>Submit</span></button>
+				{/* </div> */}</Link>
+			{/* </div> */}
+			{/* </form> */}
+            {/* </div> */}
 		</div>
 	</div>
 </div>
