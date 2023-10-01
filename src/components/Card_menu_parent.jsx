@@ -1,14 +1,33 @@
 import React, { useState }from 'react'
 import { NavLink } from 'react-router-dom';
 import Checkgrade_icon from "../images/check_grade.png"
+import Request_cert from "../images/request_cert.png"
+import History_request from "../images/history_request.png"
+import health_icon from "../images/health_icon.png"
 
-function Card_menu_student() {
+
+function Card_menu_parent() {
     const [obj, setObj] = useState([
         {
           text: "ระบบตรวจสอบผลการเรียน",
           imageUrl: Checkgrade_icon, // แทนที่ด้วย URL รูปภาพจริง
           path: "/Checkgrade"
-        }
+        },
+        {
+            text: "ระบบยื่นคำร้องขอใบรับรอง",
+            imageUrl: Request_cert, // แทนที่ด้วย URL รูปภาพจริง
+            path: "/Request_cert"
+          },
+          {
+            text: "ตรวจสอบประวัติการขอใบรับรอง",
+            imageUrl: History_request, // แทนที่ด้วย URL รูปภาพจริง
+            path: "/Checkgrade"
+          },
+          {
+            text: "ผลการตรวจสุขภาพของนักเรียน",
+            imageUrl: health_icon, // แทนที่ด้วย URL รูปภาพจริง
+            path: "/"
+          }
       ]);
     function handleClick() {
         console.log('Link clicked!');
@@ -30,4 +49,4 @@ function Card_menu_student() {
       );
 }
 
-export default Card_menu_student
+export default Card_menu_parent

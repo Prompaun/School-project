@@ -1,16 +1,23 @@
 import React, { useState }from 'react'
 import { NavLink } from 'react-router-dom';
-import Checkgrade_icon from "../images/check_grade.png"
+import Student_icon from "../images/student_icon.png"
+import Parent_icon from "../images/parent_icon.png"
 
-function Card_menu_student() {
+function Card_select_user() {
     const [obj, setObj] = useState([
         {
-          text: "ระบบตรวจสอบผลการเรียน",
-          imageUrl: Checkgrade_icon, // แทนที่ด้วย URL รูปภาพจริง
-          path: "/Checkgrade"
+          text: "นักเรียน",
+          imageUrl: Student_icon, // แทนที่ด้วย URL รูปภาพจริง
+          path: "/Student_menu"
+        },
+        {
+          text: "ผู้ปกครอง",
+          imageUrl: Parent_icon, // แทนที่ด้วย URL รูปภาพจริง
+          path: "/Parent_menu"
         }
       ]);
-    function handleClick() {
+
+      function handleClick() {
         console.log('Link clicked!');
       }
     
@@ -30,4 +37,4 @@ function Card_menu_student() {
       );
 }
 
-export default Card_menu_student
+export default Card_select_user

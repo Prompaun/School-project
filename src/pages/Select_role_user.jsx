@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import logoImage from '../images/IMG_5416.png';
 import School_bg from "../images/school_bg.png"
+import Card_select_user from '../components/Card_select_user';
 
 function Select_role_user() {
   const containerStyle = {
@@ -47,6 +48,10 @@ function Select_role_user() {
     <h5 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '32px' }}>บริการสำหรับนักเรียนและผู้ปกครอง</h5>
     </div>
   </div>
+  <br></br>
+  <br></br>
+
+  <Card_select_user /> 
   </>
   )
 }

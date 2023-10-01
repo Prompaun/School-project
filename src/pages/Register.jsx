@@ -53,8 +53,9 @@ const Register = () => {
       <div style={containerStyle}>
         <img src="src\images\school_bg.png" alt="School Background" width="1899" height="320" style={imageStyle}/>
         <div style={textOverlayStyle}>
-        <h2 style={{ textAlign: 'center',fontWeight: 'bold' ,fontSize: '56px'}}>ระบบรับสมัครนักเรียนแบบออนไลน์</h2>
-        <h5 style={{ textAlign: 'center',fontWeight: 'bold' ,fontSize: '32px'}}>เพื่อเข้าศึกษาระดับประถมศึกษาปีที่ 1</h5>
+        <h2 style={{ textAlign: 'center',fontWeight: 'bold' ,fontSize: '56px'}}>ระบบลงทะเบียนสำหรับผู้ใช้ใหม่</h2>
+        {/* <h2 style={{ textAlign: 'center',fontWeight: 'bold' ,fontSize: '56px'}}>ระบบรับสมัครนักเรียนแบบออนไลน์</h2>
+        <h5 style={{ textAlign: 'center',fontWeight: 'bold' ,fontSize: '32px'}}>เพื่อเข้าศึกษาระดับประถมศึกษาปีที่ 1</h5> */}
         </div>
       </div>
 
