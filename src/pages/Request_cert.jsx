@@ -47,7 +47,16 @@ function Request_cert() {
         </div>
       </nav> 
         <div style={containerStyle}>
-        <img src={School_bg} alt="School Background" width="1899" height="320" style={imageStyle}/>
+        <img
+                src={School_bg}
+                alt="School Background"
+                style={{
+                    ...imageStyle,
+                    width: '100vw', // 100vw คือ 100% ของความกว้างของ viewport
+                    maxHeight: '40vh',  // 40vh คือ 40% ของความสูงของ viewport
+                    objectFit: 'cover'  // ภาพจะทำการ crop หรือ stretch เพื่อให้เต็มพื้นที่ที่กำหนด
+                }}
+                />
         {/* <div style={{...textOverlayStyle,fontFamily: 'Kanit, sans-serif',textAlign: 'center',fontWeight: 'bold',fontSize: '56px' }}>ระบบยื่นคำร้องขอใบรับรอง */}
         {/* <h2 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '56px' }}>ระบบยื่นคำร้องขอใบรับรอง</h2> */}
          {/* <h5 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '32px' }}>บริการสำหรับผู้ปกครอง</h5> */}

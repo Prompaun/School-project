@@ -143,7 +143,16 @@ const Checkgrade = () => {
         </div>
       </nav> 
       <div style={containerStyle}>
-        <img src="src\images\school_bg.png" alt="School Background" width="1899" height="320" style={imageStyle}/>
+      <img
+          src="src\images\school_bg.png"
+          alt="School Background"
+          style={{
+            ...imageStyle,
+            width: '100vw', // 100vw คือ 100% ของความกว้างของ viewport
+            maxHeight: '40vh',  // 70vh คือ 70% ของความสูงของ viewport
+            objectFit: 'cover'  // ภาพจะทำการ crop หรือ stretch เพื่อให้เต็มพื้นที่ที่กำหนด
+          }}
+        />
         <div style={textOverlayStyle}>
         <h2 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '56px' }}>ระบบจัดการสารสนเทศ</h2>
         <h5 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '32px' }}>บริการสำหรับนักเรียน</h5>
