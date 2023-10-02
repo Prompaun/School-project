@@ -133,24 +133,26 @@ const Checkgrade = () => {
         <div className="container">
           <Link className="navbar-brand" to="/">
             <img src="src\images\IMG_5416.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top" style={{ float: 'left', marginRight: '10px' }} />
-            <span style={{ marginLeft: '0px' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</span>
+            <span style={{ fontFamily: 'Kanit, sans-serif',marginLeft: '0px' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</span>
           </Link>
           <div className="nav navbar-nav navbar-right">
             <span className='nav-link'>
-            <Link to='/Login/login_student/Select_role_user' style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>หน้าแรก</Link>
+            <Link to='/Parent_menu' style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>เลือกเมนู</Link>
             </span>
           </div>
         </div>
       </nav> 
       <div style={containerStyle}>
-        <img src="src\images\school_bg.png" alt="School Background" width="1899" height="480" style={imageStyle}/>
-        <div style={textOverlayStyle}>ระบบจัดการสารสนเทศ บริการสำหรับนักเรียน</div>
+        <img src="src\images\school_bg.png" alt="School Background" width="1899" height="320" style={imageStyle}/>
+        <div style={textOverlayStyle}>
+        <h2 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '56px' }}>ระบบจัดการสารสนเทศ</h2>
+        <h5 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '32px' }}>บริการสำหรับนักเรียน</h5>
+        </div>
       </div>
 
       {/* เพิ่มฟอร์มการลงทะเบียน */}
-      
-      <div className="container mt-5">
-        <div className="d-flex align-items-center">
+      <div className="container mt-5 d-flex flex-column align-items-center">
+        <div className="d-flex align-items-center mb-3">
           <h2 className="ms-3 mb-0">ระบบตรวจสอบผลการเรียน</h2>
         </div><br />
 
@@ -168,7 +170,7 @@ const Checkgrade = () => {
           </form>
         </div> */}
 
-        <div>
+        <div style={{  fontFamily: 'Kanit, sans-serif' }}>
           ปีการศึกษา:
           <select value={selectedYear} onChange={handleYearChange}>
             <option value="">เลือกปีการศึกษา</option>
@@ -191,7 +193,7 @@ const Checkgrade = () => {
         </div>
         
         <br /> {/* เพิ่มแท็ก <br /> เพื่อสร้างการเว้นบรรทัด margin: 'auto', */}
-        <table className="table-bordered" style={{ textAlign: 'center' }}>
+        <table className="table-bordered" style={{ textAlign: 'center',fontFamily: 'Kanit, sans-serif'}}>
         
 
         <thead>          
@@ -220,20 +222,20 @@ const Checkgrade = () => {
         </thead>
 
         <tbody>
-          {data[0].subjects.map((subject) => (
-            <tr key={subject.id}>
-              <td>{subject.id}</td>
-              <td>{subject.name}</td>
-              <td>{subject.credits}</td>
-              <td>{subject.between_full}</td>
-              <td>{subject.between_get}</td>
-              <td>{subject.final_full}</td>
-              <td>{subject.final_get}</td>
-              <td>{subject.totalScore}</td>
-              <td>{subject.grade}</td>
-            </tr>
-          ))}
-        </tbody><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      {data[0].subjects.map((subject) => (
+        <tr key={subject.id} style={{ height: '50px' }}>
+          <td style={{ minWidth: '100px', maxWidth: '150px', width: '10%' }}>{subject.id}</td>
+          <td style={{ minWidth: '200px', maxWidth: '300px', width: '20%' }}>{subject.name}</td>
+          <td style={{ width: '10%' }}>{subject.credits}</td>
+          <td style={{ width: '10%' }}>{subject.between_full}</td>
+          <td style={{ width: '10%' }}>{subject.between_get}</td>
+          <td style={{ width: '10%' }}>{subject.final_full}</td>
+          <td style={{ width: '10%' }}>{subject.final_get}</td>
+          <td style={{ width: '10%' }}>{subject.totalScore}</td>
+          <td style={{ width: '10%' }}>{subject.grade}</td>
+        </tr>
+      ))}
+    </tbody><br /><br /><br /><br /><br />
 
 
         </table>
@@ -241,4 +243,5 @@ const Checkgrade = () => {
     </>
   );
 }
+
 export default Checkgrade

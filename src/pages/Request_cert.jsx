@@ -34,28 +34,25 @@ function Request_cert() {
       };
       return (
         <><nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-          <div className="container">
-            <Link className="navbar-brand" to="/">
-              {/* Logo and School Name */}
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <img src={logoImage} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
-                <h5 style={{ textAlign: 'right', marginLeft: '10px', marginBottom: '0' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
-              </div>
-            </Link>
-            
-            <div className="nav navbar-nav navbar-right"> 
-              <span className='nav-link'>
-              <Link to='/Parent_menu' style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>เลือกเมนู</Link>
-              </span>
-            </div>
+        <div className="container">
+          <Link className="navbar-brand" to="/">
+            <img src="src\images\IMG_5416.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top" style={{ float: 'left', marginRight: '10px' }} />
+            <span style={{  fontFamily: 'Kanit, sans-serif',marginLeft: '0px' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</span>
+          </Link>
+          <div className="nav navbar-nav navbar-right">
+            <span className='nav-link'>
+            <Link to='/Parent_menu' style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>เลือกเมนู</Link>
+            </span>
           </div>
-        </nav>
+        </div>
+      </nav> 
         <div style={containerStyle}>
         <img src={School_bg} alt="School Background" width="1899" height="320" style={imageStyle}/>
-        <div style={textOverlayStyle}>
-        <h2 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '56px' }}>ระบบยื่นคำร้องขอใบรับรอง</h2>
+        {/* <div style={{...textOverlayStyle,fontFamily: 'Kanit, sans-serif',textAlign: 'center',fontWeight: 'bold',fontSize: '56px' }}>ระบบยื่นคำร้องขอใบรับรอง */}
+        {/* <h2 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '56px' }}>ระบบยื่นคำร้องขอใบรับรอง</h2> */}
          {/* <h5 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '32px' }}>บริการสำหรับผู้ปกครอง</h5> */}
-        </div>
+        {/* </div> */}
+        <div style={{...textOverlayStyle,fontFamily: 'Kanit, sans-serif',textAlign: 'center',fontWeight: 'bold',fontSize: '56px'}}>ระบบยื่นคำร้องขอใบรับรอง</div>
       </div>
       {/* <div className="container mt-5">
         <div className="d-flex align-items-center justify-content-center">
@@ -161,6 +158,8 @@ function Request_cert() {
 		</div>
 	</div>
 </div>
+      <br></br>
+      <br></br>
       </>
       ) 
 }

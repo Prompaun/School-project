@@ -60,7 +60,6 @@ const Register = () => {
       </div>
 
       {/* เพิ่มฟอร์มการลงทะเบียน */}
-      <br></br>
       <div className="container mt-5">
         <div className="d-flex align-items-center justify-content-center">
           <h2 className="ms-3 mb-0">สร้างบัญชีผู้ใช้งาน</h2>
@@ -106,11 +105,14 @@ const Register = () => {
           required
         />
       </div>
-      <button type="submit" className="btn btn-primary custom-font">สร้างบัญชีและดำเนินการต่อ</button>
+      <button type="submit" className="btn btn-primary custom-font" style={{textAlign: 'right',fontFamily: 'Kanit, sans-serif'}}>สร้างบัญชีและดำเนินการต่อ</button>
     </form>
   </div>
 </div>
 </div>
+<br></br>
+<br></br>
+
     </>
   );
 }

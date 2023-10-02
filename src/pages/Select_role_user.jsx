@@ -5,6 +5,10 @@ import School_bg from "../images/school_bg.png"
 import Card_select_user from '../components/Card_select_user';
 
 function Select_role_user() {
+  const linkStyle = {
+    color: 'gray',
+    textDecoration: 'none'
+  };
   const containerStyle = {
     position: 'relative',
   };
@@ -34,11 +38,11 @@ function Select_role_user() {
             <h5 style={{ textAlign: 'right', marginLeft: '10px', marginBottom: '0' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
           </div>
         </Link>
-        {/* <div className="nav navbar-nav navbar-right"> */}
-          {/* <span className='nav-link'>
-            <Link to='/Register' style={linkStyle}>Register</Link> | <Link to='/Login' style={linkStyle}>Log in</Link>
-          </span> */}
-        {/* </div> */}
+        <div className="nav navbar-nav navbar-right">
+          <span className='nav-link'>
+            <Link to='/Login/Login_student' style={linkStyle}>Log out</Link>
+          </span>
+        </div>
       </div>
     </nav>
     <div style={containerStyle}>

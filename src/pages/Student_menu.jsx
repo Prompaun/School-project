@@ -6,6 +6,10 @@ import School_bg from "../images/school_bg.png"
 
 
 function Student_menu() {
+  const linkStyle = {
+    color: 'gray',
+    textDecoration: 'none'
+  };
     const containerStyle = {
         position: 'relative',
       };
@@ -35,11 +39,11 @@ function Student_menu() {
                 <h5 style={{ textAlign: 'right', marginLeft: '10px', marginBottom: '0' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
               </div>
             </Link>
-            {/* <div className="nav navbar-nav navbar-right"> */}
-              {/* <span className='nav-link'>
-                <Link to='/Register' style={linkStyle}>Register</Link> | <Link to='/Login' style={linkStyle}>Log in</Link>
-              </span> */}
-            {/* </div> */}
+            <div className="nav navbar-nav navbar-right">
+              <span className='nav-link' style={{fontFamily: 'Kanit, sans-serif'}}>
+                <Link to='/Login/login_student/Select_role_user' style={linkStyle}>หน้าแรก</Link>
+              </span>
+           </div>
           </div>
         </nav>
         <div style={containerStyle}>
@@ -58,6 +62,8 @@ function Student_menu() {
       <br></br>
       <br></br>
       <Card_menu_student /> 
+      <br></br>
+      <br></br>
 
       </>
       )

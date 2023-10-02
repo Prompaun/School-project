@@ -82,7 +82,7 @@ const History_request = () => {
         <div className="container">
           <Link className="navbar-brand" to="/">
             <img src="src\images\IMG_5416.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top" style={{ float: 'left', marginRight: '10px' }} />
-            <span style={{ marginLeft: '0px' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</span>
+            <span style={{  fontFamily: 'Kanit, sans-serif',marginLeft: '0px' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</span>
           </Link>
           <div className="nav navbar-nav navbar-right">
             <span className='nav-link'>
@@ -92,25 +92,24 @@ const History_request = () => {
         </div>
       </nav> 
       <div style={containerStyle}>
-        <img src="src\images\school_bg.png" alt="School Background" width="1899" height="480" style={imageStyle}/>
-        <div style={textOverlayStyle}>ตรวจสอบประวัติการขอใบรับรอง</div>
+        <img src="src\images\school_bg.png" alt="School Background" width="1899" height="320" style={imageStyle}/>
+        <div style={{...textOverlayStyle,fontFamily: 'Kanit, sans-serif',textAlign: 'center',fontWeight: 'bold',fontSize: '56px'}}>ตรวจสอบประวัติการขอใบรับรอง</div>
       </div>
-
-
-      <div className="container mt-5">
-        <div className="d-flex align-items-center">
-          <h2 className="ms-3 mb-0">สถานะคำร้องขอใบรับรอง</h2>
-        </div>
-        <div style={{ margin: '20px' }}>
-          <select value={selectedOption} onChange={handleSelectChange}>
+{/*mt-5 d-flex  */}
+    <br></br>
+      <div className="container flex-column align-items-center">
+        <div className="mb-3"><br />
+          <h2>สถานะคำร้องขอใบรับรอง</h2>
+          <br></br>
+          <select value={selectedOption} onChange={handleSelectChange} style={{ fontFamily: 'Kanit, sans-serif' }}>
             <option value="เลือกสถานะคำร้องขอใบรับรอง">เลือกสถานะคำร้องขอใบรับรอง</option>
             <option value="รอดำเนินการ">รอดำเนินการ</option>
             <option value="ดำเนินการเสร็จสิ้น">ดำเนินการเสร็จสิ้น</option>
             <option value="กำลังดำเนินการ">กำลังดำเนินการ</option>
           </select>
         </div>
-        <div className="d-flex" style={{ marginLeft: '20px', marginTop: '20px' }}>
-          <table className="table-bordered">
+        <div className="d-flex justify-content-center" style={{ height: '150px', overflowY: 'auto' }}>
+          <table className="table-bordered" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center',fontFamily: 'Kanit, sans-serif' }}>
             <thead>
               <tr>
                 <th>วันที่ทำรายการ</th>
@@ -124,21 +123,24 @@ const History_request = () => {
               <tr>
                 <td>1/10/2566</td>
                 <td>00001</td>
-                <td>ป.พ.7</td>
-                <td>ต้องการนำไปขอทุนการศึกษา</td>
+                <td>ปพ.7</td>
+                <td>เพื่อใช้ในการขอทุนการศึกษา</td>
                 <td>รอดำเนินการ</td>
               </tr>
               <tr>
                 <td>1/10/2566</td>
                 <td>00002</td>
-                <td>ป.พ.1</td>
-                <td>ต้องการนำไปสมัครเรียนต่อ</td>
+                <td>ปพ.1</td>
+                <td>เพื่อใช้ในการสมัครเข้าศึกษาต่อ</td>
                 <td>รอดำเนินการ</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
+      <br></br>
+      <br></br>
+      <br></br>
 
     </>
   );

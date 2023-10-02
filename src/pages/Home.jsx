@@ -34,8 +34,8 @@ const Home = () => {
       <Navbar/>
       <div style={containerStyle}>
         <img src="src\images\school_bg.png" alt="School Background" width="1899" height="320" style={imageStyle}/>
-        <div style={textOverlayStyle}>
-          <h2 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '56px'}}>ระบบจัดการสารสนเทศ</h2>
+        <div style={{...textOverlayStyle,textAlign: 'center',fontWeight: 'bold',fontSize: '56px',fontFamily: 'Kanit, sans-serif'}}>
+          ระบบจัดการสารสนเทศ
         </div>
       </div>
       <ul class="list-inline small">
@@ -52,6 +52,9 @@ const Home = () => {
                 <li class="list-group-item"> <Card /></li>
         </ul>
         </div>
+        <br></br>
+        <br></br>
+
     </>
   );
 }
