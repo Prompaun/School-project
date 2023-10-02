@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 
 const Checkgrade = () => {
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
+
+  // const history = useHistory();
   const linkStyle = {
     color: 'gray',
     textDecoration: 'none'
@@ -137,7 +143,12 @@ const Checkgrade = () => {
           </Link>
           <div className="nav navbar-nav navbar-right">
             <span className='nav-link'>
-            <Link to='/Parent_menu' style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>เลือกเมนู</Link>
+              <Link
+                onClick={handleGoBack}
+                style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>
+                เลือกเมนู
+              </Link>
+
             </span>
           </div>
         </div>
