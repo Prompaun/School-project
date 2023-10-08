@@ -11,6 +11,11 @@ function Tab_enroll() {
         textDecoration: 'none',
     };
 
+    const containerStyle = {
+        position: 'relative', // เพื่อให้สามารถใส่คำว่า "ระบบ" ลงในภาพได้
+        overflow: 'hidden', // ป้องกันข้อความเลื่อนออกนอกพื้นที่ของ container
+      };
+
     return (
         <>
             <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
@@ -30,7 +35,7 @@ function Tab_enroll() {
                     </div>
                 </div>
             </nav>
-            <div style={{ position: 'relative' }}>
+            <div style={containerStyle}>
                 <img
                     src={School_bg}
                     alt="School Background"
