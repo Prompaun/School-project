@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import logoImage from '../images/IMG_5416.png';
 import School_bg from '../images/school_bg.png';
 import NewStudent_info from './NewStudent_info';
+import HouseholdInfo from './HouseholdInfo';
 
 
 function Tab_enroll() {
@@ -75,12 +76,12 @@ function Tab_enroll() {
             <div class="card-body" > 
                 <div class="tab-content">
                     <div class="tab-pane container active" id="menu1" style={{height: "450px"}}><NewStudent_info/></div>
-                    <div class="tab-pane container fade" id="menu2">ใส่หน้าที่อยู่ตามทะเบียนบ้าน</div>
+                    <div class="tab-pane container fade" id="menu2"style={{height: "400px"}}><HouseholdInfo/></div>
                     <div class="tab-pane container fade" id="menu3">ใส่หน้าข้อมูลผู้ปกครอง</div>
                 </div>
             </div>
             <br/>
-        </div>
+        </div><br /><br /><br /><br /><br /><br /><br /><br />
         <br/>
             <br/>
             <br/>
