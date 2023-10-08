@@ -127,7 +127,7 @@ function Request_cert() {
                         <h5 className="ms-2 mt-2 custom-body"style={{ fontSize: '18px'}}>ฉบับ</h5>
                     </div>
                     <br></br>
-                    <h1 class="card-heading px-3" style={{fontSize: '20px'}}>ต้องการขอเอกสารครั้งนี้เพื่อ</h1>
+                    <h1 class="card-heading px-3" style={{fontSize: '20px',fontWeight: 'bold'}}>ต้องการขอเอกสารครั้งนี้เพื่อ</h1>
                     <div class="h-screen flex justify-left bg-gray-900">
                     {/* <div class="container d-flex justify-content-center align-items-center"> */}
 
@@ -148,14 +148,17 @@ function Request_cert() {
             <br></br>
             {/* <label class="form-label custom-body" for="customFile">อัปโหลดรูปภาพนักเรียน</label>
              */}
-             <h1 class="card-heading px-3" style={{fontSize: '20px'}}>อัปโหลดรูปภาพนักเรียน</h1>
+             <h1 class="card-heading px-3" style={{fontSize: '20px',fontWeight: 'bold'}}>อัปโหลดรูปภาพนักเรียน</h1>
+
+             <h2 class="card-heading px-3"style={{ fontSize: '18px'}}>หมายเหตุ</h2>
+            {/* <h5 class="card-heading px-3"style={{ fontSize: '16px'}}>1. กรอกข้อมูลให้ครบถ้วนและชัดเจน</h5> */}
+            <h5 class="card-heading px-3"style={{ fontSize: '16px'}}>1. รูปถ่ายต้องถ่ายไว้ไม่เกิน 6 เดือน</h5>
+            <h5 class="card-heading px-3"style={{ fontSize: '16px'}}>2. รูปถ่ายนักเรียนปัจจุบันต้องแต่งกายถูกต้องตามระเบียบของโรงเรียน</h5>
+            <br></br>
+             {/* <h1 class="card-heading px-3" style={{fontSize: '20px'}}>อัปโหลดรูปภาพนักเรียน</h1> */}
             <input type="file" class="form-control px-3" id="customFile" />
             <br></br>
             
-            <h2 class="card-heading px-3"style={{ fontSize: '20px'}}>หมายเหตุ</h2>
-            <h5 class="card-heading px-3"style={{ fontSize: '16px'}}>1. กรอกข้อมูลให้ครบถ้วนและชัดเจน</h5>
-            <h5 class="card-heading px-3"style={{ fontSize: '16px'}}>2. รูปถ่ายต้องถ่ายไว้ไม่เกิน 6 เดือน</h5>
-            <h5 class="card-heading px-3"style={{ fontSize: '16px'}}>3. รูปถ่ายนักเรียนปัจจุบันต้องแต่งกายถูกต้องตามระเบียบของโรงเรียน</h5>
             </div>
 			{/* <div class="row rfour">
 				<div class="col-md-4 ml-3"> */}

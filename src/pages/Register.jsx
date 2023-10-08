@@ -114,7 +114,11 @@ const Register = () => {
           required
         />
       </div>
-      <button type="submit" className="btn btn-primary custom-font" style={{textAlign: 'right',fontFamily: 'Kanit, sans-serif'}}>สร้างบัญชีและดำเนินการต่อ</button>
+      <button type="button" className="btn btn-primary custom-font" style={{ textAlign: 'right', fontFamily: 'Kanit, sans-serif' }}>
+        <Link to="/NewUser_menu" style={{ color: 'white', textDecoration: 'none' }}>
+          สร้างบัญชีและดำเนินการต่อ
+        </Link>
+    </button>
     </form>
   </div>
 </div>
