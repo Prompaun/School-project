@@ -190,8 +190,8 @@ const Checkgrade = () => {
           </form>
         </div> */}
 
-        <div style={{  fontFamily: 'Kanit, sans-serif' }}>
-          ปีการศึกษา:
+        <div style={{ fontFamily: 'Kanit, sans-serif', display: 'flex', alignItems: 'center' }}>
+          <span style={{ marginRight: '10px' }}>ปีการศึกษา:</span>
           <select value={selectedYear} onChange={handleYearChange}>
             <option value="">เลือกปีการศึกษา</option>
             {Object.keys(subjectObject).map((year) => (
@@ -200,8 +200,8 @@ const Checkgrade = () => {
               </option>
             ))}
           </select>
-
-          ภาคเรียนที่:
+          <span style={{ margin: '0 20px' }}></span> {/* เพิ่มระยะห่างที่นี่ */}
+          <span style={{ marginRight: '10px' }}>ภาคเรียนที่:</span>
           <select value={selectedSemester} onChange={handleSemesterChange}>
             <option value="">เลือกภาคเรียน</option>
             {chapters.map((semester) => (
@@ -211,6 +211,7 @@ const Checkgrade = () => {
             ))}
           </select>
         </div>
+
         
         <br /> {/* เพิ่มแท็ก <br /> เพื่อสร้างการเว้นบรรทัด margin: 'auto', */}
         <table className="table-bordered" style={{ textAlign: 'center',fontFamily: 'Kanit, sans-serif'}}>
