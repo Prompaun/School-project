@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import logoImage from '../images/IMG_5416.png';
 import School_bg from '../images/school_bg.png';
-import { MDBNav, MDBNavItem, MDBNavLink, MDBTabContent, MDBTabPane } from 'mdbreact';
+import NewStudent_info from './NewStudent_info';
 
 
 function Tab_enroll() {
@@ -58,7 +58,7 @@ function Tab_enroll() {
         </div>
             </div>
             <br></br>
-            <div class="card w-75 mx-auto" >
+            <div class="card w-50 mx-auto" >
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
@@ -72,15 +72,18 @@ function Tab_enroll() {
                     </li>
                 </ul>
             </div>
-            <div class="card-body" style={{height: "300px"}}> 
+            <div class="card-body" > 
                 <div class="tab-content">
-                    <div class="tab-pane container active" id="menu1">ใส่หน้าข้อมูลนักเรียน</div>
+                    <div class="tab-pane container active" id="menu1" style={{height: "450px"}}><NewStudent_info/></div>
                     <div class="tab-pane container fade" id="menu2">ใส่หน้าที่อยู่ตามทะเบียนบ้าน</div>
                     <div class="tab-pane container fade" id="menu3">ใส่หน้าข้อมูลผู้ปกครอง</div>
                 </div>
             </div>
+            <br/>
         </div>
-
+        <br/>
+            <br/>
+            <br/>
                 </>
     );
 }
