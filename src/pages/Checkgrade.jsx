@@ -14,20 +14,24 @@ const Checkgrade = () => {
   };
 
   const containerStyle = {
-    position: 'relative',
+    position: 'relative', // เพื่อให้สามารถใส่คำว่า "ระบบ" ลงในภาพได้
+    overflow: 'hidden', // ป้องกันข้อความเลื่อนออกนอกพื้นที่ของ container
   };
 
   const textOverlayStyle = {
     position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    color: 'white',
-    fontSize: '28px',
-    fontWeight: 'bold',
-    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-    textAlign: 'left',
+    top: '50%',           // จัดตำแหน่งตรงกลางด้านบน
+    left: '50%',          // จัดตำแหน่งตรงกลางด้านซ้าย
+    transform: 'translate(-50%, -50%)', // ย้ายข้อความลงมาจากตรงกลางด้านบนและด้านซ้าย
+    color: 'white',       // สีของข้อความ
+    fontSize: '28px',     // ขนาดของข้อความ
+    fontWeight: 'bold',   // ตัวหนา
+    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', // เงาข้อความ
+    textAlign: 'center',
+    maxWidth: '100vw', // ข้อความจะไม่ขยายเกินภาพพื้นหลัง
+    whiteSpace: 'nowrap', // ข้อความจะไม่ขึ้นบรรทัดใหม่
   };
+
 
   const imageStyle = {
     filter: 'brightness(25%)',

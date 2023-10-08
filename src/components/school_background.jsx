@@ -9,6 +9,7 @@ const school_background = () => {
 
   const containerStyle = {
     position: 'relative', // เพื่อให้สามารถใส่คำว่า "ระบบ" ลงในภาพได้
+    overflow: 'hidden', // ป้องกันข้อความเลื่อนออกนอกพื้นที่ของ container
   };
 
   const textOverlayStyle = {
@@ -20,6 +21,9 @@ const school_background = () => {
     fontSize: '28px',     // ขนาดของข้อความ
     fontWeight: 'bold',   // ตัวหนา
     textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', // เงาข้อความ
+    textAlign: 'center',
+    maxWidth: '100vw', // ข้อความจะไม่ขยายเกินภาพพื้นหลัง
+    whiteSpace: 'nowrap', // ข้อความจะไม่ขึ้นบรรทัดใหม่
   };
 
   const imageStyle = {
