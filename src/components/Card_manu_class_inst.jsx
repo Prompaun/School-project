@@ -1,20 +1,26 @@
 import React, { useState }from 'react'
 import { NavLink } from 'react-router-dom';
 import enrollment_icon from "../images/enrollment_icon.png"
-import check_status_enroll from "../images/check_status_enroll.png"
+import student_icon from "../images/student_icon.png"
+import health_icon from "../images/health_icon.png"
 
 
-function Card_menu_newuser() {
+function Card_menu_class_inst() {
     const [obj, setObj] = useState([
         {
-          text: "สมัครเข้าเรียน",
-          imageUrl: enrollment_icon, // แทนที่ด้วย URL รูปภาพจริง
-          path: "/Open_course"
+          text: "ระบบจัดการข้อมูลการศึกษา",
+          imageUrl: student_icon, // แทนที่ด้วย URL รูปภาพจริง
+          path: "#"
         },
         {
-            text: "ตรวจสอบสถานะผู้สมัคร",
-            imageUrl: check_status_enroll, // แทนที่ด้วย URL รูปภาพจริง
-            path: "/CheckEnroll_status"
+            text: "ระบบจัดการข้อมูลสุขภาพ",
+            imageUrl: health_icon, // แทนที่ด้วย URL รูปภาพจริง
+            path: "#"
+          },
+          {
+            text: "ระบบการรับสมัครนักเรียนใหม่",
+            imageUrl: enrollment_icon, // แทนที่ด้วย URL รูปภาพจริง
+            path: "#"
           }
       ]);
     function handleClick() {
@@ -37,4 +43,4 @@ function Card_menu_newuser() {
       );
 }
 
-export default Card_menu_newuser
+export default Card_menu_class_inst
