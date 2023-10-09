@@ -174,7 +174,7 @@ function NewStudent_info() {
             <br/>
 			{/* <div class="row rfour">
 				<div class="col-md-4 ml-3"> */}
-                <Link to="/Tab_enroll">
+                <Link >
 					<button type="submit" class="btn btn-primary float-end mb-0 mx-3" style={{fontFamily: 'Kanit, sans-serif', textAlign: 'right'}}><span>ถัดไป</span></button>
 				{/* </div> */}</Link>
 			{/* </div> */}

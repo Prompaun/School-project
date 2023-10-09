@@ -14,7 +14,7 @@ function Card_menu_newuser() {
         {
             text: "ตรวจสอบสถานะผู้สมัคร",
             imageUrl: check_status_enroll, // แทนที่ด้วย URL รูปภาพจริง
-            path: "/Checkgrade"
+            path: "/CheckEnroll_status"
           }
       ]);
     function handleClick() {
