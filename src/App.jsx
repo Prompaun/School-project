@@ -14,7 +14,9 @@ import NewUser_menu from './pages/NewUser_menu'
 import Open_course from './pages/Open_course'
 import Tab_enroll from './pages/Tab_enroll'
 import CheckEnroll_status from './pages/CheckEnroll_status'
-// import select_role_user from './pages/select_role_user'
+import Class_instructor_menu from './pages/Class_instructor_menu'
+import Login_personnel from './pages/Login_personnel'
+import Subject_instructor_menu from './pages/Subject_Instructor_menu'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,6 +37,11 @@ const router = createBrowserRouter(
         <Route path="/Checkgrade" element={<Checkgrade/>} />
         <Route path="/Request_cert" element={<Request_cert/>} />
         <Route path="/History_request" element={<History_request/>} />
+
+        <Route path ="/Login_personnel" element={<Login_personnel />} />
+        <Route path="/Login_personnel/Class_instrctor_menu" element={<Class_instructor_menu />} />
+        <Route path="/Subject_instrctor_menu" element={<Subject_instructor_menu/>} />
+
     </>
   )
 )
