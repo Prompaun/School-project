@@ -11,6 +11,22 @@ function NewStudent_info() {
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
+
+    const allowedFileTypes = ['.pdf', '.jpg', '.jpeg', '.png'];
+
+    const handleFileUpload = (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const fileType = '.' + file.name.split('.').pop().toLowerCase();
+        if (allowedFileTypes.includes(fileType)) {
+          // ไฟล์ถูกต้อง ทำตามต้องการทำ
+        } else {
+          alert('กรุณาเลือกไฟล์ที่มีนามสกุล .pdf, .jpg, .jpeg หรือ .png เท่านั้น');
+          // ไม่อนุญาตให้อัพโหลดไฟล์ที่มีนามสกุลไม่ถูกต้อง
+          event.target.value = ''; // ล้างค่า input file ให้ว่าง
+        }
+      }
+    };
     
   return (
     <><div class="form-group col-md-15 fone">
@@ -25,8 +41,10 @@ function NewStudent_info() {
             <h2 class="card-heading px-3"style={{ fontSize: '16px'}}>หมายเหตุ : รูปถ่ายต้องถ่ายไว้ไม่เกิน 6 เดือน</h2>
             <div className="row" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px', marginRight: '5px', gap: '0', whiteSpace: 'nowrap'  }}>
                         <div className="col-sm d-flex align-items-center">
-                    <label htmlFor="surname" className="col-form-label mb-0 mx-3">รูปนักเรียน</label>
-                    <input type="file" class="form-control px-4" id="customFile" />
+                        {/* <input type="file" class="form-control px-4" id="customFile" /> */}
+                        <label htmlFor="surname" className="col-form-label mb-0 mx-3">รูปนักเรียน</label>
+                        <input type="file" className="form-control px-3" onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
+                    <br />
                 </div>
             </div>
         <br></br>
@@ -128,7 +146,8 @@ function NewStudent_info() {
             <div className="row" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px', marginRight: '5px', gap: '0', whiteSpace: 'nowrap'  }}>
             <div className="col-sm d-flex align-items-center">
                     <label htmlFor="surname" className="col-form-label mb-0 mx-3">สำเนาสูติบัตร (ของนักเรียน)</label>
-                    <input type="file" class="form-control px-4" id="customFile" />
+                    {/* <input type="file" class="form-control px-4" id="customFile" /> */}
+                    <input type="file" className="form-control px-3" onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
                 </div>
             </div>
             <br />
@@ -168,7 +187,8 @@ function NewStudent_info() {
                         ปพ.8
                     </label>
                 </div>
-                <input type="file" class="form-control px-4 mb-0 mx-3" id="customFile" />
+                {/* <input type="file" class="form-control px-4 mb-0 mx-3" id="customFile" /> */}
+                <input type="file" className="form-control px-3" onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
             </div>
             </div>
             <br/>
