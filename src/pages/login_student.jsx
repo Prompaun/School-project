@@ -6,6 +6,9 @@ import school_bg from "../images/school_bg.png";
 import Navbar from '../components/Navbar'
 
 const login_student = () => {
+
+    const [student_id, setstudent_id] = useState('');
+
     const linkStyle = {
         color: 'gray',
         textDecoration: 'none'
@@ -54,6 +57,17 @@ const login_student = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         // ทำสิ่งที่คุณต้องการเมื่อกด submit ฟอร์ม
+
+        if (!student_id) {
+            alert('Please fill out all fields ');
+            return;
+          }
+
+        setstudent_id('');
+
+        // Show a success message to the user
+        alert('Form submitted successfully!');
+
         console.log('Submit Form', formData);
         // เช่น ส่งข้อมูลไปยังเซิร์ฟเวอร์หรือทำการตรวจสอบข้อมูล
     };
@@ -89,8 +103,8 @@ const login_student = () => {
             </div>
 
             <form onSubmit={handleSubmit}>
-                <div className="mb-3 d-flex">
-                    <label htmlFor="username" className="form-label me-3">Username: </label>
+                {/* <div className="mb-3 d-flex">
+                    <label htmlFor="username" className="form-label me-3">รหัสประจำตัวนักเรียน: </label>
                     <input
                         type="text"
                         className="form-control"
@@ -100,9 +114,21 @@ const login_student = () => {
                         onChange={handleInputChange}
                         required
                     />
+                </div> placeholder="กรอกเลขประจำตัวนักเรียน"*/}
+                <div className="mb-3 d-flex" style={{gap: '15px'}}>
+                    <label>
+                        <span style={{ marginRight: '10px', whiteSpace: 'nowrap' }}>รหัสประจำตัวนักเรียน:</span>
+                    </label>
+                    {/* <div className="col-sm-4 d-flex align-items-center"> */}
+                        <input type="student_id" className="form-control"  value={student_id} onChange={(e) => setstudent_id(e.target.value)} />
+                    {/* </div> */}
+                    
                 </div>
+
                 <div className="mb-3 d-flex">
-                    <label htmlFor="password" className="form-label me-3">Password: </label>
+                    <label>
+                        <span htmlFor="password" className="form-label me-3"style={{ marginRight: '10px', whiteSpace: 'nowrap' }}>รหัสประจำตัวประชาชน:</span>
+                    </label>
                     <input
                         type="password"
                         className="form-control"

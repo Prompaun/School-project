@@ -84,8 +84,10 @@ const Login_personnel = () => {
             </div>
 
             <form onSubmit={handleSubmit}>
-                <div className="mb-3 d-flex">
-                    <label htmlFor="username" className="form-label me-3">Username: </label>
+                <div className="mb-3 d-flex" style={{gap: '20px'}}>
+                    <label>
+                        <span htmlFor="email" className="form-label me-3"style={{ marginRight: '10px',marginLeft: '0px', whiteSpace: 'nowrap' }}>อีเมล:  </span>
+                    </label>
                     <input
                         type="text"
                         className="form-control"
@@ -97,7 +99,9 @@ const Login_personnel = () => {
                     />
                 </div>
                 <div className="mb-3 d-flex">
-                    <label htmlFor="password" className="form-label me-3">Password: </label>
+                    <label>
+                        <span htmlFor="password" className="form-label me-3"style={{ marginRight: '10px', whiteSpace: 'nowrap' }}>รหัสผ่าน:</span>
+                    </label>
                     <input
                         type="password"
                         className="form-control"
