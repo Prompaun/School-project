@@ -77,7 +77,7 @@ function Tab_enroll() {
             <div class="card-body" > 
                 <div class="tab-content">
                     <div class="tab-pane container active" id="menu1" style={{height: "450px"}}><NewStudent_info/></div>
-                    <div class="tab-pane container fade" id="menu2"style={{height: "300px"}}><HouseholdInfo/></div>
+                    <div class="tab-pane container fade" id="menu2"style={{height: "230px"}}><HouseholdInfo/></div>
                     <div class="tab-pane container fade" id="menu3"><ParentsInfo/></div>
                 </div>
             </div>
