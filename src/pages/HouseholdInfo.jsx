@@ -25,7 +25,7 @@ const HouseholdInfo = () => {
 
   const streetOptions = {
     'พระบรมมหาราชวัง': ['ถนน1', 'ถนน2', 'ถนน3'],
-    'วชิรพยาบาล': ['ถนนสามเสน', 'ศรีอยุธยา ', 'ถนนราชวิถี'],
+    'วชิรพยาบาล': ['สามเสน', 'ศรีอยุธยา ', 'ราชวิถี'],
     // Add more districts and corresponding sub-districts here
   };
 
@@ -48,9 +48,20 @@ const HouseholdInfo = () => {
     setStreet('');
   };
 
+  const allowedFileTypes = ['.jpg', '.jpeg', '.png'];
+
   const handleFileUpload = (event) => {
-    const uploadedFile = event.target.files[0];
-    setFile(uploadedFile);
+    const file = event.target.files[0];
+    if (file) {
+      const fileType = '.' + file.name.split('.').pop().toLowerCase();
+      if (allowedFileTypes.includes(fileType)) {
+        // ไฟล์ถูกต้อง ทำตามต้องการทำ
+      } else {
+        alert('กรุณาเลือกไฟล์ที่มีนามสกุล .pdf .jpg, .jpeg หรือ .png เท่านั้น');
+        // ไม่อนุญาตให้อัพโหลดไฟล์ที่มีนามสกุลไม่ถูกต้อง
+        event.target.value = ''; // ล้างค่า input file ให้ว่าง
+      }
+    }
   };
 
   const handleSubmit = (event) => {
@@ -81,24 +92,46 @@ const HouseholdInfo = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', fontFamily: 'Kanit, sans-serif' }}>
-      <form style={{ display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'flex-start' }} onSubmit={handleSubmit}><br />
+      <form style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }} onSubmit={handleSubmit}><br />
       
-      <div style={{ display: 'flex', alignItems: 'center' }}>
+      <div style={{ display: 'flex', gap: '10px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
 
         <label>
           <span style={{ marginRight: '10px', whiteSpace: 'nowrap' }}>บ้านเลขที่:</span>
         </label>
-        <input type="text" className="form-control" placeholder="กรอกบ้านเลขที่" value={houseNumber} onChange={(e) => setHouseNumber(e.target.value)} />
+        <div className="col-sm-1.2 d-flex align-items-center">
+            <input type="text" className="form-control" placeholder="กรอกบ้านเลขที่" value={houseNumber} onChange={(e) => setHouseNumber(e.target.value)} />
+        </div>
+        
 
         <label>
           <span style={{ margin: '0 20px' }}></span> 
           <span style={{ marginRight: '10px', whiteSpace: 'nowrap' }}>หมู่ที่:</span>
         </label>
-          <input type="text" className="form-control" placeholder="กรอกหมู่" value={villageNumber} onChange={(e) => setVillageNumber(e.target.value)} />
+          <div className="col-sm-1 d-flex align-items-center">
+            <input type="text" className="form-control" placeholder="กรอกหมู่" value={villageNumber} onChange={(e) => setVillageNumber(e.target.value)} />
+          </div>
         
+
+        <label>
+          <span style={{ margin: '0 20px' }}></span> 
+          <span style={{ marginRight: '10px', whiteSpace: 'nowrap' }}>ซอย:</span>
+        </label>
+          <div className="col-sm-2 d-flex align-items-center">
+            <input type="text" className="form-control" id="Alley" name="Alley" placeholder="กรอกซอย" />
+          </div>
+        
+          <label>
+          <span style={{ margin: '0 20px' }}></span> 
+          <span style={{ marginRight: '10px', whiteSpace: 'nowrap' }}>ถนน:</span>
+        </label>
+          <div className="col-sm-3 d-flex align-items-center">
+            <input type="text" className="form-control" id="streety" name="street" placeholder="กรอกถนน" />
+          </div>
+
       </div><br />
 
-      <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+      <div style={{ display: 'flex', gap: '10px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
         <label style={{ marginRight: '20px' }}>
           <span style={{ marginRight: '10px' }}>จังหวัด:</span>
             <select value={province} onChange={handleProvinceChange}>
@@ -110,7 +143,7 @@ const HouseholdInfo = () => {
               ))}
             </select>
         </label><br />
-        <label>
+        <label style={{ marginRight: '20px' }}>
           <span style={{ marginRight: '10px' }}>เขต/อำเภอ:</span>
           <select value={district} onChange={handleDistrictChange}>
             <option value="">กรุณาเลือกเขต/อำเภอ</option>
@@ -121,9 +154,20 @@ const HouseholdInfo = () => {
             ))}
           </select>
         </label><br />
+        <label style={{ marginRight: '20px' }}>
+          <span style={{ marginRight: '10px' }}>แขวง/ตำบล:</span>
+          <select value={subDistrict} onChange={(e) => setSubDistrict(e.target.value)}>
+            <option value="">กรุณาเลือกแขวง/ตำบล</option>
+            {subDistrictOptions[district] && subDistrictOptions[district].map((subDistrict) => (
+              <option key={subDistrict} value={subDistrict}>
+                {subDistrict}
+              </option>
+            ))}
+          </select>
+        </label><br />
       </div><br />
 
-      <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+      {/* <div style={{ display: 'flex', gap: '10px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
         <label style={{ marginRight: '20px' }}>
           <span style={{ marginRight: '10px' }}>แขวง/ตำบล:</span>
           <select value={subDistrict} onChange={(e) => setSubDistrict(e.target.value)}>
@@ -146,24 +190,7 @@ const HouseholdInfo = () => {
             ))}
           </select>
         </label><br />
-        {/* <label style={{ marginRight: '20px' }}>
-          <span style={{ marginRight: '10px' }}>ถนน:</span>
-          <input type="text" value={street} onChange={(e) => setStreet(e.target.value)} />
-        </label><br /> */}
-        
-        {/* <label style={{ marginRight: '20px' }}>
-          <span style={{ marginRight: '10px' }}>ซอย:</span>
-          <input type="text" value={alley} onChange={(e) => setAlley(e.target.value)} />
-          <input type="text" className="form-control" id="Alley" name="Alley" placeholder="กรอกซอย" />
-        </label><br /> */}
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <label style={{ marginRight: '10px' }}>
-            <span style={{ marginRight: '0px' }}>ซอย:</span>
-          </label>
-          <input type="text" className="form-control" id="Alley" name="Alley" placeholder="กรอกซอย" />
-        </div>
-
-      </div><br />
+      </div><br /> */}
 
       {/* <div style={{ display: 'flex', alignItems: 'center' }}>
         <label style={{ marginRight: '10px' }}>
@@ -179,12 +206,14 @@ const HouseholdInfo = () => {
         <input type="file" className="form-control px-3" onChange={handleFileUpload} />
       </div><br /> */}
 
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <label style={{ marginRight: '10px', whiteSpace: 'nowrap' }}>
-          อัพโหลดไฟล์สำเนาทะเบียนบ้าน:
-        </label>
-        <input type="file" className="form-control px-3" onChange={handleFileUpload} />
-      </div><br />
+      <div style={{ display: 'flex', gap: '10px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
+          <label style={{ marginRight: '10px', whiteSpace: 'nowrap' }}>
+            อัพโหลดไฟล์สำเนาทะเบียนบ้าน:
+          </label>
+          <input type="file" className="form-control px-3" onChange={handleFileUpload} accept=".pdf .jpg, .jpeg, .png" />
+        </div>
+      <br />
+
 
 
       </form>
@@ -197,9 +226,6 @@ const HouseholdInfo = () => {
           <button type="submit" className="btn btn-primary">ถัดไป</button>
         </div>
       </div>
-
-
-
     </div>
   );
 };
