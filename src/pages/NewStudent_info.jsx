@@ -1,6 +1,8 @@
 import React,{useState} from 'react'
 import { Link } from 'react-router-dom';
-import DatePicker from 'react-datepicker';
+import DatePicker, { registerLocale } from "react-datepicker";
+import th from "date-fns/locale/th"; // the locale you want
+registerLocale("th", th); // register it with the name you want
 import 'react-datepicker/dist/react-datepicker.css';
 
 function NewStudent_info() {
@@ -68,7 +70,8 @@ function NewStudent_info() {
             <div className="col-sm d-flex align-items-center">
                     <h2 htmlFor="surname" className="col-form-label mb-0 mx-3">วัน/เดือน/ปีเกิด</h2>
                 
-            <DatePicker 
+            <DatePicker locale="th"
+                dateFormat="dd/MM/yyyy"
                 renderCustomHeader={({
                     date,
                     changeYear,
