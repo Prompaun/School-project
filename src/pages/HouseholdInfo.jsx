@@ -48,7 +48,7 @@ const HouseholdInfo = () => {
     setStreet('');
   };
 
-  const allowedFileTypes = ['.jpg', '.jpeg', '.png'];
+  const allowedFileTypes = ['.pdf', '.jpg', '.jpeg', '.png'];
 
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
@@ -57,7 +57,7 @@ const HouseholdInfo = () => {
       if (allowedFileTypes.includes(fileType)) {
         // ไฟล์ถูกต้อง ทำตามต้องการทำ
       } else {
-        alert('กรุณาเลือกไฟล์ที่มีนามสกุล .pdf .jpg, .jpeg หรือ .png เท่านั้น');
+        alert('กรุณาเลือกไฟล์ที่มีนามสกุล .pdf, .jpg, .jpeg หรือ .png เท่านั้น');
         // ไม่อนุญาตให้อัพโหลดไฟล์ที่มีนามสกุลไม่ถูกต้อง
         event.target.value = ''; // ล้างค่า input file ให้ว่าง
       }
@@ -210,7 +210,7 @@ const HouseholdInfo = () => {
           <label style={{ marginRight: '10px', whiteSpace: 'nowrap' }}>
             อัพโหลดไฟล์สำเนาทะเบียนบ้าน:
           </label>
-          <input type="file" className="form-control px-3" onChange={handleFileUpload} accept=".pdf .jpg, .jpeg, .png" />
+          <input type="file" className="form-control px-3" onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
         </div>
       <br />
 
