@@ -44,7 +44,7 @@ function Student_menu() {
             </Link>
             <div className="nav navbar-nav navbar-right">
               <span className='nav-link' style={{fontFamily: 'Kanit, sans-serif'}}>
-                <Link to='/Login/login_student/Select_role_user' style={linkStyle}>หน้าแรก</Link>
+                <Link to='/Login/login_student' style={linkStyle}>หน้าแรก</Link>
               </span>
            </div>
           </div>

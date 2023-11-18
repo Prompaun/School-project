@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 import eye_open from "../images/eye-open.png";
 import eye_closed from "../images/eye-closed.png";
 
-const Login_personnel = () => {
+const Login_parent = () => {
 
     const containerStyle = {
         position: 'relative', // เพื่อให้สามารถใส่คำว่า "ระบบ" ลงในภาพได้
@@ -84,7 +84,7 @@ const Login_personnel = () => {
                 />
                 <div style={textOverlayStyle}>
                     <h2 style={{ textAlign: 'center',fontWeight: 'bold' ,fontSize: '56px'}}>ระบบบริการข้อมูล</h2>
-                    <h5 style={{ textAlign: 'center',fontWeight: 'bold' ,fontSize: '32px'}}>สำหรับบุคลากรภายในโรงเรียน</h5>
+                    <h5 style={{ textAlign: 'center',fontWeight: 'bold' ,fontSize: '32px'}}>สำหรับผู้ปกครอง</h5>
                     </div>
             </div>
           
@@ -114,25 +114,6 @@ const Login_personnel = () => {
                         required
                     />
                 </div>
-
-
-                {/* <div className="mb-3 d-flex">
-                <label>
-                    <span htmlFor="password" className="form-label me-3" style={{ marginRight: '10px', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>รหัสผ่าน:</span>
-                </label>
-                <input
-                    type={showPassword ? 'text' : 'password'}
-                    className="form-control"
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    required
-                />
-                <button type="button" onClick={handleTogglePassword}>
-                    <img src={showPassword ? eye_closed : eye_open} alt={showPassword ? 'ปิดตา' : 'เปิดตา'} style={{ cursor: 'pointer' }} />
-                </button>
-                </div> */}
 
             <div className="mb-3 d-flex align-items-center">
             <label>
@@ -176,7 +157,7 @@ const Login_personnel = () => {
 
                 <Link to='/Register' style={linkStyle}>ลืมรหัสผ่าน</Link>
 
-                <Link to="/Login_personnel/Class_instrctor_menu">
+                <Link to="Parent_menu">
                 <button type="submit" className="btn btn-primary float-end" style={{fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>Log in</button>
                 </Link>
             </form>
@@ -189,4 +170,4 @@ const Login_personnel = () => {
     );
 };
 
-export default Login_personnel;
+export default Login_parent;

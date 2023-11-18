@@ -43,7 +43,7 @@ function Parent_menu() {
             </Link>
             <div className="nav navbar-nav navbar-right"> 
               <span className='nav-link'>
-              <Link to='/Login/login_student/Select_role_user' style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>หน้าแรก</Link>
+              <Link to='/Login/login_student' style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>หน้าแรก</Link>
               </span>
             </div>
             {/* <div className="nav navbar-nav navbar-right"> */}
