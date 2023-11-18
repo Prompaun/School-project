@@ -8,7 +8,8 @@ import Navbar from '../components/Navbar'
 const login_student = () => {
 
     const [student_id, setstudent_id] = useState('');
-
+    const [password, setpassword] = useState('');
+    
     const linkStyle = {
         color: 'gray',
         textDecoration: 'none'
@@ -58,13 +59,13 @@ const login_student = () => {
         event.preventDefault();
         // ทำสิ่งที่คุณต้องการเมื่อกด submit ฟอร์ม
 
-        if (!student_id) {
+        if (!student_id || !password) {
             alert('Please fill out all fields ');
             return;
           }
 
         setstudent_id('');
-
+        setpassword('');
         // Show a success message to the user
         alert('Form submitted successfully!');
 
@@ -101,6 +102,7 @@ const login_student = () => {
                 <img src={school_logo} alt="Register Image" width="100" height="100" />
                 <h2 className="ms-3 mb-0">โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h2>
             </div>
+                <br></br>
 
             <form onSubmit={handleSubmit}>
                 {/* <div className="mb-3 d-flex">

@@ -215,10 +215,10 @@ function ParentsInfo() {
                         <label htmlFor="mother_Occupation" className="col-form-label mb-0 mx-2">วุฒิการศึกษา</label>
                         <div class="dropdown px-0" style={{ width: '150px' }}> {/* กำหนดความกว้างของ dropdown ที่นี่ */}
                             <select value={selectedOption} onChange={handleSelectChange} class="custom-select" style={{ width: '150px' }}> {/* กำหนดความกว้างของตัวเลือกใน dropdown ที่นี่ */}
-                                <option value="ระบุหมายเหตุ">ระบุวุฒิการศึกษา</option>
-                                <option value="เพื่อใช้ในการขอทุนการศึกษา">ปริญญาตรี</option>
-                                <option value="เพื่อใช้ในการสมัครเข้าศึกษาต่อ">ปริญญาโท</option>
-                                <option value="เพื่อใช้ในการสมัครเข้าศึกษาต่อ">ปริญญาเอก</option>
+                                <option value="ระบุวุฒิการศึกษา">ระบุวุฒิการศึกษา</option>
+                                <option value="ปริญญาตรี">ปริญญาตรี</option>
+                                <option value="ปริญญาโท">ปริญญาโท</option>
+                                <option value="ปริญญาเอก">ปริญญาเอก</option>
                             </select>
                         </div>
                     </div>

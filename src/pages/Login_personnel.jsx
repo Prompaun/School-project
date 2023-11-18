@@ -82,6 +82,7 @@ const Login_personnel = () => {
                 <img src={school_logo} alt="Register Image" width="100" height="100" />
                 <h2 className="ms-3 mb-0">โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h2>
             </div>
+            <br></br>
 
             <form onSubmit={handleSubmit}>
                 <div className="mb-3 d-flex" style={{gap: '20px'}}>

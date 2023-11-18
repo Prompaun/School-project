@@ -3,8 +3,8 @@ import { BrowserRouter, Route, RouterProvider, Routes, createBrowserRouter, crea
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import Login_student from './pages/Login_student'
 import Select_role_user from './pages/Select_role_user'
+import Login_student from './pages/Login_student'
 import Student_menu from './pages/Student_menu'
 import Checkgrade from './pages/Checkgrade'
 import Parent_menu from './pages/Parent_menu'
@@ -17,6 +17,7 @@ import CheckEnroll_status from './pages/CheckEnroll_status'
 import Class_instructor_menu from './pages/Class_instructor_menu'
 import Login_personnel from './pages/Login_personnel'
 import Subject_instructor_menu from './pages/Subject_Instructor_menu'
+import Education_information from './pages/Education_information'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -42,6 +43,7 @@ const router = createBrowserRouter(
         <Route path="/Login_personnel/Class_instrctor_menu" element={<Class_instructor_menu />} />
         <Route path="/Subject_instrctor_menu" element={<Subject_instructor_menu/>} />
 
+        <Route path="/Education_information" element={<Education_information />} />
     </>
   )
 )
