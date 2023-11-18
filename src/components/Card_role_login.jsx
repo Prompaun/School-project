@@ -4,9 +4,14 @@ import { NavLink } from 'react-router-dom'
 const Card_role_login = () => {
     const [obj, setObj] = useState([
         {
-          text: "นักเรียน / ผู้ปกครอง",
+          text: "นักเรียน",
           imageUrl: "src/images/student_icon.png", // แทนที่ด้วย URL รูปภาพจริง
-          path: "/Login/login_student"
+          path: "/Login/Login_student"
+        },
+        {
+          text: "ผู้ปกครอง",
+          imageUrl: "src/images/parent_icon.png", // แทนที่ด้วย URL รูปภาพจริง
+          path: "/Login/Login_parent"
         },
         {
           text: "บุคลากร",
