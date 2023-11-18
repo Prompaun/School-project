@@ -3,8 +3,9 @@ import { BrowserRouter, Route, RouterProvider, Routes, createBrowserRouter, crea
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import Select_role_user from './pages/Select_role_user'
+// import Select_role_user from './pages/Select_role_user'
 import Login_student from './pages/Login_student'
+import Login_parent from './pages/Login_parent'
 import Student_menu from './pages/Student_menu'
 import Checkgrade from './pages/Checkgrade'
 import Parent_menu from './pages/Parent_menu'
@@ -25,7 +26,9 @@ const router = createBrowserRouter(
         <Route path="/" element={<Home />} />
         <Route path="/Login" element={<Login />} />
         <Route path ="/Login/Login_student" element={<Login_student />} />
-        <Route path ="/Login/login_student/Select_role_user" element={<Select_role_user />} />
+        <Route path ="/Login/Login_parent" element={<Login_parent />} />
+        <Route path ="/Login/Login_student/Student_menu" element={<Student_menu />} />
+        <Route path ="/Login/Login_parent/Parent_menu" element={<Parent_menu />} />
         
         <Route path="/Register" element={<Register />} />
         <Route path="/NewUser_menu" element={<NewUser_menu />} />
