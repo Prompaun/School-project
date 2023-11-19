@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import school_logo from "../images/IMG_5416.png";
-import school_bg from "../images/school_bg.png";
 import Navbar from "../components/Navbar";
 import eye_open from "../images/eye-open.png";
 import eye_closed from "../images/eye-closed.png";
-
+import Header from '../components/Header';
 const Login_parent = () => {
 
     const containerStyle = {
@@ -71,23 +70,8 @@ const Login_parent = () => {
     return (
         <>
             <Navbar/>
-            <div style={containerStyle}>
-            <img
-                src={school_bg}
-                alt="School Background"
-                style={{
-                    ...imageStyle,
-                    width: '100vw', // 100vw คือ 100% ของความกว้างของ viewport
-                    maxHeight: '40vh',  // 40vh คือ 40% ของความสูงของ viewport
-                    objectFit: 'cover'  // ภาพจะทำการ crop หรือ stretch เพื่อให้เต็มพื้นที่ที่กำหนด
-                }}
-                />
-                <div style={textOverlayStyle}>
-                    <h2 style={{ textAlign: 'center',fontWeight: 'bold' ,fontSize: '56px'}}>ระบบบริการข้อมูล</h2>
-                    <h5 style={{ textAlign: 'center',fontWeight: 'bold' ,fontSize: '32px'}}>สำหรับผู้ปกครอง</h5>
-                    </div>
-            </div>
-          
+            <Header header="ระบบบริการข้อมูล" subhead="สำหรับผู้ปกครอง"/>
+
             {/* เพิ่มฟอร์มการลงทะเบียน */}
             {/* <div class="list-group"> */}
             <div className="container mt-5">

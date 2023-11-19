@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import logoImage from '../images/IMG_5416.png';
-import School_bg from '../images/school_bg.png';
+import Header from '../components/Header';
 import NewStudent_info from './NewStudent_info';
 import HouseholdInfo from './HouseholdInfo';
 import ParentsInfo from './ParentInfo';
@@ -12,11 +12,6 @@ function Tab_enroll() {
         color: 'gray',
         textDecoration: 'none',
     };
-
-    const containerStyle = {
-        position: 'relative', // เพื่อให้สามารถใส่คำว่า "ระบบ" ลงในภาพได้
-        overflow: 'hidden', // ป้องกันข้อความเลื่อนออกนอกพื้นที่ของ container
-      };
 
     return (
         <>
@@ -37,22 +32,8 @@ function Tab_enroll() {
                     </div>
                 </div>
             </nav>
-            <div style={containerStyle}>
-                <img
-                    src={School_bg}
-                    alt="School Background"
-                    style={{
-                        filter: 'brightness(25%)',
-                        width: '100vw',
-                        maxHeight: '40vh',
-                        objectFit: 'cover',
-                    }}
-                />
-                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: 'white', textAlign: 'center' }}>
-                    <h2 style={{ fontWeight: 'bold', fontSize: '56px' }}>ระบบรับสมัครนักเรียนแบบออนไลน์</h2>
-                    <h5 style={{ fontWeight: 'bold', fontSize: '32px' }}>เพื่อเข้าศึกษาระดับประถมศึกษาปีที่ 1</h5>
-                </div>
-            </div>
+           
+            <Header header="ระบบรับสมัครนักเรียนแบบออนไลน์" subhead="เพื่อเข้าศึกษาระดับประถมศึกษาปีที่ 1"/>
                 {/* <br></br> */}
                 <div className="container mt-5">
         <div className="d-flex align-items-center justify-content-center">
