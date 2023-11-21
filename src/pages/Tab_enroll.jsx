@@ -41,7 +41,8 @@ function Tab_enroll() {
         </div>
             </div>
             <br></br>
-            <div class="card w-75 mx-auto" >
+
+        <div class="card mx-auto" style={{ width: "1100px"}}>
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
@@ -64,6 +65,9 @@ function Tab_enroll() {
             </div>
             <br/>
         </div><br /><br /><br /><br /><br /><br /><br /><br />
+
+
+        
         <br/>
             <br/>
             <br/>

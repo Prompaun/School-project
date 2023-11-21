@@ -92,6 +92,8 @@ const History_request = () => {
             <option value="กำลังดำเนินการ">กำลังดำเนินการ</option>
           </select>
         </div>
+
+        
         <div className="d-flex justify-content-center" style={{ height: '150px', overflowY: 'auto' }}>
           <table className="table-bordered" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center',fontFamily: 'Kanit, sans-serif' }}>
             <thead>

@@ -56,37 +56,33 @@ const Education_information = () => {
              
             <div className="card w-40 mx-auto mt-5" style={{ boxShadow: '1px 2px 12px 4px rgba(0, 0, 0, 0.2)' }}>
                 <div className="card-body">
-                {/* ,fontWeight: 'bold' */}
-                <div className="row" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '20px', marginRight: '5px', gap: '0'}}>
-                    <div className="col-sm d-flex align-items-center">
+                    {/* ,fontWeight: 'bold' */}
+                    <div className="row" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '20px', marginRight: '5px', gap: '0'}}>
+                        <div className="col-sm d-flex align-items-center">
                             <label htmlFor="father_data" className="col-form-label mb-0 mx-2">Filter</label>
                         </div>
                     </div>
-                
-                <div className="row" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px', marginRight: '5px', gap: '0'}}>
+                    
+                    <div className="row" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px', marginRight: '5px', gap: '0'}}>
+                    
                     <div className="col-sm d-flex align-items-center">
                             <label htmlFor="father_data" className="col-form-label mb-0 mx-2">ปีการศึกษา</label>
                         </div>
                     </div>
-                
-                <div style={{ display: 'flex', alignItems: 'center', gap: '20px', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>
-                    <div className="col-sm-0 d-flex align-items-center">
-                        {/* <label htmlFor="father_Occupation" className="col-form-label mb-0 mx-2">วุฒิการศึกษา</label> */}
-                        <div class="dropdown px-2" style={{ width: '150px' }}> {/* กำหนดความกว้างของ dropdown ที่นี่ */}
-                            <select value={selectedSemester} onChange={handleSelectChange} class="custom-select" style={{ width: '350px' }}> {/* กำหนดความกว้างของตัวเลือกใน dropdown ที่นี่ */}
-                                <option value="เลือกปีการศึกษา">เลือกปีการศึกษา</option>
-                                <option value="2560">2560</option>
-                                <option value="2561">2561</option>
-                                <option value="2562">2562</option>
-                            </select>
+                    
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>
+                        <div className="col-sm-0 d-flex align-items-center">
+                            {/* <label htmlFor="father_Occupation" className="col-form-label mb-0 mx-2">วุฒิการศึกษา</label> */}
+                            <div class="dropdown px-2" style={{ width: '150px' }}> {/* กำหนดความกว้างของ dropdown ที่นี่ */}
+                                <select value={selectedSemester} onChange={handleSelectChange} class="custom-select" style={{ width: '350px' }}> {/* กำหนดความกว้างของตัวเลือกใน dropdown ที่นี่ */}
+                                    <option value="เลือกปีการศึกษา">เลือกปีการศึกษา</option>
+                                    <option value="2560">2560</option>
+                                    <option value="2561">2561</option>
+                                    <option value="2562">2562</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-{/* 
-                    <Link to="/">
-                        <button type="submit" className="btn btn-primary float-end">Log in</button>
-                    </Link> */}
                 </div>
             </div>
         </>

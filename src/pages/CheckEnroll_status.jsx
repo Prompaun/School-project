@@ -32,121 +32,130 @@ function CheckEnroll_status() {
       </div>
     </nav>
     
-  <Header header="ระบบรับสมัครนักเรียนแบบออนไลน์" subhead="เพื่อเข้าศึกษาระดับประถมศึกษาปีที่ 1" />
-  
-  <br></br>
-  <br></br>
-  <div className="d-flex align-items-center justify-content-center">
-          <h2 className="ms-3 mb-0">ข้อมูลการสมัคร</h2>
-        </div>
-        <br></br>
-    <div className="card w-50 mx-auto">
-    <div className="card-body">
-        <div class="form-group col-md-15 fone"style={{ padding: '10px', margin: '10px',whiteSpace: "nowrap" }}>
-        
-        
-        <div class="d-flex align-items-center">
-            <h2 class="card-heading px-3" style={{fontSize: '18px',fontWeight: 'bold'}}>ชื่อ-นามสกุล</h2>
-            <h2 class="card-heading px-3" style={{fontSize: '18px'}}>เด็กหญิงใจดี รักสงบ</h2>
+    <Header header="ระบบรับสมัครนักเรียนแบบออนไลน์" subhead="เพื่อเข้าศึกษาระดับประถมศึกษาปีที่ 1" />
+    
+    {/* <br></br>
+    <br></br> */}
+    {/* <div className="d-flex align-items-center justify-content-center"> */}
+    {/* <div class="container justify-content-center"> */}
+    <div className="container mt-5 d-flex flex-column align-items-center">
+        <h2 className="ms-3 mb-0">ข้อมูลการสมัคร</h2>
+    </div>
+    <br></br>
+    {/* <div class="container-fluid" style={{ textAlign: 'center' }}>
+        <div class="card mx-auto my-0" style={{ width: "800px" }}>  
+            <div className="card-body"> */}
+    {/* <div class="container-fluid" style={{ textAlign: 'center' }}>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mx-auto my-0">  
+                <div className="card-body">
+                <div class="form-group col-md-0 fone"style={{ padding: '10px', margin: '10px',whiteSpace: "nowrap" }}>
 
-            <h2 class="card-heading px-3" style={{fontSize: '18px',fontWeight: 'bold'}}>เลขประจำตัวประชาชน</h2>
-            <h2 class="card-heading px-3" style={{fontSize: '16px'}}>X-XXXX-XXXXX-XX-X</h2>
-        </div>
-        <br></br>
-                      
-          
-            <div className="row" style={{ fontFamily: 'Kanit, sans-serif', marginRight: '10px', gap: '0',whiteSpace: "nowrap" }}>
-                <div className="col-sm d-flex align-items-center">
-                <h2 class="card-heading px-3" style={{fontSize: '18px',fontWeight: 'bold'}}>ปีการศึกษา</h2>
-                <h2 class="card-heading px-4" style={{fontSize: '18px'}}>XXXX</h2>   
+                <div class="d-flex align-items-center">
+                    <h2 class="card-heading px-1" style={{fontSize: '18px',fontWeight: 'bold'}}>ชื่อ-นามสกุล</h2>
+                    <h2 class="card-heading px-3" style={{fontSize: '18px'}}>เด็กหญิงใจดี รักสงบ</h2>
+
+                    <h2 class="card-heading px-3" style={{fontSize: '18px',fontWeight: 'bold'}}>เลขประจำตัวประชาชน</h2>
+                    <h2 class="card-heading px-3" style={{fontSize: '16px'}}>X-XXXX-XXXXX-XX-X</h2>
+                </div>
+                <br></br>
+                        
+            
+                <div className="row" style={{ fontFamily: 'Kanit, sans-serif', marginRight: '10px', gap: '0',whiteSpace: "nowrap" }}>
+                    <div className="col-sm d-flex align-items-center">
+                    <h2 class="card-heading px-1" style={{fontSize: '18px',fontWeight: 'bold'}}>ปีการศึกษา</h2>
+                    <h2 class="card-heading px-4" style={{fontSize: '18px'}}>XXXX</h2>   
+                    
+                    <h2 class="card-heading px-3" style={{fontSize: '18px',fontWeight: 'bold'}}>หลักสูตร</h2>
+                    <h2 class="card-heading px-3" style={{fontSize: '18px'}}>English Program (EP)</h2>
+                    </div>
+                </div>
+                <br/>
+                <div className="row" style={{ fontFamily: 'Kanit, sans-serif', marginRight: '10px', gap: '0',whiteSpace: "nowrap" }}>
+                    <div className="col-sm d-flex align-items-center">
+                    <h2 class="card-heading px-1" style={{fontSize: '18px',fontWeight: 'bold'}}>เลขที่สมัคร</h2>
+                    <h2 class="card-heading px-4" style={{fontSize: '18px'}}>XXXX</h2>   
                 
-                <h2 class="card-heading px-3" style={{fontSize: '18px',fontWeight: 'bold'}}>หลักสูตร</h2>
-                <h2 class="card-heading px-3" style={{fontSize: '18px'}}>English Program (EP)</h2>
+                
+                    <h2 class="card-heading px-3" style={{fontSize: '18px',fontWeight: 'bold'}}>สถานะ</h2>
+                    <h2 class="card-heading px-3" style={{fontSize: '18px'}}>รอการสอบคัดเลือก</h2>   
+                    </div>
+                </div>
+                <br></br>
+                </div>
+                <button 
+                    type="button" 
+                    class="btn btn-primary float-end" 
+                    style={{  fontFamily: 'Kanit, sans-serif',textAlign: 'right', marginRight: '20px', marginLeft: '10px'}}
+                    onClick={() => {
+                        const fileUrl = "src/assets/พิมพ์ใบสมัครป.1.pdf";
+                        const printWindow = window.open(fileUrl, "_blank", 'width=1000,height=800');
+                        printWindow.print();
+                    }}
+                >
+                    <span>พิมพ์บัตรประจำตัวผู้สอบ</span>
+                </button>
+                </div>
                 </div>
             </div>
-            <br/>
-            <div className="row" style={{ fontFamily: 'Kanit, sans-serif', marginRight: '10px', gap: '0',whiteSpace: "nowrap" }}>
-                <div className="col-sm d-flex align-items-center">
-                <h2 class="card-heading px-3" style={{fontSize: '18px',fontWeight: 'bold'}}>เลขที่สมัคร</h2>
-                <h2 class="card-heading px-4" style={{fontSize: '18px'}}>XXXX</h2>   
-              
-               
-                <h2 class="card-heading px-3" style={{fontSize: '18px',fontWeight: 'bold'}}>สถานะ</h2>
-                <h2 class="card-heading px-3" style={{fontSize: '18px'}}>รอการสอบคัดเลือก</h2>   
-                </div>
-            </div>
-            <br></br>
-            </div>
-            {/* <button 
-                type="button" 
-                class="btn btn-primary float-end" 
-                style={{  fontFamily: 'Kanit, sans-serif',textAlign: 'right', marginRight: '20px', marginLeft: '10px'}}
-                onClick={() => {
-                    const printWindow = window.open('', '', 'width=600,height=400');
-                    printWindow.document.open();
-                    printWindow.document.write(`
-                        <html>
-                        <head>
-                            <title>พิมพ์บัตรประจำตัวผู้สอบ</title>
-                        </head>
-                        <body>
-                            <!-- Your content to print goes here -->
-                            <h1>ใบสมัครเข้าศึกษาต่อชั้นประถมศึกษาปีที่ 1 ปีการศึกษา XXXX</h1>
-                            <p>This is the content you want to print.</p>
-                        </body>
-                        </html>
-                    `);
-                    printWindow.document.close();
-                    printWindow.print();
-                }}
-            >
-                <span>พิมพ์บัตรประจำตัวผู้สอบ</span>
-            </button> */}
-            <button 
-                type="button" 
-                class="btn btn-primary float-end" 
-                style={{  fontFamily: 'Kanit, sans-serif',textAlign: 'right', marginRight: '20px', marginLeft: '10px'}}
-                onClick={() => {
-                    const fileUrl = "src/assets/พิมพ์ใบสมัครป.1.pdf";
-                    const printWindow = window.open(fileUrl, "_blank", 'width=1000,height=800');
-                    printWindow.print();
-                }}
-            >
-                <span>พิมพ์บัตรประจำตัวผู้สอบ</span>
-            </button>
+        </div>
+    </div> */}
+    {/* <div className="container-fluid" style={{ textAlign: 'center' }}>
+  <div className="row justify-content-center">
+    <div className="col-md-0"> */}
+      <div className="card mx-auto my-0"  style={{ width: "820px"}}>
+        <div className="card-body">
+          <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
 
-            {/* <button 
-                type="button" 
-                class="btn btn-primary float-end" 
-                style={{ fontFamily: 'Kanit, sans-serif', textAlign: 'right'}}
-                onClick={() => {
-                    setTimeout(() => {
-                    const newWindow = window.open(" ", " ", "width=600,height=400");
-                    if (newWindow) {
-                        newWindow.open();
-                        newWindow.document.write(`
-                            <html>
-                            <head>
-                                <title>Print</title>
-                            </head>
-                            <body>
-                                <!-- Your content to print goes here -->
-                                <h1>Content to Print</h1>
-                                <p>This is the content you want to print.</p>
-                            </body>
-                            </html>
-                        `);
-                        newWindow.document.close();
-                    } else {
-                        alert("Please allow pop-ups for this website to view the application form.");
-                    }
-                }, 100);
-                }}
-            >
-                <span>ดูใบสมัคร</span>
-            </button> */}
+            <div className="d-flex align-items-center">
+              <h2 className="card-heading px-2" style={{ fontSize: '18px', fontWeight: 'bold' }}>ชื่อ-นามสกุล</h2>
+              <h2 className="card-heading px-3" style={{ fontSize: '18px' }}>เด็กหญิงใจดี รักสงบ</h2>
+
+              <h2 className="card-heading px-3" style={{ fontSize: '18px', fontWeight: 'bold' }}>เลขประจำตัวประชาชน</h2>
+              <h2 className="card-heading px-3" style={{ fontSize: '16px' }}>X-XXXX-XXXXX-XX-X</h2>
+            </div>
+            <br />
+
+            <div className="row" style={{ fontFamily: 'Kanit, sans-serif', gap: '0', whiteSpace: "nowrap" }}>
+              <div className="col-sm d-flex align-items-center">
+                <h2 className="card-heading px-2" style={{ fontSize: '18px', fontWeight: 'bold' }}>ปีการศึกษา</h2>
+                <h2 className="card-heading px-4" style={{ fontSize: '18px' }}>XXXX</h2>
+
+                <h2 className="card-heading px-3" style={{ fontSize: '18px', fontWeight: 'bold' }}>หลักสูตร</h2>
+                <h2 className="card-heading px-3" style={{ fontSize: '18px' }}>English Program (EP)</h2>
+              </div>
+            </div>
+            <br />
+            <div className="row" style={{ fontFamily: 'Kanit, sans-serif', gap: '0', whiteSpace: "nowrap" }}>
+              <div className="col-sm d-flex align-items-center">
+                <h2 className="card-heading px-2" style={{ fontSize: '18px', fontWeight: 'bold' }}>เลขที่สมัคร</h2>
+                <h2 className="card-heading px-4" style={{ fontSize: '18px' }}>XXXX</h2>
+
+                <h2 className="card-heading px-3" style={{ fontSize: '18px', fontWeight: 'bold' }}>สถานะ</h2>
+                <h2 className="card-heading px-3" style={{ fontSize: '18px' }}>รอการสอบคัดเลือก</h2>
+              </div>
+            </div>
+            {/* <br /> */}
+          </div>
+          <button
+            type="button"
+            className="btn btn-primary float-end"
+            style={{ fontFamily: 'Kanit, sans-serif', textAlign: 'right', marginRight: '20px', marginLeft: '10px' }}
+            onClick={() => {
+              const fileUrl = "src/assets/พิมพ์ใบสมัครป.1.pdf";
+              const printWindow = window.open(fileUrl, "_blank", 'width=1000,height=800');
+              printWindow.print();
+            }}
+          >
+            <span>พิมพ์บัตรประจำตัวผู้สอบ</span>
+          </button>
         </div>
-        </div>
+      </div>
+    {/* </div>
+  </div>
+</div> */}
+
         <br></br>
         <br></br>
   </>
