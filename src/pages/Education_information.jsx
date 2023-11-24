@@ -101,7 +101,7 @@ const Education_information = () => {
                                     <div className="card-body">
                                         <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
                                             <div className="d-flex align-items-center">
-                                                <h2 className="card-heading px-2" style={{ fontSize: '18px', fontWeight: 'bold', marginTop: '2px' }}>เลขประจำตัวนักเรียน</h2>
+                                                <h2 className="card-heading px-2" style={{ fontSize: '18px', marginTop: '2px' }}>เลขประจำตัวนักเรียน</h2>
                                                 <h2 className="card-heading px-3" style={{ fontSize: '18px', marginTop: '4px' }}>6301012630095</h2>
                                                 <div className="container d-flex justify-content-end">
                                                     <span
@@ -133,14 +133,14 @@ const Education_information = () => {
 
                                             <div className="row" style={{ fontFamily: 'Kanit, sans-serif', gap: '0', whiteSpace: "nowrap" }}>
                                             <div className="col-sm d-flex align-items-center">
-                                                <h2 className="card-heading px-2" style={{ fontSize: '18px', fontWeight: 'bold', marginTop: '2px' }}>ชื่อ-นามสกุล</h2>
+                                                <h2 className="card-heading px-2" style={{ fontSize: '18px', marginTop: '2px' }}>ชื่อ-นามสกุล</h2>
                                                 <h2 className="card-heading px-4" style={{ fontSize: '18px', marginTop: '5px' }}>เด็กหญิงนทณรรณ ฝันดี</h2>
                                             </div>
                                             </div>
                                             <br />
                                             <div className="row" style={{ fontFamily: 'Kanit, sans-serif', gap: '0', whiteSpace: "nowrap" }}>
                                                 <div className="col-sm d-flex align-items-center">
-                                                    <h2 className="card-heading px-2" style={{ fontSize: '18px', fontWeight: 'bold', marginTop: '2px' }}>ปีการศึกษา</h2>
+                                                    <h2 className="card-heading px-2" style={{ fontSize: '18px', marginTop: '2px' }}>ปีการศึกษา</h2>
                                                     <h2 className="card-heading px-4" style={{ fontSize: '18px', marginTop: '3px' }}>2565</h2>
                                                 </div>
                                             </div>
@@ -154,9 +154,9 @@ const Education_information = () => {
                                         <table className="table-bordered" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center', fontFamily: 'Kanit, sans-serif', borderColor: '#D3D3D3' }}>
                                             <thead>
                                                 <tr>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF' }}>รหัสวิชา</th>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF' }}>ชื่อวิชา</th>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF' }}>ผลการเรียน</th>
+                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>รหัสวิชา</th>
+                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ชื่อวิชา</th>
+                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ผลการเรียน</th>
                                                 </tr>
                                             </thead>
 
