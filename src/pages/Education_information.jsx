@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import school_logo from "../images/IMG_5416.png";
+import printer_icon from "../images/printer_icon.png";
 
 // import Navbar from '../components/Navbar'
 import Header from '../components/Header';
@@ -28,6 +29,18 @@ const Education_information = () => {
     const handleSelectChange = (event) => {
         setSelectedSemester(event.target.value);
       };
+    
+    const [data, setData] = useState([
+    {
+        year: 'ปีการศึกษา 2566 ภาคการศึกษาที่ 1',
+        subjects: [
+        { id: '001', name: 'วิชา A', score: 85, credits:'0.5', between_full:'80', final_full:'20', between_get:'79', final_get:'20', totalScore:'99', grade: 'A', result: 'ดีเด่น' },
+        { id: '002', name: 'วิชา B', score: 92, credits:'1', between_full:'70', final_full:'30', between_get:'56', final_get:'24',  totalScore:'80', grade: 'A', result: 'ดีมาก' },
+        { id: '003', name: 'วิชา C', score: 78, credits:'1', between_full:'70', final_full:'30', between_get:'53', final_get:'20', totalScore:'73', grade: 'B', result: 'ดี' },
+        // เพิ่มข้อมูลผลการเรียนตามต้องการ
+        ],
+    },
+    ]);
 
     return (
         <>
@@ -54,37 +67,89 @@ const Education_information = () => {
 
             <Header header="ระบบจัดการข้อมูลการศึกษา" subhead="" />  
              
-            <div className="card w-40 mx-auto mt-5" style={{ boxShadow: '1px 2px 12px 4px rgba(0, 0, 0, 0.2)' }}>
+            <br />
+            <div className="card mx-auto my-0"  style={{ width: "800px"}}>
                 <div className="card-body">
-                    {/* ,fontWeight: 'bold' */}
-                    <div className="row" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '20px', marginRight: '5px', gap: '0'}}>
+                    <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
+                        <div className="d-flex align-items-center">
+                            <h2 className="card-heading px-2" style={{ fontSize: '18px', fontWeight: 'bold', marginTop: '2px' }}>เลขประจำตัวนักเรียน</h2>
+                            <h2 className="card-heading px-3" style={{ fontSize: '18px', marginTop: '4px' }}>6301012630095</h2>
+                            <div className="container d-flex justify-content-end">
+                                <span
+                                className="btn btn-link px-0"
+                                style={{ color: 'black', textDecoration: 'none', fontFamily: 'Kanit, sans-serif', marginRight: '4px', cursor: 'pointer', marginTop: '-2px' }}
+                                onClick={() => {
+                                    const fileUrl = "src/assets/พิมพ์ใบสมัครป.1.pdf";
+                                    const printWindow = window.open(fileUrl, "_blank", 'width=1000,height=800');
+                                    printWindow.print();
+                                }}
+                                >
+                                พิมพ์ข้อมูล
+                                </span>
+
+                                <img
+                                    src={printer_icon}  // Replace with the path to your printer icon image
+                                    alt="Printer Icon"
+                                    style={{ width: '25px', height: '25px', cursor: 'pointer', marginTop: '5px' }}
+                                    onClick={() => {
+                                        const fileUrl = "src/assets/พิมพ์ใบสมัครป.1.pdf";
+                                        const printWindow = window.open(fileUrl, "_blank", 'width=1000,height=800');
+                                        printWindow.print();
+                                    }}
+                                />
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div className="row" style={{ fontFamily: 'Kanit, sans-serif', gap: '0', whiteSpace: "nowrap" }}>
                         <div className="col-sm d-flex align-items-center">
-                            <label htmlFor="father_data" className="col-form-label mb-0 mx-2">Filter</label>
+                            <h2 className="card-heading px-2" style={{ fontSize: '18px', fontWeight: 'bold', marginTop: '2px' }}>ชื่อ-นามสกุล</h2>
+                            <h2 className="card-heading px-4" style={{ fontSize: '18px', marginTop: '5px' }}>เด็กหญิงนทณรรณ ฝันดี</h2>
                         </div>
-                    </div>
-                    
-                    <div className="row" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px', marginRight: '5px', gap: '0'}}>
-                    
-                    <div className="col-sm d-flex align-items-center">
-                            <label htmlFor="father_data" className="col-form-label mb-0 mx-2">ปีการศึกษา</label>
                         </div>
-                    </div>
-                    
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>
-                        <div className="col-sm-0 d-flex align-items-center">
-                            {/* <label htmlFor="father_Occupation" className="col-form-label mb-0 mx-2">วุฒิการศึกษา</label> */}
-                            <div class="dropdown px-2" style={{ width: '150px' }}> {/* กำหนดความกว้างของ dropdown ที่นี่ */}
-                                <select value={selectedSemester} onChange={handleSelectChange} class="custom-select" style={{ width: '350px' }}> {/* กำหนดความกว้างของตัวเลือกใน dropdown ที่นี่ */}
-                                    <option value="เลือกปีการศึกษา">เลือกปีการศึกษา</option>
-                                    <option value="2560">2560</option>
-                                    <option value="2561">2561</option>
-                                    <option value="2562">2562</option>
-                                </select>
+                        <br />
+                        <div className="row" style={{ fontFamily: 'Kanit, sans-serif', gap: '0', whiteSpace: "nowrap" }}>
+                            <div className="col-sm d-flex align-items-center">
+                                <h2 className="card-heading px-2" style={{ fontSize: '18px', fontWeight: 'bold', marginTop: '2px' }}>ปีการศึกษา</h2>
+                                <h2 className="card-heading px-4" style={{ fontSize: '18px', marginTop: '3px' }}>2565</h2>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            <br />
+            <div className="container flex-column align-items-center">
+    <div className="d-flex justify-content-center" style={{ height: '300px', overflowY: 'auto', marginLeft: '0px' }}>
+        <table className="table-bordered" style={{ width: '61%', borderCollapse: 'collapse', textAlign: 'center', fontFamily: 'Kanit, sans-serif', borderColor: '#D3D3D3' }}>
+            <thead>
+                <tr>
+                    <th rowSpan="1" style={{ backgroundColor: '#D3D3D3' }}>รหัสวิชา</th>
+                    <th rowSpan="1" style={{ backgroundColor: '#D3D3D3' }}>ชื่อวิชา</th>
+                    <th rowSpan="1" style={{ backgroundColor: '#D3D3D3' }}>ผลการเรียน</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {data[0].subjects.map((subject) => (
+                    <tr key={subject.id} style={{ height: '50px' }}>
+                        <td style={{ backgroundColor: '#D3D3D3' }}>{subject.id}</td>
+                        <td style={{ backgroundColor: '#D3D3D3' }}>{subject.name}</td>
+                        <td style={{ backgroundColor: '#D3D3D3' }}>{subject.grade}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+                <Link to="/">
+                <button type="submit" class="btn btn-primary float-end" style={{ textAlign: 'right'}}><span>ย้อนกลับ</span></button>
+                </Link>
+            <br /><br /><br /><br /><br />
+            
+            
         </>
     );
 };
