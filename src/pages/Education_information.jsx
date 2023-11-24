@@ -125,18 +125,18 @@ const Education_information = () => {
         <table className="table-bordered" style={{ width: '61%', borderCollapse: 'collapse', textAlign: 'center', fontFamily: 'Kanit, sans-serif', borderColor: '#D3D3D3' }}>
             <thead>
                 <tr>
-                    <th rowSpan="1" style={{ backgroundColor: '#D3D3D3' }}>รหัสวิชา</th>
-                    <th rowSpan="1" style={{ backgroundColor: '#D3D3D3' }}>ชื่อวิชา</th>
-                    <th rowSpan="1" style={{ backgroundColor: '#D3D3D3' }}>ผลการเรียน</th>
+                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF' }}>รหัสวิชา</th>
+                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF' }}>ชื่อวิชา</th>
+                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF' }}>ผลการเรียน</th>
                 </tr>
             </thead>
 
             <tbody>
                 {data[0].subjects.map((subject) => (
                     <tr key={subject.id} style={{ height: '50px' }}>
-                        <td style={{ backgroundColor: '#D3D3D3' }}>{subject.id}</td>
-                        <td style={{ backgroundColor: '#D3D3D3' }}>{subject.name}</td>
-                        <td style={{ backgroundColor: '#D3D3D3' }}>{subject.grade}</td>
+                        <td style={{ backgroundColor: '#FFFFFF' }}>{subject.id}</td>
+                        <td style={{ backgroundColor: '#FFFFFF' }}>{subject.name}</td>
+                        <td style={{ backgroundColor: '#FFFFFF' }}>{subject.grade}</td>
                     </tr>
                 ))}
             </tbody>
