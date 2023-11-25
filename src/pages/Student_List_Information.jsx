@@ -102,10 +102,10 @@ const Student_List_Information = () => {
                                         <table className="table-bordered" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center', fontFamily: 'Kanit, sans-serif', borderColor: '#D3D3D3' }}>
                                             <thead>
                                                 <tr>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF' }}>เลขประจำตัวนักเรียน</th>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF' }}>ชื่อ-สกุล</th>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF' }}>ดูผลการเรียน</th>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF' }}>พิมพ์ข้อมูล</th>
+                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>เลขประจำตัวนักเรียน</th>
+                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ชื่อ-สกุล</th>
+                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ดูผลการเรียน</th>
+                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>พิมพ์ข้อมูล</th>
                                                 </tr>
                                             </thead>
 
