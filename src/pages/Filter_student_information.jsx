@@ -1,0 +1,173 @@
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+function Filter_student_information() {
+    
+    const [selectedOption, setSelectedOption] = useState('ระบุหมายเหตุ');
+    const handleSelectChange = (event) => {
+    setSelectedOption(event.target.value);
+    };
+
+    
+
+    const handleSelectYearChange = (event) => {
+      setSelectedYear(event.target.value);
+    };
+    
+    const yearsList = ["2566", "2565", "2564", "2563", "2562", "2561", "2560"];
+    const [selectedYear, setSelectedYear] = useState();
+    // const options = [
+    //     { value: 'ระบุหมายเหตุ', label: 'ปีการศึกษา' },
+    //     { value: 'เพื่อใช้ในการขอทุนการศึกษา', label: 'ปริญญาตรี' },
+    //     { value: 'เพื่อใช้ในการสมัครเข้าศึกษาต่อ', label: 'ปริญญาโท' },
+    //     { value: 'เพื่อใช้ในการสมัครเข้าศึกษาต่อ', label: 'ปริญญาเอก' },
+    // ];
+
+    const fontStyle = {
+        fontFamily: 'Kanit, sans-serif',
+        textDecoration: 'none'
+      };
+
+    return (
+    <div className="card mx-auto my-0" style={{ width: "1000px", border: '1px solid #D3D3D3' }}>
+        <div className="card-body">
+            <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
+                <div className="d-flex align-items-center">
+                    <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '2px',fontWeight: 'bold' }}>Filter</h2>
+                </div>
+
+                <br />
+                <div className="d-flex align-items-center">
+                    <h2 className="card-heading px-4" style={{ fontSize: '16px', marginTop: '2px' }}>กรอกข้อมูลที่ต้องการค้นหา</h2>
+                </div>
+
+                <br />
+                <div className="d-flex align-items-center">
+                    <h2 className="card-heading px-4" style={{ fontSize: '16px', marginTop: '2px', color: '#808080' }}>ค้นหารายชื่อจากปีการศึกษา</h2>
+                </div>
+                
+                <br />
+                <div className="d-flex align-items-center">
+                    <h2 className="card-heading px-4" style={{ fontSize: '18px', marginTop: '2px',fontWeight: 'bold' }}>ปีการศึกษา</h2>
+                
+                    {/* <div class="dropdown px-0" style={{ width: '150px' }}>
+                        <select
+                            value={selectedOption}
+                            onChange={handleSelectChange}
+                            class="custom-select"
+                            style={{ width: '150px' }}
+                        >
+                            {options.map((option) => (
+                            <option key={option.value} value={option.value}>
+                                {option.label}
+                            </option>
+                            ))}
+                        </select>
+                    </div> */}
+                    <div class="dropdown px-0" style={{ width: '150px' }}>
+                        <select
+                            value={selectedYear}
+                            onChange={handleSelectYearChange}
+                            class="custom-select"
+                            style={{ width: '150px' }}
+                            >
+                            <option value="เลือกปีการศึกษา">เลือกปีการศึกษา</option>
+                            {yearsList.map((year) => (
+                                <option key={year} value={year}>
+                                ปีการศึกษา {year}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                </div>
+
+                <br />
+                <div className="d-flex align-items-center">
+                    <h2 className="card-heading px-4" style={{ fontSize: '16px', marginTop: '2px', color: '#808080' }}>ค้นหาข้อมูลรายบุคคล</h2>
+                </div>
+
+                <br />
+                <div className="d-flex align-items-center" style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>           
+                    <div className="col-sm-5 d-flex align-items-center">
+                        <h2 className="card-heading px-4" style={{ fontSize: '16px', marginTop: '2px'}}>เลขประจำตัวนักเรียน</h2>
+                        <input type="text" className="form-control" id="student_id" name="student_id" placeholder="กรอกเลขประจำตัวนักเรียน" />
+                    </div>
+                    <div className="col-sm-5 d-flex align-items-center">
+                        <h2 className="card-heading px-4" style={{ fontSize: '16px', marginTop: '2px'}}>ชื่อ-นามสกุล</h2>
+                        <input type="text" className="form-control" id="student_id" name="student_id" placeholder="กรอก ชื่อ-นามสกุล" />
+                    </div>
+                </div>
+                
+                <br />
+                <div className="container d-flex justify-content-center">
+                    <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '2px' }}>เลือกข้อมูล</h2>
+                </div>
+                
+                {/* <br /> */}
+                <div className="container d-flex justify-content-center">
+                    <Link to="/">
+                    <button 
+                        type="submit" 
+                        className="btn btn-primary" 
+                        style={{
+                        ...fontStyle, 
+                        color: 'white', 
+                        fontSize: '16px', 
+                        textAlign: 'center', 
+                        marginTop: '10px', 
+                        marginRight: '15px',
+                        width: '150px', // กำหนดความกว้าง
+                        height: '40px'  // กำหนดความสูง
+                        }}
+                    >
+                        <span>ข้อมูลส่วนบุคคล</span>
+                    </button>
+                    </Link>
+
+                    <Link to="/">
+                    <button 
+                        type="submit" 
+                        className="btn btn-primary" 
+                        style={{
+                        ...fontStyle, 
+                        color: 'white', 
+                        fontSize: '16px', 
+                        textAlign: 'center', 
+                        marginTop: '10px', 
+                        marginRight: '15px',
+                        width: '150px', // กำหนดความกว้าง
+                        height: '40px'  // กำหนดความสูง
+                        }}
+                    >
+                        <span>ข้อมูลการศึกษา</span>
+                    </button>
+                    </Link>
+
+                    <Link to="/">
+                    <button 
+                        type="submit" 
+                        className="btn btn-primary" 
+                        style={{
+                        ...fontStyle, 
+                        color: 'white', 
+                        fontSize: '16px', 
+                        textAlign: 'center', 
+                        marginTop: '10px',
+                        width: '150px', // กำหนดความกว้าง
+                        height: '40px'  // กำหนดความสูง
+                        }}
+                    >
+                        <span>ข้อมูลสุขภาพ</span>
+                    </button>
+                    </Link>
+                </div>
+                
+
+            </div>
+        </div>  
+    </div>
+  );
+}
+
+export default Filter_student_information;
