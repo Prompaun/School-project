@@ -18,7 +18,10 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-
+.table-custom {
+    border-collapse: collapse;
+    border-color: blue;
+}
 
 @keyframes logo-spin {
   from {

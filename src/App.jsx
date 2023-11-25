@@ -19,6 +19,8 @@ import Class_instructor_menu from './pages/Class_instructor_menu'
 import Login_personnel from './pages/Login_personnel'
 import Subject_instructor_menu from './pages/Subject_Instructor_menu'
 import Education_information from './pages/Education_information'
+import Student_List_Information from './pages/Student_List_Information'
+import Filter_student_information from './pages/Filter_student_information'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -47,6 +49,9 @@ const router = createBrowserRouter(
         <Route path="/Subject_instrctor_menu" element={<Subject_instructor_menu/>} />
 
         <Route path="/Education_information" element={<Education_information />} />
+        <Route path="/Student_List_Information" element={<Student_List_Information />} />
+        <Route path="/Filter_student_information" element={<Filter_student_information />} />
+        
     </>
   )
 )
