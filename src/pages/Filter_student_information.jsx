@@ -29,7 +29,7 @@ function Filter_student_information() {
       };
 
     return (
-    <div className="card mx-auto my-0" style={{ width: "1000px", border: '1px solid #D3D3D3' }}>
+    <div className="card mx-0 my-0" style={{ width: "1000px", border: '1px solid #D3D3D3' }}>
         <div className="card-body">
             <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
                 <div className="d-flex align-items-center">
@@ -50,20 +50,6 @@ function Filter_student_information() {
                 <div className="d-flex align-items-center">
                     <h2 className="card-heading px-4" style={{ fontSize: '18px', marginTop: '2px',fontWeight: 'bold' }}>ปีการศึกษา</h2>
                 
-                    {/* <div class="dropdown px-0" style={{ width: '150px' }}>
-                        <select
-                            value={selectedOption}
-                            onChange={handleSelectChange}
-                            class="custom-select"
-                            style={{ width: '150px' }}
-                        >
-                            {options.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
-                            </option>
-                            ))}
-                        </select>
-                    </div> */}
                     <div class="dropdown px-0" style={{ width: '150px' }}>
                         <select
                             value={selectedYear}
