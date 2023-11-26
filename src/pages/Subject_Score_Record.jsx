@@ -6,7 +6,7 @@ import search_icon from "../images/search_icon.png";
 
 // import Navbar from '../components/Navbar'
 import Header from '../components/Header';
-const Student_List_Information = () => {
+const Subject_Score_Record = () => {
 
     const linkStyle = {
         color: 'gray',
@@ -261,4 +261,4 @@ const Student_List_Information = () => {
     );
 };
 
-export default Student_List_Information;
+export default Subject_Score_Record;
