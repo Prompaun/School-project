@@ -27,7 +27,7 @@ function Header({header,subhead}) {
     };
 
   return (
-    
+    <>
     <div style={containerStyle}>
     <img
         src={School_bg}
@@ -44,6 +44,8 @@ function Header({header,subhead}) {
     <h5 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '32px' }}>{subhead}</h5>
     </div>
   </div>
+  {/* <br/> */}
+  </>
   )
 }
 

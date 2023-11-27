@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
+import logoImage from '../images/IMG_5416.png';
+import Header from '../components/Header';
 
 function Filter_student_information() {
-    
+    const linkStyle = {
+        color: 'gray',
+        textDecoration: 'none',
+        fontFamily: 'Kanit, sans-serif',
+        fontSize: '16px',
+      };
+
     const [selectedOption, setSelectedOption] = useState('ระบุหมายเหตุ');
     const handleSelectChange = (event) => {
     setSelectedOption(event.target.value);
@@ -29,7 +38,36 @@ function Filter_student_information() {
       };
 
     return (
-    <div className="card mx-auto my-0" style={{ width: "1000px", border: '1px solid #D3D3D3' }}>
+        <>
+   <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div className="container">
+          <Link className="navbar-brand" to="/">
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <img src={logoImage} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
+              <h5 style={{ textAlign: 'right', marginLeft: '10px', marginBottom: '0' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
+            </div>
+          </Link>
+          <div className="nav navbar-nav navbar-right">
+            <span className="nav-link" style={{ fontFamily: 'Kanit, sans-serif' }}>
+            <Link to="/Login//Login_personnel" style={linkStyle}>
+                Log out
+              </Link>
+            </span>
+          </div>
+        </div>
+      </nav>
+
+      <Header header="ระบบจัดการสารสนเทศ" subhead="บริการสำหรับบุคลากรภายในโรงเรียน" />
+      {/* <Sidebar /> */}
+      <div className="container-fluid">
+        <div className="row flex-nowrap">
+            <Sidebar />
+            
+    <div className="col-md-9">
+            <div className="d-flex align-items-center flex-column">
+                <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px',paddingTop: '40px' }}>การจัดการสารสนเทศ</h2>
+            </div>
+    <div className="card mx-auto my-auto" style={{maxWidth: '1000px',border: '1px solid #D3D3D3' }}>
         <div className="card-body">
             <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
                 <div className="d-flex align-items-center">
@@ -89,11 +127,12 @@ function Filter_student_information() {
 
                 <br />
                 <div className="d-flex align-items-center" style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>           
-                    <div className="col-sm-5 d-flex align-items-center">
+                    <div className=" d-flex align-items-center">
+                    {/* col-sm-5 */}
                         <h2 className="card-heading px-4" style={{ fontSize: '16px', marginTop: '2px'}}>เลขประจำตัวนักเรียน</h2>
                         <input type="text" className="form-control" id="student_id" name="student_id" placeholder="กรอกเลขประจำตัวนักเรียน" />
                     </div>
-                    <div className="col-sm-5 d-flex align-items-center">
+                    <div className=" d-flex align-items-center">
                         <h2 className="card-heading px-4" style={{ fontSize: '16px', marginTop: '2px'}}>ชื่อ-นามสกุล</h2>
                         <input type="text" className="form-control" id="student_id" name="student_id" placeholder="กรอก ชื่อ-นามสกุล" />
                     </div>
@@ -125,7 +164,7 @@ function Filter_student_information() {
                     </button>
                     </Link>
 
-                    <Link to="/">
+                    <Link to="/Student_List_Information">
                     <button 
                         type="submit" 
                         className="btn btn-primary" 
@@ -167,6 +206,11 @@ function Filter_student_information() {
             </div>
         </div>  
     </div>
+            
+            </div>
+        </div>  
+    </div>
+    </>
   );
 }
 
