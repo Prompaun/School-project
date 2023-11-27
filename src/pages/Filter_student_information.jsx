@@ -88,20 +88,6 @@ function Filter_student_information() {
                 <div className="d-flex align-items-center">
                     <h2 className="card-heading px-4" style={{ fontSize: '18px', marginTop: '2px',fontWeight: 'bold' }}>ปีการศึกษา</h2>
                 
-                    {/* <div class="dropdown px-0" style={{ width: '150px' }}>
-                        <select
-                            value={selectedOption}
-                            onChange={handleSelectChange}
-                            class="custom-select"
-                            style={{ width: '150px' }}
-                        >
-                            {options.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
-                            </option>
-                            ))}
-                        </select>
-                    </div> */}
                     <div class="dropdown px-0" style={{ width: '150px' }}>
                         <select
                             value={selectedYear}

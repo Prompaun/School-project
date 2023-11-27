@@ -21,6 +21,7 @@ import Subject_instructor_menu from './pages/Subject_Instructor_menu'
 import Education_information from './pages/Education_information'
 import Student_List_Information from './pages/Student_List_Information'
 import Filter_student_information from './pages/Filter_student_information'
+import Subject_Score_Record from './pages/Subject_Score_Record'
 import Personnel_page from './pages/Personnel_page'
 import Sidebar from './components/Sidebar'
 
@@ -56,6 +57,7 @@ const router = createBrowserRouter(
         <Route path="/Personnel_page" element={<Personnel_page />} />
         {/* <Route path="/Sidebar" element={<Sidebar />} /> */}
 
+        <Route path="/Subject_Score_Record" element={<Subject_Score_Record />} />
         
     </>
   )

@@ -125,7 +125,20 @@ const Student_List_Information = () => {
                                                             <a href="/" style={{...fontStyle, color: 'black', fontSize: '16px'}}>ดูรายละเอียด</a> */}
 
                                                             <a href="/Education_information" style={{ ...fontStyle}}>
-                                                                <img src={search_icon} alt="search_icon" style={{ width: '25px', height: '25px', cursor: 'pointer', marginTop: '-5px'}} /> {" "}
+                                                                {/* <img src={search_icon} alt="search_icon" style={{ width: '25px', height: '25px', cursor: 'pointer', marginTop: '-5px'}} /> {" "} */}
+                                                                <i 
+                                                                    class="fs-5 bi-search" 
+                                                                    style={{
+                                                                        color: 'black',
+                                                                        fontSize: '20px', // ตั้งค่าขนาดตัวอักษร
+                                                                        marginRight: '5px', 
+                                                                        // border: '1px solid black', // เพิ่มกรอบด้วยการตั้งค่า border
+                                                                        // padding: '1px', // ตั้งค่าการเพิ่มพาดิงขอบ
+                                                                        // borderRadius: '5px' // ตั้งค่าการเพิ่มมุมขอบสำหรับกรอบ
+                                                                    }}
+                                                                ></i>
+
+                                                                
                                                                 <span style={{ ...fontStyle, color: 'black', fontSize: '16px' }}>ดูรายละเอียด</span>
                                                             </a>
                                                         </td>
