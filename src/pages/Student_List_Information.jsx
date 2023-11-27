@@ -125,23 +125,32 @@ const Student_List_Information = () => {
                                                                     style={{
                                                                         color: 'black',
                                                                         fontSize: '20px', // ตั้งค่าขนาดตัวอักษร
-                                                                        marginRight: '5px', 
+                                                                        marginRight: '5px'
                                                                         // border: '1px solid black', // เพิ่มกรอบด้วยการตั้งค่า border
                                                                         // padding: '1px', // ตั้งค่าการเพิ่มพาดิงขอบ
                                                                         // borderRadius: '5px' // ตั้งค่าการเพิ่มมุมขอบสำหรับกรอบ
                                                                     }}
-                                                                ></i>
-
-                                                                
-                                                                <span style={{ ...fontStyle, color: 'black', fontSize: '16px' }}>ดูรายละเอียด</span>
+                                                                ></i>                 
+                                                                <span style={{ ...fontStyle, color: 'black', fontSize: '16px' }}>ดูรายละเอียด</span>         
                                                             </a>
                                                         </td>
-                                                        <td style={{ backgroundColor: '#FFFFFF' }}><img src={printer_icon} alt="printer_icon" style={{ width: '25px', height: '25px', cursor: 'pointer'}}
-                                                        onClick={() => {
-                                                            const fileUrl = "src/assets/พิมพ์ใบสมัครป.1.pdf";
-                                                            const printWindow = window.open(fileUrl, "_blank", 'width=1000,height=800');
-                                                            printWindow.print();
-                                                        }}/></td>
+                                                        <td style={{ backgroundColor: '#FFFFFF' }}>
+                                                            <i 
+                                                                class="fs-5 bi-printer" 
+                                                                style={{
+                                                                color: 'black',
+                                                                fontSize: '20px',
+                                                                marginRight: '5px',
+                                                                cursor: 'pointer' // เพิ่ม cursor: 'pointer' เพื่อแสดงว่าเป็นองค์ประกอบที่คลิกได้
+                                                                }}
+                                                                onClick={() => {
+                                                                const fileUrl = "src/assets/พิมพ์ใบสมัครป.1.pdf";
+                                                                const printWindow = window.open(fileUrl, "_blank", 'width=1000,height=800');
+                                                                printWindow.print();
+                                                                }}
+                                                            ></i>
+                                                            </td>
+
                                                     </tr>
                                                 ))}
                                             </tbody>
