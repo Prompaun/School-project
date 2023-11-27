@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import school_logo from "../images/IMG_5416.png";
 import printer_icon from "../images/printer_icon.png";
-
+import Sidebar from '../components/Sidebar';
 // import Navbar from '../components/Navbar'
 import Header from '../components/Header';
 const Education_information = () => {
@@ -61,11 +61,9 @@ const Education_information = () => {
                 </Link>
                 <div className="nav navbar-nav navbar-right">
                 <span className='nav-link'>
-                <Link
-                        to = "/"
-                        style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>
-                        เลือกเมนู
-                    </Link>
+                <Link to="/Login//Login_personnel" style={linkStyle}>
+                Log out
+              </Link>
                 </span>
                 </div>
             </div>
@@ -73,21 +71,25 @@ const Education_information = () => {
 
             <Header header="ระบบจัดการข้อมูลการศึกษา" subhead="" />  
              
-            <br />
+    <div className="container-fluid">
+        <div className="row flex-nowrap">
+            <Sidebar />
+            
+        <div className="col-md-7">
             {/* <div className="container flex-column align-items-center">
                 <h2 className="card-heading text-left mx-auto ml-auto" style={{ fontSize: '20px', marginTop: '2px' }}>ผลการค้นหา</h2>
             </div> */}
-            <div className="card mx-auto my-0" style={{ width: "1000px", border: '1px solid white' }}>
+            <div className="card mx-auto my-auto" style={{maxWidth: "1000px", border: '1px solid white' }}>
                 <div className="card-body">
-                    <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
-                        <div className="d-flex align-items-center">
-                            <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '2px' }}>ผลการค้นหา</h2>
-                            <Link to="/">
-                                <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, fontSize: '18px', textAlign: 'right', marginTop: '-15px'}}><span>ค้นหาข้อมูลใหม่</span></button>
+                    <div className="form-group col-md-0 fone" style={{paddingTop: '40px', padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
+                        <div className="d-flex align-items-center" style={{ marginBottom: '20px' }}>
+                            <h2 className="card-heading px-4" style={{ fontSize: '25px', fontWeight: 'bold' }}>ผลการค้นหา</h2>
+                            <Link to="/Filter_student_information">
+                                <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '-15px'}}><span>ค้นหาข้อมูลใหม่</span></button>
                             </Link>
                         </div>
 
-                        <div className="card mx-auto my-0"  style={{ width: "900px"}}>
+                        <div className="card mx-auto my-auto"  style={{ width: "900px"}}>
                             <div className="card-body">
                                 <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
                                     <div className="d-flex align-items-center">
@@ -97,7 +99,7 @@ const Education_information = () => {
                                     </div>
 
                                 <br />
-                                <div className="card mx-auto my-0"  style={{ width: "800px"}}>
+                                <div className="card mx-auto my-auto"  style={{ width: "800px"}}>
                                     <div className="card-body">
                                         <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
                                             <div className="d-flex align-items-center">
@@ -174,7 +176,7 @@ const Education_information = () => {
                                 </div>
                                 
                                 <br />
-                                <Link to="/">
+                                <Link to="/Student_List_Information">
                                     <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, fontSize: '16px', textAlign: 'right'}}><span>ย้อนกลับ</span></button>
                                 </Link>
                                 </div>
@@ -183,7 +185,9 @@ const Education_information = () => {
                     </div>
                 </div>
             </div>
-            <br /><br /><br /><br /><br />
+                </div>
+            </div>
+        </div> 
         </>
     );
 };
