@@ -138,7 +138,7 @@ const Login_personnel = () => {
 
                 <Link to='/Register' style={linkStyle}>ลืมรหัสผ่าน</Link>
 
-                <Link to="/Personnel_page">
+                <Link to="/Filter_student_information">
                 <button type="submit" className="btn btn-primary float-end" style={{fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>Log in</button>
                 </Link>
             </form>

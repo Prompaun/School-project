@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import school_logo from "../images/IMG_5416.png";
 import printer_icon from "../images/printer_icon.png";
 import search_icon from "../images/search_icon.png";
-
+import Sidebar from '../components/Sidebar';
 // import Navbar from '../components/Navbar'
 import Header from '../components/Header';
 const Subject_Score_Record = () => {
@@ -84,26 +84,33 @@ const Subject_Score_Record = () => {
                 <div className="nav navbar-nav navbar-right">
                 <span className='nav-link'>
                 <Link
-                        to = "/"
+                        to = "/Login_personnel"
                         style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>
-                        เลือกเมนู
+                        Log out
                     </Link>
                 </span>
                 </div>
             </div>
             </nav>
 
-            <Header header="ระบบจัดการข้อมูลการศึกษา" subhead="" />  
+            <Header header="ระบบจัดการข้อมูลการศึกษา" subhead="บันทึกคะแนนรายวิชา" />  
              
-            <br />
-            <div className="card mx-auto my-0" style={{ width: "1000px", border: '1px solid white' }}>
+    <div className="container-fluid">
+        <div className="row flex-nowrap">
+            <Sidebar />
+        
+        <div className="col-md-7">
+                       
+            {/* <br /> */}
+            
+            <div className="card mx-auto my-auto" style={{maxWidth: "1000px", border: '1px solid white' }}>
                 <div className="card-body">
-                    <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
+                    <div className="form-group col-md-0 fone" style={{ padding: '32px', margin: '10px', whiteSpace: "nowrap" }}>
                         <div className="d-flex align-items-center">
                             <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '2px' }}>บันทึกคะแนน</h2>
                         </div>
 
-                        <div className="card mx-auto my-0"  style={{ width: "900px"}}>
+                        <div className="card mx-auto my-auto"  style={{ width: "900px"}}>
                             <div className="card-body">
                                 <div className="form-group col-md-0 fone" style={{ padding: '10px', whiteSpace: "nowrap" }}>
                                     <div className="d-flex align-items-center">
@@ -196,10 +203,10 @@ const Subject_Score_Record = () => {
                         </div>
                             
                         <br /><br />
-                        <div className="d-flex align-items-center">
+                        
                             <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '2px' }}>เกณฑ์การให้คะแนน</h2>
-                        </div>
-
+                        
+                            <div className="card mx-auto my-auto"  style={{ width: "900px"}}>
                         <div className="card-body">                        
                             <div className="d-flex justify-content-center" style={{ height: '500px', overflowY: 'auto', marginLeft: '0px' }}>
                                 <table className="table-bordered" style={{ fontSize: '16px', width: '100%', borderCollapse: 'collapse', textAlign: 'center', fontFamily: 'Kanit, sans-serif', borderColor: '#D3D3D3', marginTop: '0px' }}>
@@ -252,7 +259,7 @@ const Subject_Score_Record = () => {
                                 <br />
                             </div>
                         </div>
-
+                        </div>
                         <br /><br />
                         <div className="d-flex align-items-center">
                             <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '2px' }}>การบันทึกคะแนน</h2>
@@ -308,7 +315,10 @@ const Subject_Score_Record = () => {
                     </div>
                 </div>
             </div>
-            <br /><br /><br /><br /><br />
+        </div>
+        </div>
+      
+    </div>
         </>
     );
 };
