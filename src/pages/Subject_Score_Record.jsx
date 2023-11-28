@@ -202,7 +202,7 @@ const Subject_Score_Record = () => {
 
                         <div className="card-body">                        
                             <div className="d-flex justify-content-center" style={{ height: '500px', overflowY: 'auto', marginLeft: '0px' }}>
-                                <table className="table-bordered" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center', fontFamily: 'Kanit, sans-serif', borderColor: '#D3D3D3', marginTop: '0px' }}>
+                                <table className="table-bordered" style={{ fontSize: '16px', width: '100%', borderCollapse: 'collapse', textAlign: 'center', fontFamily: 'Kanit, sans-serif', borderColor: '#D3D3D3', marginTop: '0px' }}>
                                     <thead>
                                         <tr style={{ height: '50px' }}>
                                             <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>กิจกรรมที่</th>
@@ -261,10 +261,44 @@ const Subject_Score_Record = () => {
                         <div className="card mx-auto my-0"  style={{ width: "900px"}}>
                             <div className="card-body">
                                 <div className="form-group col-md-0 fone" style={{ padding: '10px', whiteSpace: "nowrap" }}>
-                                <div className="container flex-column align-items-center">
-                                    
+
+                                {/* <div className="container flex-column align-items-center">
+                                </div> */}
+
+                                <div className="d-flex align-items-center">
+                                    <h2 className="card-heading px-2" style={{ fontSize: '18px', marginLeft: '20px', marginTop: '10px' }}>อัปโหลดไฟล์คะแนน</h2>
+                                    <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '1px'}}><span>Export file</span></button>
+                                    <h2 className="card-heading px-2" style={{ fontSize: '18px', marginTop: '10px' }}>/ Update data</h2>
+                                    <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '1px'}}><span>
+                                    <i 
+                                        class="fs-5 bi-cloud-upload" 
+                                        style={{
+                                        color: 'white',
+                                        fontSize: '20px',
+                                        marginRight: '5px',
+                                        cursor: 'pointer' // เพิ่ม cursor: 'pointer' เพื่อแสดงว่าเป็นองค์ประกอบที่คลิกได้
+                                        }}
+                                    ></i>Upload file</span>
+                                    </button>
                                 </div>
+
+                                <br />
+                                <div className="d-flex align-items-center">
+                                    <h2 className="card-heading px-2" style={{ fontSize: '16px', marginLeft: '20px', marginTop: '2px' }}>ตัวอย่างไฟล์ที่อัปโหลด</h2>
+                                </div>
+
+                                {/* <div className="container flex-column align-items-center"> */}
                                 
+                                <div className="card mx-auto my-0"  style={{ width: "800px"}}>
+                                    <div className="card-body">
+                                        {/* <div className="form-group col-md-0 fone" style={{ padding: '10px', whiteSpace: "nowrap" }}>
+                                
+                                        </div> */}
+                                    </div>
+                                </div>
+                                {/* </div> */}
+
+                                <br />
                                 <Link to="/">
                                     <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, color: 'white', fontSize: '16px', textAlign: 'right'}}><span>บันทึก</span></button>
                                 </Link>
