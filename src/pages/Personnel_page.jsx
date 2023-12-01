@@ -29,7 +29,7 @@ function  Personnel_page() {
           </Link>
           <div className="nav navbar-nav navbar-right">
             <span className="nav-link" style={{ fontFamily: 'Kanit, sans-serif' }}>
-              <Link to="/Login//Login_personnel" style={linkStyle}>
+              <Link to="/Login_personnel" style={linkStyle}>
                 Log out
               </Link>
             </span>

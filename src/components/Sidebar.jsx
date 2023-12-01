@@ -10,7 +10,11 @@ function Sidebar() {
     fontFamily: 'Kanit, sans-serif',
     fontSize: '16px',
   };
+  // const [isOpen, setIsopen] = useState(false);
 
+  // const ToggleSidebar = () => {
+  //     isOpen === true ? setIsopen(false) : setIsopen(true);
+  // }
   return (
     <>
 
@@ -20,17 +24,16 @@ function Sidebar() {
           <div className="col-auto col-md-3 col-xl-2 bg-dark" style={{ fontFamily: 'Kanit, sans-serif' }}>
             <div className="d-flex flex-column align-items-center align-items-sm-start px-3 pt-4 text-white min-vh-100">
               <br />
-
+              
               <ul className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                <li className="nav-item">
-                   {/* /personnel_page */}
+                {/* <li className="nav-item">
                   <a href="/personnel_page" id="personnel_home-tab" className="nav-link align-middle px-0" aria-controls="personnel_home" aria-selected="true">
                     <i className="fs-5 bi-house"></i> <span className="ms-1 d-none d-sm-inline" style={{ fontWeight: 'bold', fontSize: '20px' }}>
                       หน้าหลัก
                     </span>
                   </a>
-                </li>
-                <br />
+                </li> */}
+                {/* <br /> */}
                 <li>
                   <a href="/Filter_student_information" id="search_info-tab" className="nav-link align-middle px-0"  aria-controls="search_info" aria-selected="false">
                     <i className="fs-5 bi-search"></i> <span className="ms-1 d-none d-sm-inline" style={{ fontWeight: 'bold', fontSize: '20px' }}>
@@ -46,9 +49,9 @@ function Sidebar() {
                     </span>
                   </a>
 
-                  <ul className="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                  <ul className="collapse nav show flex-column ms-1" id="submenu1" >
                     <li className="nav-item">
-                      <a href="#" id="Grade_record-tab" className="nav-link px-0"  aria-controls="Grade_record" aria-selected="false">
+                      <a href="/Subject_Score_Record" id="Grade_record-tab" className="nav-link px-0"  aria-controls="Grade_record" aria-selected="false">
                         <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
                           บันทึกคะแนนรายวิชา
                         </span>
@@ -58,32 +61,62 @@ function Sidebar() {
                 </li>
                 <br />
                 <li>
-                  <a href="#" id="Enroll_student-tab" className="nav-link px-0 align-middle" aria-controls="Enroll_student" aria-selected="false">
+                  <a href="#submenu2" className="nav-link px-0 align-middle" data-bs-toggle="collapse" >
+                    <i className="fs-5 bi-inbox-fill"></i> <span className="ms-1 d-none d-sm-inline" style={{ fontWeight: 'bold', fontSize: '20px' }}>
+                      ระบบการออกใบรับรอง
+                    </span>
+                  </a>
+
+                  <ul className="collapse nav show flex-column ms-1" id="submenu2" >
+                    <li className="nav-item">
+                      <a href="/Check_Certification_Request" id="Check_Certification_Request-tab" className="nav-link px-0"  aria-controls="Check_Certification_Request" aria-selected="false">
+                        <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
+                          ตรวจสอบคำขอใบรับรอง
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <br />
+                <li>
+                  <a href="#submenu3" id="Enroll_student-tab" className="nav-link px-0 align-middle" data-bs-toggle="collapse">
                     <i className="fs-5 bi-file-earmark-plus"></i> <span className="ms-1 d-none d-sm-inline" style={{ fontWeight: 'bold', fontSize: '20px' }}>
                       ระบบการรับสมัครนักเรียน
                     </span>
                   </a>
+                  <ul className="collapse nav show flex-column ms-1" id="submenu3" >
+                    <li className="nav-item">
+                      <a href="#" id="Check_enroll_info-tab" className="nav-link px-0"  aria-controls="Check_enroll_info" aria-selected="false">
+                        <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
+                          ตรวจสอบข้อมูลผู้สมัคร
+                        </span>
+                      </a>
+                    </li>
+                    </ul>
+                  <ul className="collapse nav show flex-column ms-1" id="submenu3" >
+                    <li className="nav-item">
+                      <a href="#" id="Exam_result-tab" className="nav-link px-0"  aria-controls="Exam_result" aria-selected="false">
+                        <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
+                          ผลคะแนนการสอบคัดเลือก
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+                  <ul className="collapse nav show flex-column ms-1" id="submenu3" >
+                    <li className="nav-item">
+                      <a href="#" id="Initiate_status-tab" className="nav-link px-0"  aria-controls="Initiate_status" aria-selected="false">
+                        <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
+                          สถานะการมอบตัว
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
                 </li>
               </ul>
               <hr />
             </div>
           </div>
-          {/* <div className="col py-3">
-            <div className="tab-content">
-              <div className="tab-pane fade show active" id="personnel_home" role="tabpanel" aria-labelledby="personnel_home-tab">
-                Hello home
-              </div>
-              <div className="tab-pane fade" id="search_info" role="tabpanel" aria-labelledby="search_info-tab">
-                Hello
-              </div>
-              <div className="tab-pane fade" id="Grade_record" role="tabpanel" aria-labelledby="Grade_record-tab">
-                hi
-              </div>
-              <div className="tab-pane fade" id="Enroll_student" role="tabpanel" aria-labelledby="Enroll_student-tab">
-                เย่
-              </div>
-            </div>
-          </div> */}
+          
         {/* </div>
       </div> */}
     </>

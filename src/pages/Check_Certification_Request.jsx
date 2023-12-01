@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import school_logo from "../images/IMG_5416.png";
-import printer_icon from "../images/printer_icon.png";
-import search_icon from "../images/search_icon.png";
-
+import Sidebar from '../components/Sidebar';
 // import Navbar from '../components/Navbar'
 import Header from '../components/Header';
 const Check_Certification_Request = () => {
@@ -56,18 +54,26 @@ const Check_Certification_Request = () => {
                 <div className="nav navbar-nav navbar-right">
                 <span className='nav-link'>
                 <Link
-                        to = "/"
+                        to = "/Login_personnel"
                         style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>
-                        เลือกเมนู
+                        Log out
                     </Link>
                 </span>
                 </div>
             </div>
             </nav>
 
-            <Header header="ตรวจสอบคำขอใบรับรอง" subhead="" />  
-             
-            <br />
+            <Header header="ระบบการออกใบรับรอง" subhead="ตรวจสอบคำขอใบรับรอง" />  
+    <div className="container-fluid">
+        <div className="row flex-nowrap">
+            <Sidebar />
+        
+        <div className="col-md-7">
+                       
+            {/* <br /> */}
+            
+        <div className="card mx-auto my-auto" style={{maxWidth: "1000px", border: '1px solid white' }}>
+            {/* <br /> */}
             <div className="card mx-auto my-0" style={{ width: "1000px", border: '1px solid white' }}>
                 <div className="card-body">
                     <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
@@ -146,8 +152,10 @@ const Check_Certification_Request = () => {
                     </div>
                 </div>
             </div>
-
-            <br /><br /><br /><br /><br />
+        </div>
+        </div>       
+    </div>
+    </div> 
         </>
     );
 };
