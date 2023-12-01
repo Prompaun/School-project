@@ -6,7 +6,7 @@ import search_icon from "../images/search_icon.png";
 
 // import Navbar from '../components/Navbar'
 import Header from '../components/Header';
-const Subject_Score_Record = () => {
+const Check_Certification_Request = () => {
 
     const linkStyle = {
         color: 'gray',
@@ -152,4 +152,4 @@ const Subject_Score_Record = () => {
     );
 };
 
-export default Subject_Score_Record;
+export default Check_Certification_Request;
