@@ -165,17 +165,26 @@ const Check_Applicant_Information = () => {
                                                             }}
                                                         ></i>
                                                 </button> */}
-                                                <button type="button" class="btn btn-primary" style={{ fontSize: '20px', backgroundColor: 'transparent', border: '1px solid black', width:'45px', marginRight:'5px' }} data-mdb-ripple-init>
+                                                {/* <button type="button" class="btn btn-primary" style={{ fontSize: '20px', backgroundColor: 'transparent', border: '1px solid black', width:'40px', height:'40px', marginRight:'5px' }} data-mdb-ripple-init>
                                                     <i 
                                                         class="fs-5 bi-search" 
                                                         style={{
                                                             color: 'black',
-                                                            marginRight: '5px'
+                                                            marginRight: '50px'
                                                         }}
                                                     ></i>
-                                                </button>
-
-
+                                                </button> */}
+                                                <i 
+                                                    class="fs-5 bi-search" 
+                                                    style={{
+                                                        color: 'black',
+                                                        fontSize: '20px', // ตั้งค่าขนาดตัวอักษร
+                                                        marginRight: '5px'
+                                                        // border: '1px solid black', // เพิ่มกรอบด้วยการตั้งค่า border
+                                                        // padding: '1px', // ตั้งค่าการเพิ่มพาดิงขอบ
+                                                        // borderRadius: '5px' // ตั้งค่าการเพิ่มมุมขอบสำหรับกรอบ
+                                                    }}
+                                                ></i> 
                                                 <span style={{ ...fontStyle, color: 'black', fontSize: '16px' }}>ดูรายละเอียด</span>
                                             </a>
                                         </td>{/* Additional_Details */}
