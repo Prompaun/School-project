@@ -79,11 +79,38 @@ function Sidebar() {
                 </li>
                 <br />
                 <li>
-                  <a href="#" id="Enroll_student-tab" className="nav-link px-0 align-middle" aria-controls="Enroll_student" aria-selected="false">
+                  <a href="#submenu3" id="Enroll_student-tab" className="nav-link px-0 align-middle" data-bs-toggle="collapse">
                     <i className="fs-5 bi-file-earmark-plus"></i> <span className="ms-1 d-none d-sm-inline" style={{ fontWeight: 'bold', fontSize: '20px' }}>
                       ระบบการรับสมัครนักเรียน
                     </span>
                   </a>
+                  <ul className="collapse nav show flex-column ms-1" id="submenu3" >
+                    <li className="nav-item">
+                      <a href="#" id="Check_enroll_info-tab" className="nav-link px-0"  aria-controls="Check_enroll_info" aria-selected="false">
+                        <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
+                          ตรวจสอบข้อมูลผู้สมัคร
+                        </span>
+                      </a>
+                    </li>
+                    </ul>
+                  <ul className="collapse nav show flex-column ms-1" id="submenu3" >
+                    <li className="nav-item">
+                      <a href="#" id="Exam_result-tab" className="nav-link px-0"  aria-controls="Exam_result" aria-selected="false">
+                        <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
+                          ผลคะแนนการสอบคัดเลือก
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+                  <ul className="collapse nav show flex-column ms-1" id="submenu3" >
+                    <li className="nav-item">
+                      <a href="#" id="Initiate_status-tab" className="nav-link px-0"  aria-controls="Initiate_status" aria-selected="false">
+                        <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
+                          สถานะการมอบตัว
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
                 </li>
               </ul>
               <hr />
