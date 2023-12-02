@@ -116,7 +116,7 @@ function Sidebar() {
                   </ul>
                   <ul className="collapse nav show flex-column ms-1" id="submenu3" >
                     <li className="nav-item">
-                      <a href="#" id="Upload_Initiate_status-tab" className="nav-link px-0"  aria-controls="Upload_Initiate_status" aria-selected="false">
+                      <a href="/Upload_applicant_scores" id="Upload_Initiate_status-tab" className="nav-link px-0"  aria-controls="Upload_Initiate_status" aria-selected="false">
                         <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
                           อัปโหลดสถานะการมอบตัว
                         </span>
@@ -125,7 +125,7 @@ function Sidebar() {
                   </ul>
                   <ul className="collapse nav show flex-column ms-1" id="submenu3" >
                     <li className="nav-item">
-                      <a href="#" id="Initiate_status-tab" className="nav-link px-0"  aria-controls="Initiate_status" aria-selected="false">
+                      <a href="/Enrollment_Status" id="Initiate_status-tab" className="nav-link px-0"  aria-controls="Initiate_status" aria-selected="false">
                         <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
                           สถานะการมอบตัวรายบุคคล
                         </span>
