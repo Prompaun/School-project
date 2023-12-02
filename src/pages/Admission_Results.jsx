@@ -108,7 +108,7 @@ const Admission_Results = () => {
             </div>
             </nav>
 
-            <Header header="ระบบจัดการข้อมูลการศึกษา" subhead="บันทึกคะแนนรายวิชา" />  
+            <Header header="ระบบการรับสมัครนักเรียน" subhead="ผลคะแนนการสอบรายบุคคล" />  
              
     <div className="container-fluid">
         <div className="row flex-nowrap">
