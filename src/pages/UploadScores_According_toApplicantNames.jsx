@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
+import school_logo from "../images/IMG_5416.png";
 const UploadScores_According_toApplicantNames = () => {
 
-    // const linkStyle = {
-    //     color: 'gray',
-    //     textDecoration: 'none'
-    //   };
+    const linkStyle = {
+        color: 'gray',
+        textDecoration: 'none'
+      };
     
     const fontStyle = {
         fontFamily: 'Kanit, sans-serif',
@@ -71,15 +73,50 @@ const UploadScores_According_toApplicantNames = () => {
 
 
     return (
-        <>        
+        <>  
+
+        <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+            <div className="container">
+                <Link className="navbar-brand" to="/">
+                {/* Logo and School Name */}
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <img src={school_logo} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
+                    <h5 style={{ textAlign: 'right', marginLeft: '10px', marginBottom: '0' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
+                </div>
+                </Link>
+                <div className="nav navbar-nav navbar-right">
+                <span className='nav-link'>
+                <Link
+                        to = "/"
+                        style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>
+                        เลือกเมนู
+                    </Link>
+                </span>
+                </div>
+            </div>
+            </nav>
+
+            <Header header="ระบบรับสมัครนักเรียน" subhead="อัปโหลดผลคะแนนตามรายชื่อผู้สมัคร" />  
+             
+    <div className="container-fluid">
+        <div className="row flex-nowrap">
+            <Sidebar />
+            
         <div className="col-md-7">
-            <div className="card mx-auto my-auto" style={{maxWidth: "1000px", border: '1px solid white' }}>
+            {/* <div className="d-flex align-items-center flex-column">
+                <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px',paddingTop: '40px' }}>การจัดการข้อมูลการศึกษา</h2>
+            </div> */}
+            {/* <br /> */}
+            {/* <div className="container flex-column align-items-center">
+                <h2 className="card-heading text-left mx-auto ml-auto" style={{ fontSize: '20px', marginTop: '2px' }}>ผลการค้นหา</h2>
+            </div> */}
+            <div className="card mx-auto my-auto" style={{Width: "2000px", border: '1px solid white' }}>
                 <div className="card-body">
                     <div className="form-group col-md-0 fone" style={{ padding: '32px', margin: '10px', whiteSpace: "nowrap" }}>
                         <div className="d-flex align-items-center">
                             <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '0px' }}>อัปโหลดผลคะแนนตามรายชื่อผู้สมัคร</h2>
                         </div>
-
+<br />
                         <div className="card mx-auto my-auto"  style={{ width: "900px"}}>
                             <div className="card-body">
                                 <div className="form-group col-md-0 fone" style={{ padding: '10px', whiteSpace: "nowrap" }}>
@@ -161,7 +198,9 @@ const UploadScores_According_toApplicantNames = () => {
                 </div>
             </div>
         </div>
-
+        </div>
+        </div>
+      
         </>
     );
 };

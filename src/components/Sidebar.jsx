@@ -15,6 +15,10 @@ function Sidebar() {
   // const ToggleSidebar = () => {
   //     isOpen === true ? setIsopen(false) : setIsopen(true);
   // }
+  const onExpandChange = e => {
+    e.preventDefault();
+    setExpand(expanded => !expanded);
+  };
   return (
     <>
 
@@ -42,14 +46,13 @@ function Sidebar() {
                   </a>
                 </li>
                 <br />
-                <li>
-                  <a href="#submenu1" className="nav-link px-0 align-middle" data-bs-toggle="collapse" >
+                <li >
+                  <a href="#submenu1" className="nav-link px-0 align-middle" data-bs-toggle="collapse">
                     <i className="fs-5 bi-database"></i> <span className="ms-1 d-none d-sm-inline" style={{ fontWeight: 'bold', fontSize: '20px' }}>
                       ระบบจัดการข้อมูลการศึกษา
                     </span>
                   </a>
-
-                  <ul className="collapse nav show flex-column ms-1" id="submenu1" >
+                  <ul className="collapse nav flex-column ms-1" id="submenu1" >
                     <li className="nav-item">
                       <a href="/Subject_Score_Record" id="Grade_record-tab" className="nav-link px-0"  aria-controls="Grade_record" aria-selected="false">
                         <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
@@ -86,7 +89,7 @@ function Sidebar() {
                   </a>
                   <ul className="collapse nav show flex-column ms-1" id="submenu3" >
                     <li className="nav-item">
-                      <a href="#" id="Check_enroll_info-tab" className="nav-link px-0"  aria-controls="Check_enroll_info" aria-selected="false">
+                      <a href="/Check_Applicant_Information" id="Check_enroll_info-tab" className="nav-link px-0"  aria-controls="Check_enroll_info" aria-selected="false">
                         <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
                           ตรวจสอบข้อมูลผู้สมัคร
                         </span>
@@ -95,9 +98,27 @@ function Sidebar() {
                     </ul>
                   <ul className="collapse nav show flex-column ms-1" id="submenu3" >
                     <li className="nav-item">
-                      <a href="#" id="Exam_result-tab" className="nav-link px-0"  aria-controls="Exam_result" aria-selected="false">
+                      <a href="/Upload_applicant_scores" id="Upload_Exam_result-tab" className="nav-link px-0"  aria-controls="Upload_Exam_result" aria-selected="false">
                         <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
-                          ผลคะแนนการสอบคัดเลือก
+                          อัปโหลดผลคะแนนการสอบ
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+                  <ul className="collapse nav show flex-column ms-1" id="submenu3" >
+                    <li className="nav-item">
+                      <a href="/Admission_Results" id="Exam_result-tab" className="nav-link px-0"  aria-controls="Exam_result" aria-selected="false">
+                        <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
+                          ผลคะแนนการสอบรายบุคคล
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+                  <ul className="collapse nav show flex-column ms-1" id="submenu3" >
+                    <li className="nav-item">
+                      <a href="#" id="Upload_Initiate_status-tab" className="nav-link px-0"  aria-controls="Upload_Initiate_status" aria-selected="false">
+                        <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
+                          อัปโหลดสถานะการมอบตัว
                         </span>
                       </a>
                     </li>
@@ -106,7 +127,7 @@ function Sidebar() {
                     <li className="nav-item">
                       <a href="#" id="Initiate_status-tab" className="nav-link px-0"  aria-controls="Initiate_status" aria-selected="false">
                         <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
-                          สถานะการมอบตัว
+                          สถานะการมอบตัวรายบุคคล
                         </span>
                       </a>
                     </li>

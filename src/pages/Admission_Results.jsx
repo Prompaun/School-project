@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import school_logo from "../images/IMG_5416.png";
+import Sidebar from '../components/Sidebar';
+// import Navbar from '../components/Navbar'
+import Header from '../components/Header';
 const Admission_Results = () => {
 
     const linkStyle = {
@@ -84,12 +87,42 @@ const Admission_Results = () => {
 
     return (
         <>        
+         <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+            <div className="container">
+                <Link className="navbar-brand" to="/">
+                {/* Logo and School Name */}
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <img src={school_logo} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
+                    <h5 style={{ textAlign: 'right', marginLeft: '10px', marginBottom: '0' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
+                </div>
+                </Link>
+                <div className="nav navbar-nav navbar-right">
+                <span className='nav-link'>
+                <Link
+                        to = "/Login_personnel"
+                        style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>
+                        Log out
+                    </Link>
+                </span>
+                </div>
+            </div>
+            </nav>
+
+            <Header header="ระบบจัดการข้อมูลการศึกษา" subhead="บันทึกคะแนนรายวิชา" />  
+             
+    <div className="container-fluid">
+        <div className="row flex-nowrap">
+            <Sidebar />
+        
         <div className="col-md-7">
+                       
+            {/* <br /> */}
+            
             <div className="card mx-auto my-auto" style={{maxWidth: "1000px", border: '1px solid white' }}>
                 <div className="card-body">
                     <div className="form-group col-md-0 fone" style={{ padding: '32px', margin: '10px', whiteSpace: "nowrap" }}>
                         <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '2px' }}>ผลคะแนนรายบุคคล</h2>
-                    
+                    <br />
                         <div className="card mx-auto my-auto"  style={{ width: "900px"}}>
                             <div className="card-body">                        
                                 <div className="form-group col-md-0 fone" style={{ padding: '10px', whiteSpace: "nowrap" }}>
@@ -172,7 +205,8 @@ const Admission_Results = () => {
                 </div>
             </div>
         </div>
-
+        </div>
+        </div>
         </>
     );
 };

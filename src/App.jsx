@@ -28,7 +28,7 @@ import Check_Applicant_Information from './pages/Check_Applicant_Information'
 import Enrollment_Status from './pages/Enrollment_Status'
 import Admission_Results from './pages/Admission_Results'
 import UploadScores_According_toApplicantNames from './pages/UploadScores_According_toApplicantNames'
-import Manage_health_data from './pages/Manage_health_data'
+// import Manage_health_data from './pages/Manage_health_data'
 import Sidebar from './components/Sidebar'
 
 const router = createBrowserRouter(
@@ -68,9 +68,9 @@ const router = createBrowserRouter(
         <Route path="/Check_Certification_Request" element={<Check_Certification_Request />} />
         <Route path="/Check_Applicant_Information" element={<Check_Applicant_Information />} />
         <Route path="/Enrollment_Status" element={<Enrollment_Status />} />
-        <Route path="/UploadScores_According_toApplicantNames" element={<UploadScores_According_toApplicantNames />} />
+        <Route path="/Upload_applicant_scores" element={<UploadScores_According_toApplicantNames />} />
         <Route path="/Admission_Results" element={<Admission_Results />} />
-        <Route path="/Manage_health_data" element={<Manage_health_data />} />
+        {/* <Route path="/Manage_health_data" element={<Manage_health_data />} /> */}
     </>
   )
 )
