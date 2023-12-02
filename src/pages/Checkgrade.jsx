@@ -82,12 +82,12 @@ const Checkgrade = () => {
     const selectedYearValue = event.target.value;
     setSelectedYear(selectedYearValue);
     setSelectedSemester("");
-    if (selectedYearValue) {
-      const semesters = subjectObject[selectedYearValue];
-      setChapters(semesters);
-    } else {
-      setChapters([]); // เมื่อไม่ได้เลือกปีการศึกษาให้ล้าง chapters
-    }
+    // if (selectedYearValue) {
+    //   const semesters = subjectObject[selectedYearValue];
+    //   setChapters(semesters);
+    // } else {
+    //   setChapters([]); // เมื่อไม่ได้เลือกปีการศึกษาให้ล้าง chapters
+    // }
   };
   
   const handleSemesterChange = (event) => {
@@ -95,24 +95,6 @@ const Checkgrade = () => {
     setSelectedSemester(selectedSemesterValue);
   };
 
-  // const handleYearChange = (event) => {
-  //   const selectedYearValue = event.target.value;
-  //   setSelectedYear(selectedYearValue);
-  //   setSelectedSemester("");
-  //   setChapters([]);
-  //   if (selectedYearValue) {
-  //     const semesters = Object.keys(subjectObject[selectedYearValue]);
-  //     setChapters(semesters);
-  //   }
-  // };
-
-  // const handleSemesterChange = (event) => {
-  //   const selectedSemesterValue = event.target.value;
-  //   setSelectedSemester(selectedSemesterValue);
-  // };
-  
-  
-  
   return (
     <>
       <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
@@ -141,30 +123,7 @@ const Checkgrade = () => {
       </div>
 
       <div className="container d-flex flex-column align-items-center" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-      {/* เพิ่มฟอร์มการลงทะเบียน */}
-      {/* <div className="container mt-5 d-flex flex-column align-items-center"> */}
-
-        {/* <div className="d-flex align-items-center mb-3"> */}
-          {/* <h2 className="ms-3 mb-0">ระบบตรวจสอบผลการเรียน</h2> */}
         <div className="mb-3">
-          
-        {/* </div> */}
-
-        {/* <div>
-
-          <form name="form1" id="form1" action="/action_page.php">
-            ปีการศึกษา: <select name="school_year" id="school_year">
-              <option value="" selected="selected">เลือกปีการศึกษา</option>
-            </select>
-
-
-            ภาคเรียนที่: <select name="semester" id="semester">
-              <option value="" selected="selected">เลือกภาคเรียน</option>
-            </select>
-          </form>
-        </div> */}
-
-        {/* <div style={{ fontFamily: 'Kanit, sans-serif', display: 'flex', alignItems: 'center' }}> */}
           <span style={{ marginRight: '10px' }}>ปีการศึกษา:</span>
           <select value={selectedYear} onChange={handleYearChange}>
             <option value="">เลือกปีการศึกษา</option>
