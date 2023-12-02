@@ -131,7 +131,7 @@ function Filter_student_information() {
                 
                 {/* <br /> */}
                 <div className="container d-flex justify-content-center">
-                    <Link to="/">
+                    {/* <Link to="/">
                     <button 
                         type="submit" 
                         className="btn btn-primary" 
@@ -148,7 +148,7 @@ function Filter_student_information() {
                     >
                         <span>ข้อมูลส่วนบุคคล</span>
                     </button>
-                    </Link>
+                    </Link> */}
 
                     <Link to="/Student_List_Information">
                     <button 
@@ -160,16 +160,16 @@ function Filter_student_information() {
                         fontSize: '16px', 
                         textAlign: 'center', 
                         marginTop: '10px', 
-                        marginRight: '15px',
+                        // marginRight: '15px',
                         width: '150px', // กำหนดความกว้าง
                         height: '40px'  // กำหนดความสูง
                         }}
                     >
-                        <span>ข้อมูลการศึกษา</span>
+                        <span>ค้นหาข้อมูล</span>
                     </button>
                     </Link>
 
-                    <Link to="/">
+                    {/* <Link to="/">
                     <button 
                         type="submit" 
                         className="btn btn-primary" 
@@ -185,7 +185,7 @@ function Filter_student_information() {
                     >
                         <span>ข้อมูลสุขภาพ</span>
                     </button>
-                    </Link>
+                    </Link> */}
                 </div>
                 
 

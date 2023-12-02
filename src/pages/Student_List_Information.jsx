@@ -83,7 +83,7 @@ const Student_List_Information = () => {
             {/* <div className="container flex-column align-items-center">
                 <h2 className="card-heading text-left mx-auto ml-auto" style={{ fontSize: '20px', marginTop: '2px' }}>ผลการค้นหา</h2>
             </div> */}
-            <div className="card mx-auto my-auto" style={{maxWidth: "1000px", border: '1px solid white' }}>
+            <div className="card mx-0 my-auto" style={{maxWidth: "1000px", border: '1px solid white' }}>
                 <div className="card-body">
                     <div className="form-group col-md-0 fone" style={{paddingTop: '40px', padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
                         <div className="d-flex align-items-center" style={{ marginBottom: '20px' }}>
@@ -93,7 +93,7 @@ const Student_List_Information = () => {
                             </Link>
                         </div>
 
-                        <div className="card mx-auto my-auto"  style={{ width: "900px"}}>
+                        <div className="card mx-auto my-auto"  style={{ width: "1200px"}}>
                             <div className="card-body">
                                 <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
                                     <div className="d-flex align-items-center">
@@ -108,10 +108,20 @@ const Student_List_Information = () => {
                                         <table className="table-bordered" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center', fontFamily: 'Kanit, sans-serif', borderColor: '#D3D3D3' }}>
                                             <thead>
                                                 <tr>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>เลขประจำตัวนักเรียน</th>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ชื่อ-สกุล</th>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ดูผลการเรียน</th>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>พิมพ์ข้อมูล</th>
+                                                    <th rowSpan="2" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>เลขประจำตัวนักเรียน</th>
+                                                    <th rowSpan="2" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ชื่อ-สกุล</th>
+                                                    <th colSpan="2" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ข้อมูลส่วนบุคคล</th>
+                                                    <th colSpan="2" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ข้อมูลการศึกษา</th>
+                                                    <th colSpan="2" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ข้อมูลสุขภาพ</th>
+                                                </tr>
+
+                                                <tr>
+                                                    <th colSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ดูข้อมูลส่วนบุคคล</th>
+                                                    <th colSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>พิมพ์ข้อมูล</th>
+                                                    <th colSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ดูข้อมูลการศึกษา</th>
+                                                    <th colSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>พิมพ์ข้อมูล</th>
+                                                    <th colSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ดูข้อมูลสุขภาพ</th>
+                                                    <th colSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>พิมพ์ข้อมูล</th>
                                                 </tr>
                                             </thead>
 
@@ -120,12 +130,16 @@ const Student_List_Information = () => {
                                                     <tr key={subject.id} style={{ height: '50px' }}>
                                                         <td style={{ backgroundColor: '#FFFFFF' }}>{subject.student_id}</td>
                                                         <td style={{ backgroundColor: '#FFFFFF' }}>{subject.first_name + "  " + subject.last_name}</td>
-                                                        <td style={{ backgroundColor: '#FFFFFF' }}>
-                                                            {/* <img src={search_icon} alt="search_icon" style={{ width: '25px', height: '25px', cursor: 'pointer', marginTop: '-5px'}} />{" "}
-                                                            <a href="/" style={{...fontStyle, color: 'black', fontSize: '16px'}}>ดูรายละเอียด</a> */}
+                                                        {/* <td style={{ backgroundColor: '#FFFFFF' }}>
+                                                        <Link to="/Education_information" className="d-flex justify-content-center" style={{ textDecoration: 'none' }}>
+                                                            <button type="submit" class="btn btn-custom" style={{ ...fontStyle, backgroundColor: '#A0C3D2', color: 'white', fontSize: '16px' }}>
+                                                                <span>ดูข้อมูลส่วนบุคคล</span>
+                                                            </button>
+                                                        </Link>
 
+                                                        </td> */}
+                                                        <td style={{ backgroundColor: '#FFFFFF' }}>
                                                             <a href="/Education_information" style={{ ...fontStyle}}>
-                                                                {/* <img src={search_icon} alt="search_icon" style={{ width: '25px', height: '25px', cursor: 'pointer', marginTop: '-5px'}} /> {" "} */}
                                                                 <i 
                                                                     class="fs-5 bi-search" 
                                                                     style={{
@@ -136,8 +150,8 @@ const Student_List_Information = () => {
                                                                         // padding: '1px', // ตั้งค่าการเพิ่มพาดิงขอบ
                                                                         // borderRadius: '5px' // ตั้งค่าการเพิ่มมุมขอบสำหรับกรอบ
                                                                     }}
-                                                                ></i>                 
-                                                                <span style={{ ...fontStyle, color: 'black', fontSize: '16px' }}>ดูรายละเอียด</span>         
+                                                                ></i>
+                                                                <span style={{ ...fontStyle, color: 'black', fontSize: '16px' }}>ดูข้อมูลส่วนบุคคล</span>      
                                                             </a>
                                                         </td>
                                                         <td style={{ backgroundColor: '#FFFFFF' }}>
@@ -155,8 +169,84 @@ const Student_List_Information = () => {
                                                                 printWindow.print();
                                                                 }}
                                                             ></i>
-                                                            </td>
+                                                        </td>
 
+                                                        <td style={{ backgroundColor: '#FFFFFF' }}>
+                                                        <Link to="/Education_information" className="d-flex justify-content-center" style={{ textDecoration: 'none' }}>
+                                                            {/* <button type="submit" class="btn btn-custom" style={{ ...fontStyle, backgroundColor: '#A0C3D2', color: 'white', fontSize: '16px' }}>
+                                                                <span>ดูข้อมูลส่วนการศึกษา</span>
+                                                            </button> */}
+                                                            <a href="/Education_information" style={{ ...fontStyle}}>
+                                                                <i 
+                                                                    class="fs-5 bi-search" 
+                                                                    style={{
+                                                                        color: 'black',
+                                                                        fontSize: '20px', // ตั้งค่าขนาดตัวอักษร
+                                                                        marginRight: '5px'
+                                                                        // border: '1px solid black', // เพิ่มกรอบด้วยการตั้งค่า border
+                                                                        // padding: '1px', // ตั้งค่าการเพิ่มพาดิงขอบ
+                                                                        // borderRadius: '5px' // ตั้งค่าการเพิ่มมุมขอบสำหรับกรอบ
+                                                                    }}
+                                                                ></i>
+                                                                <span style={{ ...fontStyle, color: 'black', fontSize: '16px' }}>ดูข้อมูลการศึกษา</span>      
+                                                            </a>
+                                                        </Link>
+
+                                                        </td>
+                                                        <td style={{ backgroundColor: '#FFFFFF' }}>
+                                                            <i 
+                                                                class="fs-5 bi-printer" 
+                                                                style={{
+                                                                color: 'black',
+                                                                fontSize: '20px',
+                                                                marginRight: '5px',
+                                                                cursor: 'pointer' // เพิ่ม cursor: 'pointer' เพื่อแสดงว่าเป็นองค์ประกอบที่คลิกได้
+                                                                }}
+                                                                onClick={() => {
+                                                                const fileUrl = "src/assets/พิมพ์ใบสมัครป.1.pdf";
+                                                                const printWindow = window.open(fileUrl, "_blank", 'width=1000,height=800');
+                                                                printWindow.print();
+                                                                }}
+                                                            ></i>
+                                                        </td>
+
+                                                        <td style={{ backgroundColor: '#FFFFFF' }}>
+                                                            <Link to="/Education_information" className="d-flex justify-content-center" style={{ textDecoration: 'none' }}>
+                                                            {/* <button type="submit" class="btn btn-custom" style={{ ...fontStyle, backgroundColor: '#A0C3D2', color: 'white', fontSize: '16px' }}>
+                                                                <span>ดูข้อมูลสุขภาพ</span>
+                                                            </button> */}
+                                                            <a href="/Education_information" style={{ ...fontStyle}}>
+                                                                <i 
+                                                                    class="fs-5 bi-search" 
+                                                                    style={{
+                                                                        color: 'black',
+                                                                        fontSize: '20px', // ตั้งค่าขนาดตัวอักษร
+                                                                        marginRight: '5px'
+                                                                        // border: '1px solid black', // เพิ่มกรอบด้วยการตั้งค่า border
+                                                                        // padding: '1px', // ตั้งค่าการเพิ่มพาดิงขอบ
+                                                                        // borderRadius: '5px' // ตั้งค่าการเพิ่มมุมขอบสำหรับกรอบ
+                                                                    }}
+                                                                ></i>
+                                                                <span style={{ ...fontStyle, color: 'black', fontSize: '16px' }}>ดูข้อมูลสุขภาพ</span>      
+                                                            </a>
+                                                            </Link>
+                                                        </td>
+                                                        <td style={{ backgroundColor: '#FFFFFF' }}>
+                                                            <i 
+                                                                class="fs-5 bi-printer" 
+                                                                style={{
+                                                                color: 'black',
+                                                                fontSize: '20px',
+                                                                marginRight: '5px',
+                                                                cursor: 'pointer' // เพิ่ม cursor: 'pointer' เพื่อแสดงว่าเป็นองค์ประกอบที่คลิกได้
+                                                                }}
+                                                                onClick={() => {
+                                                                const fileUrl = "src/assets/พิมพ์ใบสมัครป.1.pdf";
+                                                                const printWindow = window.open(fileUrl, "_blank", 'width=1000,height=800');
+                                                                printWindow.print();
+                                                                }}
+                                                            ></i>
+                                                        </td>
                                                     </tr>
                                                 ))}
                                             </tbody>
