@@ -125,9 +125,9 @@ function Filter_student_information() {
                 </div>
                 
                 <br />
-                <div className="container d-flex justify-content-center">
+                {/* <div className="container d-flex justify-content-center">
                     <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '2px' }}>เลือกข้อมูล</h2>
-                </div>
+                </div> */}
                 
                 {/* <br /> */}
                 <div className="container d-flex justify-content-center">
