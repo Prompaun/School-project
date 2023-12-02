@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import school_logo from "../images/IMG_5416.png";
 import printer_icon from "../images/printer_icon.png";
 import search_icon from "../images/search_icon.png";
-
+import Sidebar from '../components/Sidebar';
 // import Navbar from '../components/Navbar'
 import Header from '../components/Header';
 const Check_Applicant_Information = () => {
@@ -65,10 +65,23 @@ const Check_Applicant_Information = () => {
             </div>
             </nav>
 
-            <Header header="ระบบรับสมัครนักเรียน" subhead="" />  
+            <Header header="ระบบรับสมัครนักเรียน" subhead="ตรวจสอบข้อมูลผู้สมัคร" />  
              
-            <br />
-            <div className="card mx-auto my-0" style={{ width: "1000px", border: '1px solid white' }}>
+    <div className="container-fluid">
+        <div className="row flex-nowrap">
+            <Sidebar />
+            
+        <div className="col-md-9">
+            {/* <div className="d-flex align-items-center flex-column">
+                <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px',paddingTop: '40px' }}>การจัดการข้อมูลการศึกษา</h2>
+            </div> */}
+            {/* <br /> */}
+            {/* <div className="container flex-column align-items-center">
+                <h2 className="card-heading text-left mx-auto ml-auto" style={{ fontSize: '20px', marginTop: '2px' }}>ผลการค้นหา</h2>
+            </div> */}
+            {/* <div className="card mx-auto my-auto" style={{Width: "2000px", border: '1px solid white' }}> */}
+                        <br />
+
                 <div className="card-body">
                     <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
                         <div className="d-flex align-items-center">
@@ -195,9 +208,12 @@ const Check_Applicant_Information = () => {
 
                     </div>
                 </div>
+            {/* </div> */}
+
+            </div>
+                </div>
             </div>
 
-            <br /><br /><br /><br /><br />
         </>
     );
 };

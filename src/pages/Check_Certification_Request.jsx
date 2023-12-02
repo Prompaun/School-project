@@ -68,13 +68,13 @@ const Check_Certification_Request = () => {
         <div className="row flex-nowrap">
             <Sidebar />
         
-        <div className="col-md-7">
+        <div className="col-md-9">
                        
-            {/* <br /> */}
+            <br />
             
-        <div className="card mx-auto my-auto" style={{maxWidth: "1000px", border: '1px solid white' }}>
+        {/* <div className="card mx-auto my-auto" style={{maxWidth: "1000px", border: '1px solid white' }}> */}
             {/* <br /> */}
-            <div className="card mx-auto my-0" style={{ width: "1000px", border: '1px solid white' }}>
+            {/* <div className="card mx-auto my-0" style={{ width: "1000px", border: '1px solid white' }}> */}
                 <div className="card-body">
                     <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
                         <div className="d-flex align-items-center">
@@ -152,8 +152,8 @@ const Check_Certification_Request = () => {
                     </div>
                 </div>
             </div>
-        </div>
-        </div>       
+        {/* </div> */}
+        {/* </div>        */}
     </div>
     </div> 
         </>
