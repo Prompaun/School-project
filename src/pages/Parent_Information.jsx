@@ -99,7 +99,7 @@ function Parent_Information() {
                 />
             </div>
 
-            <div className="col-sm-3 d-flex align-items-center">
+            <div className="col-sm-5 d-flex align-items-center">
                 <label htmlFor="surname" className="col-form-label mb-0 mx-3">ชื่อ</label>
                 <input
                     type="text"
