@@ -166,31 +166,48 @@ function Parent_Information() {
                 </button>
             </div>
         </div>
-
-        <br></br>
-        <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>
-            <Link to="/NewUser_menu">
-                {/* <button type="submit" className="btn btn-primary">ถัดไป</button> */}
+        
+        <br />
+        <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>
+            <Link to="/NewUser_menu" style={{ display: 'flex', alignItems: 'center',
+                textDecoration: 'none' }}>
                 <button 
-                        type="submit" 
-                        className="btn btn-custom" 
-                        style={{
+                    type="submit" 
+                    className="btn btn-custom" 
+                    style={{
                         ...fontStyle, 
                         color: 'white', 
                         fontSize: '16px', 
                         textAlign: 'center', 
-                        // marginTop: '10px', 
-                        // marginRight: '15px',
-                        // marginLeft: '15px',
                         backgroundColor: '#40C0E0',
-                        width: '80px', // กำหนดความกว้าง
-                        height: '38px'  // กำหนดความสูง
-                        }}
-                    >
-                        <span>ถัดไป</span>
+                        width: '100px',
+                        height: '38px'
+                    }}
+                >
+                    <span>ย้อนกลับ</span>
+                </button>
+            </Link>
+
+            <Link to="/NewUser_menu" style={{ display: 'flex', alignItems: 'center',
+                textDecoration: 'none' }}>
+                <button 
+                    type="submit" 
+                    className="btn btn-custom" 
+                    style={{
+                        ...fontStyle, 
+                        color: 'white', 
+                        fontSize: '16px', 
+                        textAlign: 'center', 
+                        backgroundColor: '#40C0E0',
+                        width: '80px',
+                        height: '38px'
+                    }}
+                >
+                    <span>ถัดไป</span>
                 </button>
             </Link>
         </div>
+
     </div>
   );
 }
