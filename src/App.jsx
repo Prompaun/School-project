@@ -28,8 +28,9 @@ import Check_Applicant_Information from './pages/Check_Applicant_Information'
 import Upload_Enrollment_Status from './pages/Upload_Enrollment_Status'
 import Enrollment_Status from './pages/Enrollment_Status'
 import Admission_Results from './pages/Admission_Results'
+import Parent_Information from './pages/Parent_Information'
 import UploadScores_According_toApplicantNames from './pages/UploadScores_According_toApplicantNames'
-// import Manage_health_data from './pages/Manage_health_data'
+import Manage_health_data from './pages/Manage_health_data'
 import Sidebar from './components/Sidebar'
 
 const router = createBrowserRouter(
@@ -72,7 +73,9 @@ const router = createBrowserRouter(
         <Route path="/Upload_Enrollment_Status" element={<Upload_Enrollment_Status />} />
         <Route path="/Upload_applicant_scores" element={<UploadScores_According_toApplicantNames />} />
         <Route path="/Admission_Results" element={<Admission_Results />} />
-        {/* <Route path="/Manage_health_data" element={<Manage_health_data />} /> */}
+        <Route path="/Manage_health_data" element={<Manage_health_data />} />
+
+        <Route path="/Parent_Information" element={<Parent_Information />} />
     </>
   )
 )
