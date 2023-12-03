@@ -63,7 +63,7 @@ const Check_Applicant_Information = () => {
             </div>
             </nav>
 
-            <Header header="ระบบรับสมัครนักเรียน" subhead="ตรวจสอบข้อมูลผู้สมัคร" />  
+            <Header header="ระบบการรับสมัครนักเรียน" subhead="ตรวจสอบข้อมูลผู้สมัคร" />  
              
     <div className="container-fluid">
         <div className="row flex-nowrap">

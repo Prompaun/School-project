@@ -70,7 +70,7 @@ function Sidebar() {
                     </span>
                   </a>
 
-                  <ul className="collapse nav show flex-column ms-1" id="submenu2" >
+                  <ul className="collapse nav flex-column ms-1" id="submenu2" >
                     <li className="nav-item">
                       <a href="/Check_Certification_Request" id="Check_Certification_Request-tab" className="nav-link px-0"  aria-controls="Check_Certification_Request" aria-selected="false">
                         <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
@@ -87,7 +87,7 @@ function Sidebar() {
                       ระบบการรับสมัครนักเรียน
                     </span>
                   </a>
-                  <ul className="collapse nav show flex-column ms-1" id="submenu3" >
+                  <ul className="collapse nav flex-column ms-1" id="submenu3" >
                     <li className="nav-item">
                       <a href="/Check_Applicant_Information" id="Check_enroll_info-tab" className="nav-link px-0"  aria-controls="Check_enroll_info" aria-selected="false">
                         <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
@@ -96,7 +96,7 @@ function Sidebar() {
                       </a>
                     </li>
                     </ul>
-                  <ul className="collapse nav show flex-column ms-1" id="submenu3" >
+                  <ul className="collapse nav flex-column ms-1" id="submenu3" >
                     <li className="nav-item">
                       <a href="/Upload_applicant_scores" id="Upload_Exam_result-tab" className="nav-link px-0"  aria-controls="Upload_Exam_result" aria-selected="false">
                         <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
@@ -105,7 +105,7 @@ function Sidebar() {
                       </a>
                     </li>
                   </ul>
-                  <ul className="collapse nav show flex-column ms-1" id="submenu3" >
+                  <ul className="collapse nav flex-column ms-1" id="submenu3" >
                     <li className="nav-item">
                       <a href="/Admission_Results" id="Exam_result-tab" className="nav-link px-0"  aria-controls="Exam_result" aria-selected="false">
                         <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
@@ -114,18 +114,18 @@ function Sidebar() {
                       </a>
                     </li>
                   </ul>
-                  <ul className="collapse nav show flex-column ms-1" id="submenu3" >
+                  <ul className="collapse nav flex-column ms-1" id="submenu3" >
                     <li className="nav-item">
-                      <a href="/Upload_applicant_scores" id="Upload_Initiate_status-tab" className="nav-link px-0"  aria-controls="Upload_Initiate_status" aria-selected="false">
+                      <a href="/Upload_Enrollment_Status" id="Upload_Enrollment_Status-tab" className="nav-link px-0"  aria-controls="Upload_Enrollment_Status" aria-selected="false">
                         <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
                           อัปโหลดสถานะการมอบตัว
                         </span>
                       </a>
                     </li>
                   </ul>
-                  <ul className="collapse nav show flex-column ms-1" id="submenu3" >
+                  <ul className="collapse nav flex-column ms-1" id="submenu3" >
                     <li className="nav-item">
-                      <a href="/Enrollment_Status" id="Initiate_status-tab" className="nav-link px-0"  aria-controls="Initiate_status" aria-selected="false">
+                      <a href="/Enrollment_Status" id="Enrollment_Status-tab" className="nav-link px-0"  aria-controls="Enrollment_Status" aria-selected="false">
                         <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
                           สถานะการมอบตัวรายบุคคล
                         </span>

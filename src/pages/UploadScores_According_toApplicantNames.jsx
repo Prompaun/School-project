@@ -96,7 +96,7 @@ const UploadScores_According_toApplicantNames = () => {
             </div>
             </nav>
 
-            <Header header="ระบบรับสมัครนักเรียน" subhead="อัปโหลดผลคะแนนตามรายชื่อผู้สมัคร" />  
+            <Header header="ระบบการรับสมัครนักเรียน" subhead="อัปโหลดผลคะแนนตามรายชื่อผู้สมัคร" />  
              
     <div className="container-fluid">
         <div className="row flex-nowrap">
