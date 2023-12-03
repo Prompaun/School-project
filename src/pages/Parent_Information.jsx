@@ -253,10 +253,9 @@ function Parent_Information() {
             </div>
         </div>
 
-        <br></br>
+        {/* <br></br>
         <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>
             <Link to="/NewUser_menu">
-                {/* <button type="submit" className="btn btn-primary">ถัดไป</button> */}
                 <button 
                         type="submit" 
                         className="btn btn-custom" 
@@ -276,7 +275,7 @@ function Parent_Information() {
                         <span>ถัดไป</span>
                 </button>
             </Link>
-        </div>
+        </div> */}
 
 
 

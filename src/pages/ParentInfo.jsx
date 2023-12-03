@@ -59,25 +59,6 @@ function ParentsInfo() {
         </div>
 
         <br></br>
-        {/* <div class="d-flex align-items-center" style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <h2 class="card-heading mb-0 mx-2" style={{fontSize: '16px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="foreigner?" id="yes" />
-                <label class="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} for="yes">
-                    ใช่
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="foreigner?" id="no" />
-                <label class="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} for="no">
-                    ไม่
-                </label>
-            </div>
-            <div className="col-sm-4 d-flex align-items-center">
-                <label htmlFor="father_Nationality" className="col-form-label mb-0 mx-2">สัญชาติ</label>
-                <input type="text" className="form-control" id="father_Nationality" name="father_Nationality" placeholder="กรอกสัญชาติ" />
-            </div>
-        </div> */}
         <div className="d-flex align-items-center" style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
             <h2 className="card-heading mb-0 mx-2" style={{fontSize: '16px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
             <div className="form-check">
@@ -162,25 +143,6 @@ function ParentsInfo() {
             </div>
 
             <br></br>
-            {/* <div class="d-flex align-items-center" style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-                <h2 class="card-heading mb-0 mx-2" style={{fontSize: '16px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="foreigner?" id="yes" />
-                    <label class="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} for="yes">
-                        ใช่
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="foreigner?" id="no" />
-                    <label class="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} for="no">
-                        ไม่
-                    </label>
-                </div>
-                <div className="col-sm-4 d-flex align-items-center">
-                    <label htmlFor="mother_Nationality" className="col-form-label mb-0 mx-2">สัญชาติ</label>
-                    <input type="text" className="form-control" id="mother_Nationality" name="mother_Nationality" placeholder="กรอกสัญชาติ" />
-                </div>
-            </div> */}
             <div className="d-flex align-items-center" style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
                 <h2 className="card-heading mb-0 mx-2" style={{fontSize: '16px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
                 <div className="form-check">
@@ -208,9 +170,6 @@ function ParentsInfo() {
 
             <div class="h-screen flex justify-center items-center flex-col bg-gray-900" >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '20px', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>
-                    {/* <h1 class="card-heading px-2" style={{ fontSize: '16px' }}>
-                        วุฒิการศึกษา
-                    </h1> */}
                     <div className="col-sm-0 d-flex align-items-center">
                         <label htmlFor="mother_Occupation" className="col-form-label mb-0 mx-2">วุฒิการศึกษา</label>
                         <div class="dropdown px-0" style={{ width: '150px' }}> {/* กำหนดความกว้างของ dropdown ที่นี่ */}

@@ -167,7 +167,7 @@ function Parent_Information() {
             </div>
         </div>
         
-        <br />
+        {/* <br />
         <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>
             <Link to="/NewUser_menu" style={{ display: 'flex', alignItems: 'center',
                 textDecoration: 'none' }}>
@@ -206,7 +206,7 @@ function Parent_Information() {
                     <span>ถัดไป</span>
                 </button>
             </Link>
-        </div>
+        </div> */}
 
     </div>
   );
