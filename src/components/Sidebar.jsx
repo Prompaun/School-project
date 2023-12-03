@@ -63,6 +63,23 @@ function Sidebar() {
                   </ul>
                 </li>
                 <br />
+                <li >
+                  <a href="#submenu4" className="nav-link px-0 align-middle" data-bs-toggle="collapse">
+                    <i className="fs-5 bi-database"></i> <span className="ms-1 d-none d-sm-inline" style={{ fontWeight: 'bold', fontSize: '20px' }}>
+                      ระบบจัดการข้อมูลสุขภาพ
+                    </span>
+                  </a>
+                  <ul className="collapse nav flex-column ms-1" id="submenu4" >
+                    <li className="nav-item">
+                      <a href="/Manage_health_data" id="health_data-tab" className="nav-link px-0"  aria-controls="health_data" aria-selected="false">
+                        <span className="d-none d-sm-inline" style={{ fontSize: '18px', marginLeft: '25px' }}>
+                          อัปโหลดข้อมูลสุขภาพ
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <br />
                 <li>
                   <a href="#submenu2" className="nav-link px-0 align-middle" data-bs-toggle="collapse" >
                     <i className="fs-5 bi-inbox-fill"></i> <span className="ms-1 d-none d-sm-inline" style={{ fontWeight: 'bold', fontSize: '20px' }}>

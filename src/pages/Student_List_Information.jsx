@@ -83,8 +83,9 @@ const Student_List_Information = () => {
             {/* <div className="container flex-column align-items-center">
                 <h2 className="card-heading text-left mx-auto ml-auto" style={{ fontSize: '20px', marginTop: '2px' }}>ผลการค้นหา</h2>
             </div> */}
-            <div className="card mx-0 my-auto" style={{maxWidth: "1000px", border: '1px solid white' }}>
-                <div className="card-body">
+            <br />
+            <div className="card" style={{border: '1px solid white' }}>
+                
                     <div className="form-group col-md-0 fone" style={{paddingTop: '40px', padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
                         <div className="d-flex align-items-center" style={{ marginBottom: '20px' }}>
                             <h2 className="card-heading px-4" style={{ fontSize: '25px', fontWeight: 'bold' }}>ผลการค้นหา</h2>
@@ -93,7 +94,7 @@ const Student_List_Information = () => {
                             </Link>
                         </div>
 
-                        <div className="card mx-auto my-auto"  style={{ width: "1200px"}}>
+                        <div className="card mx-auto my-auto"  style={{ width: "1250px"}}>
                             <div className="card-body">
                                 <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
                                     <div className="d-flex align-items-center">
@@ -139,7 +140,7 @@ const Student_List_Information = () => {
 
                                                         </td> */}
                                                         <td style={{ backgroundColor: '#FFFFFF' }}>
-                                                            <a href="/Education_information" style={{ ...fontStyle}}>
+                                                            <a href="/Student_info" style={{ ...fontStyle}}>
                                                                 <i 
                                                                     class="fs-5 bi-search" 
                                                                     style={{
@@ -262,7 +263,7 @@ const Student_List_Information = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                
             </div>
          
             </div>

@@ -34,6 +34,7 @@ import UploadScores_According_toApplicantNames from './pages/UploadScores_Accord
 import Student_Address from './pages/Student_Address'
 import Manage_health_data from './pages/Manage_health_data'
 import Sidebar from './components/Sidebar'
+import Student_info from './pages/Student_info'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -77,6 +78,7 @@ const router = createBrowserRouter(
         <Route path="/Admission_Results" element={<Admission_Results />} />
         <Route path="/Manage_health_data" element={<Manage_health_data />} />
 
+        <Route path="/Student_info" element={<Student_info />} />
         <Route path="/Parent_Information" element={<Parent_Information />} />
         <Route path="/Student_Information" element={<Student_Information />} />
         <Route path="/Student_Address" element={<Student_Address />} />
