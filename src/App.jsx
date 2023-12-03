@@ -30,6 +30,7 @@ import Enrollment_Status from './pages/Enrollment_Status'
 import Admission_Results from './pages/Admission_Results'
 import Parent_Information from './pages/Parent_Information'
 import UploadScores_According_toApplicantNames from './pages/UploadScores_According_toApplicantNames'
+import Student_Address from './pages/Student_Address'
 import Manage_health_data from './pages/Manage_health_data'
 import Sidebar from './components/Sidebar'
 
@@ -76,6 +77,7 @@ const router = createBrowserRouter(
         <Route path="/Manage_health_data" element={<Manage_health_data />} />
 
         <Route path="/Parent_Information" element={<Parent_Information />} />
+        <Route path="/Student_Address" element={<Student_Address />} />
     </>
   )
 )
