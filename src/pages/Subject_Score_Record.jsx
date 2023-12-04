@@ -101,14 +101,14 @@ const Subject_Score_Record = () => {
                        
             {/* <br /> */}
             
-            <div className="card mx-auto my-auto" style={{maxWidth: "1000px", border: '1px solid white' }}>
+            <div className="card " style={{maxWidth: "1300px", border: '1px solid white' }}>
                 <div className="card-body">
                     <div className="form-group col-md-0 fone" style={{ padding: '32px', margin: '10px', whiteSpace: "nowrap" }}>
                         <div className="d-flex align-items-center">
                             <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '2px' }}>บันทึกคะแนน</h2>
                         </div>
 
-                        <div className="card mx-auto my-auto"  style={{ width: "900px"}}>
+                        <div className="card mx-auto my-auto"  style={{ width: "1200px"}}>
                             <div className="card-body">
                                 <div className="form-group col-md-0 fone" style={{ padding: '10px', whiteSpace: "nowrap" }}>
                                     <div className="d-flex align-items-center">
@@ -204,7 +204,7 @@ const Subject_Score_Record = () => {
                         
                             <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '2px' }}>เกณฑ์การให้คะแนน</h2>
                         
-                            <div className="card mx-auto my-auto"  style={{ width: "900px"}}>
+                            <div className="card mx-auto my-auto"  style={{ width: "1200px"}}>
                         <div className="card-body">                        
                             <div className="d-flex justify-content-center" style={{ height: '500px', overflowY: 'auto', marginLeft: '0px' }}>
                                 <table className="table-bordered" style={{ fontSize: '16px', width: '100%', borderCollapse: 'collapse', textAlign: 'center', fontFamily: 'Kanit, sans-serif', borderColor: '#D3D3D3', marginTop: '0px' }}>
@@ -263,7 +263,7 @@ const Subject_Score_Record = () => {
                             <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '2px' }}>การบันทึกคะแนน</h2>
                         </div>
 
-                        <div className="card mx-auto my-0"  style={{ width: "900px"}}>
+                        <div className="card mx-auto my-0"  style={{ width: "1200px"}}>
                             <div className="card-body">
                                 <div className="form-group col-md-0 fone" style={{ padding: '10px', whiteSpace: "nowrap" }}>
 

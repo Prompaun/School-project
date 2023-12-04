@@ -94,7 +94,7 @@ const Student_List_Information = () => {
                             </Link>
                         </div>
 
-                        <div className="card mx-auto my-auto"  style={{ width: "1250px"}}>
+                        <div className="card mx-auto my-auto"  style={{ width: "1300px"}}>
                             <div className="card-body">
                                 <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
                                     <div className="d-flex align-items-center">

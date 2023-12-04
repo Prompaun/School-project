@@ -110,14 +110,14 @@ const UploadScores_According_toApplicantNames = () => {
             {/* <div className="container flex-column align-items-center">
                 <h2 className="card-heading text-left mx-auto ml-auto" style={{ fontSize: '20px', marginTop: '2px' }}>ผลการค้นหา</h2>
             </div> */}
-            <div className="card mx-auto my-auto" style={{Width: "2000px", border: '1px solid white' }}>
+            <div className="card" style={{Width: "1300px", border: '1px solid white' }}>
                 <div className="card-body">
                     <div className="form-group col-md-0 fone" style={{ padding: '32px', margin: '10px', whiteSpace: "nowrap" }}>
                         <div className="d-flex align-items-center">
                             <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '0px' }}>อัปโหลดผลคะแนนตามรายชื่อผู้สมัคร</h2>
                         </div>
 <br />
-                        <div className="card mx-auto my-auto"  style={{ width: "900px"}}>
+                        <div className="card mx-auto my-auto"  style={{ width: "1200px"}}>
                             <div className="card-body">
                                 <div className="form-group col-md-0 fone" style={{ padding: '10px', whiteSpace: "nowrap" }}>
                                     <div className="d-flex align-items-center">

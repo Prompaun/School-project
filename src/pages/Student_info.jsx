@@ -93,7 +93,7 @@ const Student_info = () => {
                             </Link>
                         </div>
 
-                        <div className="card"  style={{ width: "1250px"}}>
+                        <div className="card mx-auto my-auto"  style={{ width: "1300px"}}>
                             <div className="card-body">
                                 <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
                                     <div className="d-flex align-items-center">
@@ -101,8 +101,8 @@ const Student_info = () => {
                                         <h2 className="card-heading px-2" style={{ fontSize: '20px', marginTop: '2px' }}>&gt;</h2>
                                         <h2 className="card-heading px-2" style={{ fontSize: '20px', marginTop: '2px' }}>รายละเอียด</h2>
                                     </div>
-
-                                {/* <div className="card mx-auto my-auto"  style={{ width: "1150px"}}> */}
+                                    {/* <br /> */}
+                                <div className="card mx-auto my-auto"  style={{ border: '1px solid white',width: "1200px"}}>
                                     
                                         <div className="form-group col-md-0 fone" style={{ whiteSpace: "nowrap" }}>
                                             <div className="container d-flex justify-content-end">
@@ -153,7 +153,7 @@ const Student_info = () => {
             </div>
             </div>
                                     </div>
-                                {/* </div>               */}
+                                </div>              
                                 <br />
                                 <Link to="/Student_List_Information">
                                     <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, fontSize: '16px', textAlign: 'right'}}><span>ย้อนกลับ</span></button>

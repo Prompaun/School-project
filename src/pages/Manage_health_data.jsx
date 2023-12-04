@@ -101,14 +101,14 @@ const Manage_health_data = () => {
         <div className="row flex-nowrap">
             <Sidebar />       
         <div className="col-md-7">
-            <div className="card mx-auto my-auto" style={{maxWidth: "1000px", border: '1px solid white' }}>
+            <div className="card " style={{maxWidth: "1300px", border: '1px solid white' }}>
                 <div className="card-body">
                     <div className="form-group col-md-0 fone" style={{ padding: '32px', margin: '10px', whiteSpace: "nowrap" }}>
                         <div className="d-flex align-items-center">
                             <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '0px' }}>รายชื่อนักเรียน</h2>
                         </div>
 
-                        <div className="card mx-auto my-auto"  style={{ width: "900px"}}>
+                        <div className="card mx-auto my-auto"  style={{ width: "1200px"}}>
                             <div className="card-body">
                                 <div className="form-group col-md-0 fone" style={{ padding: '10px', whiteSpace: "nowrap" }}>
                                     {/* <br /> */}
@@ -141,7 +141,7 @@ const Manage_health_data = () => {
                         </div>
                         
                         <br />
-                        <div className="card mx-auto my-auto"  style={{ width: "900px"}}>
+                        <div className="card mx-auto my-auto"  style={{ width: "1200px"}}>
                             <div className="card-body">
                                 <div className="container flex-column align-items-center">
                                     <div className="d-flex justify-content-center" style={{ height: '150px', overflowY: 'auto', marginLeft: '0px', padding:'10px' }}>

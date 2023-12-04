@@ -79,8 +79,9 @@ const Education_information = () => {
             {/* <div className="container flex-column align-items-center">
                 <h2 className="card-heading text-left mx-auto ml-auto" style={{ fontSize: '20px', marginTop: '2px' }}>ผลการค้นหา</h2>
             </div> */}
-            <div className="card mx-auto my-auto" style={{maxWidth: "1000px", border: '1px solid white' }}>
-                <div className="card-body">
+            <br />
+            <div className="card" style={{border: '1px solid white' }}>
+                
                     <div className="form-group col-md-0 fone" style={{paddingTop: '40px', padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
                         <div className="d-flex align-items-center" style={{ marginBottom: '20px' }}>
                             <h2 className="card-heading px-4" style={{ fontSize: '25px', fontWeight: 'bold' }}>ผลการค้นหา</h2>
@@ -89,7 +90,7 @@ const Education_information = () => {
                             </Link>
                         </div>
 
-                        <div className="card mx-auto my-auto"  style={{ width: "900px"}}>
+                        <div className="card "  style={{ width: "1300px"}}>
                             <div className="card-body">
                                 <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
                                     <div className="d-flex align-items-center">
@@ -99,7 +100,7 @@ const Education_information = () => {
                                     </div>
 
                                 <br />
-                                <div className="card mx-auto my-auto"  style={{ width: "800px"}}>
+                                <div className="card mx-auto my-auto"  style={{ width: "1200px"}}>
                                     <div className="card-body">
                                         <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
                                             <div className="d-flex align-items-center">
@@ -187,7 +188,7 @@ const Education_information = () => {
             </div>
                 </div>
             </div>
-        </div> 
+        
         </>
     );
 };

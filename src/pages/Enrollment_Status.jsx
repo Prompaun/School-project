@@ -118,13 +118,13 @@ const Enrollment_Status = () => {
             
         {/* <div className="card mx-auto my-auto" style={{maxWidth: "1000px", border: '1px solid white' }}> */}
             {/* <br /> */}
-            <div className="card mx-auto my-auto" style={{ width: "1000px", border: '1px solid white' }}>
+            <div className="card mx-0 my-0" style={{ width: "1300px", border: '1px solid white' }}>
                 
                 <div className="card-body">
                     <div className="form-group col-md-0 fone" style={{ padding: '32px', margin: '10px', whiteSpace: "nowrap" }}>
                         <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '2px' }}>รายชื่อนักเรียน</h2>
                         <br />
-                        <div className="card mx-auto my-auto"  style={{ width: "900px"}}>
+                        <div className="card mx-auto my-auto"  style={{ width: "1200px"}}>
                             <div className="card-body">                        
                                 <div className="form-group col-md-0 fone" style={{ padding: '10px', whiteSpace: "nowrap" }}>
                                     <div className="d-flex align-items-center">
