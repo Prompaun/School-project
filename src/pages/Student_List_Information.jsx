@@ -70,7 +70,7 @@ const Student_List_Information = () => {
             </div>
             </nav>
 
-            <Header header="ระบบจัดการข้อมูลการศึกษา" subhead="" />  
+            <Header header="ระบบจัดการสารสนเทศ" subhead="" />  
     <div className="container-fluid">
         <div className="row flex-nowrap">
             <Sidebar />
