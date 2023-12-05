@@ -41,7 +41,7 @@ function Parent_Information() {
   return (
     <div>
         <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-3 d-flex align-items-center">
+            <div className="col-sm-4 d-flex align-items-center">
                 <label htmlFor="Address_Number" className="col-form-label mb-0 mx-3">บ้านเลขที่</label>
                 <input 
                     type="text" 
@@ -70,7 +70,7 @@ function Parent_Information() {
 
         <br />
         <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-4 d-flex align-items-center">
+            <div className="col-sm-5 d-flex align-items-center">
                 <label htmlFor="Province" className="col-form-label mb-0 mx-3">จังหวัด</label>
                 <input 
                     type="text" 
@@ -99,7 +99,7 @@ function Parent_Information() {
 
         <br></br>
         <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-4 d-flex align-items-center">
+            <div className="col-sm-4.1 d-flex align-items-center">
                 <label htmlFor="Subdistrict" className="col-form-label mb-0 mx-3">แขวง/ตำบล</label>
                 <input 
                     type="text" 
@@ -113,7 +113,7 @@ function Parent_Information() {
                 />
             </div>
 
-            <div className="col-sm-4 d-flex align-items-center">
+            <div className="col-sm-4.1 d-flex align-items-center">
                 <label htmlFor="Road" className="col-form-label mb-0 mx-3">ถนน</label>
                 <input
                     type="text"

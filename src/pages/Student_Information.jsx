@@ -85,7 +85,7 @@ function Student_Information() {
 
         <br></br>
         <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-3 d-flex align-items-center">
+            <div className="col-sm-3.1 d-flex align-items-center">
                 <label htmlFor="title" className="col-form-label mb-0 mx-3">คำนำหน้า</label>
                 <input 
                     type="text" 
@@ -94,12 +94,12 @@ function Student_Information() {
                     name="title" 
                     value="เด็กหญิง" 
                     readOnly 
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '90px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '85px'}}
                     // style={{ backgroundColor: '#DCDCDC', color: 'black', borderColor: '#808080' }}
                 />
             </div>
 
-            <div className="col-sm-5 d-flex align-items-center">
+            <div className="col-sm-4 d-flex align-items-center">
                 <label htmlFor="surname" className="col-form-label mb-0 mx-3">ชื่อ</label>
                 <input
                     type="text"
@@ -108,12 +108,12 @@ function Student_Information() {
                     name="surname"
                     value="ดวง"
                     readOnly
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '200px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '155px'}}
                 />
                         
             </div>
 
-            <div className="col-sm-3 d-flex align-items-center">
+            <div className="col-sm-4 d-flex align-items-center">
                 <label htmlFor="lastname" className="col-form-label mb-0 mx-3">นามสกุล</label>
                 <input
                     type="text"
@@ -122,7 +122,7 @@ function Student_Information() {
                     name="lastname"
                     value="จันทร์"
                     readOnly
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '200px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '155px'}}
                     />
             </div>
         </div>
