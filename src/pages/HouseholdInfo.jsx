@@ -90,6 +90,12 @@ const HouseholdInfo = () => {
     alert('Form submitted successfully!');
   };
 
+  const [activeTab, setActiveTab] = useState('menu1');
+
+  const handleTabChange = (tabId) => {
+    setActiveTab(tabId);
+  };
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', fontFamily: 'Kanit, sans-serif' }}>
       <form style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }} onSubmit={handleSubmit}><br />
@@ -218,14 +224,14 @@ const HouseholdInfo = () => {
 
       </form>
       {/* <div style={{ marginTop: 'auto', display: 'flex', justifyContent: 'flex-start' }}> */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+      {/* <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
         <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
           <button type="submit" className="btn btn-primary">ย้อนกลับ</button>
         </div>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <button type="submit" className="btn btn-primary">ถัดไป</button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

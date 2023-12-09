@@ -267,7 +267,7 @@ function ParentsInfo() {
 
                 
                 <br></br>
-                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>
+                {/* <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>
                     <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                     <button type="submit" className="btn btn-primary">ย้อนกลับ</button>
                     </div>
@@ -277,7 +277,7 @@ function ParentsInfo() {
                         </div>
                     </Link>
 
-                </div>
+                </div> */}
 
     </div>
   );

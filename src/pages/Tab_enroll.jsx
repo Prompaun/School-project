@@ -1,78 +1,128 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef  } from 'react';
 import { NavLink } from 'react-router-dom';
 import logoImage from '../images/IMG_5416.png';
 import Header from '../components/Header';
 import NewStudent_info from './NewStudent_info';
 import HouseholdInfo from './HouseholdInfo';
 import ParentsInfo from './ParentInfo';
-
+import { Link } from 'react-router-dom';
 
 function Tab_enroll() {
+
     const linkStyle = {
         color: 'gray',
         textDecoration: 'none',
     };
 
+    const fontStyle = {
+      fontFamily: 'Kanit, sans-serif',
+      textDecoration: 'none'
+    };
+
+    const [activeTab, setActiveTab] = useState('menu1');
+
+    const handleTabChange = (tabId) => {
+        setActiveTab(tabId);
+    };
+  
+
     return (
-        <>
-            <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-                <div className="container">
-                    <NavLink className="navbar-brand" to="/">
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <img src={logoImage} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
-                            <h5 style={{ textAlign: 'right', marginLeft: '10px', marginBottom: '0' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
-                        </div>
-                    </NavLink>
-                    <div className="nav navbar-nav navbar-right">
-                        <span className="nav-link">
-                            <NavLink exact to="/Open_course" style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>
-                                เลือกหลักสูตร
-                            </NavLink>
-                        </span>
-                    </div>
-                </div>
-            </nav>
-           
-            <Header header="ระบบรับสมัครนักเรียนแบบออนไลน์" subhead="เพื่อเข้าศึกษาระดับประถมศึกษาปีที่ 1"/>
-                {/* <br></br> */}
-                <div className="container mt-5">
-        <div className="d-flex align-items-center justify-content-center">
-          <h2 className="ms-3 mb-0">ข้อมูลนักเรียนผู้สมัครเข้าศึกษา</h2>
-        </div>
-            </div>
-            <br></br>
-
         <div class="card mx-auto" style={{ width: "1100px"}}>
-            <div class="card-header">
-                <ul class="nav nav-tabs card-header-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-bs-toggle="tab" href="#menu1" style={{fontFamily: 'Kanit, sans-serif' }}>ข้อมูลนักเรียน</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#menu2" style={{fontFamily: 'Kanit, sans-serif' }}>ที่อยู่ตามทะเบียนบ้าน</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#menu3" style={{fontFamily: 'Kanit, sans-serif' }}>ข้อมูลผู้ปกครอง</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-body" > 
-                <div class="tab-content">
-                    <div class="tab-pane container active" id="menu1" style={{height: "450px"}}><NewStudent_info/></div>
-                    <div class="tab-pane container fade" id="menu2"style={{height: "230px"}}><HouseholdInfo/></div>
-                    <div class="tab-pane container fade" id="menu3"><ParentsInfo/></div>
+          <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+              <li class="nav-item">
+                <a
+                  class={`nav-link ${activeTab === 'menu1' ? 'active' : ''}`}
+                  data-bs-toggle="tab"
+                  href="#menu1"
+                  style={{ fontFamily: 'Kanit, sans-serif' }}
+                  onClick={() => handleTabChange('menu1')}
+                >
+                  ข้อมูลนักเรียน
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class={`nav-link ${activeTab === 'menu2' ? 'active' : ''}`}
+                  data-bs-toggle="tab"
+                  href="#menu2"
+                  style={{ fontFamily: 'Kanit, sans-serif' }}
+                  onClick={() => handleTabChange('menu2')}
+                >
+                  ที่อยู่ตามทะเบียนบ้าน
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class={`nav-link ${activeTab === 'menu3' ? 'active' : ''}`}
+                  data-bs-toggle="tab"
+                  href="#menu3"
+                  style={{ fontFamily: 'Kanit, sans-serif' }}
+                  onClick={() => handleTabChange('menu3')}
+                >
+                  ข้อมูลผู้ปกครอง
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <div class="tab-content">
+              <div class={`tab-pane container ${activeTab === 'menu1' ? 'active' : ''}`} id="menu1" style={{ height: "700px" }}>
+                <NewStudent_info />
+                
+                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <button type="button" onClick={() => handleTabChange('menu2')} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>ถัดไป</button>
+                  </div>
+                  
+              </div>
+              
+              
+              <div class={`tab-pane container ${activeTab === 'menu2' ? 'active' : ''}`} id="menu2" style={{ height: "230px" }}>
+                
+                <HouseholdInfo />
+              
+                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+
+                  <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                    <button type="button" onClick={() => handleTabChange('menu1')} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
+                      ย้อนกลับ
+                    </button>
+                  </div>
+
+                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <button type="button" onClick={() => handleTabChange('menu3')} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>ถัดไป</button>
+                  </div>
+                  
                 </div>
+
+              </div>
+              <div class={`tab-pane container ${activeTab === 'menu3' ? 'active' : ''}`} id="menu3">
+                <ParentsInfo />
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+
+                  <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                    <button type="button" onClick={() => handleTabChange('menu2')} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
+                      ย้อนกลับ
+                    </button>
+                  </div>
+
+                  <Link to ="/NewUser_menu">
+                        {/* <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                            <button type="submit" className="btn btn-primary">ส่งข้อมูล</button>
+                        </div> */}
+                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <button type="button" onClick={() => handleTabChange('menu3')} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>ส่งข้อมูล</button>
+                  </div>
+                  </Link>
+                </div>
+              </div>
+
             </div>
-            <br/>
-        </div><br /><br /><br /><br /><br /><br /><br /><br />
-
-
-        
-        <br/>
-            <br/>
-            <br/>
-                </>
-    );
-}
+          </div>
+          <br />
+        </div>
+      );
+    };
 
 export default Tab_enroll;

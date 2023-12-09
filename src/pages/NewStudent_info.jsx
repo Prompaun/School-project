@@ -200,9 +200,9 @@ function NewStudent_info() {
         </div>
     </div>
     <br/>
-    <Link >
+    {/* <Link >
         <button type="submit" class="btn btn-primary float-end mb-0 mx-3" style={{fontFamily: 'Kanit, sans-serif', textAlign: 'right'}}><span>ถัดไป</span></button>
-    </Link>
+    </Link> */}
       </>
   )
 }
