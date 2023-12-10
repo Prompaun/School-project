@@ -35,6 +35,9 @@ import Student_Address from './pages/Student_Address'
 import Manage_health_data from './pages/Manage_health_data'
 import Sidebar from './components/Sidebar'
 import Student_info from './pages/Student_info'
+import Result_health_data from './pages/Result_health_data'
+import Medical_History from './pages/Medical_History'
+// import ParentsInfo from './pages/ParentInfo'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -82,6 +85,10 @@ const router = createBrowserRouter(
         <Route path="/Parent_Information" element={<Parent_Information />} />
         <Route path="/Student_Information" element={<Student_Information />} />
         <Route path="/Student_Address" element={<Student_Address />} />
+
+        <Route path="/Medical_History" element={<Medical_History />} />
+        <Route path="/Result_health_data" element={<Result_health_data />} />
+        {/* <Route path="/ParentsInfo" element={<ParentsInfo />} /> */}
     </>
   )
 )
