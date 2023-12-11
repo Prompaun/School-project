@@ -65,7 +65,7 @@ function Sidebar() {
                 <br />
                 <li >
                   <a href="#submenu4" className="nav-link px-0 align-middle" data-bs-toggle="collapse">
-                    <i className="fs-5 bi-database"></i> <span className="ms-1 d-none d-sm-inline" style={{ fontWeight: 'bold', fontSize: '20px' }}>
+                  <i class="bi bi-file-earmark-medical"></i> <span className="ms-1 d-none d-sm-inline" style={{ fontWeight: 'bold', fontSize: '20px' }}>
                       ระบบจัดการข้อมูลสุขภาพ
                     </span>
                   </a>

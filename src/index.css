@@ -223,10 +223,10 @@ body{
 } */
 
 .cloud {
-  width: 300px; /* เปลี่ยนขนาดตามที่คุณต้องการ */
+  width: 350px; /* เปลี่ยนขนาดตามที่คุณต้องการ */
   height: 180px; /* เปลี่ยนขนาดตามที่คุณต้องการ */
   background-color: #9ac7d2;
-  border-radius: 150px; /* ควรเป็นครึ่งของ width/height เพื่อให้เป็นวงกลม */
+  border-radius: 175px; /* ควรเป็นครึ่งของ width/height เพื่อให้เป็นวงกลม */
   /* position: relative; */
 }
 
@@ -234,20 +234,20 @@ body{
 .cloud:after {
   content: '';
   position: absolute;
-  width: 180px; /* เปลี่ยนขนาดตามที่คุณต้องการ */
-  height: 180px; /* เปลี่ยนขนาดตามที่คุณต้องการ */
+  width: 200px; /* เปลี่ยนขนาดตามที่คุณต้องการ */
+  height: 200px; /* เปลี่ยนขนาดตามที่คุณต้องการ */
   background-color: #9ac7d2;
   border-radius: 50%; /* ทำให้เป็นวงกลม */
 }
 
 .cloud:before {
-  top: -60px; /* ปรับตำแหน่งตามความต้องการ */
-  left: 60px; /* ปรับตำแหน่งตามความต้องการ */
+  top: -80px; /* ปรับตำแหน่งตามความต้องการ */
+  left: 80px; /* ปรับตำแหน่งตามความต้องการ */
 }
 
 .cloud:after {
-  top: -60px; /* ปรับตำแหน่งตามความต้องการ */
-  right: 60px; /* ปรับตำแหน่งตามความต้องการ */
+  top: -80px; /* ปรับตำแหน่งตามความต้องการ */
+  right: 80px; /* ปรับตำแหน่งตามความต้องการ */
 }
 
 .Result_health_data {
@@ -258,11 +258,36 @@ body{
   grid-auto-flow: dense;
 }
 
-.Result_health_data > .cloud {
+/* .Result_health_data > .cloud {
   display: flex;
   align-items: center;
   justify-content: center;
+} */
+
+/* .Result_health_data > .cloud {
+  align-self: center;
+  justify-self: center;
+} */
+
+/* .Result_health_data > .cloud {
+  align-self: center;
+  justify-self: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin: auto;
+  display: flex;
+} */
+
+.Result_health_data > .cloud {
+  position: absolute;
+  justify-self: center;
+  /* top: 50%;
+  left: 50%; */
+  /* transform: translate(-50%, -50%); */
 }
+
+
+
 
 
 .Result_health_data .box {
