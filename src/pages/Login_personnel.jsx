@@ -77,25 +77,6 @@ const Login_personnel = () => {
                     />
                 </div>
 
-
-                {/* <div className="mb-3 d-flex">
-                <label>
-                    <span htmlFor="password" className="form-label me-3" style={{ marginRight: '10px', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>รหัสผ่าน:</span>
-                </label>
-                <input
-                    type={showPassword ? 'text' : 'password'}
-                    className="form-control"
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleInputChange}
-                    required
-                />
-                <button type="button" onClick={handleTogglePassword}>
-                    <img src={showPassword ? eye_closed : eye_open} alt={showPassword ? 'ปิดตา' : 'เปิดตา'} style={{ cursor: 'pointer' }} />
-                </button>
-                </div> */}
-
             <div className="mb-3 d-flex align-items-center">
             <label>
                 <span htmlFor="password" className="form-label me-3" style={{ marginRight: '10px', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>รหัสผ่าน:</span>
@@ -113,15 +94,16 @@ const Login_personnel = () => {
                 type="button"
                 onClick={handleTogglePassword}
                 style={{
-                    padding: '0',
                     border: 'none',
                     background: 'none',
                     cursor: 'pointer',
-                    border: '1px solid #dcdcdc', // เพิ่ม border สีเทา
+                    borderWidth: '1px', // ตั้งค่าขอบ
+                    borderStyle: 'solid', // ตั้งค่ารูปแบบของขอบ
+                    borderColor: '#dcdcdc', // ตั้งค่าสีขอบ
                     color: 'gray',
                     borderRadius: '5px', // เพิ่มขอบมนเม็ด
                     padding: '5px', // ปรับขนาด padding
-                }}
+                }}                
                 >
                 <img
                     src={showPassword ? eye_closed : eye_open}
@@ -131,11 +113,6 @@ const Login_personnel = () => {
             </button>
 
             </div>
-
-                {/* <Link to="/Login_personnel/Class_instrctor_menu">
-                <button type="submit" className="btn btn-primary float-end">ลืมรหัสผ่าน</button>
-                </Link> */}
-
                 <Link to='/Register' style={linkStyle}>ลืมรหัสผ่าน</Link>
 
                 <Link to="/Filter_student_information">
@@ -145,8 +122,6 @@ const Login_personnel = () => {
         </div>
     </div>
 </div>
-
-            {/* </div> */}
         </>
     );
 };

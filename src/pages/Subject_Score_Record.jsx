@@ -58,12 +58,6 @@ const Subject_Score_Record = () => {
             { activity: '2', Assessment1: '-การบ้าน/ทดสอบย่อย', Assessment2: '-บทที่ 1', Assessment3: '-บทที่ 2', Assessment4: '-บทที่ 3', Assessment5: '-บทที่ 4', Assessment6: '-บทที่ 5', Assessment7: '-บทที่ 6', Assessment8: '-บทที่ 7', Assessment9: '-บทที่ 8', Assessment10: '-บทที่ 9', Assessment11: '-บทที่ 10', Assessment_Ratio: '30'},
             // { activity: '6301012610000', Assessment1: 'เด็กหญิงตั้งใจเรียน', Assessment2: 'เรียนดี'},
             // เพิ่มข้อมูลผลการเรียนตามต้องการ
-            ],
-            subjects:[
-            { activity: '1', Assessment5: '-กลางภาค', Assessment6: '-ปลายภาค', Assessment_Ratio: '70'},
-            { activity: '2', Assessment1: '-การบ้าน/ทดสอบย่อย', Assessment2: '-บทที่ 1', Assessment3: '-บทที่ 2', Assessment4: '-บทที่ 3', Assessment5: '-บทที่ 4', Assessment6: '-บทที่ 5', Assessment7: '-บทที่ 6', Assessment8: '-บทที่ 7', Assessment9: '-บทที่ 8', Assessment10: '-บทที่ 9', Assessment11: '-บทที่ 10', Assessment_Ratio: '30'},
-            // { activity: '6301012610000', Assessment1: 'เด็กหญิงตั้งใจเรียน', Assessment2: 'เรียนดี'},
-            // เพิ่มข้อมูลผลการเรียนตามต้องการ
             ]
         },
         ]);
