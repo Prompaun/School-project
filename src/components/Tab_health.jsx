@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 // import Navbar from '../components/Navbar'
 import Medical_History from '../pages/Medical_History';
+import Vaccinated from '../pages/Vaccinated';
 const Tab_health = () => {
 
     const linkStyle = {
@@ -51,7 +52,7 @@ const Tab_health = () => {
                 <div class="tab-content">
                     <div class="tab-pane container active" id="menu1" ></div>
                     <div class="tab-pane container fade" id="menu2"><Medical_History/></div>
-                    <div class="tab-pane container fade" id="menu3"></div>
+                    <div class="tab-pane container fade" id="menu3"><Vaccinated/></div>
                     <div class="tab-pane container fade" id="menu4"></div>
                     <div class="tab-pane container fade" id="menu5"></div>
                 </div>
