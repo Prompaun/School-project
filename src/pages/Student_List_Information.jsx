@@ -212,11 +212,11 @@ const Student_List_Information = () => {
                                                         </td>
 
                                                         <td style={{ backgroundColor: '#FFFFFF' }}>
-                                                            <Link to="/Education_information" className="d-flex justify-content-center" style={{ textDecoration: 'none' }}>
+                                                            <Link to="/Health_info" className="d-flex justify-content-center" style={{ textDecoration: 'none' }}>
                                                             {/* <button type="submit" class="btn btn-custom" style={{ ...fontStyle, backgroundColor: '#A0C3D2', color: 'white', fontSize: '16px' }}>
                                                                 <span>ดูข้อมูลสุขภาพ</span>
                                                             </button> */}
-                                                            <a href="/Education_information" style={{ ...fontStyle}}>
+                                                            <a href="/Health_info" style={{ ...fontStyle}}>
                                                                 <i 
                                                                     class="fs-5 bi-search" 
                                                                     style={{

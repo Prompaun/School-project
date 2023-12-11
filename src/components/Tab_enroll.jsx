@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef  } from 'react';
-import { NavLink } from 'react-router-dom';
-import logoImage from '../images/IMG_5416.png';
-import Header from '../components/Header';
-import NewStudent_info from './NewStudent_info';
-import HouseholdInfo from './HouseholdInfo';
-import ParentsInfo from './ParentInfo';
+
+import NewStudent_info from '../pages/NewStudent_info';
+import HouseholdInfo from '../pages/HouseholdInfo';
+import ParentsInfo from '../pages/ParentInfo';
 import { Link } from 'react-router-dom';
 
 function Tab_enroll() {

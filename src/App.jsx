@@ -13,7 +13,7 @@ import Request_cert from './pages/Request_cert'
 import History_request from './pages/History_request'
 import NewUser_menu from './pages/NewUser_menu'
 import Open_course from './pages/Open_course'
-import Tab_enroll from './pages/Tab_enroll'
+// import Tab_enroll from './pages/Tab_enroll'
 import CheckEnroll_status from './pages/CheckEnroll_status'
 import Class_instructor_menu from './pages/Class_instructor_menu'
 import Login_personnel from './pages/Login_personnel'
@@ -35,8 +35,11 @@ import Student_Address from './pages/Student_Address'
 import Manage_health_data from './pages/Manage_health_data'
 import Sidebar from './components/Sidebar'
 import Student_info from './pages/Student_info'
-import Result_health_data from './pages/Result_health_data'
+// import Result_health_data from './pages/Result_health_data'
 import Medical_History from './pages/Medical_History'
+import Health_info from './pages/Health_info'
+import Check_health_result from './pages/Check_health_result'
+import Enrollment_info from './pages/Enrollment_info'
 // import ParentsInfo from './pages/ParentInfo'
 
 const router = createBrowserRouter(
@@ -51,8 +54,9 @@ const router = createBrowserRouter(
         
         <Route path="/Register" element={<Register />} />
         <Route path="/NewUser_menu" element={<NewUser_menu />} />
-        <Route path="/Tab_enroll" element={<Tab_enroll />} />
+        {/* <Route path="/Tab_enroll" element={<Tab_enroll />} /> */}
         <Route path="/Open_course" element={<Open_course />} />
+        <Route path="/Enrollment_info" element={<Enrollment_info />} />
         <Route path="/CheckEnroll_status" element={<CheckEnroll_status/>} />
         
         <Route path="/Student_menu" element={<Student_menu />} />
@@ -60,6 +64,7 @@ const router = createBrowserRouter(
         <Route path="/Checkgrade" element={<Checkgrade/>} />
         <Route path="/Request_cert" element={<Request_cert/>} />
         <Route path="/History_request" element={<History_request/>} />
+        <Route path="/Health_result" element={<Check_health_result/>} />
 
         <Route path ="/Login_personnel" element={<Login_personnel />} />
         <Route path="/Login_personnel/Class_instrctor_menu" element={<Class_instructor_menu />} />
@@ -86,9 +91,11 @@ const router = createBrowserRouter(
         <Route path="/Student_Information" element={<Student_Information />} />
         <Route path="/Student_Address" element={<Student_Address />} />
 
+        <Route path="/Health_info" element={<Health_info />} />
         <Route path="/Medical_History" element={<Medical_History />} />
-        <Route path="/Result_health_data" element={<Result_health_data />} />
+        {/* <Route path="/Result_health_data" element={<Result_health_data />} /> */}
         {/* <Route path="/ParentsInfo" element={<ParentsInfo />} /> */}
+
     </>
   )
 )

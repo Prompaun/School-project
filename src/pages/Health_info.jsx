@@ -5,10 +5,8 @@ import printer_icon from "../images/printer_icon.png";
 import Sidebar from '../components/Sidebar';
 // import Navbar from '../components/Navbar'
 import Header from '../components/Header';
-import Parent_Information from './Parent_Information';
-import Student_Address from './Student_Address'
-import Student_Information from './Student_Information';
-const Student_info = () => {
+import Tab_health from '../components/Tab_health';
+const Health_info = () => {
 
     const linkStyle = {
         color: 'gray',
@@ -72,7 +70,7 @@ const Student_info = () => {
             </div>
             </nav>
 
-            <Header header="ระบบจัดการข้อมูลส่วนบุคคล" subhead="" />  
+            <Header header="ระบบจัดการข้อมูลสุขภาพ" subhead="" />  
              
     <div className="container-fluid">
         <div className="row flex-nowrap">
@@ -131,29 +129,14 @@ const Student_info = () => {
                                             </div>
                                             
             {/* <div class="card"style={{ border: '10px' }} >                         */}
-                <div class="card-header">
-                <ul class="nav nav-tabs card-header-tabs">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-bs-toggle="tab" href="#menu1" style={{fontFamily: 'Kanit, sans-serif' }}>ข้อมูลนักเรียน</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#menu2" style={{fontFamily: 'Kanit, sans-serif' }}>ที่อยู่ตามทะเบียนบ้าน</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#menu3" style={{fontFamily: 'Kanit, sans-serif' }}>ข้อมูลผู้ปกครอง</a>
-                    </li>
-                </ul>
+                
+            {/* <Tab_health/> */}
             </div>
-            <div class="card-body" > 
-                <div class="tab-content">
-                    <div class="tab-pane container active" id="menu1" ><Student_Information/></div>
-                    <div class="tab-pane container fade" id="menu2"><Student_Address/></div>
-                    <div class="tab-pane container fade" id="menu3"><Parent_Information /></div>
-                </div>
-            </div>
-            </div>
+            <Tab_health/>   
                                     </div>
-                                </div>              
+                                    {/* <Tab_health/>    */}
+                                </div>   
+                                {/* <Tab_health/>            */}
                                 <br />
                                 <Link to="/Student_List_Information">
                                     <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, fontSize: '16px', textAlign: 'right'}}><span>ย้อนกลับ</span></button>
@@ -171,4 +154,4 @@ const Student_info = () => {
     );
 };
 
-export default Student_info;
+export default Health_info;

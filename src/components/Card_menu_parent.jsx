@@ -26,7 +26,7 @@ function Card_menu_parent() {
           {
             text: "ผลการตรวจสุขภาพของนักเรียน",
             imageUrl: health_icon, // แทนที่ด้วย URL รูปภาพจริง
-            path: "/"
+            path: "/Health_result"
           }
       ]);
     function handleClick() {

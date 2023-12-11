@@ -8,12 +8,12 @@ function Card_menu_course() {
         {
           text: "English Program (EP)",
           imageUrl: EP_icon, // แทนที่ด้วย URL รูปภาพจริง
-          path: "/Tab_enroll"
+          path: "/Enrollment_info"
         },
         {
             text: "หลักสูตรทั่วไป",
             imageUrl: general_course_icon, // แทนที่ด้วย URL รูปภาพจริง
-            path: "/Tab_enroll"
+            path: "/Enrollment_info"
           }
       ]);
     function handleClick() {
