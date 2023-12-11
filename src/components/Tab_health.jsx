@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 // import Navbar from '../components/Navbar'
 import Medical_History from '../pages/Medical_History';
 import Vaccinated from '../pages/Vaccinated';
+import Health_Checkup from '../pages/Health_Checkup';
+import Result_health_data from '../pages/Result_health_data';
+
 const Tab_health = () => {
 
     const linkStyle = {
@@ -50,10 +53,10 @@ const Tab_health = () => {
             </div>
             <div class="card-body" > 
                 <div class="tab-content">
-                    <div class="tab-pane container active" id="menu1" ></div>
+                    <div class="tab-pane container active" id="menu1" ><Result_health_data/></div>
                     <div class="tab-pane container fade" id="menu2"><Medical_History/></div>
                     <div class="tab-pane container fade" id="menu3"><Vaccinated/></div>
-                    <div class="tab-pane container fade" id="menu4"></div>
+                    <div class="tab-pane container fade" id="menu4"><Health_Checkup/></div>
                     <div class="tab-pane container fade" id="menu5"></div>
                 </div>
             </div>

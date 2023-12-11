@@ -94,15 +94,17 @@ const login_student = () => {
                                     type="button"
                                     onClick={handleTogglePassword}
                                     style={{
-                                        padding: '0',
                                         border: 'none',
                                         background: 'none',
                                         cursor: 'pointer',
-                                        border: '1px solid #dcdcdc', // เพิ่ม border สีเทา
+                                        borderWidth: '1px', // ตั้งค่าขอบ
+                                        borderStyle: 'solid', // ตั้งค่ารูปแบบของขอบ
+                                        borderColor: '#dcdcdc', // ตั้งค่าสีขอบ
                                         color: 'gray',
                                         borderRadius: '5px', // เพิ่มขอบมนเม็ด
                                         padding: '5px', // ปรับขนาด padding
                                     }}
+                                    
                                     >
                                     <img
                                         src={showPassword ? eye_closed : eye_open}
