@@ -253,8 +253,8 @@ body{
 .Result_health_data {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(400px, auto);
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: minmax(250px, auto);
   grid-auto-flow: dense;
 }
 
@@ -278,17 +278,9 @@ body{
   display: flex;
 } */
 
-.Result_health_data > .cloud {
+/* .Result_health_data > .cloud {
   position: absolute;
-  justify-self: center;
-  /* top: 50%;
-  left: 50%; */
-  /* transform: translate(-50%, -50%); */
-}
-
-
-
-
+  justify-self: center;} */
 
 .Result_health_data .box {
   padding: 20px;
@@ -298,10 +290,76 @@ body{
   background-color: rgb(245, 215, 251);
 }
 
-/* .Result_health_data .box1 {
+.Result_health_data .box1 {
   grid-column: span 1;
-  grid-row: span 3;
+  grid-row: span 1;
+}
+
+.Result_health_data .box2 {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.Result_health_data .box3 {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.Result_health_data .box4 {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+/* .arrow-right {
+  position: relative;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent; 
+  border-bottom: 10px solid transparent; 
+  border-left: 15px solid #000;
+  margin-right: 5px;
+}
+
+
+.arrow-right::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 20px; 
+  height: 2cqh;
+  background-color: #000;
 } */
+
+.arrow-right {
+  position: absolute;
+  top: 50%;
+  /* right: 1cap;  */
+  /* transform: translateY(-50%); */
+  width: 35px; /* ปรับความยาวของหัวเส้น */
+  height: 4px; /* ปรับความหนาของหัวเส้น */
+  background-color: #000; /* ปรับสีของหัวเส้น */
+ }
+
+ .arrow-right::after {
+  content: ' '; /* ใส่เนื้อหาอะไรก็ได้ที่ไม่ให้เป็นศูนย์ */
+  position: absolute;
+  top: -8px; /* ปรับตำแหน่งไปด้านบน */
+  right: -10px; /* ปรับตำแหน่งไปทางขวา */
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent; /* ปรับความสูงตามต้องการ */
+  border-bottom: 10px solid transparent; /* ปรับความสูงตามต้องการ */
+  border-left: 15px solid #000; /* ปรับความยาวตามต้องการ */
+  /* margin-right: 5px;  */
+}
+
+
+
+
+
 .nested-box-Not-Vacinated{
   padding: 20px;
   /* position: absolute; */

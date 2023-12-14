@@ -10,7 +10,7 @@ const Medical_History = () => {
   return (
     // <div className="card mx-auto mt-5" style={{ ...fontStyle, width: '1000px', boxShadow: '1px 2px 12px 4px rgba(0, 0, 0, 0.2)' }}>
     //   <div className="card-body">
-        <div className="Medical_History">
+        <div className="Medical_History" style={{ ...fontStyle }}>
           <div className="box box1" style={{ position: 'relative' }}>
             โรคประจำตัว
             <span style={{ position: 'absolute', padding: '20px', top: 0, right: 0 }}>

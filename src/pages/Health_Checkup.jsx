@@ -11,7 +11,7 @@ const Health_Checkup = () => {
   return (
     // <div className="card mx-auto mt-5" style={{ ...fontStyle, width: '1000px', boxShadow: '1px 2px 12px 4px rgba(0, 0, 0, 0.2)' }}>
     //   <div className="card-body">
-        <div className="Health_Checkup">
+        <div className="Health_Checkup" style={{ ...fontStyle }}>
           
           <div className="box box1" style={{ position: 'relative' }}>
             การตรวจสายตา
