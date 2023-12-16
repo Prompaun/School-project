@@ -60,7 +60,6 @@ const Tab_health = () => {
                     <div class="tab-pane container fade" id="menu5"></div>
                 </div>
             </div>
-            {/* </div>  */}
 
         </>
     );
