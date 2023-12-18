@@ -41,6 +41,7 @@ import Health_Checkup from './pages/Health_Checkup'
 import Health_info from './pages/Health_info'
 import Check_health_result from './pages/Check_health_result'
 import Enrollment_info from './pages/Enrollment_info'
+import Growth_nutrition from './pages/Growth_nutrition'
 // import ParentsInfo from './pages/ParentInfo'
 
 const router = createBrowserRouter(
@@ -96,6 +97,7 @@ const router = createBrowserRouter(
         <Route path="/Medical_History" element={<Medical_History />} />
         <Route path="/Result_health_data" element={<Result_health_data />} />
         <Route path="/Health_Checkup" element={<Health_Checkup />} />
+        <Route path="/Growth_nutrition" element={<Growth_nutrition />} />
         {/* <Route path="/ParentsInfo" element={<ParentsInfo />} /> */}
 
     </>

@@ -44,11 +44,11 @@ const Vaccinated = () => {
             <div className="nested-box-Vacinated">
               -
             </div>
-            <br />
+            {/* <br />
             Not vaccinated
             <div className="nested-box-Not-Vacinated">
               -
-            </div>
+            </div> */}
           </div>
           </div>
 
