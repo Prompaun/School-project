@@ -42,13 +42,14 @@ const Register = () => {
   <div className="card-body">
     <form onSubmit={handleSubmit} className="w-100">
       <div className="mb-3">
-        <label htmlFor="username" className="form-label custom-font">เลขประจำตัวประชาชน (ผู้สมัครเข้าศึกษา): </label>
+        {/* <label htmlFor="username" className="form-label custom-font">เลขประจำตัวประชาชน (ผู้สมัครเข้าศึกษา): </label> */}
+        <label htmlFor="email" className="form-label custom-font">อีเมลผู้ปกครอง (สำหรับใช้สร้างบัญชีผู้ใช้งาน): </label>
         <input
           type="text"
           className="form-control"
-          id="username"
-          name="username"
-          value={formData.username}
+          id="email"
+          name="email"
+          value={formData.email}
           onChange={handleInputChange}
           required
         />

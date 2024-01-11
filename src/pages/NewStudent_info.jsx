@@ -43,8 +43,9 @@ function NewStudent_info() {
         <br></br>
 
         <h2 class="card-heading px-3"style={{ fontSize: '16px'}}>หมายเหตุ : รูปถ่ายต้องถ่ายไว้ไม่เกิน 6 เดือน</h2>
-        <div className="row" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px', marginRight: '5px', gap: '0'}}>
-                <div className="col-sm d-flex align-items-center">
+        
+        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '18px'}}>
+            <div className="col-sm-7 d-flex align-items-center">
                 {/* <input type="file" class="form-control px-4" id="customFile" /> */}
                 <label htmlFor="surname" className="col-form-label mb-0 mx-3">รูปนักเรียน</label>
                 <input type="file" className="form-control px-3" onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
@@ -53,9 +54,11 @@ function NewStudent_info() {
         </div>
         <br></br>
 
-        <div class="d-flex align-items-center">
-            <h2 class="card-heading px-3" style={{fontSize: '18px'}}>เลขประจำตัวประชาชน</h2>
-            <h2 class="card-heading px-3" style={{fontSize: '16px'}}>X-XXXX-XXXXX-XX-X</h2>
+        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '18px'}}>
+            <div className="col-sm-5 d-flex align-items-center">
+                <label htmlFor="student_nid" className="col-form-label mb-0 mx-3">เลขประจำตัวประชาชน</label>
+                <input type="text" className="form-control" id="student_nid" name="student_nid" placeholder="กรอกเลขประจำตัวประชาชน" />
+            </div>
         </div>
         <br></br>
 
@@ -150,11 +153,11 @@ function NewStudent_info() {
         </div>    
         <br />
 
-        <div className="row" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px', marginRight: '5px', gap: '0'}}>
-            <div className="d-flex align-items-center">
+        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '18px'}}>
+            <div className="col-sm-8 d-flex align-items-center">
                 <label htmlFor="CopyofStudentIDCard" className="col-form-label mb-0 mx-3">สำเนาสูติบัตร (ของนักเรียน)</label>
                 {/* <input type="file" class="form-control px-4" id="customFile" /> */}
-                <input type="file" className="form-control px-3" onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
+                <input type="file" className="form-control px-1" onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
             </div>
         </div>
         <br />
@@ -196,7 +199,9 @@ function NewStudent_info() {
                 </label>
             </div>
             {/* <input type="file" class="form-control px-4 mb-0 mx-3" id="customFile" /> */}
-            <input type="file" className="form-control px-3" onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
+            <div className="col-sm-6 d-flex align-items-center" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px', marginLeft: '15px', gap: '0' }}>
+                <input type="file" className="form-control px-3" onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
+            </div>
         </div>
     </div>
     <br/>
