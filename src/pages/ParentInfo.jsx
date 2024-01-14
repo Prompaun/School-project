@@ -6,10 +6,15 @@ function ParentsInfo() {
   const [lastName, setLastName] = useState('');
   const [age, setAge] = useState('');
   const [selectedOption, setSelectedOption] = useState('ระบุหมายเหตุ');
+  const [isFatherRecordData, setIsFatheRecordData] = useState(false);
   const [nationality, setNationality] = useState(''); // State สำหรับเก็บข้อมูลสัญชาติ
   const [isFatherForeigner, setIsFatherForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
   const [isMotherForeigner, setIsMotherForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
   const [whoAreParent, setParent] = useState('');
+
+  const handleIsFatherRecordData = (event) => {
+    setIsFatheRecordData(event.target.id === 'usedToRecordFatherData'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
+  }; 
 
   const handleIsFatherForeigner = (event) => {
     setIsFatherForeigner(event.target.id === 'FatherForeigner'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
@@ -19,9 +24,9 @@ function ParentsInfo() {
     setIsMotherForeigner(event.target.id === 'MotherForeigner');
   }; 
 
-    const handlewhoAreParent = (event) => {
-        setParent(event.target.id);
-    };
+const handlewhoAreParent = (event) => {
+    setParent(event.target.id);
+};
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,81 +47,114 @@ function ParentsInfo() {
         </div>
 
         <br></br>
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-4 d-flex align-items-center">
-                <label htmlFor="father_surname" className="col-form-label mb-0 mx-2">ชื่อ</label>
-                <input type="text" className="form-control" id="father_surname" name="father_surname" placeholder="กรอกชื่อ" />
-            </div>
-            <div className="col-sm-4 d-flex align-items-center">
-                <label htmlFor="father_lastname" className="col-form-label mb-0 mx-2">นามสกุล</label>
-                <input type="text" className="form-control" id="father_lastname" name="father_lastname" placeholder="กรอกนามสกุล" />
-            </div>
-            <div className="col-sm-3 d-flex align-items-center">
-                <label htmlFor="father_age" className="col-form-label mb-0 mx-2">อายุ</label>
-                <input type="text" className="form-control" id="father_age" name="father_age" placeholder="กรอกอายุ" />
-                <label htmlFor="year" className="col-form-label mb-0 mx-3">ปี</label>
-            </div>
-        </div>
-
-        <br></br>
-        <div className="d-flex align-items-center" style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <h2 className="card-heading mb-0 mx-2" style={{fontSize: '16px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
-            <div className="form-check">
-                <input className="form-check-input" type="radio" name="Fatherforeigner?" id="FatherForeigner" onChange={handleIsFatherForeigner} />
-                <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="FatherForeigner">
-                ใช่
-                </label>
-            </div>
-            <div className="form-check">
-                <input className="form-check-input" type="radio" name="Fatherforeigner?" id="FatherNotForeigner" onChange={handleIsFatherForeigner} />
-                <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="FatherNotForeigner">
-                ไม่
-                </label>
-            </div>
-
-            {/* ใช้เงื่อนไขเพื่อตรวจสอบว่าถ้าเป็นคนต่างชาติให้แสดงส่วนของสัญชาติ */}
-            {isFatherForeigner && (
-                <div className="col-sm-4 d-flex align-items-center">
-                <label htmlFor="father_Nationality" className="col-form-label mb-0 mx-2">สัญชาติ</label>
-                <input type="text" className="form-control" id="father_Nationality" name="father_Nationality" placeholder="กรอกสัญชาติ" />
+            <div className="d-flex align-items-center" style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
+                <h2 className="card-heading mb-0 mx-2" style={{fontSize: '16px'}}>เคยบันทึกข้อมูลผู้ปกครองแล้วหรือไม่</h2>
+                <div className="form-check">
+                    <input className="form-check-input" type="radio" name="usedToRecordFatherData?" id="usedToRecordFatherData" onChange={handleIsFatherRecordData} />
+                    <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="usedToRecordFatherData">
+                    ใช่
+                    </label>
                 </div>
-            )}
+                <div className="form-check">
+                    <input className="form-check-input" type="radio" name="usedToRecordFatherData?" id="notYetRecordFatherData" onChange={handleIsFatherRecordData} />
+                    <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="notYetRecordFatherData">
+                    ไม่ใช่
+                    </label>
+                </div>
             </div>
-        <br></br>
+            {/* <br></br> */}
 
-        <div class="h-screen flex justify-center items-center flex-col bg-gray-900" >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '20px', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>
-                <div className="col-sm-0 d-flex align-items-center">
-                    <label htmlFor="father_Occupation" className="col-form-label mb-0 mx-2">วุฒิการศึกษา</label>
-                    <div class="dropdown px-0" style={{ width: '150px' }}> {/* กำหนดความกว้างของ dropdown ที่นี่ */}
-                        <select value={selectedOption} onChange={handleSelectChange} class="custom-select" style={{ width: '150px' }}> {/* กำหนดความกว้างของตัวเลือกใน dropdown ที่นี่ */}
-                            <option value="ระบุหมายเหตุ">ระบุวุฒิการศึกษา</option>
-                            <option value="เพื่อใช้ในการขอทุนการศึกษา">ปริญญาตรี</option>
-                            <option value="เพื่อใช้ในการสมัครเข้าศึกษาต่อ">ปริญญาโท</option>
-                            <option value="เพื่อใช้ในการสมัครเข้าศึกษาต่อ">ปริญญาเอก</option>
-                        </select>
+        {isFatherRecordData ? (
+            <>
+                <br />
+                <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
+                    <div className="col-sm-4 d-flex align-items-center">
+                        <label htmlFor="father_Email" className="col-form-label mb-0 mx-2">อีเมล</label>
+                        <input type="text" className="form-control" id="father_Email" name="father_Email" placeholder="กรอกอีเมลบิดา" />
                     </div>
                 </div>
-                <div className="col-sm-4 d-flex align-items-center">
-                    <label htmlFor="father_Occupation" className="col-form-label mb-0 mx-2">อาชีพ</label>
-                    <input type="text" className="form-control" id="father_Occupation" name="father_Occupation" placeholder="กรอกอาชีพ" />
+            </>
+        ) : (
+            <>
+                <br />
+                <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
+                    <div className="col-sm-4 d-flex align-items-center">
+                        <label htmlFor="father_surname" className="col-form-label mb-0 mx-2">ชื่อ</label>
+                        <input type="text" className="form-control" id="father_surname" name="father_surname" placeholder="กรอกชื่อ" />
+                    </div>
+                    <div className="col-sm-4 d-flex align-items-center">
+                        <label htmlFor="father_lastname" className="col-form-label mb-0 mx-2">นามสกุล</label>
+                        <input type="text" className="form-control" id="father_lastname" name="father_lastname" placeholder="กรอกนามสกุล" />
+                    </div>
+                    <div className="col-sm-3 d-flex align-items-center">
+                        <label htmlFor="father_age" className="col-form-label mb-0 mx-2">อายุ</label>
+                        <input type="text" className="form-control" id="father_age" name="father_age" placeholder="กรอกอายุ" />
+                        <label htmlFor="year" className="col-form-label mb-0 mx-3">ปี</label>
+                    </div>
                 </div>
-                <div className="col-sm-4 d-flex align-items-center" style={{ marginRight: '3px'}}>
-                    <label htmlFor="father_Workplace" className="col-form-label mb-0 mx-2">สถานที่ทำงาน</label>
-                    <input type="text" className="form-control" id="father_Workplace" name="father_Workplace" placeholder="กรอกสถานที่ทำงาน" />
+
+                <br />
+
+                <div className="d-flex align-items-center" style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
+                    <h2 className="card-heading mb-0 mx-2" style={{fontSize: '16px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
+                    <div className="form-check">
+                        <input className="form-check-input" type="radio" name="Fatherforeigner?" id="FatherForeigner" onChange={handleIsFatherForeigner} />
+                        <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="FatherForeigner">
+                        ใช่
+                        </label>
+                    </div>
+                    <div className="form-check">
+                        <input className="form-check-input" type="radio" name="Fatherforeigner?" id="FatherNotForeigner" onChange={handleIsFatherForeigner} />
+                        <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="FatherNotForeigner">
+                        ไม่
+                        </label>
+                    </div>
+
+                    {/* ใช้เงื่อนไขเพื่อตรวจสอบว่าถ้าเป็นคนต่างชาติให้แสดงส่วนของสัญชาติ */}
+                    {isFatherForeigner && (
+                        <div className="col-sm-4 d-flex align-items-center">
+                        <label htmlFor="father_Nationality" className="col-form-label mb-0 mx-2">สัญชาติ</label>
+                        <input type="text" className="form-control" id="father_Nationality" name="father_Nationality" placeholder="กรอกสัญชาติ" />
+                        </div>
+                    )}
                 </div>
-            </div>
-        </div>
+                <br></br>
 
-            <br></br>
-            <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-                <div className="col-sm-0 d-flex align-items-center">
-                    <label htmlFor="father_phoneNumber" className="col-form-label mb-0 mx-2">โทรศัพท์</label>
-                    <input type="text" className="form-control" id="father_phoneNumber" name="father_phoneNumber" placeholder="กรอกหมายเลขโทรศัพท์" />
+                <div class="h-screen flex justify-center items-center flex-col bg-gray-900" >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>
+                        <div className="col-sm-0 d-flex align-items-center">
+                            <label htmlFor="father_Occupation" className="col-form-label mb-0 mx-2">วุฒิการศึกษา</label>
+                            <div class="dropdown px-0" style={{ width: '150px' }}> {/* กำหนดความกว้างของ dropdown ที่นี่ */}
+                                <select value={selectedOption} onChange={handleSelectChange} class="custom-select" style={{ width: '150px' }}> {/* กำหนดความกว้างของตัวเลือกใน dropdown ที่นี่ */}
+                                    <option value="ระบุหมายเหตุ">ระบุวุฒิการศึกษา</option>
+                                    <option value="เพื่อใช้ในการขอทุนการศึกษา">ปริญญาตรี</option>
+                                    <option value="เพื่อใช้ในการสมัครเข้าศึกษาต่อ">ปริญญาโท</option>
+                                    <option value="เพื่อใช้ในการสมัครเข้าศึกษาต่อ">ปริญญาเอก</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className="col-sm-4 d-flex align-items-center">
+                            <label htmlFor="father_Occupation" className="col-form-label mb-0 mx-2">อาชีพ</label>
+                            <input type="text" className="form-control" id="father_Occupation" name="father_Occupation" placeholder="กรอกอาชีพ" />
+                        </div>
+                        <div className="col-sm-4 d-flex align-items-center" style={{ marginRight: '3px'}}>
+                            <label htmlFor="father_Workplace" className="col-form-label mb-0 mx-2">สถานที่ทำงาน</label>
+                            <input type="text" className="form-control" id="father_Workplace" name="father_Workplace" placeholder="กรอกสถานที่ทำงาน" />
+                        </div>
+                    </div>
                 </div>
-            </div>
 
+                <br></br>
+                <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
+                    <div className="col-sm-0 d-flex align-items-center">
+                        <label htmlFor="father_phoneNumber" className="col-form-label mb-0 mx-2">โทรศัพท์</label>
+                        <input type="text" className="form-control" id="father_phoneNumber" name="father_phoneNumber" placeholder="กรอกหมายเลขโทรศัพท์" />
+                    </div>
+                </div>
+            </>
+        )}
 
+    
 
         <br></br>
         <div className="row" style={{ fontFamily: 'Kanit, sans-serif',fontWeight: 'bold', fontSize: '20px', marginRight: '5px', gap: '0'}}>
