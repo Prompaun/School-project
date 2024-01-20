@@ -90,6 +90,9 @@ const handlewhoAreParent = (event) => {
                         <label htmlFor="Father_Email" className="col-form-label mb-0 mx-2">อีเมล</label>
                         <input type="text" className="form-control" id="Father_Email" name="Father_Email" placeholder="กรอกอีเมลบิดา" />
                     </div>
+                    <h2 className="card-heading mb-0 mx-2" style={{ fontSize: '16px', color: 'blue' }}>
+                        (อีเมลที่ท่านกรอกนี้สามารถใช้ตรวจสอบข้อมูลนักเรียนของโรงเรียนซึ่งเป็นบุตรหลานของท่าน)
+                    </h2>
                 </div>
             </>
         ) : (
@@ -207,6 +210,9 @@ const handlewhoAreParent = (event) => {
                         <label htmlFor="Mother_Email" className="col-form-label mb-0 mx-2">อีเมล</label>
                         <input type="text" className="form-control" id="Mother_Email" name="Mother_Email" placeholder="กรอกอีเมลมารดา" />
                     </div>
+                    <h2 className="card-heading mb-0 mx-2" style={{ fontSize: '16px', color: 'blue' }}>
+                        (อีเมลที่ท่านกรอกนี้สามารถใช้ตรวจสอบข้อมูลนักเรียนของโรงเรียนซึ่งเป็นบุตรหลานของท่าน)
+                    </h2>
                 </div>
             </>
         ) : (
@@ -352,6 +358,9 @@ const handlewhoAreParent = (event) => {
                                 <label htmlFor="Parent_Email" className="col-form-label mb-0 mx-2">อีเมล</label>
                                 <input type="text" className="form-control" id="Parent_Email" name="Parent_Email" placeholder="กรอกอีเมลผู้ปกครอง" />
                             </div>
+                            <h2 className="card-heading mb-0 mx-2" style={{ fontSize: '16px', color: 'blue' }}>
+                                (อีเมลที่ท่านกรอกนี้สามารถใช้ตรวจสอบข้อมูลนักเรียนของโรงเรียนซึ่งเป็นบุตรหลานของท่าน)
+                            </h2>
                         </div>
                     </>
                     ) : (
