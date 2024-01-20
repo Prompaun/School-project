@@ -36,7 +36,7 @@ function ParentsInfo() {
   }; 
 
   const handleIsParentForeigner = (event) => {
-    setIsMotherForeigner(event.target.id === 'ParentForeigner');
+    setIsParentForeigner(event.target.id === 'ParentForeigner');
   }; 
 
 const handlewhoAreParent = (event) => {
@@ -76,8 +76,11 @@ const handlewhoAreParent = (event) => {
                     ไม่ใช่
                     </label>
                 </div>
+                <h2 className="card-heading mb-0 mx-2" style={{ fontSize: '16px', color: 'red' }}>
+                    **เลือก ใช่ กรณีเคยบันทึกข้อมูลของตนสำหรับใช้สมัครเรียนให้นักเรียน
+                </h2>
             </div>
-            {/* <br></br> */}
+           
 
         {isFatherRecordData ? (
             <>
@@ -191,6 +194,9 @@ const handlewhoAreParent = (event) => {
                     ไม่ใช่
                     </label>
                 </div>
+                <h2 className="card-heading mb-0 mx-2" style={{ fontSize: '16px', color: 'red' }}>
+                    **เลือก ใช่ กรณีเคยบันทึกข้อมูลของตนสำหรับใช้สมัครเรียนให้นักเรียน
+                </h2>
             </div>
 
         {isMotherRecordData ? (
@@ -333,6 +339,9 @@ const handlewhoAreParent = (event) => {
                                 ไม่ใช่
                                 </label>
                             </div>
+                            <h2 className="card-heading mb-0 mx-2" style={{ fontSize: '16px', color: 'red' }}>
+                                **เลือก ใช่ กรณีเคยบันทึกข้อมูลของตนสำหรับใช้สมัครเรียนให้นักเรียน
+                            </h2>
                         </div>
 
                         {isParentRecordData ? (
@@ -364,7 +373,7 @@ const handlewhoAreParent = (event) => {
                             </div>
                         </div>
 
-                        <br></br>
+                        {/* <br></br>
                         <div className="d-flex align-items-center" style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
                             <h2 className="card-heading mb-0 mx-2" style={{fontSize: '16px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
                             <div className="form-check">
@@ -382,13 +391,78 @@ const handlewhoAreParent = (event) => {
 
                             {isParentForeigner && (
                                 <div className="col-sm-4 d-flex align-items-center">
-                                <label htmlFor="father_Nationality" className="col-form-label mb-0 mx-2">สัญชาติ</label>
-                                <input type="text" className="form-control" id="father_Nationality" name="father_Nationality" placeholder="กรอกสัญชาติ" />
+                                    <label htmlFor="Parent_Nationality" className="col-form-label mb-0 mx-2">สัญชาติ</label>
+                                    <input type="text" className="form-control" id="Parent_Nationality" name="Parent_Nationality" placeholder="กรอกสัญชาติ" />
                                 </div>
-                            )}
-                            </div>
+                                )}
+                            </div> */}
                         <br></br>
 
+                        <div className="d-flex align-items-center" style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
+                            <h2 className="card-heading mb-0 mx-2" style={{fontSize: '16px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
+                            {/* <div className="form-check">
+                                <input
+                                    className="form-check-input"
+                                    type="radio"
+                                    name="Parnetforeigner?"
+                                    id="ParentForeigner"
+                                    onChange={handleIsParentForeigner}
+                                    checked={isParentForeigner}
+                                />
+                                <label className="form-check-label custom-body" style={{ fontSize: '16px', marginRight: '10px' }} htmlFor="ParentForeigner">
+                                    ใช่
+                                </label>
+                            </div>
+                            <div className="form-check">
+                                <input
+                                    className="form-check-input"
+                                    type="radio"
+                                    name="Parentforeigner?"
+                                    id="ParentNotForeigner"
+                                    onChange={handleIsParentForeigner}
+                                    checked={!isParentForeigner}
+                                />
+                                <label className="form-check-label custom-body" style={{ fontSize: '16px', marginRight: '10px' }} htmlFor="ParentNotForeigner">
+                                    ไม่
+                                </label>
+                            </div> */}
+
+                            <div className="form-check">
+                                <input
+                                    className="form-check-input"
+                                    type="radio"
+                                    name="Parnetforeigner?"
+                                    id="ParentForeigner"
+                                    onChange={handleIsParentForeigner}
+                                    checked={isParentForeigner}
+                                />
+                                <label className="form-check-label custom-body" style={{ fontSize: '16px', marginRight: '10px' }} htmlFor="ParentForeigner">
+                                    ใช่
+                                </label>
+                            </div>
+                            <div className="form-check">
+                                <input
+                                    className="form-check-input"
+                                    type="radio"
+                                    name="Parentforeigner?"
+                                    id="ParentNotForeigner"
+                                    onChange={handleIsParentForeigner}
+                                    checked={isParentForeigner === false}
+                                />
+                                <label className="form-check-label custom-body" style={{ fontSize: '16px', marginRight: '10px' }} htmlFor="ParentNotForeigner">
+                                    ไม่
+                                </label>
+                            </div>
+
+                            {isParentForeigner && (
+                                <div className="col-sm-4 d-flex align-items-center">
+                                    <label htmlFor="Parent_Nationality" className="col-form-label mb-0 mx-2">สัญชาติ</label>
+                                    <input type="text" className="form-control" id="Parent_Nationality" name="Parent_Nationality" placeholder="กรอกสัญชาติ" />
+                                </div>
+                            )}
+                        </div>
+
+                        <br />
                         <div class="h-screen flex justify-center items-center flex-col bg-gray-900" >
                             <div style={{ display: 'flex', alignItems: 'center', gap: '20px', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>
                                 <div className="col-sm-0 d-flex align-items-center">
