@@ -77,7 +77,7 @@ const handlewhoAreParent = (event) => {
                     </label>
                 </div>
                 <h2 className="card-heading mb-0 mx-2" style={{ fontSize: '16px', color: 'red' }}>
-                    **เลือก ใช่ กรณีเคยบันทึกข้อมูลของตนสำหรับใช้สมัครเรียนให้นักเรียน
+                    **เลือก ใช่ กรณีเคยบันทึกข้อมูลของตนสำหรับใช้สมัครเรียนให้บุตรหลานของท่าน
                 </h2>
             </div>
            
@@ -198,7 +198,7 @@ const handlewhoAreParent = (event) => {
                     </label>
                 </div>
                 <h2 className="card-heading mb-0 mx-2" style={{ fontSize: '16px', color: 'red' }}>
-                    **เลือก ใช่ กรณีเคยบันทึกข้อมูลของตนสำหรับใช้สมัครเรียนให้นักเรียน
+                    **เลือก ใช่ กรณีเคยบันทึกข้อมูลของตนสำหรับใช้สมัครเรียนให้บุตรหลานของท่าน
                 </h2>
             </div>
 
@@ -346,7 +346,7 @@ const handlewhoAreParent = (event) => {
                                 </label>
                             </div>
                             <h2 className="card-heading mb-0 mx-2" style={{ fontSize: '16px', color: 'red' }}>
-                                **เลือก ใช่ กรณีเคยบันทึกข้อมูลของตนสำหรับใช้สมัครเรียนให้นักเรียน
+                                **เลือก ใช่ กรณีเคยบันทึกข้อมูลของตนสำหรับใช้สมัครเรียนให้บุตรหลานของท่าน
                             </h2>
                         </div>
 
@@ -382,60 +382,9 @@ const handlewhoAreParent = (event) => {
                             </div>
                         </div>
 
-                        {/* <br></br>
-                        <div className="d-flex align-items-center" style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-                            <h2 className="card-heading mb-0 mx-2" style={{fontSize: '16px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
-                            <div className="form-check">
-                                <input className="form-check-input" type="radio" name="Parnetforeigner?" id="ParentForeigner" onChange={handleIsParentForeigner} />
-                                <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="ParentForeigner">
-                                ใช่
-                                </label>
-                            </div>
-                            <div className="form-check">
-                                <input className="form-check-input" type="radio" name="Parentforeigner?" id="ParentNotForeigner" onChange={handleIsParentForeigner} />
-                                <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="ParentNotForeigner">
-                                ไม่
-                                </label>
-                            </div>
-
-                            {isParentForeigner && (
-                                <div className="col-sm-4 d-flex align-items-center">
-                                    <label htmlFor="Parent_Nationality" className="col-form-label mb-0 mx-2">สัญชาติ</label>
-                                    <input type="text" className="form-control" id="Parent_Nationality" name="Parent_Nationality" placeholder="กรอกสัญชาติ" />
-                                </div>
-                                )}
-                            </div> */}
                         <br></br>
-
                         <div className="d-flex align-items-center" style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
                             <h2 className="card-heading mb-0 mx-2" style={{fontSize: '16px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
-                            {/* <div className="form-check">
-                                <input
-                                    className="form-check-input"
-                                    type="radio"
-                                    name="Parnetforeigner?"
-                                    id="ParentForeigner"
-                                    onChange={handleIsParentForeigner}
-                                    checked={isParentForeigner}
-                                />
-                                <label className="form-check-label custom-body" style={{ fontSize: '16px', marginRight: '10px' }} htmlFor="ParentForeigner">
-                                    ใช่
-                                </label>
-                            </div>
-                            <div className="form-check">
-                                <input
-                                    className="form-check-input"
-                                    type="radio"
-                                    name="Parentforeigner?"
-                                    id="ParentNotForeigner"
-                                    onChange={handleIsParentForeigner}
-                                    checked={!isParentForeigner}
-                                />
-                                <label className="form-check-label custom-body" style={{ fontSize: '16px', marginRight: '10px' }} htmlFor="ParentNotForeigner">
-                                    ไม่
-                                </label>
-                            </div> */}
-
                             <div className="form-check">
                                 <input
                                     className="form-check-input"
@@ -501,6 +450,10 @@ const handlewhoAreParent = (event) => {
                             <div className="col-sm-0 d-flex align-items-center">
                                 <label htmlFor="SomeoneElseIsParent_phoneNumber" className="col-form-label mb-0 mx-2">โทรศัพท์</label>
                                 <input type="text" className="form-control" id="SomeoneElseIsParent_phoneNumber" name="SomeoneElseIsParent_phoneNumber" placeholder="กรอกหมายเลขโทรศัพท์" />
+                            </div>
+                            <div className="col-sm-4 d-flex align-items-center" style={{ marginRight: '3px'}}>
+                                <label htmlFor="Parent_Workplace" className="col-form-label mb-0 mx-2">เกี่ยวข้องเป็น</label>
+                                <input type="text" className="form-control" id="Parent_Workplace" name="Parent_Workplace" placeholder="กรอกความเกี่ยวข้องกับผู้สมัคร" />
                             </div>
                         </div>                    
                     </>
