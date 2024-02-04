@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Navbar from "../components/Navbar";
 import eye_open from "../images/eye-open.png";
 import eye_closed from "../images/eye-closed.png";
-
+import GoogleIMG from '../images/google.png'
 const Login_personnel = () => {
 
 
@@ -52,9 +52,9 @@ const Login_personnel = () => {
             <Header header="ระบบบริการข้อมูล" subhead="สำหรับบุคลากรภายในโรงเรียน"/>
             {/* เพิ่มฟอร์มการลงทะเบียน */}
             {/* <div class="list-group"> */}
-            <div className="d-flex flex-column"style={{fontFamily: 'Kanit, sans-serif'}}>
-            <div className="container mt-5">
-            <div className="card mx-auto mt-5" style={{ boxShadow: '1px 2px 12px 4px rgba(0, 0, 0, 0.2)' ,maxWidth: '90%',Height: '100vh'}} >
+            <div className="d-flex flex-column"style={{fontFamily: 'Kanit, sans-serif',height: '100vh'}}>
+            <div className="container">
+            <div className="card mx-auto mt-3" style={{ boxShadow: '1px 2px 12px 4px rgba(0, 0, 0, 0.2)' ,maxWidth: '90%'}} >
                 <div className="card-body">
                 <div style={{ display: 'flex', flexWrap: 'wrap',gap:"10px"}}>
                     
@@ -137,7 +137,20 @@ const Login_personnel = () => {
                                     <Link to="/Filter_student_information">
                                         <button type="submit" className="btn btn-primary float-end" style={{fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>Log in</button>
                                     </Link>
-                          
+                                    <br />
+                               <br />
+                               <div className="d-flex justify-content-center" style={{flexWrap:"wrap",fontSize:"16px"}}>
+                                        <span className="d-flex align-items-center">หรือเข้าสู่ระบบด้วย </span>
+                                    
+                               </div>
+                               <div className="d-flex justify-content-center" style={{flexWrap:"wrap",fontSize:"16px",marginTop:"10px"}}>
+                               <button className="google_btn" > 
+                                    {/* //onClick={googleAuth} */}
+                                        <img src={GoogleIMG} alt="google icon" />
+                                        <span>Sign in with Google</span>
+                                    </button>
+                                    
+                               </div>
                         </form>
                     </div>
                 </div>
