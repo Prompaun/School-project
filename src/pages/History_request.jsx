@@ -32,30 +32,48 @@ const History_request = () => {
 
   const [data, setData] = useState([
     {
-      year: 'ปีการศึกษา 2566 ภาคการศึกษาที่ 1',
-      subjects: [
-        { id: '001', name: 'วิชา A', score: 85, grade: 'A', result: 'ดีเด่น' },
-        { id: '002', name: 'วิชา B', score: 92, grade: 'A', result: 'ดีมาก' },
-        { id: '003', name: 'วิชา C', score: 78, grade: 'B', result: 'ดี' },
-        // เพิ่มข้อมูลผลการเรียนตามต้องการ
-      ],
+      DateRequest: '1/10/2566',
+      NoRequest: '00001',
+      RequestType: 'ปพ.7',
+      RequestDetail: 'เพื่อใช้ในการขอทุนการศึกษา',
+      RequestStatus: 'รอดำเนินการ'
+    },
+    {
+      DateRequest: '3/10/2566',
+      NoRequest: '00002',
+      RequestType: 'ปพ.7',
+      RequestDetail: 'เพื่อใช้ในการขอทุนการศึกษา',
+      RequestStatus: 'ดำเนินการเสร็จสิ้น'
+    },
+    {
+      DateRequest: '5/10/2566',
+      NoRequest: '00003',
+      RequestType: 'ปพ.7',
+      RequestDetail: 'เพื่อใช้ในการขอทุนการศึกษา',
+      RequestStatus: 'กำลังดำเนินการ'
     },
   ]);
-
   const [selectedOption, setSelectedOption] = useState('เลือกสถานะคำร้องขอใบรับรอง');
+  
+
+  const handleSelectChange = (e) => {
+    setSelectedOption(e.target.value);
+  };
+
+  const filteredData = data.filter((item) => {
+    if (selectedOption === 'เลือกสถานะคำร้องขอใบรับรอง') {
+      return true;
+    }
+    return item.RequestStatus === selectedOption;
+  });
+
 
   useEffect(() => {
     // ตั้งค่าค่าเริ่มต้นของ dropdown เมื่อหน้าจอถูก refresh
     setSelectedOption('เลือกสถานะคำร้องขอใบรับรอง');
   }, []); // ใช้ [] เพื่อให้ useEffect ทำงานเพียงครั้งเดียวหลังจากการ render แรก
 
-  const handleSelectChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
-
-  
-  
-  
+ 
   return (
     <>
       <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
@@ -81,20 +99,28 @@ const History_request = () => {
 
 {/*mt-5 d-flex  */}
     <br></br>
+    <div className="d-flex flex-column"style={{fontFamily: 'Kanit, sans-serif',height:"100vh"}}>
       <div className="container flex-column align-items-center">
         <div className="mb-3"><br />
-          <h2>สถานะคำร้องขอใบรับรอง</h2>
-          <br></br>
-          <select value={selectedOption} onChange={handleSelectChange} style={{ fontFamily: 'Kanit, sans-serif' }}>
+          <h2 className="align-items-center justify-content-center">สถานะคำร้องขอใบรับรอง</h2>
+          <br />
+          <div className="d-flex"style={{ flexWrap: 'wrap', margin: 'auto', fontSize: '18px' }}>
+              <div>
+                  <span style={{fontWeight:"bolder",fontSize:"20px",marginRight:"10px"}}>เลือกสถานะ</span>
+                </div>
+          <div className="dropdown" style={{ maxWidth: '100%'}}>
+          <select value={selectedOption} onChange={handleSelectChange}className="custom-select w-full">
             <option value="เลือกสถานะคำร้องขอใบรับรอง">เลือกสถานะคำร้องขอใบรับรอง</option>
             <option value="รอดำเนินการ">รอดำเนินการ</option>
             <option value="ดำเนินการเสร็จสิ้น">ดำเนินการเสร็จสิ้น</option>
             <option value="กำลังดำเนินการ">กำลังดำเนินการ</option>
           </select>
+          </div>
+          </div>
         </div>
-
+<br />
         
-        <div className="d-flex justify-content-center" style={{ height: '150px', overflowY: 'auto' }}>
+        {/* <div className="d-flex justify-content-center" style={{ height: 'auto', overflowY: 'auto' }}>
           <table className="table-bordered" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center',fontFamily: 'Kanit, sans-serif' }}>
             <thead>
               <tr>
@@ -106,27 +132,47 @@ const History_request = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1/10/2566</td>
-                <td>00001</td>
-                <td>ปพ.7</td>
-                <td>เพื่อใช้ในการขอทุนการศึกษา</td>
-                <td>รอดำเนินการ</td>
+            {filteredData.map((item, index) => (
+              <tr key={index} style={{ height: '50px' }}>
+                <td>{item.DateRequest}</td>
+                <td>{item.NoRequest}</td>
+                <td>{item.RequestType}</td>
+                <td>{item.RequestDetail}</td>
+                <td>{item.RequestStatus}</td>
               </tr>
-              <tr>
-                <td>1/10/2566</td>
-                <td>00002</td>
-                <td>ปพ.1</td>
-                <td>เพื่อใช้ในการสมัครเข้าศึกษาต่อ</td>
-                <td>รอดำเนินการ</td>
-              </tr>
+            ))}
             </tbody>
           </table>
-        </div>
+        </div> */}
+
+            <div className="d-flex justify-content-center" style={{ height: 'auto', overflowY: 'auto' }}>
+              <div className="table-wrapper">
+                <table className="table table-bordered table-striped table-hover" style={{borderCollapse: 'collapse', textAlign: 'center',fontFamily: 'Kanit, sans-serif' }}>
+                  <thead>
+                    <tr>
+                      <th>วันที่ทำรายการ</th>
+                      <th>เลขที่คำร้อง</th>
+                      <th>ประเภทใบรับรอง</th>
+                      <th>รายละเอียด</th>
+                      <th>สถานะ</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {filteredData.map((item, index) => (
+                      <tr key={index} style={{ height: '50px' }}>
+                        <td>{item.DateRequest}</td>
+                        <td>{item.NoRequest}</td>
+                        <td>{item.RequestType}</td>
+                        <td>{item.RequestDetail}</td>
+                        <td>{item.RequestStatus}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
       </div>
-      <br></br>
-      <br></br>
-      <br></br>
+      </div>
 
     </>
   );

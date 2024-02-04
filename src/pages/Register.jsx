@@ -32,14 +32,17 @@ const Register = () => {
       <Navbar/>
       <Header header="ระบบลงทะเบียนสำหรับเข้าใช้เว็บไซต์" subhead=""/>
       {/* เพิ่มฟอร์มการลงทะเบียน */}
-      <div className="container mt-5">
-        <div className="d-flex align-items-center justify-content-center">
-          <h2 className="ms-3 mb-0">สร้างบัญชีผู้ใช้งาน</h2>
-        </div>
+      {/* <div className="container mt-5"> */}
+        <div className="d-flex flex-column align-items-center justify-content-center">
+          <h2 className="ms-3 mb-0 mt-5">สร้างบัญชีผู้ใช้งาน</h2>
+       
         
        {/* เพิ่มแท็ก <br /> เพื่อสร้างการเว้นบรรทัด */}
-        <div className="card mx-auto mt-5"style={{ boxShadow: '1px 2px 12px 4px rgba(0, 0, 0, 0.2)' }}>
+       
+        <div className="card mt-5"style={{ boxShadow: '1px 2px 12px 4px rgba(0, 0, 0, 0.2)',maxWidth: '90%',Height: '100vh' }}>
   <div className="card-body">
+    {/* width: '100vw', // 100vw คือ 100% ของความกว้างของ viewport
+            maxHeight: '100vh', */}
     <form onSubmit={handleSubmit} className="w-100">
       <div className="mb-3">
         {/* <label htmlFor="username" className="form-label custom-font">เลขประจำตัวประชาชน (ผู้สมัครเข้าศึกษา): </label> */}

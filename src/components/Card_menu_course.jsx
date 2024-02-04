@@ -21,19 +21,22 @@ function Card_menu_course() {
       }
     
       return (
-        <div className="card-container">
+        <div className="d-flex align-items-center justify-content-center" style={{ display: 'flex', flexWrap: 'wrap', gap: '50px', fontFamily: 'Kanit, sans-serif'}}>
           {obj.map((item, index) => (
-            <div key={index} className="card-menu"style={{ boxShadow: '1px 2px 12px 4px rgba(0, 0, 0, 0.2)' }}>
+            
+            <div key={index} className="card-menu" style={{ boxShadow: '1px 2px 12px 4px rgba(0, 0, 0, 0.2)',alignItems: 'center' }}>
+               <div className="card-body">
+                <p className="card-text mt-3" style={{ textAlign: 'center',margin: "5px" }}>{item.text}</p>
+              </div>
               <NavLink to={item.path} onClick={handleClick}>
-                        <div className="card-body d-flex flex-column align-items-center">
-                            <img src={item.imageUrl} className="card-img-top" alt={item.text} style={{ width: '220px', height: '220px' }} />
-                        </div>
-                    </NavLink>
-                    <br />
-                        <p className="card-text" style={{ textAlign: 'center' }}>{item.text}</p>
+              
+              <img src={item.imageUrl} className="card-img-top" alt={item.text} style={{ width: '85%', height: 'auto', marginLeft:"20px" }} />
+              
+              </NavLink>
             </div>
           ))}
         </div>
+       
       );
 }
 

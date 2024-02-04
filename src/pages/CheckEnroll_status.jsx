@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import { Link } from 'react-router-dom';
 import logoImage from '../images/IMG_5416.png';
 import Header from '../components/Header';
@@ -8,7 +8,18 @@ function CheckEnroll_status() {
         color: 'gray',
         textDecoration: 'none'
       };
-
+      const [obj, setObj] = useState([
+        {
+          eName_title: "เด็กหญิง",
+          eFirstName: "ใจดี",
+          eLastName: "รักสงบ",
+          ID: "X-XXXX-XXXXX-XX-X",
+          Enroll_Year: "XXXX",
+          Enroll_Course:"English Program (EP)",
+          Enroll_No:"XXXX",
+          Enroll_Status:"รอการสอบคัดเลือก"
+        }
+      ]);
   return (
     <><nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
       <div className="container">
@@ -34,130 +45,119 @@ function CheckEnroll_status() {
     
     <Header header="ระบบรับสมัครนักเรียนแบบออนไลน์" subhead="เพื่อเข้าศึกษาระดับประถมศึกษาปีที่ 1" />
     
-    {/* <br></br>
-    <br></br> */}
-    {/* <div className="d-flex align-items-center justify-content-center"> */}
-    {/* <div class="container justify-content-center"> */}
+    
+    <div class="container"style={{height: '100vh' }}>
     <div className="container mt-5 d-flex flex-column align-items-center">
         <h2 className="ms-3 mb-0">ข้อมูลการสมัคร</h2>
     </div>
     <br></br>
-    {/* <div class="container-fluid" style={{ textAlign: 'center' }}>
-        <div class="card mx-auto my-0" style={{ width: "800px" }}>  
-            <div className="card-body"> */}
-    {/* <div class="container-fluid" style={{ textAlign: 'center' }}>
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card mx-auto my-0">  
-                <div className="card-body">
-                <div class="form-group col-md-0 fone"style={{ padding: '10px', margin: '10px',whiteSpace: "nowrap" }}>
-
-                <div class="d-flex align-items-center">
-                    <h2 class="card-heading px-1" style={{fontSize: '18px',fontWeight: 'bold'}}>ชื่อ-นามสกุล</h2>
-                    <h2 class="card-heading px-3" style={{fontSize: '18px'}}>เด็กหญิงใจดี รักสงบ</h2>
-
-                    <h2 class="card-heading px-3" style={{fontSize: '18px',fontWeight: 'bold'}}>เลขประจำตัวประชาชน</h2>
-                    <h2 class="card-heading px-3" style={{fontSize: '16px'}}>X-XXXX-XXXXX-XX-X</h2>
-                </div>
-                <br></br>
-                        
-            
-                <div className="row" style={{ fontFamily: 'Kanit, sans-serif', marginRight: '10px', gap: '0',whiteSpace: "nowrap" }}>
-                    <div className="col-sm d-flex align-items-center">
-                    <h2 class="card-heading px-1" style={{fontSize: '18px',fontWeight: 'bold'}}>ปีการศึกษา</h2>
-                    <h2 class="card-heading px-4" style={{fontSize: '18px'}}>XXXX</h2>   
-                    
-                    <h2 class="card-heading px-3" style={{fontSize: '18px',fontWeight: 'bold'}}>หลักสูตร</h2>
-                    <h2 class="card-heading px-3" style={{fontSize: '18px'}}>English Program (EP)</h2>
-                    </div>
-                </div>
-                <br/>
-                <div className="row" style={{ fontFamily: 'Kanit, sans-serif', marginRight: '10px', gap: '0',whiteSpace: "nowrap" }}>
-                    <div className="col-sm d-flex align-items-center">
-                    <h2 class="card-heading px-1" style={{fontSize: '18px',fontWeight: 'bold'}}>เลขที่สมัคร</h2>
-                    <h2 class="card-heading px-4" style={{fontSize: '18px'}}>XXXX</h2>   
-                
-                
-                    <h2 class="card-heading px-3" style={{fontSize: '18px',fontWeight: 'bold'}}>สถานะ</h2>
-                    <h2 class="card-heading px-3" style={{fontSize: '18px'}}>รอการสอบคัดเลือก</h2>   
-                    </div>
-                </div>
-                <br></br>
-                </div>
-                <button 
-                    type="button" 
-                    class="btn btn-primary float-end" 
-                    style={{  fontFamily: 'Kanit, sans-serif',textAlign: 'right', marginRight: '20px', marginLeft: '10px'}}
-                    onClick={() => {
-                        const fileUrl = "src/assets/พิมพ์ใบสมัครป.1.pdf";
-                        const printWindow = window.open(fileUrl, "_blank", 'width=1000,height=800');
-                        printWindow.print();
-                    }}
-                >
-                    <span>พิมพ์บัตรประจำตัวผู้สอบ</span>
-                </button>
-                </div>
-                </div>
-            </div>
-        </div>
-    </div> */}
-    {/* <div className="container-fluid" style={{ textAlign: 'center' }}>
-  <div className="row justify-content-center">
-    <div className="col-md-0"> */}
-      <div className="card mx-auto my-0"  style={{ width: "820px"}}>
+    <div className="d-flex flex-column justify-content-center"style={{fontFamily: 'Kanit, sans-serif'}}>
+      <div className="card mx-auto" style={{ maxWidth: '90%', fontFamily: 'Kanit, sans-serif' }}>
+      {obj.map((item) => (
         <div className="card-body">
-          <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
+        
+          <div style={{display:"flex", flexWrap: 'wrap',justifyContent:"left"}}>
 
-            <div className="d-flex align-items-center">
-              <h2 className="card-heading px-2" style={{ fontSize: '18px', fontWeight: 'bold' }}>ชื่อ-นามสกุล</h2>
-              <h2 className="card-heading px-3" style={{ fontSize: '18px' }}>เด็กหญิงใจดี รักสงบ</h2>
+            <div className="align-items-center"style={{padding:"10px"}}>
+              <h2 className="col-form-label" style={{ fontSize: '18px', fontWeight: 'bold' }}>ชื่อ-นามสกุล</h2>
 
-              <h2 className="card-heading px-3" style={{ fontSize: '18px', fontWeight: 'bold' }}>เลขประจำตัวประชาชน</h2>
-              <h2 className="card-heading px-3" style={{ fontSize: '16px' }}>X-XXXX-XXXXX-XX-X</h2>
+              
+              <input
+                  type="text"
+                  className="form-control"
+                  value={`${item.eName_title} ${item.eFirstName} ${item.eLastName}`}
+                  readOnly
+                  style={{ backgroundColor: '#DCDCDC', color: 'black', maxWidth: '100%' }}
+                />
             </div>
-            <br />
-
-            <div className="row" style={{ fontFamily: 'Kanit, sans-serif', gap: '0', whiteSpace: "nowrap" }}>
-              <div className="col-sm d-flex align-items-center">
-                <h2 className="card-heading px-2" style={{ fontSize: '18px', fontWeight: 'bold' }}>ปีการศึกษา</h2>
-                <h2 className="card-heading px-4" style={{ fontSize: '18px' }}>XXXX</h2>
-
-                <h2 className="card-heading px-3" style={{ fontSize: '18px', fontWeight: 'bold' }}>หลักสูตร</h2>
-                <h2 className="card-heading px-3" style={{ fontSize: '18px' }}>English Program (EP)</h2>
+            {/* </div>
+             <div style={{ display:"flex",justifyContent:"center" }}> */}
+            <div className="align-items-center"style={{padding:"10px"}} >
+              <h2 className="col-form-label" style={{ fontSize: '18px', fontWeight: 'bold' }}>เลขประจำตัวประชาชน</h2>
+              
+              <input
+                  type="text"
+                  className="form-control"
+                  value={`${item.ID}`}
+                  readOnly
+                  style={{ backgroundColor: '#DCDCDC', color: 'black', maxWidth: '100%' }}
+                />
+            </div>
+            {/* </div>
+          <div style={{display:"flex", flexWrap: 'wrap',justifyContent:"center"}}> */}
+        
+              <div className="align-items-center"style={{padding:"10px"}}>
+                <h2 className="col-form-label" style={{ fontSize: '18px', fontWeight: 'bold' }}>ปีการศึกษา</h2>
+                
+            
+                <input
+                type="text"
+                className="form-control"
+                value={`${item.Enroll_Year}`}
+                readOnly
+                style={{ backgroundColor: '#DCDCDC', color: 'black', maxWidth: '100%' }}
+              />
               </div>
-            </div>
-            <br />
-            <div className="row" style={{ fontFamily: 'Kanit, sans-serif', gap: '0', whiteSpace: "nowrap" }}>
-              <div className="col-sm d-flex align-items-center">
-                <h2 className="card-heading px-2" style={{ fontSize: '18px', fontWeight: 'bold' }}>เลขที่สมัคร</h2>
-                <h2 className="card-heading px-4" style={{ fontSize: '18px' }}>XXXX</h2>
-
-                <h2 className="card-heading px-3" style={{ fontSize: '18px', fontWeight: 'bold' }}>สถานะ</h2>
-                <h2 className="card-heading px-3" style={{ fontSize: '18px' }}>รอการสอบคัดเลือก</h2>
+              {/* </div>
+             <div style={{ display:"flex",flexWrap: 'wrap' }}> */}
+              <div className="align-items-center"style={{padding:"10px"}}>
+                <h2 className="col-form-label" style={{ fontSize: '18px', fontWeight: 'bold' }}>หลักสูตร</h2>
+               
+                <input
+                  type="text"
+                  className="form-control"
+                  value={`${item.Enroll_Course}`}
+                  readOnly
+                  style={{ backgroundColor: '#DCDCDC', color: 'black', maxWidth: '100%' }}
+                />
               </div>
-            </div>
-            {/* <br /> */}
+              {/* </div>
+             <div style={{ display:"flex",flexWrap: 'wrap' }}> */}
+            <div className="align-items-center"style={{padding:"10px"}}>
+                <h2 className="col-form-label" style={{ fontSize: '18px', fontWeight: 'bold' }}>เลขที่สมัคร</h2>
+                
+                <input
+                  type="text"
+                  className="form-control"
+                  value={`${item.Enroll_No}`}
+                  readOnly
+                  style={{ backgroundColor: '#DCDCDC', color: 'black', maxWidth: '100%' }}
+                />
+                </div> 
+                </div>
+             <div style={{ display:"flex",flexWrap: 'wrap' }}>
+              <div className=" align-items-center"style={{padding:"10px"}}>
+                <h2 className="col-form-label" style={{ fontSize: '18px', fontWeight: 'bold' }}>สถานะ</h2>
+                
+                <h2 className="col-form-label" style={{ fontSize: '18px' }}>{item.Enroll_Status}</h2>
+              
+              </div>
+            
           </div>
-          <button
-            type="button"
-            className="btn btn-primary float-end"
-            style={{ fontFamily: 'Kanit, sans-serif', textAlign: 'right', marginRight: '20px', marginLeft: '10px' }}
-            onClick={() => {
-              const fileUrl = "src/assets/พิมพ์ใบสมัครป.1.pdf";
-              const printWindow = window.open(fileUrl, "_blank", 'width=1000,height=800');
-              printWindow.print();
-            }}
-          >
-            <span>พิมพ์บัตรประจำตัวผู้สอบ</span>
-          </button>
+          {item.Enroll_Status === "รอการสอบคัดเลือก" && (
+              <button
+                type="button"
+                className="btn btn-primary float-end"
+                style={{
+                  fontFamily: "Kanit, sans-serif",
+                  textAlign: "center",
+                  justifyContent: 'flex-end',
+                  display: item.Enroll_Status === "รอการสอบคัดเลือก" ? "block" : "none"
+                }}
+                onClick={() => {
+                  const fileUrl = "src/assets/พิมพ์ใบสมัครป.1.pdf";
+                  const printWindow = window.open(fileUrl, "_blank", "width=1000,height=800");
+                  printWindow.print();
+                }}
+              >
+                <span>พิมพ์บัตรประจำตัวผู้สอบ</span>
+              </button>
+            )}
         </div>
-      </div>
-    {/* </div>
+      ))}
+       </div>  
   </div>
-</div> */}
-
-        <br></br>
-        <br></br>
+</div>
   </>
   )
 }

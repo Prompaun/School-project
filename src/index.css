@@ -438,3 +438,170 @@ body{
   /* border: 2px solid rgb(187, 38, 195); */
   background-color: rgb(186, 226, 255);
 }
+
+.navbar-brand {
+  padding-top: 0;
+  padding-bottom: 0;
+ }
+
+ @media (max-width: 767px) {
+  .card-menu {
+    max-width: 100%;
+  }
+  .card-img-top {
+    height: 200px;
+  }
+}
+
+.h-screen {
+  height: auto;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.justify-left {
+  justify-content: flex-start;
+}
+
+.justify-right {
+  justify-content: flex-end;
+}
+
+.pr-3 {
+  padding-right: 1rem;
+}
+
+.w-1_3 {
+  width: 33.333%;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+}
+
+.custom-select:focus {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+.custom-select::-ms-expand {
+  display: none;
+}
+
+.custom-select option {
+  background-color: white;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .h-screen {
+    height: auto;
+  }
+
+  .flex-col {
+    flex-direction: column;
+  }
+
+  .flex-row {
+    flex-direction: column;
+  }
+
+  .w-1_3 {
+    width: 100%;
+  }
+
+  .pr-3 {
+    padding-right: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /* // adjust maxWidth to 100% for screens smaller than 768px */
+  .align-items-center {
+      max-width: 100%;
+  }
+
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-responsive > .table {
+  margin-bottom: 0;
+}
+
+.table-responsive > .table > thead > tr > th,
+.table-responsive > .table > tbody > tr > th,
+.table-responsive > .table > tfoot > tr > th,
+.table-responsive > .table > thead > tr > td,
+.table-responsive > .table > tbody > tr > td,
+.table-responsive > .table > tfoot > tr > td {
+  white-space: nowrap;
+}
+
+/* @media (max-width: 767px) {
+  .table-responsive > .table > thead > tr > th,
+  .table-responsive > .table > tbody > tr > th,
+  .table-responsive > .table > tfoot > tr > th,
+  .table-responsive > .table > thead > tr > td,
+  .table-responsive > .table > tbody > tr > td,
+  .table-responsive > .table > tfoot > tr > td {
+    display: block;
+    width: 100%;
+    text-align: right;
+  }
+
+  .table-responsive > .table > thead > tr > th,
+  .table-responsive > .table > tbody > tr > th,
+  .table-responsive > .table > tfoot > tr > th {
+    padding-top: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .table-responsive > .table > tbody > tr > td,
+  .table-responsive > .table > tfoot > tr > td {
+    border-top: none;
+  }
+
+  .table-responsive > .table > tbody > tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+
+  .table-responsive > .table > tbody > tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+} */

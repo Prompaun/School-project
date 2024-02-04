@@ -32,12 +32,11 @@ function Enrollment_info() {
        
       
       <Header header="ระบบรับสมัครนักเรียนแบบออนไลน์" subhead="กรอกข้อมูลการสมัคร"/>
-      <br></br>
-      <br></br>
-    {/* <div class="container justify-content-center"> */}
-    {/* <div class="card mx-auto" style={{ width: "1300px"}}> */}
-        <Tab_enroll/>
-        {/* </div>  */}
+      
+      <div className="mt-5 d-flex flex-column align-items-center"style={{ height: '100vh'}}>
+          <Tab_enroll />
+      
+      </div>
       <br></br>
       <br></br>
       </>

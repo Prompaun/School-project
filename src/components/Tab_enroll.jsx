@@ -25,7 +25,8 @@ function Tab_enroll() {
   
 
     return (
-        <div class="card mx-auto" style={{ width: "1100px"}}>
+      <div className="d-flex flex-column align-items-center">
+        <div class="card" style={{width: '60vw', height: 'auto'}}>
           <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
               <li class="nav-item">
@@ -65,23 +66,23 @@ function Tab_enroll() {
           </div>
           <div class="card-body">
             <div class="tab-content">
-              <div class={`tab-pane container ${activeTab === 'menu1' ? 'active' : ''}`} id="menu1" style={{ height: "700px" }}>
+              <div class={`tab-pane container ${activeTab === 'menu1' ? 'active' : ''}`} id="menu1" >
                 <NewStudent_info />
                 
-                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'flex-end' }}>
                     <button type="button" onClick={() => handleTabChange('menu2')} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>ถัดไป</button>
                   </div>
                   
               </div>
               
               
-              <div class={`tab-pane container ${activeTab === 'menu2' ? 'active' : ''}`} id="menu2" style={{ height: "230px" }}>
+              <div class={`tab-pane container ${activeTab === 'menu2' ? 'active' : ''}`} id="menu2">
                 
                 <HouseholdInfo />
               
-                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', width: '100%' }}>
 
-                  <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+                  <div style={{ display: 'flex',justifyContent: 'flex-start' }}>
                     <button type="button" onClick={() => handleTabChange('menu1')} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
                       ย้อนกลับ
                     </button>
@@ -97,7 +98,7 @@ function Tab_enroll() {
               <div class={`tab-pane container ${activeTab === 'menu3' ? 'active' : ''}`} id="menu3">
                 <ParentsInfo />
 
-                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', width: '100%' }}>
 
                   <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                     <button type="button" onClick={() => handleTabChange('menu2')} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
@@ -119,6 +120,7 @@ function Tab_enroll() {
             </div>
           </div>
           <br />
+        </div>
         </div>
       );
     };

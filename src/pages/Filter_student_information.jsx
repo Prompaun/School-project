@@ -64,12 +64,16 @@ function Filter_student_information() {
             <Sidebar />
             
     <div className="col-md-9">
-            <div className="d-flex align-items-center flex-column">
+            <div className="d-flex align-items-center flex-column justify-content-center">
                 <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px',paddingTop: '40px' }}>การจัดการสารสนเทศ</h2>
             </div>
-    <div className="card mx-auto my-auto" style={{maxWidth: '1000px',border: '1px solid #D3D3D3' }}>
+    <div className="d-flex flex-column"style={{fontFamily: 'Kanit, sans-serif'}}>
+    <div className="container">
+            <div className="card mx-auto mt-auto" style={{ boxShadow: '1px 2px 12px 4px rgba(0, 0, 0, 0.2)' ,maxWidth: '100%',Height: '100vh'}} >
+    {/* <div className="card mx-auto my-auto" style={{border: '1px solid #D3D3D3' }}> */}
+    
         <div className="card-body">
-            <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
+        <div style={{  flexWrap: 'wrap',gap:"10px"}}>
                 <div className="d-flex align-items-center">
                     <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '2px',fontWeight: 'bold' }}>Filter</h2>
                 </div>
@@ -190,7 +194,9 @@ function Filter_student_information() {
                 
 
             </div>
-        </div>  
+        </div> 
+        </div>
+        </div>
     </div>
             
             </div>
