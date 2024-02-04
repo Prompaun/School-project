@@ -118,40 +118,52 @@ const Checkgrade = () => {
 
       <Header header="ระบบจัดการสารสนเทศ" subhead="บริการสำหรับนักเรียน" />
       <br />
-      <div className="container d-flex flex-column align-items-center" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+      <div className="d-flex flex-column"style={{fontFamily: 'Kanit, sans-serif',height:"100vh"}}>
+      <div className="container d-flex flex-column align-items-center justify-content-center" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
         <h2>ระบบตรวจสอบผลการเรียน</h2><br />
       </div>
 
-      <div className="container d-flex flex-column align-items-center" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-        <div className="mb-3">
-          <span style={{ marginRight: '10px' }}>ปีการศึกษา:</span>
-          <select value={selectedYear} onChange={handleYearChange}>
-            <option value="">เลือกปีการศึกษา</option>
-            {Object.keys(subjectObject).map((year) => (
-              <option key={year} value={year}>
-                {year}
-              </option>
-            ))}
-          </select>
-          <span style={{ margin: '0 20px' }}></span> {/* เพิ่มระยะห่างที่นี่ */}
-          <span style={{ marginRight: '10px' }}>ภาคเรียนที่:</span>
-          <select value={selectedSemester} onChange={handleSemesterChange}>
-            <option value="">เลือกภาคเรียน</option>
-            {chapters.map((semester) => (
-              <option key={semester} value={semester}>
-                {semester}
-              </option>
-            ))}
-          </select>
+      <div className="container d-flex align-items-center justify-content-center"style={{ flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px'}}>
+            <div className="d-flex align-items-center">
+              <span style={{marginRight:"10px"}}>ปีการศึกษา :</span>
+            </div>
+            <div className="dropdown" style={{ maxWidth: '100%' }}>
+              <select value={selectedYear} onChange={handleYearChange} className="custom-select">
+                <option value="">เลือกปีการศึกษา</option>
+                {Object.keys(subjectObject).map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+         
+            <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px'}}>
+            <div className="d-flex align-items-center">
+                <span style={{marginRight:"10px"}}>ภาคเรียนที่ :</span>
+              </div>
+                <div className="dropdown" style={{ maxWidth: '100%' }}>
+                  <select value={selectedSemester} onChange={handleSemesterChange} className="custom-select">
+                    <option value="">เลือกภาคเรียน</option>
+                    {chapters.map((semester) => (
+                      <option key={semester} value={semester}>
+                        {semester}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              
         </div>
-    </div>
-        
+        </div>
         <br /> {/* เพิ่มแท็ก <br /> เพื่อสร้างการเว้นบรรทัด margin: 'auto', */}
         
         <div className="container flex-column align-items-center">
         {/* <table className="table-bordered" style={{ textAlign: 'center',fontFamily: 'Kanit, sans-serif'}}> */}
-        <div className="d-flex justify-content-center" style={{ height: '300px', overflowY: 'auto' }}>
-          <table className="table-bordered" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center',fontFamily: 'Kanit, sans-serif' }}>
+        <div className="d-flex justify-content-center" style={{ height: 'auto', overflowY: 'auto' }}>
+        <div className="table-responsive">
+        <table className="table table-bordered table-striped table-hover" style={{ borderCollapse: 'collapse', textAlign: 'center',fontFamily: 'Kanit, sans-serif' }}>
 
 
         <thead>          
@@ -182,17 +194,6 @@ const Checkgrade = () => {
         <tbody>
       {data[0].subjects.map((subject) => (
         <tr key={subject.id} style={{ height: '50px' }}>
-          {/* <td style={{ minWidth: '100px', maxWidth: '150px', width: '10%' }}>{subject.id}</td>
-          <td style={{ minWidth: '200px', maxWidth: '300px', width: '20%' }}>{subject.name}</td> */}
-          {/* <td style={{ width: '10%' }}>{subject.id}</td>
-          <td style={{ width: '10%' }}>{subject.name}</td>
-          <td style={{ width: '10%' }}>{subject.credits}</td>
-          <td style={{ width: '10%' }}>{subject.between_full}</td>
-          <td style={{ width: '10%' }}>{subject.between_get}</td>
-          <td style={{ width: '10%' }}>{subject.final_full}</td>
-          <td style={{ width: '10%' }}>{subject.final_get}</td>
-          <td style={{ width: '10%' }}>{subject.totalScore}</td>
-          <td style={{ width: '10%' }}>{subject.grade}</td> */}
           <td >{subject.id}</td>
           <td >{subject.name}</td>
           <td >{subject.credits}</td>
@@ -209,7 +210,10 @@ const Checkgrade = () => {
 
         </table>
         </div>
-        </div><br /><br /><br /><br /><br />
+        </div>
+        
+        </div>
+        </div>
       {/* </div> */}
     </>
   );

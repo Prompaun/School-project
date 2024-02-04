@@ -17,8 +17,8 @@ function Header({header,subhead}) {
         fontWeight: 'bold',   // ตัวหนา
         textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', // เงาข้อความ
         textAlign: 'center',
-        maxWidth: '100vw', // ข้อความจะไม่ขยายเกินภาพพื้นหลัง
-        whiteSpace: 'nowrap', // ข้อความจะไม่ขึ้นบรรทัดใหม่
+        width: '100vw', // ข้อความจะไม่ขยายเกินภาพพื้นหลัง
+        // whiteSpace: 'nowrap', // ข้อความจะไม่ขึ้นบรรทัดใหม่
       };
     
 
@@ -39,8 +39,8 @@ function Header({header,subhead}) {
             objectFit: 'cover'  // ภาพจะทำการ crop หรือ stretch เพื่อให้เต็มพื้นที่ที่กำหนด
         }}
         />   
-    <div style={textOverlayStyle}>
-    <h2 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '56px' }}>{header}</h2>
+    <div style={{...textOverlayStyle}}>
+    <h2 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '56px'}}>{header}</h2>
     <h5 style={{ textAlign: 'center',fontWeight: 'bold',fontSize: '32px' }}>{subhead}</h5>
     </div>
   </div>

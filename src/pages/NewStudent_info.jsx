@@ -1,18 +1,9 @@
 import React,{useState} from 'react'
 import { Link } from 'react-router-dom';
-import DatePicker, { registerLocale } from "react-datepicker";
-import th from "date-fns/locale/th"; // the locale you want
-registerLocale("th", th); // register it with the name you want
-import 'react-datepicker/dist/react-datepicker.css';
+import Date_Picker from '../components/Date_Picker';
 
 function NewStudent_info() {
-    const [startDate, setStartDate] = useState(new Date());
-    const currentYear = new Date().getFullYear();
-    const years = Array.from({ length: currentYear - 1989 }, (_, index) => 1990 + index);
-    const months = [
-        "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ];
+    
 
     const allowedFileTypes = ['.pdf', '.jpg', '.jpeg', '.png'];
 
@@ -32,182 +23,137 @@ function NewStudent_info() {
     
   return (
     <>
-    <div class="form-group col-md-15 fone">
         
-
-        <div className="row" style={{ fontFamily: 'Kanit, sans-serif',fontWeight: 'bold', fontSize: '20px', marginRight: '5px', gap: '0'}}>
+    <div className="d-flex flex-column"style={{fontFamily: 'Kanit, sans-serif'}}>
+        <div className="row" style={{fontWeight: 'bold', fontSize: '20px', marginRight: '5px', gap: '0',Height: '100vh'}}>
             <div className="col-sm d-flex align-items-center">
-                <label htmlFor="surname" className="col-form-label mb-0 mx-3">ข้อมูลส่วนตัวของนักเรียน</label>
+                <label htmlFor="surname" className="col-form-label">ข้อมูลส่วนตัวของนักเรียน</label>
             </div>
         </div>
         <br></br>
 
-        <h2 class="card-heading px-3"style={{ fontSize: '16px'}}>หมายเหตุ : รูปถ่ายต้องถ่ายไว้ไม่เกิน 6 เดือน</h2>
+        <h2 className="col-sm d-flex align-items-center"style={{ marginLeft: '15px',fontSize: '16px'}}>หมายเหตุ : รูปถ่ายต้องถ่ายไว้ไม่เกิน 6 เดือน</h2>
         
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '18px'}}>
-            <div className="col-sm-7 d-flex align-items-center">
-                {/* <input type="file" class="form-control px-4" id="customFile" /> */}
-                <label htmlFor="surname" className="col-form-label mb-0 mx-3">รูปนักเรียน</label>
-                <input type="file" className="form-control px-3" onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
-                <br />
+        <div style={{fontSize: '18px'}}>
+                <div className="align-items-center">
+                    <label htmlFor="surname" className="col-form-label px-3">รูปนักเรียน</label>
+                </div>
+                <div className="align-items-center"style={{marginLeft: '15px',maxWidth:"50%"}}>
+                    <input type="file" className="form-control" onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />   
+                </div>
+        </div>
+        <br></br>
+
+        <div style={{fontSize: '18px'}}>
+            <div className="align-items-center">
+                <label htmlFor="student_nid" className="col-form-label px-3">เลขประจำตัวประชาชน</label>
+            </div> 
+            <div className="align-items-center"style={{ marginLeft: '15px',maxWidth:"50%"}}>    
+                <input type="text" className="form-control px-3" id="student_nid" name="student_nid" placeholder="กรอกเลขประจำตัวประชาชน" />
             </div>
         </div>
         <br></br>
 
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '18px'}}>
-            <div className="col-sm-5 d-flex align-items-center">
-                <label htmlFor="student_nid" className="col-form-label mb-0 mx-3">เลขประจำตัวประชาชน</label>
-                <input type="text" className="form-control" id="student_nid" name="student_nid" placeholder="กรอกเลขประจำตัวประชาชน" />
-            </div>
-        </div>
-        <br></br>
-
-        <div class="d-flex align-items-center">
-            <h2 class="card-heading px-3" style={{fontSize: '18px'}}>คำนำหน้า</h2>
+       
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '16px',marginLeft: '15px' }}>
+        <h2 class="card-heading" style={{fontSize: '18px'}}>คำนำหน้า</h2>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="gender" id="male" />
-                <label class="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} for="male">
+                <label class="form-check-label custom-body" style={{fontSize: '16px', flexWrap: "wrap"}} for="male">
                     เด็กชาย
                 </label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="gender" id="female" />
-                <label class="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} for="female">
+                <label class="form-check-label custom-body"style={{fontSize: '16px', flexWrap: "wrap"}} for="female">
                     เด็กหญิง
                 </label>
             </div>
-        </div>      
-        <br></br>
-          
-        <div className="row" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px', marginRight: '10px', gap: '0' }}>
-            <div className="col-sm d-flex align-items-center">
-                <label htmlFor="surname" className="col-form-label mb-0 mx-3">ชื่อ</label>
-                <input type="text" className="form-control" id="surname" name="surname" placeholder="กรอกชื่อ" />
+        </div>
+    
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px' }}>
+            <div className="d-flex align-items-center">
+                <label htmlFor="surname" className="col-form-label"style={{flexWrap: 'wrap' }}>ชื่อ</label>
             </div>
-            <div className="col-sm d-flex align-items-center">
-                <label htmlFor="lastname" className="col-form-label mb-0 mx-3">นามสกุล</label>
+            <div className="align-items-center" style={{maxWidth:"100%"}}>
+                <input type="text" className="form-control" id="surname" name="surname" placeholder="กรอกชื่อ"/>
+            </div>
+            
+            <div className="d-flex align-items-center">   
+                <label htmlFor="lastname" className="col-form-label"style={{flexWrap: 'wrap' }}>นามสกุล</label>
+            </div>
+            <div className="align-items-center" style={{maxWidth:"100%"}}>    
                 <input type="text" className="form-control" id="lastname" name="lastname" placeholder="กรอกนามสกุล" />
             </div>
+            
         </div>
         <br></br>
 
-        <div className="row" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px', marginRight: '5px', gap: '0' }}>
-            <div className="col-sm d-flex align-items-center">
-                <h2 htmlFor="surname" className="col-form-label mb-0 mx-3">วัน/เดือน/ปีเกิด</h2>
-                    
-                <DatePicker locale="th"
-                    dateFormat="dd/MM/yyyy"
-                    renderCustomHeader={({
-                        date,
-                        changeYear,
-                        changeMonth,
-                        decreaseMonth,
-                        increaseMonth,
-                        prevMonthButtonDisabled,
-                        nextMonthButtonDisabled,
-                    }) => (
-                        <div
-                        style={{
-                            margin: 10,
-                            display: "flex",
-                            justifyContent: "center",
-                            fontFamily: 'Kanit, sans-serif'
-                        }}
-                        >
-                        <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
-                            {"<"}
-                        </button>
-                        <select
-                                    value={date.getFullYear()}
-                                    onChange={({ target: { value } }) => changeYear(value)}
-                                >
-                                    {years.map((option) => (
-                                        <option key={option} value={option}>
-                                            {option}
-                                        </option>
-                                    ))}
-                                </select>
-
-                                <select
-                                    value={months[date.getMonth()]}  
-                                    onChange={({ target: { value } }) =>
-                                        changeMonth(months.indexOf(value))
-                                    }
-                                >
-                                    {months.map((option) => (
-                                        <option key={option} value={option}>
-                                            {option}
-                                        </option>
-                                    ))}
-                                </select>
-
-                        <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
-                            {">"}
-                        </button>
-                        </div>
-                    )}
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)}
-                    />
+        <div className="row" style={{fontSize: '18px', marginRight: '5px', gap: '0' }}>
+            <div className="d-flex align-items-center">
+                <h2 htmlFor="surname" className="col-form-label px-3">วัน/เดือน/ปีเกิด</h2>
             </div>
-        </div>    
+            <div className="align-items-center"style={{ marginLeft: '15px'}}>       
+                    <Date_Picker />
+            </div>   
+            </div> 
         <br />
 
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '18px'}}>
-            <div className="col-sm-8 d-flex align-items-center">
-                <label htmlFor="CopyofStudentIDCard" className="col-form-label mb-0 mx-3">สำเนาสูติบัตร (ของนักเรียน)</label>
-                {/* <input type="file" class="form-control px-4" id="customFile" /> */}
-                <input type="file" className="form-control px-1" onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
+        <div style={{gap: '20px', fontFamily: 'Kanit, sans-serif', fontSize: '18px'}}>
+            <div className="align-items-center">
+                <label htmlFor="CopyofStudentIDCard" className="col-form-label px-3">สำเนาสูติบัตร (ของนักเรียน)</label>
+            </div>
+            <div className="align-items-center"style={{ marginLeft: '15px',maxWidth:"50%"}}>    
+                <input type="file" className="form-control" onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
             </div>
         </div>
         <br />
 
         <div className="row" style={{ fontFamily: 'Kanit, sans-serif',fontWeight: 'bold', fontSize: '20px', marginRight: '5px', gap: '0'}}>
             <div className="col-sm d-flex align-items-center">
-                <label htmlFor="surname" className="col-form-label mb-0 mx-3">ข้อมูลการศึกษา</label>
+                <label htmlFor="surname" className="col-form-label">ข้อมูลการศึกษา</label>
             </div>
         </div>
 
         <h2 htmlFor="surname" className="col-form-label mb-0 mx-3" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px', marginRight: '5px', gap: '0'}}>หลักฐานการศึกษาจากโรงเรียนเดิม</h2>
-        
-        <div className="d-flex align-items-center mb-3"style={{ fontFamily: 'Kanit, sans-serif', fontSize: '16px', marginRight: '5px', gap: '0'}}>
-            <div className="form-check mx-3">
-                <input className="form-check-input" type="radio" name="selectedOption" id="option1" value="ปพ.1" />
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '16px',marginLeft: '15px' }}>
+            <div className="form-check">
+                <input className="form-check-input" type="radio" name="selectedOption" id="option1" value="ปพ.1"/>
                 <label className="form-check-label" htmlFor="option1">
                     ปพ.1
                 </label>
             </div>
-
-            <div className="form-check mx-3">
+        
+            <div className="form-check">
                 <input className="form-check-input" type="radio" name="selectedOption" id="option2" value="ปพ.6" />
                 <label className="form-check-label" htmlFor="option2">
                     ปพ.6
                 </label>
             </div>
 
-            <div className="form-check mx-3">
+            <div className="form-check">
                 <input className="form-check-input" type="radio" name="selectedOption" id="option3" value="ปพ.7" />
                 <label className="form-check-label" htmlFor="option3">
                     ปพ.7
                 </label>
             </div>
-
-            <div className="form-check mx-3">
+           
+            <div className="form-check">
                 <input className="form-check-input" type="radio" name="selectedOption" id="option4" value="ปพ.8" />
                 <label className="form-check-label" htmlFor="option4">
                     ปพ.8
                 </label>
             </div>
-            {/* <input type="file" class="form-control px-4 mb-0 mx-3" id="customFile" /> */}
-            <div className="col-sm-6 d-flex align-items-center" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px', marginLeft: '15px', gap: '0' }}>
+              
+        </div>
+        <br></br> 
+        <div className="align-items-center" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px', marginLeft: '15px',maxWidth:"50%"}}>
                 <input type="file" className="form-control px-3" onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
             </div>
-        </div>
-    </div>
+   
     <br/>
-    {/* <Link >
-        <button type="submit" class="btn btn-primary float-end mb-0 mx-3" style={{fontFamily: 'Kanit, sans-serif', textAlign: 'right'}}><span>ถัดไป</span></button>
-    </Link> */}
+    
+    </div>
       </>
   )
 }

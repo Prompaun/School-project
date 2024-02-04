@@ -97,141 +97,121 @@ const HouseholdInfo = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', fontFamily: 'Kanit, sans-serif' }}>
-      <form style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }} onSubmit={handleSubmit}><br />
-      
-      <div style={{ display: 'flex', gap: '10px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-
-        <label>
-          <span style={{ marginRight: '10px', whiteSpace: 'nowrap' }}>บ้านเลขที่:</span>
-        </label>
-        <div className="col-sm-1.2 d-flex align-items-center">
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      fontFamily: 'Kanit, sans-serif',
+    }}>
+      <form onSubmit={handleSubmit}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>
+          <div className="d-flex align-items-center">
+          
+              <span style={{flexWrap: 'wrap' }}>บ้านเลขที่ :</span>
+              </div>
+              <div className="align-items-center"style={{maxWidth:"100%"}}> 
             <input type="text" className="form-control" placeholder="กรอกบ้านเลขที่" value={houseNumber} onChange={(e) => setHouseNumber(e.target.value)} />
-        </div>
-        
-
-        <label>
-          <span style={{ margin: '0 20px' }}></span> 
-          <span style={{ marginRight: '10px', whiteSpace: 'nowrap' }}>หมู่ที่:</span>
-        </label>
-          <div className="col-sm-1 d-flex align-items-center">
+          </div>
+    
+          <div className="d-flex align-items-center">
+           
+              <span style={{flexWrap: 'wrap' }}>หมู่ที่ :</span>
+              </div>
+              <div className="align-items-center"style={{maxWidth:"100%"}}> 
             <input type="text" className="form-control" placeholder="กรอกหมู่" value={villageNumber} onChange={(e) => setVillageNumber(e.target.value)} />
           </div>
-        
-
-        <label>
-          <span style={{ margin: '0 20px' }}></span> 
-          <span style={{ marginRight: '10px', whiteSpace: 'nowrap' }}>ซอย:</span>
-        </label>
-          <div className="col-sm-2 d-flex align-items-center">
+    
+          <div className="d-flex align-items-center">
+            
+              <span style={{flexWrap: 'wrap' }}>ซอย :</span>
+              </div>
+              <div className="align-items-center"style={{maxWidth:"100%"}}> 
             <input type="text" className="form-control" id="Alley" name="Alley" placeholder="กรอกซอย" />
           </div>
-        
-          <label>
-          <span style={{ margin: '0 20px' }}></span> 
-          <span style={{ marginRight: '10px', whiteSpace: 'nowrap' }}>ถนน:</span>
-        </label>
-          <div className="col-sm-3 d-flex align-items-center">
+    
+          <div className="d-flex align-items-center">
+            <label>
+              
+              <span style={{flexWrap: 'wrap' }}>ถนน :</span>
+            </label>
+            </div>
+            <div className="align-items-center"style={{maxWidth:"100%"}}> 
             <input type="text" className="form-control" id="streety" name="street" placeholder="กรอกถนน" />
           </div>
-
-      </div><br />
-
-      <div style={{ display: 'flex', gap: '10px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-        <label style={{ marginRight: '20px' }}>
-          <span style={{ marginRight: '10px' }}>จังหวัด:</span>
-            <select value={province} onChange={handleProvinceChange}>
-              <option value="">กรุณาเลือกจังหวัด</option>
-              {provinces.map((province) => (
-                <option key={province} value={province}>
-                  {province}
-                </option>
-              ))}
-            </select>
-        </label><br />
-        <label style={{ marginRight: '20px' }}>
-          <span style={{ marginRight: '10px' }}>เขต/อำเภอ:</span>
-          <select value={district} onChange={handleDistrictChange}>
-            <option value="">กรุณาเลือกเขต/อำเภอ</option>
-            {districtOptions[province] && districtOptions[province].map((district) => (
-              <option key={district} value={district}>
-                {district}
-              </option>
-            ))}
-          </select>
-        </label><br />
-        <label style={{ marginRight: '20px' }}>
-          <span style={{ marginRight: '10px' }}>แขวง/ตำบล:</span>
-          <select value={subDistrict} onChange={(e) => setSubDistrict(e.target.value)}>
-            <option value="">กรุณาเลือกแขวง/ตำบล</option>
-            {subDistrictOptions[district] && subDistrictOptions[district].map((subDistrict) => (
-              <option key={subDistrict} value={subDistrict}>
-                {subDistrict}
-              </option>
-            ))}
-          </select>
-        </label><br />
-      </div><br />
-
-      {/* <div style={{ display: 'flex', gap: '10px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-        <label style={{ marginRight: '20px' }}>
-          <span style={{ marginRight: '10px' }}>แขวง/ตำบล:</span>
-          <select value={subDistrict} onChange={(e) => setSubDistrict(e.target.value)}>
-            <option value="">กรุณาเลือกแขวง/ตำบล</option>
-            {subDistrictOptions[district] && subDistrictOptions[district].map((subDistrict) => (
-              <option key={subDistrict} value={subDistrict}>
-                {subDistrict}
-              </option>
-            ))}
-          </select>
-        </label><br />
-        <label style={{ marginRight: '20px' }}>
-          <span style={{ marginRight: '10px' }}>ถนน:</span>
-          <select value={street} onChange={(e) => setStreet(e.target.value)}>
-            <option value="">กรุณาเลือกถนน</option>
-            {streetOptions[subDistrict] && streetOptions[subDistrict].map((street) => (
-              <option key={street} value={street}>
-                {street}
-              </option>
-            ))}
-          </select>
-        </label><br />
-      </div><br /> */}
-
-      {/* <div style={{ display: 'flex', alignItems: 'center' }}>
-        <label style={{ marginRight: '10px' }}>
-          อัพโหลดไฟล์สำเนาทะเบียนบ้าน:
-          <input type="file" class="form-control px-3" id="customFile" onChange={handleFileUpload} />
-        </label><br />
-      </div><br /> */}
-
-      {/* <div style={{ display: 'flex', alignItems: 'center' }}>
-        <label style={{ marginRight: '10px' }}>
-          อัพโหลดไฟล์สำเนาทะเบียนบ้าน:
-        </label>
-        <input type="file" className="form-control px-3" onChange={handleFileUpload} />
-      </div><br /> */}
-
-      <div style={{ display: 'flex', gap: '10px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-          <label style={{ marginRight: '10px', whiteSpace: 'nowrap' }}>
-            อัพโหลดไฟล์สำเนาทะเบียนบ้าน:
-          </label>
-          <input type="file" className="form-control px-3" onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
         </div>
-      <br />
-
-
+    
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', alignItems: 'center', fontFamily: 'Kanit, sans-serif', fontSize: '16px', marginTop: '20px' }}>
+          <div className="d-flex align-items-center">
+           
+              <span style={{flexWrap: 'wrap' }}>จังหวัด :</span>
+              </div>
+              <div class="h-screen flex flex-col justify-left sm:flex-row">
+                 <div class="sm:w-1_3 sm:pr-3">
+                    <div class="dropdown"style={{maxWidth:"100%"}} >
+                  <select value={province} onChange={handleProvinceChange} class="custom-select w-full">
+                    <option value="">กรุณาเลือกจังหวัด</option>
+                    {provinces.map((province) => (
+                      <option key={province} value={province}>
+                        {province}
+                      </option>
+                    ))}
+                  </select>
+                  </div>
+              </div>
+          </div>
+    
+          <div className="d-flex align-items-center">
+            
+              <span style={{flexWrap: 'wrap' }}>เขต/อำเภอ :</span>
+              </div>
+              <div class="h-screen flex flex-col justify-left sm:flex-row">
+                 <div class="sm:w-1_3 sm:pr-3">
+                    <div class="dropdown"style={{maxWidth:"100%"}} >
+                      <select value={district} onChange={handleDistrictChange} class="custom-select w-full">
+                        <option value="">กรุณาเลือกเขต/อำเภอ</option>
+                        {districtOptions[province] && districtOptions[province].map((district) => (
+                          <option key={district} value={district}>
+                            {district}
+                          </option>
+                        ))}
+                      </select>
+                  </div>
+                </div>
+          </div>
+    
+          <div className="d-flex align-items-center"style={{ flexWrap: "wrap" }}>
+            
+              <span style={{  flexWrap: "wrap" }}>แขวง/ตำบล :</span>
+              </div>
+              <div class="h-screen flex flex-col justify-left sm:flex-row">
+                 <div class="sm:w-1_3 sm:pr-3">
+                    <div class="dropdown"style={{maxWidth:"100%"}} >
+                        <select value={subDistrict} onChange={(e) => setSubDistrict(e.target.value)} class="custom-select w-full">
+                          <option value="">กรุณาเลือกแขวง/ตำบล</option>
+                          {subDistrictOptions[district] && subDistrictOptions[district].map((subDistrict) => (
+                            <option key={subDistrict} value={subDistrict}>
+                              {subDistrict}
+                            </option>
+                          ))}
+                        </select>
+                        </div>
+                </div>
+          </div>
+        </div>
+    
+        <div style={{ fontSize: '16px',marginTop:"20px"}}>
+          <div className="align-items-center"style={{ marginRight: '10px' }}>
+          <label className="col-form-label">อัพโหลดไฟล์สำเนาทะเบียนบ้าน :</label>
+              
+            </div>
+              <div className="align-items-center">
+          <input type="file" className="form-control" style={{maxWidth:"70%"}}onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
+          <br />
+        </div>
+      
+      </div>
+      <br></br>
 
       </form>
-      {/* <div style={{ marginTop: 'auto', display: 'flex', justifyContent: 'flex-start' }}> */}
-      {/* <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-        <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
-          <button type="submit" className="btn btn-primary">ย้อนกลับ</button>
-        </div>
-        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <button type="submit" className="btn btn-primary">ถัดไป</button>
-        </div>
-      </div> */}
     </div>
   );
 };

@@ -52,76 +52,98 @@ const Login_personnel = () => {
             <Header header="ระบบบริการข้อมูล" subhead="สำหรับบุคลากรภายในโรงเรียน"/>
             {/* เพิ่มฟอร์มการลงทะเบียน */}
             {/* <div class="list-group"> */}
+            <div className="d-flex flex-column"style={{fontFamily: 'Kanit, sans-serif'}}>
             <div className="container mt-5">
-    <div className="card mx-auto mt-5" style={{ boxShadow: '1px 2px 12px 4px rgba(0, 0, 0, 0.2)' }}>
-        <div className="card-body">
-            <div className="d-flex align-items-center">
-                <img src={school_logo} alt="Register Image" width="100" height="100" />
-                <h2 className="ms-3 mb-0">โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h2>
+            <div className="card mx-auto mt-5" style={{ boxShadow: '1px 2px 12px 4px rgba(0, 0, 0, 0.2)' ,maxWidth: '90%',Height: '100vh'}} >
+                <div className="card-body">
+                <div style={{ display: 'flex', flexWrap: 'wrap',gap:"10px"}}>
+                    
+                    <img src={school_logo} alt="Register Image" width="100" height="100" />
+                    {/* <h2 className="ms-3 mb-0">โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h2> */}
+                
+                <div className="d-flex align-items-center" >
+                    <h2 className="col-sm d-flex align-items-center">โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h2>
+                </div>
             </div>
             <br></br>
-
             <form onSubmit={handleSubmit}>
-                <div className="mb-3 d-flex" style={{gap: '20px'}}>
-                    <label>
-                        <span htmlFor="email" className="form-label me-3"style={{ marginRight: '10px',marginLeft: '0px', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>อีเมล:  </span>
-                    </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="username"
-                        name="username"
-                        value={formData.username}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
+            
+                        <div className="mb-3 d-flex" >
+                            <div className="d-flex align-items-center">
+                                    <label>
+                                        <span htmlFor="email" className="col-form-label me-3"style={{ marginRight: '10px',marginLeft: '0px', fontSize: '16px' }}>อีเมล :  </span>
+                                    </label>
+                                </div>
+                                
+                        </div>
+                        <div className="align-items-center" style={{ maxWidth:"100%"}}>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="username"
+                                name="username"
+                                value={formData.username}
+                                onChange={handleInputChange}
+                                required
+                            /></div>
+                           
 
-            <div className="mb-3 d-flex align-items-center">
-            <label>
-                <span htmlFor="password" className="form-label me-3" style={{ marginRight: '10px', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>รหัสผ่าน:</span>
-            </label>
-            <input
-                type={showPassword ? 'text' : 'password'}
-                className="form-control"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                required
-            />
-            <button
-                type="button"
-                onClick={handleTogglePassword}
-                style={{
-                    border: 'none',
-                    background: 'none',
-                    cursor: 'pointer',
-                    borderWidth: '1px', // ตั้งค่าขอบ
-                    borderStyle: 'solid', // ตั้งค่ารูปแบบของขอบ
-                    borderColor: '#dcdcdc', // ตั้งค่าสีขอบ
-                    color: 'gray',
-                    borderRadius: '5px', // เพิ่มขอบมนเม็ด
-                    padding: '5px', // ปรับขนาด padding
-                }}                
-                >
-                <img
-                    src={showPassword ? eye_closed : eye_open}
-                    alt={showPassword ? 'ปิดตา' : 'เปิดตา'}
-                    style={{ width: '20px', height: '12px' }} // ปรับขนาดตามที่คุณต้องการ
-                />
-            </button>
+                    <div className="mb-3 d-flex align-items-center"style={{ marginTop: '10px'}} >
+                            <div className="d-flex align-items-center">
+                                <label>
+                                    <span htmlFor="password" className="col-form-label me-5" style={{ marginRight: '10px', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>รหัสผ่าน :</span>
+                                </label>
+                                </div>
+                                
+                                 </div>
+                            <div className="d-flex align-items-center "style={{ maxWidth:"100%"}}>
+                                <input
+                                    type={showPassword ? 'text' : 'password'}
+                                    className="form-control"
+                                    id="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleInputChange}
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    onClick={handleTogglePassword}
+                                    style={{
+                                        border: 'none',
+                                        background: 'none',
+                                        cursor: 'pointer',
+                                        borderWidth: '1px', // ตั้งค่าขอบ
+                                        borderStyle: 'solid', // ตั้งค่ารูปแบบของขอบ
+                                        borderColor: '#dcdcdc', // ตั้งค่าสีขอบ
+                                        color: 'gray',
+                                        borderRadius: '5px', // เพิ่มขอบมนเม็ด
+                                        padding: '5px', // ปรับขนาด padding
+                                    }}
+                                    
+                                    >
+                                    <img
+                                        src={showPassword ? eye_closed : eye_open}
+                                        alt={showPassword ? 'ปิดตา' : 'เปิดตา'}
+                                        style={{ width: '20px', height: '12px' }} // ปรับขนาดตามที่คุณต้องการ
+                                    />
+                                </button>
+                            </div>
+                            
+                           <br />
+                           
+                                    <Link to='/Register' style={linkStyle}>ลืมรหัสผ่าน</Link>
+                               
+                                    <Link to="/Filter_student_information">
+                                        <button type="submit" className="btn btn-primary float-end" style={{fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>Log in</button>
+                                    </Link>
+                          
+                        </form>
+                    </div>
+                </div>
+            </div>
 
             </div>
-                <Link to='/Register' style={linkStyle}>ลืมรหัสผ่าน</Link>
-
-                <Link to="/Filter_student_information">
-                <button type="submit" className="btn btn-primary float-end" style={{fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>Log in</button>
-                </Link>
-            </form>
-        </div>
-    </div>
-</div>
         </>
     );
 };

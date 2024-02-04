@@ -12,8 +12,12 @@ function Login() {
       <br></br>
       <h1 className="text-header text-center">เข้าสู่ระบบ</h1>
       <br></br>
-
+      <div className="d-flex justify-content-center">
         <Card_role_login />
+      </div>
+
+      <br></br>
+      <br></br>
     </>
 
 

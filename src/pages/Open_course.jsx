@@ -44,7 +44,9 @@ function Open_course() {
         </div> 
     </div>
     <br></br>
+    <div className="d-flex justify-content-center">
         <Card_menu_course/>
+        </div>
     <br></br>
     <br></br>
 

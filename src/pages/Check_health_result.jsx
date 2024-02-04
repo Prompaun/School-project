@@ -34,7 +34,7 @@ function Check_health_result() {
       <br></br>
       <br></br>
     {/* <div class="container justify-content-center"> */}
-    <div class="card mx-auto" style={{ width: "1300px"}}>
+    <div className="mt-2 d-flex flex-column align-items-center"style={{ height: '100vh'}}>
         <Tab_health/>
         </div> 
       <br></br>

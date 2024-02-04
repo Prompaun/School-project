@@ -37,7 +37,8 @@ const Navbar = () => {
           {/* Logo and School Name */}
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <img src={logoImage} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
-            <h5 style={{ textAlign: 'right', marginLeft: '10px', marginBottom: '0' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
+
+            <h5 style={{ textAlign: 'right', marginLeft: '10px',display: 'flex', flexWrap: 'wrap', whiteSpace: "nowrap", marginBottom: '0'}}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
           </div>
         </Link>
         <div className="nav navbar-nav navbar-right">
