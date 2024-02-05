@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Route, RouterProvider, Routes, Navigate, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import { BrowserRouter, Route, RouterProvider, Routes, Navigate, createBrowserRouter, createRoutesFromElements, Link } from 'react-router-dom';
 import axios from 'axios';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -72,7 +72,7 @@ const router = createBrowserRouter(
 
         <Route path="/Education_information" element={<Education_information />} />
         <Route path="/Student_List_Information" element={<Student_List_Information />} />
-        <Route path="/Filter_student_information" element={<Filter_student_information />} />
+        {/* <Route path="/Filter_student_information" element={<Filter_student_information />} /> */}
         <Route path="/Personnel_page" element={<Personnel_page />} />
         {/* <Route path="/Sidebar" element={<Sidebar />} /> */}
 
@@ -105,76 +105,76 @@ const router = createBrowserRouter(
 // Main App component
 function App() {
   
-
-  // const getUser = async () => {
-  //   try {
-  //     const url = `${process.env.REACT_APP_API_URL}/auth/login/success`;
-  //     const { data } = await axios.get(url, { withCredentials: true });
-  //     setUser(data.user._json);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getUser();
-  // }, []);
   const [user, setUser] = useState(null);
-  const apiUrl = process.env.REACT_APP_API_URL;
+
+  useEffect(() => {
+    const getUser = () => {
+      fetch("http://localhost:5000/auth/login/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+          setUser(resObject.user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
+  }, []);
   
 
-  // const getUser = async () => {
-  //   try {
-  //     const url = `${apiUrl}/auth/login/success`;
-  //     const { data } = await axios.get(url, { withCredentials: true });
-  //     setUser(data.user._json);
-  //     console.log(data.user._json,"helloworld");
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
-  const getUser = async () => {
-    try {
-      const url = `${apiUrl}/auth/login/success`;
-      const { data } = await axios.get(url, { withCredentials: true });
-      setUser(data.user._json);
-      console.log('User Data:', data.user._json);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-  
-
-  
+  console.log(user)
 
   return (
+
     <div className="container">
-      <RouterProvider router={router}>
-        <Routes>
-          
-          <Route
+        <RouterProvider router={router}>
+          <Routes>
+            <Route
               exact
               path="/Login_personnel"
-              element={user ? <Navigate to="/Filter_student_information" /> : <Login/>}
+              element={user ? <Navigate to="/" /> : <Login_personnel />}
             />
-          {/* <Route
-            exact
-            path="/"
-            element={user ? <Home user={user} /> : <Navigate to="/login" />}
-          />
-          <Route
-            exact
-            path="/login"
-            element={user ? <Navigate to="/" /> : <Login />}
-          />
-          <Route
-            path="/signup"
-            element={user ? <Navigate to="/" /> : <Register />}
-          /> */}
-        </Routes>
-      </RouterProvider>
+          </Routes>
+        </RouterProvider>
     </div>
+  
+    // <div className="container">
+    //   <RouterProvider router={router}>
+    //       <Routes>
+    //         <Route
+    //             exact
+    //             path="/Login_personnel"
+    //             element={user ? <Link to="/Login_personnel" /> : <Login_personnel />}
+    //           />
+    //       </Routes>
+    //     </RouterProvider>
+    //   </div>
+
+  // <BrowserRouter>
+  //     <div className="container">
+  //       <Routes>
+  //         <Route
+  //           exact
+  //           path="/Login_personnel"
+  //           element={user ? <Navigate to="/Filter_student_information" /> : <Login_personnel />}
+  //         />
+  //         <Route path="/Filter_student_information" element={<Filter_student_information />} />
+  //       </Routes>
+  //     </div>
+  //   </BrowserRouter>
+
+    
   );
 }
 

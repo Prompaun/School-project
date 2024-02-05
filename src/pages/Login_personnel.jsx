@@ -6,8 +6,12 @@ import Navbar from "../components/Navbar";
 import eye_open from "../images/eye-open.png";
 import eye_closed from "../images/eye-closed.png";
 import GoogleIMG from '../images/google.png'
-// require("dotenv").config();
+
 const Login_personnel = () => {
+
+    const google = () => {
+        window.open("http://localhost:5000/auth/google", "_self");
+    };
 
 
       const linkStyle = {
@@ -47,14 +51,6 @@ const Login_personnel = () => {
     setShowPassword(!showPassword);
   };
 
-  const googleAuth = () => {
-    window.open(
-        // `${process.env.REACT_APP_API_URL}/auth/google/callback`,
-        `http://localhost:8080/auth/google/callback`,
-        "_self"
-    );
-};
-
     return (
         <>
             <Navbar/>
@@ -93,7 +89,7 @@ const Login_personnel = () => {
                                 name="username"
                                 value={formData.username}
                                 onChange={handleInputChange}
-                                // required
+                                required
                             /></div>
                            
 
@@ -113,7 +109,7 @@ const Login_personnel = () => {
                                     name="password"
                                     value={formData.password}
                                     onChange={handleInputChange}
-                                    // required
+                                    required
                                 />
                                 <button
                                     type="button"
@@ -153,8 +149,7 @@ const Login_personnel = () => {
                                     
                                </div>
                                <div className="d-flex justify-content-center" style={{flexWrap:"wrap",fontSize:"16px",marginTop:"10px"}}>
-                               <button className="google_btn" onClick={googleAuth}>
-                                    
+                               <button className="google_btn" onClick={google} >
                                         <img src={GoogleIMG} alt="google icon" />
                                         <span>Sign in with Google</span>
                                     </button>
