@@ -124,7 +124,7 @@ const Checkgrade = () => {
       </div>
 
       <div className="container d-flex align-items-center justify-content-center"style={{ flexWrap: 'wrap' }}>
-      <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px'}}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px'}}>
             <div className="d-flex align-items-center">
               <span style={{marginRight:"10px"}}>ปีการศึกษา :</span>
             </div>
@@ -138,26 +138,25 @@ const Checkgrade = () => {
                 ))}
               </select>
             </div>
-          </div>
+        </div>
          
-            <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px'}}>
-            <div className="d-flex align-items-center">
-                <span style={{marginRight:"10px"}}>ภาคเรียนที่ :</span>
-              </div>
-                <div className="dropdown" style={{ maxWidth: '100%' }}>
-                  <select value={selectedSemester} onChange={handleSemesterChange} className="custom-select">
-                    <option value="">เลือกภาคเรียน</option>
-                    {chapters.map((semester) => (
-                      <option key={semester} value={semester}>
-                        {semester}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              
+        <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px'}}>
+          <div className="d-flex align-items-center">
+            <span style={{marginRight:"10px"}}>ภาคเรียนที่ :</span>
+          </div>
+          <div className="dropdown" style={{ maxWidth: '100%' }}>
+            <select value={selectedSemester} onChange={handleSemesterChange} className="custom-select">
+              <option value="">เลือกภาคเรียน</option>
+              {chapters.map((semester) => (
+                <option key={semester} value={semester}>
+                  {semester}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-        </div>
-        <br /> {/* เพิ่มแท็ก <br /> เพื่อสร้างการเว้นบรรทัด margin: 'auto', */}
+      </div>
+      <br /> {/* เพิ่มแท็ก <br /> เพื่อสร้างการเว้นบรรทัด margin: 'auto', */}
         
         <div className="container flex-column align-items-center">
         {/* <table className="table-bordered" style={{ textAlign: 'center',fontFamily: 'Kanit, sans-serif'}}> */}

@@ -72,7 +72,7 @@ const router = createBrowserRouter(
 
         <Route path="/Education_information" element={<Education_information />} />
         <Route path="/Student_List_Information" element={<Student_List_Information />} />
-        {/* <Route path="/Filter_student_information" element={<Filter_student_information />} /> */}
+        <Route path="/Filter_student_information" element={<Filter_student_information />} />
         <Route path="/Personnel_page" element={<Personnel_page />} />
         {/* <Route path="/Sidebar" element={<Sidebar />} /> */}
 
@@ -143,7 +143,7 @@ function App() {
             <Route
               exact
               path="/Login_personnel"
-              element={user ? <Navigate to="/" /> : <Login_personnel />}
+              element={user ? <Navigate to="/Filter_student_information" /> : <Login_personnel />}
             />
           </Routes>
         </RouterProvider>
