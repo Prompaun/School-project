@@ -15,9 +15,9 @@ import NewUser_menu from './pages/NewUser_menu'
 import Open_course from './pages/Open_course'
 // import Tab_enroll from './pages/Tab_enroll'
 import CheckEnroll_status from './pages/CheckEnroll_status'
-import Class_instructor_menu from './pages/Class_instructor_menu'
+// import Class_instructor_menu from './pages/Class_instructor_menu'
 import Login_personnel from './pages/Login_personnel'
-import Subject_instructor_menu from './pages/Subject_Instructor_menu'
+// import Subject_instructor_menu from './pages/Subject_Instructor_menu'
 import Education_information from './pages/Education_information'
 import Student_List_Information from './pages/Student_List_Information'
 import Filter_student_information from './pages/Filter_student_information'
@@ -42,6 +42,7 @@ import Health_info from './pages/Health_info'
 import Check_health_result from './pages/Check_health_result'
 import Enrollment_info from './pages/Enrollment_info'
 import Growth_nutrition from './pages/Growth_nutrition'
+import Personnel_menu from './pages/Personnel_menu'
 // import ParentsInfo from './pages/ParentInfo'
 
 const router = createBrowserRouter(
@@ -69,8 +70,8 @@ const router = createBrowserRouter(
         <Route path="/Health_result" element={<Check_health_result/>} />
 
         <Route path ="/Login_personnel" element={<Login_personnel />} />
-        <Route path="/Login_personnel/Class_instrctor_menu" element={<Class_instructor_menu />} />
-        <Route path="/Subject_instrctor_menu" element={<Subject_instructor_menu/>} />
+        {/* <Route path="/Login_personnel/Class_instrctor_menu" element={<Class_instructor_menu />} /> */}
+        <Route path="/Personnel_menu" element={<Personnel_menu/>} />
 
         <Route path="/Education_information" element={<Education_information />} />
         <Route path="/Student_List_Information" element={<Student_List_Information />} />
