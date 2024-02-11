@@ -76,9 +76,9 @@ const Student_info = () => {
              
     <div className="container-fluid">
         <div className="row flex-nowrap">
-            <Sidebar />
+            {/* <Sidebar /> */}
             
-        <div className="col-md-7">
+        <div className="col-md">
             {/* <div className="container flex-column align-items-center">
                 <h2 className="card-heading text-left mx-auto ml-auto" style={{ fontSize: '20px', marginTop: '2px' }}>ผลการค้นหา</h2>
             </div> */}

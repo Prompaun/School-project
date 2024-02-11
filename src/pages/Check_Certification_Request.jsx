@@ -66,9 +66,9 @@ const Check_Certification_Request = () => {
             <Header header="ระบบการออกใบรับรอง" subhead="ตรวจสอบคำขอใบรับรอง" />  
     <div className="container-fluid">
         <div className="row flex-nowrap">
-            <Sidebar />
+            {/* <Sidebar /> */}
         
-        <div className="col-md-9">
+        <div className="col-md">
                        
             <br />
             

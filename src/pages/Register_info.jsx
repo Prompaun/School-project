@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Header from '../components/Header'
-const Register = () => {
+const Register_info = () => {
   
   // เพิ่ม state สำหรับเก็บข้อมูลจากฟอร์ม
   const [formData, setFormData] = useState({
     username: '',
-    password: '',
+    FirstName: '',
+    LastName: '',
   });
 
   // รับค่า input จากฟอร์มและอัปเดต state ตามชื่อ input
@@ -46,7 +47,7 @@ const Register = () => {
     <form onSubmit={handleSubmit} className="w-100">
       <div className="mb-3">
         {/* <label htmlFor="username" className="form-label custom-font">เลขประจำตัวประชาชน (ผู้สมัครเข้าศึกษา): </label> */}
-        <label htmlFor="email" className="form-label custom-font">อีเมลผู้ปกครอง (สำหรับใช้สร้างบัญชีผู้ใช้งาน): </label>
+        <label htmlFor="email" className="form-label custom-font">อีเมล : </label>
         <input
           type="text"
           className="form-control"
@@ -58,25 +59,25 @@ const Register = () => {
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="password" className="form-label custom-font">รหัสผ่าน: </label>
+        <label htmlFor="FirstName" className="form-label custom-font">ชื่อ : </label>
         <input
-          type="password"
+          type="FirstName"
           className="form-control"
-          id="password"
-          name="password"
-          value={formData.password}
+          id="FirstName"
+          name="FirstName"
+          value={formData.FirstName}
           onChange={handleInputChange}
           required
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="confirmPassword" className="form-label custom-font">ยืนยันรหัสผ่าน: </label>
+        <label htmlFor="LastName" className="form-label custom-font">นามสกุล : </label>
         <input
-          type="password"
+          type="LastName"
           className="form-control"
-          id="confirmPassword"
-          name="confirmPassword"
-          value={formData.confirmPassword}
+          id="LastName"
+          name="LastName"
+          value={formData.LastName}
           onChange={handleInputChange}
           required
         />
@@ -86,7 +87,6 @@ const Register = () => {
           สร้างบัญชีและดำเนินการต่อ
         </Link>
     </button>
-    
     </form>
   </div>
 </div>
@@ -131,4 +131,4 @@ const Register = () => {
   </form>
 </div> */}
 
-export default Register;
+export default Register_info;

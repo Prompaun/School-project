@@ -99,8 +99,8 @@ const Manage_health_data = () => {
              
     <div className="container-fluid">
         <div className="row flex-nowrap">
-            <Sidebar />       
-        <div className="col-md-7">
+            {/* <Sidebar />        */}
+        <div className="col-md">
             <div className="card " style={{maxWidth: "1300px", border: '1px solid white' }}>
                 <div className="card-body">
                     <div className="form-group col-md-0 fone" style={{ padding: '32px', margin: '10px', whiteSpace: "nowrap" }}>
