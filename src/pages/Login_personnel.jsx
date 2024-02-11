@@ -6,7 +6,12 @@ import Navbar from "../components/Navbar";
 import eye_open from "../images/eye-open.png";
 import eye_closed from "../images/eye-closed.png";
 import GoogleIMG from '../images/google.png'
+
 const Login_personnel = () => {
+
+    const google = () => {
+        window.open("http://localhost:5000/auth/google", "_self");
+    };
 
 
       const linkStyle = {

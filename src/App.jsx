@@ -1,49 +1,46 @@
-import React from 'react'
-import { BrowserRouter, Route, RouterProvider, Routes, createBrowserRouter, createRoutesFromElements} from 'react-router-dom'
-import Home from './pages/Home'
-import Login from './pages/Login'
-import Register from './pages/Register'
-// import Select_role_user from './pages/Select_role_user'
-import Login_student from './pages/login_student'
-import Login_parent from './pages/Login_parent'
-import Student_menu from './pages/Student_menu'
-import Checkgrade from './pages/Checkgrade'
-import Parent_menu from './pages/Parent_menu'
-import Request_cert from './pages/Request_cert'
-import History_request from './pages/History_request'
-import NewUser_menu from './pages/NewUser_menu'
-import Open_course from './pages/Open_course'
-// import Tab_enroll from './pages/Tab_enroll'
-import CheckEnroll_status from './pages/CheckEnroll_status'
-// import Class_instructor_menu from './pages/Class_instructor_menu'
-import Login_personnel from './pages/Login_personnel'
-// import Subject_instructor_menu from './pages/Subject_Instructor_menu'
-import Education_information from './pages/Education_information'
-import Student_List_Information from './pages/Student_List_Information'
-import Filter_student_information from './pages/Filter_student_information'
-import Subject_Score_Record from './pages/Subject_Score_Record'
-import Personnel_page from './pages/Personnel_page'
-import Check_Certification_Request from './pages/Check_Certification_Request'
-import Check_Applicant_Information from './pages/Check_Applicant_Information'
-import Upload_Enrollment_Status from './pages/Upload_Enrollment_Status'
-import Enrollment_Status from './pages/Enrollment_Status'
-import Admission_Results from './pages/Admission_Results'
-import Parent_Information from './pages/Parent_Information'
-import Student_Information from './pages/Student_Information'
-import UploadScores_According_toApplicantNames from './pages/UploadScores_According_toApplicantNames'
-import Student_Address from './pages/Student_Address'
-import Manage_health_data from './pages/Manage_health_data'
-import Sidebar from './components/Sidebar'
-import Student_info from './pages/Student_info'
-import Result_health_data from './pages/Result_health_data'
-import Medical_History from './pages/Medical_History'
-import Health_Checkup from './pages/Health_Checkup'
-import Health_info from './pages/Health_info'
-import Check_health_result from './pages/Check_health_result'
-import Enrollment_info from './pages/Enrollment_info'
-import Growth_nutrition from './pages/Growth_nutrition'
-import Personnel_menu from './pages/Personnel_menu'
-// import ParentsInfo from './pages/ParentInfo'
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Route, RouterProvider, Routes, Navigate, createBrowserRouter, createRoutesFromElements, Link } from 'react-router-dom';
+import axios from 'axios';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Login_student from './pages/login_student';
+import Login_parent from './pages/Login_parent';
+import Student_menu from './pages/Student_menu';
+import Checkgrade from './pages/Checkgrade';
+import Parent_menu from './pages/Parent_menu';
+import Request_cert from './pages/Request_cert';
+import History_request from './pages/History_request';
+import NewUser_menu from './pages/NewUser_menu';
+import Open_course from './pages/Open_course';
+import CheckEnroll_status from './pages/CheckEnroll_status';
+import Class_instructor_menu from './pages/Class_instructor_menu';
+import Login_personnel from './pages/Login_personnel';
+import Subject_instructor_menu from './pages/Subject_Instructor_menu';
+import Education_information from './pages/Education_information';
+import Student_List_Information from './pages/Student_List_Information';
+import Filter_student_information from './pages/Filter_student_information';
+import Subject_Score_Record from './pages/Subject_Score_Record';
+import Personnel_page from './pages/Personnel_page';
+import Check_Certification_Request from './pages/Check_Certification_Request';
+import Check_Applicant_Information from './pages/Check_Applicant_Information';
+import Upload_Enrollment_Status from './pages/Upload_Enrollment_Status';
+import Enrollment_Status from './pages/Enrollment_Status';
+import Admission_Results from './pages/Admission_Results';
+import Parent_Information from './pages/Parent_Information';
+import Student_Information from './pages/Student_Information';
+import UploadScores_According_toApplicantNames from './pages/UploadScores_According_toApplicantNames';
+import Student_Address from './pages/Student_Address';
+import Manage_health_data from './pages/Manage_health_data';
+import Sidebar from './components/Sidebar';
+import Student_info from './pages/Student_info';
+import Result_health_data from './pages/Result_health_data';
+import Medical_History from './pages/Medical_History';
+import Health_Checkup from './pages/Health_Checkup';
+import Health_info from './pages/Health_info';
+import Check_health_result from './pages/Check_health_result';
+import Enrollment_info from './pages/Enrollment_info';
+import Growth_nutrition from './pages/Growth_nutrition';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -75,7 +72,7 @@ const router = createBrowserRouter(
 
         <Route path="/Education_information" element={<Education_information />} />
         <Route path="/Student_List_Information" element={<Student_List_Information />} />
-        <Route path="/Filter_student_information" element={<Filter_student_information />} />
+        {/* <Route path="/Filter_student_information" element={<Filter_student_information />} /> */}
         <Route path="/Personnel_page" element={<Personnel_page />} />
         {/* <Route path="/Sidebar" element={<Sidebar />} /> */}
 
@@ -105,9 +102,79 @@ const router = createBrowserRouter(
   )
 )
 
+// Main App component
 function App() {
+  
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const getUser = () => {
+      fetch("http://localhost:5000/auth/login/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+          setUser(resObject.user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
+  }, []);
+  
+
+  console.log(user)
+
   return (
-    <RouterProvider router={router} />
+
+    <div className="container">
+        <RouterProvider router={router}>
+          <Routes>
+            <Route
+              exact
+              path="/Login_personnel"
+              element={user ? <Navigate to="/" /> : <Login_personnel />}
+            />
+          </Routes>
+        </RouterProvider>
+    </div>
+  
+    // <div className="container">
+    //   <RouterProvider router={router}>
+    //       <Routes>
+    //         <Route
+    //             exact
+    //             path="/Login_personnel"
+    //             element={user ? <Link to="/Login_personnel" /> : <Login_personnel />}
+    //           />
+    //       </Routes>
+    //     </RouterProvider>
+    //   </div>
+
+  // <BrowserRouter>
+  //     <div className="container">
+  //       <Routes>
+  //         <Route
+  //           exact
+  //           path="/Login_personnel"
+  //           element={user ? <Navigate to="/Filter_student_information" /> : <Login_personnel />}
+  //         />
+  //         <Route path="/Filter_student_information" element={<Filter_student_information />} />
+  //       </Routes>
+  //     </div>
+  //   </BrowserRouter>
+
+    
   );
 }
 
