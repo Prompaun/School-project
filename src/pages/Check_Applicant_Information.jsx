@@ -67,9 +67,9 @@ const Check_Applicant_Information = () => {
              
     <div className="container-fluid">
         <div className="row flex-nowrap">
-            <Sidebar />
+            {/* <Sidebar /> */}
             
-        <div className="col-md-9">
+        <div className="col-md">
             {/* <div className="d-flex align-items-center flex-column">
                 <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px',paddingTop: '40px' }}>การจัดการข้อมูลการศึกษา</h2>
             </div> */}

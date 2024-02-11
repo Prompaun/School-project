@@ -99,9 +99,9 @@ const Enrollment_Status = () => {
             <Header header="ระบบการรับสมัครนักเรียน" subhead="อัปโหลดสถานะการมอบตัว" />  
     <div className="container-fluid">
         <div className="row flex-nowrap">
-            <Sidebar />
+            {/* <Sidebar /> */}
         
-        <div className="col-md-9">
+        <div className="col-md">
             
         {/* <div className="card mx-auto my-auto" style={{maxWidth: "1000px", border: '1px solid white' }}> */}
             {/* <br /> */}

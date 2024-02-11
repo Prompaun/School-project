@@ -67,8 +67,8 @@ const router = createBrowserRouter(
         <Route path="/Health_result" element={<Check_health_result/>} />
 
         <Route path ="/Login_personnel" element={<Login_personnel />} />
-        <Route path="/Login_personnel/Class_instrctor_menu" element={<Class_instructor_menu />} />
-        <Route path="/Subject_instrctor_menu" element={<Subject_instructor_menu/>} />
+        {/* <Route path="/Login_personnel/Class_instrctor_menu" element={<Class_instructor_menu />} /> */}
+        <Route path="/Personnel_menu" element={<Personnel_menu/>} />
 
         <Route path="/Education_information" element={<Education_information />} />
         <Route path="/Student_List_Information" element={<Student_List_Information />} />
