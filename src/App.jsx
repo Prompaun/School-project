@@ -14,9 +14,9 @@ import History_request from './pages/History_request';
 import NewUser_menu from './pages/NewUser_menu';
 import Open_course from './pages/Open_course';
 import CheckEnroll_status from './pages/CheckEnroll_status';
-
+// import Class_instructor_menu from './pages/Class_instructor_menu';
 import Login_personnel from './pages/Login_personnel';
-import Personnel_menu from './pages/Personnel_menu';
+// import Subject_instructor_menu from './pages/Subject_Instructor_menu';
 import Education_information from './pages/Education_information';
 import Student_List_Information from './pages/Student_List_Information';
 import Filter_student_information from './pages/Filter_student_information';
@@ -32,7 +32,7 @@ import Student_Information from './pages/Student_Information';
 import UploadScores_According_toApplicantNames from './pages/UploadScores_According_toApplicantNames';
 import Student_Address from './pages/Student_Address';
 import Manage_health_data from './pages/Manage_health_data';
-import Sidebar from './components/Sidebar';
+// import Sidebar from './components/Sidebar';
 import Student_info from './pages/Student_info';
 import Result_health_data from './pages/Result_health_data';
 import Medical_History from './pages/Medical_History';
@@ -41,6 +41,8 @@ import Health_info from './pages/Health_info';
 import Check_health_result from './pages/Check_health_result';
 import Enrollment_info from './pages/Enrollment_info';
 import Growth_nutrition from './pages/Growth_nutrition';
+import Personnel_menu from './pages/Personnel_menu';
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
