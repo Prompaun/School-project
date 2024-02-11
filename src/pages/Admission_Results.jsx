@@ -112,9 +112,9 @@ const Admission_Results = () => {
              
     <div className="container-fluid">
         <div className="row flex-nowrap">
-            <Sidebar />
+            {/* <Sidebar /> */}
         
-        <div className="col-md-7">
+        <div className="col-md">
                        
             {/* <br /> */}
             

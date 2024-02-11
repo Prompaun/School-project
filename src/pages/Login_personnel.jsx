@@ -134,23 +134,23 @@ const Login_personnel = () => {
                            
                                     <Link to='/Register' style={linkStyle}>ลืมรหัสผ่าน</Link>
                                
-                                    <Link to="/Filter_student_information">
+                                    <Link to="/Personnel_menu">
                                         <button type="submit" className="btn btn-primary float-end" style={{fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>Log in</button>
                                     </Link>
                                     <br />
                                <br />
-                               <div className="d-flex justify-content-center" style={{flexWrap:"wrap",fontSize:"16px"}}>
+                               {/* <div className="d-flex justify-content-center" style={{flexWrap:"wrap",fontSize:"16px"}}>
                                         <span className="d-flex align-items-center">หรือเข้าสู่ระบบด้วย </span>
                                     
-                               </div>
-                               <div className="d-flex justify-content-center" style={{flexWrap:"wrap",fontSize:"16px",marginTop:"10px"}}>
-                               <button className="google_btn" > 
-                                    {/* //onClick={googleAuth} */}
+                               </div> */}
+                               {/* <div className="d-flex justify-content-center" style={{flexWrap:"wrap",fontSize:"16px",marginTop:"10px"}}>
+                               <button className="google_btn" onClick={googleAuth} > 
+                                    
                                         <img src={GoogleIMG} alt="google icon" />
                                         <span>Sign in with Google</span>
                                     </button>
                                     
-                               </div>
+                               </div> */}
                         </form>
                     </div>
                 </div>

@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import logoImage from '../images/IMG_5416.png';
-import Card_menu_subject_inst from '../components/Card_menu_subject_inst';
+
 import Header from '../components/Header';
-function Subject_instructor_menu() {
+import Card_menu_personnel from '../components/Card_menu_personnel'
+
+function Personnel_menu() {
     const linkStyle = {
         color: 'gray',
         textDecoration: 'none'
@@ -35,6 +37,7 @@ function Subject_instructor_menu() {
           <Header header="ระบบจัดการสารสนเทศ" subhead="บริการสำหรับบุคลากรภายในโรงเรียน"/>
 
           <br></br>
+          <div style={{height: "100vh"}}>
           <div className="container mt-5">
             <div className="d-flex align-items-center justify-content-center">
               <h2 className="ms-3 mb-0">บริการข้อมูลสำหรับบุคลากร</h2>
@@ -42,11 +45,10 @@ function Subject_instructor_menu() {
           </div>
           <br></br>
           <br></br>
-          <Card_menu_subject_inst /> 
-          <br></br>
-          <br></br>
+          <Card_menu_personnel /> 
+          </div>
           </>
           )
 }
 
-export default Subject_instructor_menu
+export default Personnel_menu

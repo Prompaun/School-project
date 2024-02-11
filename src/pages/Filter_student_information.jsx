@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Sidebar from '../components/Sidebar';
+// import Sidebar from '../components/Sidebar';
 import logoImage from '../images/IMG_5416.png';
 import Header from '../components/Header';
 
@@ -59,11 +59,11 @@ function Filter_student_information() {
 
       <Header header="ระบบจัดการสารสนเทศ" subhead="บริการสำหรับบุคลากรภายในโรงเรียน" />
       {/* <Sidebar /> */}
-      <div className="container-fluid">
+      <div className="container-fluid"style={{height: "100vh"}}>
         <div className="row flex-nowrap">
-            <Sidebar />
+            {/* <Sidebar /> */}
             
-    <div className="col-md-9">
+    <div className="col-md">
             <div className="d-flex align-items-center flex-column justify-content-center">
                 <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px',paddingTop: '40px' }}>การจัดการสารสนเทศ</h2>
             </div>
