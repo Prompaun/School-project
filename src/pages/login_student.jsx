@@ -47,7 +47,7 @@ const Login_student = () => {
 
     return (
         <>
-            <Navbar/>
+            {/* <Navbar/> */}
            
             <Header header="ระบบบริการข้อมูล" subhead="สำหรับนักเรียน"/>
             {/* เพิ่มฟอร์มการลงทะเบียน */}
@@ -133,7 +133,7 @@ const Login_student = () => {
                            
                                     <Link to='/Register' style={linkStyle}>ลืมรหัสผ่าน</Link>
                                
-                                    <Link to="Student_menu">
+                                    <Link to="/Student_menu">
                                         <button type="submit" className="btn btn-primary float-end" style={{fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>Log in</button>
                                     </Link>
                           

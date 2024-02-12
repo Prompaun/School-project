@@ -1,3 +1,10 @@
+.root {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  box-sizing: border-box;
+}
 h1 {
   font-size: 2.5em; /* 40px/16=2.5em */
   font-family: 'Kanit', sans-serif;
@@ -444,7 +451,7 @@ body{
   padding-bottom: 0;
  }
 
- @media (max-width: 767px) {
+ @media (max-width: 100%) {
   .card-menu {
     max-width: 100%;
   }
@@ -517,7 +524,7 @@ body{
   color: #333;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 100%) {
   .h-screen {
     height: auto;
   }
@@ -539,7 +546,7 @@ body{
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 100%) {
   /* // adjust maxWidth to 100% for screens smaller than 768px */
   .align-items-center {
       max-width: 100%;
@@ -634,4 +641,11 @@ body{
 
 .google_btn > span{
   margin-left: 10px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
 }

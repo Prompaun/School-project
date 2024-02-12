@@ -16,7 +16,8 @@ function Enrollment_info() {
       };
       
       return (
-        <><nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        <>
+        {/* <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
         <div className="container">
           <Link className="navbar-brand" to="/">
             <img src="src\images\IMG_5416.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top" style={{ float: 'left', marginRight: '10px' }} />
@@ -28,7 +29,7 @@ function Enrollment_info() {
             </span>
           </div>
         </div>
-      </nav> 
+      </nav>  */}
        
       
       <Header header="ระบบรับสมัครนักเรียนแบบออนไลน์" subhead="กรอกข้อมูลการสมัคร"/>

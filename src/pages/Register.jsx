@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link,Navigate} from 'react-router-dom'
+
+import { createBrowserHistory } from "history";
 import Navbar from '../components/Navbar'
 import Header from '../components/Header'
+import GoogleIMG from '../images/google.png'
+
 const Register = () => {
   
   // เพิ่ม state สำหรับเก็บข้อมูลจากฟอร์ม
@@ -26,26 +30,53 @@ const Register = () => {
     console.log('Submit Form', formData);
     // เช่น ส่งข้อมูลไปยังเซิร์ฟเวอร์หรือทำการตรวจสอบข้อมูล
   };
+  const history = createBrowserHistory();
+  const google = () => {
+    window.open("http://localhost:5000/auth/google", "_self");
+    // Add a delay of 2 seconds (you can adjust this as needed)
+    if (response.ok) {
+      // Redirect to /Register_info page after a successful login
+      window.location.href = "/Register_info";
+    } else {
+      // Handle the error case
+      console.error("Failed to log in with Google");
+    }
+  };
+  // const google = async () => {
+  //   const response = await fetch("http://localhost:5000/auth/google", {
+  //     method: "GET",
+  //   });
+  
+  //   if (response.ok) {
+  //     // Redirect to /Register_info page after a successful login
+  //     window.location.href = "/Register_info";
+  //   } else {
+  //     // Handle the error case
+  //     console.error("Failed to log in with Google");
+  //   }
+  // };
+
 
   return (
     <>
-      <Navbar/>
+      {/* <Navbar/> */}
       <Header header="ระบบลงทะเบียนสำหรับเข้าใช้เว็บไซต์" subhead=""/>
       {/* เพิ่มฟอร์มการลงทะเบียน */}
       {/* <div className="container mt-5"> */}
+      <div style={{height:"100vh"}}>
         <div className="d-flex flex-column align-items-center justify-content-center">
           <h2 className="ms-3 mb-0 mt-5">สร้างบัญชีผู้ใช้งาน</h2>
        
         
        {/* เพิ่มแท็ก <br /> เพื่อสร้างการเว้นบรรทัด */}
-       
-        <div className="card mt-5"style={{ boxShadow: '1px 2px 12px 4px rgba(0, 0, 0, 0.2)',maxWidth: '90%',Height: '100vh' }}>
-  <div className="card-body">
+       {/* <div style={{height:"100vh"}}> */}
+        <div className="card mt-5"style={{ boxShadow: '1px 2px 12px 4px rgba(0, 0, 0, 0.2)',maxWidth: '90%'}}>
+  <div className="card-body"style={{ fontFamily: 'Kanit, sans-serif' }}>
     {/* width: '100vw', // 100vw คือ 100% ของความกว้างของ viewport
             maxHeight: '100vh', */}
     <form onSubmit={handleSubmit} className="w-100">
       <div className="mb-3">
-        {/* <label htmlFor="username" className="form-label custom-font">เลขประจำตัวประชาชน (ผู้สมัครเข้าศึกษา): </label> */}
+        
         <label htmlFor="email" className="form-label custom-font">อีเมลผู้ปกครอง (สำหรับใช้สร้างบัญชีผู้ใช้งาน): </label>
         <input
           type="text"
@@ -54,7 +85,7 @@ const Register = () => {
           name="email"
           value={formData.email}
           onChange={handleInputChange}
-          required
+          // required
         />
       </div>
       <div className="mb-3">
@@ -66,7 +97,7 @@ const Register = () => {
           name="password"
           value={formData.password}
           onChange={handleInputChange}
-          required
+          // required
         />
       </div>
       <div className="mb-3">
@@ -78,57 +109,39 @@ const Register = () => {
           name="confirmPassword"
           value={formData.confirmPassword}
           onChange={handleInputChange}
-          required
+          // required
         />
       </div>
-      <button type="button" className="btn btn-primary custom-font" style={{ textAlign: 'right', fontFamily: 'Kanit, sans-serif' }}>
-        <Link to="/NewUser_menu" style={{ color: 'white', textDecoration: 'none' }}>
-          สร้างบัญชีและดำเนินการต่อ
-        </Link>
-    </button>
-    
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <button type="button" className="btn btn-primary custom-font" style={{ fontFamily: 'Kanit, sans-serif',width:"100%" }}>
+          <Link to="/NewUser_menu" style={{ color: 'white', textDecoration: 'none' }}>
+            สมัครบัญชี
+          </Link>
+        </button>
+      </div>
+      <br />
+      {/* <br /> */}
+    <div className="d-flex justify-content-center" style={{flexWrap:"wrap",fontSize:"16px",fontFamily: 'Kanit, sans-serif' }}>
+            <span className="d-flex align-items-center">หรือ </span>
+        
+    </div>
+    <div className="d-flex justify-content-center" style={{flexWrap:"wrap",fontSize:"16px",marginTop:"10px",maxWidth:"100%"}}>
+    <button className="google_btn" onClick={google} >
+        <img src={GoogleIMG} alt="google icon" />
+        <span>ลงทะเบียนด้วย Google</span>
+      </button>
+        
+    </div>
     </form>
   </div>
 </div>
 </div>
-<br></br>
-<br></br>
+</div>
 
     </>
   );
 }
 
 
-{/* <div className="list-group">
-  <h2 className="list-group-item list-group-item-action active">เข้าสู่ระบบ</h2>
-  <form onSubmit={handleSubmit}>
-
-      <label htmlFor="username" className="form-label me-3">Username: </label>
-      <input
-        type="text"
-        className="form-control w-50"
-        id="username"
-        name="username"
-        value={formData.username}
-        onChange={handleInputChange}
-        required
-      />
-
-      <label htmlFor="password" className="form-label me-3">Password: </label>
-      <input
-        type="password"
-        className="form-control w-50"
-        id="password"
-        name="password"
-        value={formData.password}
-        onChange={handleInputChange}
-        required
-      />
-
-
-      <button type="submit" className="btn btn-primary float-end">Log-in</button>
-
-  </form>
-</div> */}
 
 export default Register;

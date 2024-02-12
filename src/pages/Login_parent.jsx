@@ -69,16 +69,19 @@ const Login_parent = () => {
     setShowPassword(!showPassword);
   };
 
-  const googleAuth = () => {
-    window.open(
-        `${process.env.REACT_APP_API_URL}/auth/google/callback`,
-        "_self"
-    );
+//   const googleAuth = () => {
+//     window.open(
+//         `${process.env.REACT_APP_API_URL}/auth/google/callback`,
+//         "_self"
+//     );
+// };
+const google = () => {
+    window.open("http://localhost:5000/auth/google", "_self");
 };
 
     return (
         <>
-            <Navbar/>
+            {/* <Navbar/> */}
             <Header header="ระบบบริการข้อมูล" subhead="สำหรับผู้ปกครอง"/>
 
             {/* เพิ่มฟอร์มการลงทะเบียน */}
@@ -171,13 +174,13 @@ const Login_parent = () => {
                                <br />
                                <br />
                                <div className="d-flex justify-content-center" style={{flexWrap:"wrap",fontSize:"16px"}}>
-                                        <span className="d-flex align-items-center">หรือเข้าสู่ระบบด้วย </span>
+                                        <span className="d-flex align-items-center">หรือ </span>
                                     
                                </div>
                                <div className="d-flex justify-content-center" style={{flexWrap:"wrap",fontSize:"16px",marginTop:"10px"}}>
-                               <button className="google_btn" onClick={googleAuth} >
+                               <button className="google_btn" onClick={google} >
                                         <img src={GoogleIMG} alt="google icon" />
-                                        <span>Sign in with Google</span>
+                                        <span>เข้าสู่ระบบด้วย Google</span>
                                     </button>
                                     
                                </div>

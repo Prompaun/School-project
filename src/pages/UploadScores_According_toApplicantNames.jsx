@@ -75,10 +75,10 @@ const UploadScores_According_toApplicantNames = () => {
     return (
         <>  
 
-        <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        {/* <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
             <div className="container">
                 <Link className="navbar-brand" to="/">
-                {/* Logo and School Name */}
+              
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <img src={school_logo} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
                     <h5 style={{ textAlign: 'right', marginLeft: '10px', marginBottom: '0' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
@@ -94,7 +94,7 @@ const UploadScores_According_toApplicantNames = () => {
                 </span>
                 </div>
             </div>
-            </nav>
+            </nav> */}
 
             <Header header="ระบบการรับสมัครนักเรียน" subhead="อัปโหลดผลคะแนนตามรายชื่อผู้สมัคร" />  
              

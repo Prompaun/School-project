@@ -13,7 +13,7 @@ const Home = () => {
 
   return (
     <>
-      <Navbar/>
+      {/* <Navbar/> */}
    
       <Header header="ระบบจัดการสารสนเทศ" subhead="" />  
       
