@@ -139,7 +139,7 @@ function App() {
 
   return (
 
-    <div className="container">
+    // <div className="container">
         <RouterProvider router={router}>
           <Routes>
             <Route
@@ -149,7 +149,7 @@ function App() {
             />
           </Routes>
         </RouterProvider>
-    </div>
+    // </div>
   
     // <div className="container">
     //   <RouterProvider router={router}>
