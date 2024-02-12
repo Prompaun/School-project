@@ -53,7 +53,7 @@ const Login_personnel = () => {
 
     return (
         <>
-            <Navbar/>
+            {/* <Navbar/> */}
             <Header header="ระบบบริการข้อมูล" subhead="สำหรับบุคลากรภายในโรงเรียน"/>
             {/* เพิ่มฟอร์มการลงทะเบียน */}
             {/* <div class="list-group"> */}

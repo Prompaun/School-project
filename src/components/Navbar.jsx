@@ -1,7 +1,9 @@
 import logoImage from '../images/IMG_5416.png';
 import React, { useState } from 'react';
+import { Button,Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-const Navbar = () => {
+
+const Navbar = ({user}) => {
   const linkStyle = {
     color: 'gray',
     textDecoration: 'none'
@@ -29,9 +31,11 @@ const Navbar = () => {
   const imageStyle = {
     filter: 'brightness(25%)',
   };
-
+  const logout = () => {
+    window.open("http://localhost:5000/auth/logout", "_self");
+  };
   return (
-    <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+    <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark" style={{fontFamily:'Kanit, sans-serif'}}>
       <div className="container">
         <Link className="navbar-brand" to="/">
           {/* Logo and School Name */}
@@ -41,10 +45,52 @@ const Navbar = () => {
             <h5 style={{ textAlign: 'right', marginLeft: '10px',display: 'flex', flexWrap: 'wrap', whiteSpace: "nowrap", marginBottom: '0'}}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
           </div>
         </Link>
-        <div className="nav navbar-nav navbar-right">
-          <span className='nav-link'>
-            <Link to='/Register' style={linkStyle}>Register</Link> | <Link to='/Login' style={linkStyle}>Log in</Link>
+        <div className="nav navbar-nav navbar-right" stlye={{display: "flex"}}>
+        {user ? (
+          <span className='nav-link' style={{display: 'flex', alignItems: 'center'}}>
+            
+                <Link to="/Parent_menu" style={{...linkStyle,marginRight:"15px"}} >
+                  เลือกเมนู
+                </Link>
+              
+          <Dropdown>
+                <Dropdown.Toggle variant="none" id="dropdown-user" style={{display: 'flex', alignItems: 'center'}}>
+                  <span style={{marginRight: '10px'}}>
+                    <img
+                      src={user.photos[0].value}
+                      alt=""
+                      className="avatar"
+                    />
+                  </span>
+                  {/* <span>
+                    {user.displayName}+
+
+                  </span> */}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  {/* <Link to="/Parent_menu" style={{...linkStyle, marginLeft: '20px'}} >
+                    <Dropdown.Item>เลือกเมนู</Dropdown.Item>
+                  </Link> */}
+                  <Dropdown.Item>
+                  <span>
+                    {user.displayName}
+                  </span>
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+        </span> ) 
+            : ( //ถ้าไม่มีคน Log in
+          <span className='nav-link'> 
+            <Link to='/Register' style={{...linkStyle, marginRight: '10px'}}>Register</Link> 
+             |  
+            <Link to='/Login' style={{...linkStyle, marginLeft: '10px'}}>Log in</Link>
           </span>
+
+            )}
+          
+          
         </div>
       </div>
     </nav>

@@ -30,7 +30,7 @@ const Register_info = () => {
 
   return (
     <>
-      <Navbar/>
+      {/* <Navbar/> */}
       <Header header="ระบบลงทะเบียนสำหรับเข้าใช้เว็บไซต์" subhead=""/>
       {/* เพิ่มฟอร์มการลงทะเบียน */}
       {/* <div className="container mt-5"> */}
@@ -82,9 +82,9 @@ const Register_info = () => {
           required
         />
       </div>
-      <button type="button" className="btn btn-primary custom-font" style={{ textAlign: 'right', fontFamily: 'Kanit, sans-serif' }}>
-        <Link to="/NewUser_menu" style={{ color: 'white', textDecoration: 'none' }}>
-          สร้างบัญชีและดำเนินการต่อ
+      <button type="button" className="btn btn-primary custom-font" style={{  fontFamily: 'Kanit, sans-serif',width:"100%", justifyContent:"center"}}>
+        <Link to="/NewUser_menu" style={{ color: 'white', textDecoration: 'none',justifyContent:"center" }}>
+          สมัครบัญชี
         </Link>
     </button>
     </form>

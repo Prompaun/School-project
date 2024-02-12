@@ -6,7 +6,7 @@ function Login() {
 
   return (
     <>
-      <Navbar/>
+      {/* <Navbar/> */}
       <Header header="ระบบจัดการสารสนเทศ" subhead=""/>
       <br></br>
       <br></br>
