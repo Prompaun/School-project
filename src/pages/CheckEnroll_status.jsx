@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React,{ useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import logoImage from '../images/IMG_5416.png';
 import Header from '../components/Header';
@@ -30,7 +30,22 @@ function CheckEnroll_status() {
       const [selectedCourse, setSelectedCourse] = useState("");
       const [Enroll_statusList, setEnroll_statusList] = useState([]);
       const [Enroll_dataDropdownList, setEnroll_dataDropdownList] = useState([]);
+      
+      const nidValue = "";
 
+    //   if (selectedName.trim() !== "") {
+    //     const nameIndex = Enroll_dataDropdownList[0].Name.indexOf(selectedName);
+    //     if (nameIndex !== -1) {
+    //         const nidValue = Enroll_dataDropdownList[0].Enroll_ID[nameIndex];
+    //         console.log("nidValue:", nidValue);
+    //     } else {
+    //         console.log("selectedName ไม่ตรงกับข้อมูลใดใน Enroll_dataDropdownList");
+    //     }
+    // } else {
+    //     console.log("selectedName เป็นสตริงเปล่า");
+        
+    // }
+    
       const handleNameChange = (event) => {
         setSelectedName(event.target.value);
       };
@@ -41,29 +56,92 @@ function CheckEnroll_status() {
         setSelectedCourse(event.target.value);
       };
 
-      useState(()=>{
-        // const getCheckEnroll_status = () => {
-          // Axios.get('http://localhost:8080/CheckEnroll_status/2')
-          Axios.get('http://localhost:8080/defaultData_EnrollStatus/parent4@example.com')
+      useEffect(() => {
+        // เรียก API เมื่อหน้าเว็บโหลดขึ้นมา
+        Axios.get('http://localhost:8080/dropdownArray_EnrollStatus/parent1@example.com')
+          .then((response) => {
+            console.log("so sad cannot connect to http://localhost:8080/dropdownArray_EnrollStatus",response.data);
+            setEnroll_dataDropdownList(response.data);
+            console.log("hello world",response.data[0].Name);
+          }).catch((err) => {
+            console.log(err)
+          });
+
+        Axios.get('http://localhost:8080/defaultData_EnrollStatus/parent1@example.com')
             .then((response) => {
-              console.log("so sad cannot connect to http://localhost:8080/CheckEnroll_status",response.data);
+              console.log("so sad cannot connect to http://localhost:8080/defaultData_EnrollStatus/parent1@example.com",response.data);
               setEnroll_statusList(response.data);
             }).catch((err) => {
               console.log(err)
             });
+      }, []);
+      
+      // const handleNextButtonClick = () => {
+      //   if (selectedName && selectedYear && selectedCourse) {
+      //     console.log("มีค่าในทั้งสามดรอปดาวน์ด้านบน");
+      //     Axios.get('http://localhost:8080/CheckEnroll_status?Enroll_ID=3&Enroll_Year=2024&Enroll_Course=ปกติ')
+      //       .then((response) => {
+      //         console.log("so sad cannot connect to http://localhost:8080/CheckEnroll_status?Enroll_ID=3&Enroll_Year=2024&Enroll_Course=ปกติ",response.data);
+      //         setEnroll_statusList(response.data);
+      //       }).catch((err) => {
+      //         console.log(err)
+      //       });
+      //   } else {
+      //     console.log("ไม่มีค่าในทั้งสามดรอปดาวน์ด้านบน");
+      //   }
+      // }
 
-            Axios.get('http://localhost:8080/dropdownArray_EnrollStatus/parent1@example.com')
-            .then((response) => {
-              console.log("so sad cannot connect to http://localhost:8080/dropdownArray_EnrollStatus",response.data);
-              setEnroll_dataDropdownList(response.data);
+      const handleNextButtonClick = () => {
+        if (selectedName && selectedYear && selectedCourse) {
+          console.log("มีค่าในทั้งสามดรอปดาวน์ด้านบน");
+          const nameIndex = Enroll_dataDropdownList[0].Name.indexOf(selectedName);
+          if (nameIndex !== -1) {
+              const nidValue = Enroll_dataDropdownList[0].Enroll_ID[nameIndex];
+              Axios.get(`http://localhost:8080/CheckEnroll_status?Enroll_ID=${nidValue}&Enroll_Year=${selectedYear}&Enroll_Course=${selectedCourse}`)
+                .then((response) => {
+                  console.log("Data from http://localhost:8080/CheckEnroll_status", response.data);
+                  setEnroll_statusList(response.data);
+                }).catch((err) => {
+                  console.log(err);
+                  if (err.response && err.response.status === 404) {
+                    console.log("ไม่พบข้อมูลที่ค้นหา");
+                    setEnroll_statusList([]);
+                  } else {
+                      console.log("มีข้อผิดพลาดในการร้องขอข้อมูล");
+                  }
+                
+                });
+
+          } else {
+              console.log("ไม่พบชื่อที่ถูกเลือกในรายการ");
+            }
+        } else {
+            console.log("ไม่มีค่าในทั้งสามดรอปดาวน์ด้านบน");
+        }
+      }
+
+      // useState(()=>{
+        // const getCheckEnroll_status = () => {
+          // Axios.get('http://localhost:8080/CheckEnroll_status/2')
+          // Axios.get('http://localhost:8080/defaultData_EnrollStatus/parent1@example.com')
+          //   .then((response) => {
+          //     console.log("so sad cannot connect to http://localhost:8080/defaultData_EnrollStatus/parent1@example.com",response.data);
+          //     setEnroll_statusList(response.data);
+          //   }).catch((err) => {
+          //     console.log(err)
+          //   });
+
+          //   Axios.get('http://localhost:8080/dropdownArray_EnrollStatus/parent1@example.com')
+          //   .then((response) => {
+          //     console.log("so sad cannot connect to http://localhost:8080/dropdownArray_EnrollStatus",response.data);
+          //     setEnroll_dataDropdownList(response.data);
               
-              console.log("hello world",response.data[0].Name);
-            }).catch((err) => {
-              console.log(err)
-            });
-
+          //     console.log("hello world",response.data[0].Name);
+          //   }).catch((err) => {
+          //     console.log(err)
+          //   });
         // }
-      },[])
+      // },[])
 
       // const sortedsYear =Enroll_dataDropdownList[0].Enroll_Year.sort();
     
@@ -178,6 +256,10 @@ function CheckEnroll_status() {
               ))}
             </select>
           </div>
+        </div>
+
+        <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px'}}>
+          <button className="btn btn-primary ms-auto" onClick={handleNextButtonClick}>ถัดไป</button>
         </div>
       </div>
 
