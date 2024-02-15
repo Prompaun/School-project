@@ -68,6 +68,7 @@ function CheckEnroll_status() {
           });
 
         Axios.get('http://localhost:8080/defaultData_EnrollStatus/parent1@example.com')
+        // Axios.get('http://localhost:8080/CheckEnroll_status/1')
             .then((response) => {
               console.log("so sad cannot connect to http://localhost:8080/defaultData_EnrollStatus/parent1@example.com",response.data);
               setEnroll_statusList(response.data);
@@ -274,13 +275,12 @@ function CheckEnroll_status() {
         ) : (
           <>
           <br/>
-          <div className="card mx-auto" style={{ maxWidth: '90%', fontFamily: 'Kanit, sans-serif' }}>
-          {Enroll_statusList.map((val, key) => (
-            
+          <div className="mx-auto" style={{ maxWidth: '90%', fontFamily: 'Kanit, sans-serif' }}>
+              {Enroll_statusList.map((val, key) => (
+                <div className="card mb-3" style={{ maxWidth: '90%' }}>
             <div className="card-body">
             
-              <div style={{display:"flex", flexWrap: 'wrap',justifyContent:"left"}}>
-
+            <div style={{display:"flex", flexWrap: 'wrap',justifyContent:"left"}}>
                 <div className="align-items-center"style={{padding:"10px"}}>
                   <h2 className="col-form-label" style={{ fontSize: '18px', fontWeight: 'bold' }}>ชื่อ-นามสกุล</h2>
 
@@ -293,7 +293,7 @@ function CheckEnroll_status() {
                       style={{ backgroundColor: '#DCDCDC', color: 'black', maxWidth: '100%' }}
                     />
                 </div>
-                
+           
                 {/* </div>
                 <div style={{ display:"flex",justifyContent:"center" }}> */}
                 <div className="align-items-center"style={{padding:"10px"}} >
@@ -336,7 +336,7 @@ function CheckEnroll_status() {
                     />
                   </div>
                   {/* </div>
-                <div style={{ display:"flex",flexWrap: 'wrap' }}> */}
+                <div style={{ display:"flex",flexWrap: 'wrap' }}> */}            
                 <div className="align-items-center"style={{padding:"10px"}}>
                     <h2 className="col-form-label" style={{ fontSize: '18px', fontWeight: 'bold' }}>เลขที่สมัคร</h2>
                     
@@ -347,7 +347,7 @@ function CheckEnroll_status() {
                       readOnly
                       style={{ backgroundColor: '#DCDCDC', color: 'black', maxWidth: '100%' }}
                     />
-                    </div> 
+                    </div>
                     </div>
                 <div style={{ display:"flex",flexWrap: 'wrap' }}>
                   <div className=" align-items-center"style={{padding:"10px"}}>
@@ -358,6 +358,7 @@ function CheckEnroll_status() {
                   </div>
                 
               </div>
+              {/* </div> */}
               {val.Enroll_Status === "รอการสอบคัดเลือก" && (
                   <button
                     type="button"
@@ -377,6 +378,7 @@ function CheckEnroll_status() {
                     <span>พิมพ์บัตรประจำตัวผู้สอบ</span>
                   </button>
                 )}
+            </div>
             </div>
           ))}
           </div>  
