@@ -25,13 +25,16 @@ function CheckEnroll_status() {
       //   setEnroll_dataDropdownList(event.target.value);
       // };
 
+      const [selectedApplicantData, setSelectedApplicantData] = useState("");
       const [selectedName, setSelectedName] = useState("");
       const [selectedYear, setSelectedYear] = useState("");
       const [selectedCourse, setSelectedCourse] = useState("");
       const [Enroll_statusList, setEnroll_statusList] = useState([]);
+      const [Enroll_ArrayDropdownList, setEnroll_ArrayDropdownList] = useState([]);
       const [Enroll_dataDropdownList, setEnroll_dataDropdownList] = useState([]);
+
       
-      const nidValue = "";
+      // const nidValue = "";
 
     //   if (selectedName.trim() !== "") {
     //     const nameIndex = Enroll_dataDropdownList[0].Name.indexOf(selectedName);
@@ -46,7 +49,10 @@ function CheckEnroll_status() {
         
     // }
     
-      const handleNameChange = (event) => {
+    const handleApplicantDataChange = (event) => {
+        setSelectedApplicantData(event.target.value);
+      };
+    const handleNameChange = (event) => {
         setSelectedName(event.target.value);
       };
       const handleYearChange = (event) => {
@@ -57,8 +63,19 @@ function CheckEnroll_status() {
       };
 
       useEffect(() => {
+
+        
         // เรียก API เมื่อหน้าเว็บโหลดขึ้นมา
         Axios.get('http://localhost:8080/dropdownArray_EnrollStatus/parent1@example.com')
+          .then((response) => {
+            console.log("so sad cannot connect to http://localhost:8080/dropdownArray_EnrollStatus",response.data);
+            setEnroll_ArrayDropdownList(response.data);
+            console.log("hello world",response.data[0].Name);
+          }).catch((err) => {
+            console.log(err)
+          });
+
+          Axios.get('http://localhost:8080/dropdownData_EnrollStatus/parent1@example.com')
           .then((response) => {
             console.log("so sad cannot connect to http://localhost:8080/dropdownArray_EnrollStatus",response.data);
             setEnroll_dataDropdownList(response.data);
@@ -95,9 +112,9 @@ function CheckEnroll_status() {
       const handleNextButtonClick = () => {
         if (selectedName && selectedYear && selectedCourse) {
           console.log("มีค่าในทั้งสามดรอปดาวน์ด้านบน");
-          const nameIndex = Enroll_dataDropdownList[0].Name.indexOf(selectedName);
+          const nameIndex = Enroll_ArrayDropdownList[0].Name.indexOf(selectedName);
           if (nameIndex !== -1) {
-              const nidValue = Enroll_dataDropdownList[0].Enroll_ID[nameIndex];
+              const nidValue = Enroll_ArrayDropdownList[0].Enroll_ID[nameIndex];
               Axios.get(`http://localhost:8080/CheckEnroll_status?Enroll_ID=${nidValue}&Enroll_Year=${selectedYear}&Enroll_Course=${selectedCourse}`)
                 .then((response) => {
                   console.log("Data from http://localhost:8080/CheckEnroll_status", response.data);
@@ -120,6 +137,54 @@ function CheckEnroll_status() {
             console.log("ไม่มีค่าในทั้งสามดรอปดาวน์ด้านบน");
         }
       }
+
+      useEffect(() => {
+        console.log("ค่าที่เลือกใน dropdown:", selectedApplicantData);
+        if (selectedApplicantData) {
+            const dataParts = selectedApplicantData.split('/');
+            if (dataParts.length === 3) {
+                const selectedName = dataParts[0].trim();
+                const selectedYear = dataParts[1].trim();
+                const selectedCourse = dataParts[2].trim();
+                
+                setSelectedName(selectedName);
+                setSelectedYear(selectedYear);
+                setSelectedCourse(selectedCourse);
+                
+                
+
+                const nameIndex = Enroll_ArrayDropdownList[0].Name.indexOf(selectedName);
+                if (nameIndex !== -1) {
+                  const nidValue = Enroll_ArrayDropdownList[0].array[nameIndex];
+                  Axios.get(`http://localhost:8080/CheckEnroll_status?Enroll_ID=${nidValue}&Enroll_Year=${selectedYear}&Enroll_Course=${selectedCourse}`)
+                    .then((response) => {
+                      console.log("Data from http://localhost:8080/CheckEnroll_status", response.data);
+                      setEnroll_statusList(response.data);
+                    }).catch((err) => {
+                      console.log(err);
+                      if (err.response && err.response.status === 404) {
+                        console.log("ไม่พบข้อมูลที่ค้นหา");
+                        setEnroll_statusList([]);
+                      } else {
+                          console.log("มีข้อผิดพลาดในการร้องขอข้อมูล");
+                      }
+                    
+                    });
+    
+              }
+
+              console.log("ชื่อ:", selectedName);
+                console.log("ปีการศึกษา:", selectedYear);
+                console.log("หลักสูตร:", selectedCourse);
+
+            } else {
+                console.log("ข้อมูลที่เลือกไม่ถูกต้อง");
+            }
+        } else {
+            console.log("ไม่มีข้อมูลที่เลือก");
+        }
+    }, [selectedApplicantData]);
+    
 
       // useState(()=>{
         // const getCheckEnroll_status = () => {
@@ -195,39 +260,42 @@ function CheckEnroll_status() {
 
       <br />
       <div className="container d-flex align-items-center justify-content-center"style={{ flexWrap: 'wrap' }}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px' }}>
-          <div className="d-flex align-items-center">
-            <span style={{ marginRight: "10px" }}>ผู้สมัครเรียน :</span>
-          </div>
-          <div className="dropdown" style={{ maxWidth: '100%' }}>
-            <select value={selectedName} onChange={handleNameChange} className="custom-select">
-              <option value="">เลือกผู้สมัคร</option>
-              {Enroll_dataDropdownList.length > 0 && Enroll_dataDropdownList[0].Name.map((name, index) => (
-                <option key={index} value={name}>
-                  {name}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
 
-        {/* <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px' }}>
-          <div className="d-flex align-items-center">
-            <span style={{ marginRight: "10px" }}>ชื่อ :</span>
-          </div>
-          <div className="dropdown" style={{ maxWidth: '100%' }}>
-            <select value={selectedName} onChange={handleNameChange} className="custom-select">
-              <option value="">เลือกชื่อ</option>
-              {data[0].Name.map((name, index) => (
-                <option key={index} value={name}>
-                  {name}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div> */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px' }}>
+        <div className="d-flex align-items-center">
+          <span style={{ marginRight: "10px" }}>ตรวจสอบข้อมูลผู้สมัคร :</span>
+        </div>
+        <div className="dropdown" style={{ maxWidth: '100%' }}>
+          <select value={selectedApplicantData} onChange={handleApplicantDataChange} className="custom-select">
+            <option value="">เลือกผู้สมัคร/ปีการศึกษา/หลักสูตร</option>
+            {Enroll_dataDropdownList.length > 0 && Enroll_dataDropdownList.map((applicant, index) => (
+              <option key={index} value={`${applicant.FirstName} ${applicant.LastName} / ${applicant.Enroll_Year} / ${applicant.Enroll_Course}`}>
+                {`${applicant.FirstName} ${applicant.LastName} / ${applicant.Enroll_Year} / ${applicant.Enroll_Course}`}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+
+          {/* <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px' }}>
+            <div className="d-flex align-items-center">
+              <span style={{ marginRight: "10px" }}>ผู้สมัครเรียน :</span>
+            </div>
+            <div className="dropdown" style={{ maxWidth: '100%' }}>
+              <select value={selectedName} onChange={handleNameChange} className="custom-select">
+                <option value="">เลือกผู้สมัคร</option>
+                {Enroll_dataDropdownList.length > 0 && Array.from(new Set(Enroll_dataDropdownList[0].Name)).map((name, index) => (
+                  <option key={index} value={name}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div> */}
+
          
-        <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px'}}>
+        {/* <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px'}}>
           <div className="d-flex align-items-center">
             <span style={{marginRight:"10px"}}>เลือกปีการศึกษา:</span>
           </div>
@@ -257,11 +325,11 @@ function CheckEnroll_status() {
               ))}
             </select>
           </div>
-        </div>
+        </div> */}
 
-        <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px'}}>
+        {/* <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px'}}>
           <button className="btn btn-primary ms-auto" onClick={handleNextButtonClick}>ถัดไป</button>
-        </div>
+        </div> */}
       </div>
 
       <div className="d-flex flex-column justify-content-center"style={{fontFamily: 'Kanit, sans-serif'}}>
@@ -277,7 +345,7 @@ function CheckEnroll_status() {
           <br/>
           <div className="mx-auto" style={{ maxWidth: '90%', fontFamily: 'Kanit, sans-serif' }}>
               {Enroll_statusList.map((val, key) => (
-                <div className="card mb-3" style={{ maxWidth: '90%' }}>
+                <div className="card mx-auto" style={{ maxWidth: '90%' }}>
             <div className="card-body">
             
             <div style={{display:"flex", flexWrap: 'wrap',justifyContent:"left"}}>
@@ -349,12 +417,11 @@ function CheckEnroll_status() {
                     />
                     </div>
                     </div>
+
                 <div style={{ display:"flex",flexWrap: 'wrap' }}>
                   <div className=" align-items-center"style={{padding:"10px"}}>
                     <h2 className="col-form-label" style={{ fontSize: '18px', fontWeight: 'bold' }}>สถานะ</h2>
-                    
                     <h2 className="col-form-label" style={{ fontSize: '18px' }}>{val.Enroll_Status}</h2>
-                  
                   </div>
                 
               </div>
