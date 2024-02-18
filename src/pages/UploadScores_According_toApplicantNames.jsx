@@ -75,95 +75,79 @@ const UploadScores_According_toApplicantNames = () => {
     return (
         <>  
 
-        {/* <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-            <div className="container">
-                <Link className="navbar-brand" to="/">
-              
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <img src={school_logo} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
-                    <h5 style={{ textAlign: 'right', marginLeft: '10px', marginBottom: '0' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
-                </div>
-                </Link>
-                <div className="nav navbar-nav navbar-right">
-                <span className='nav-link'>
-                <Link
-                        to = "/"
-                        style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>
-                        เลือกเมนู
-                    </Link>
-                </span>
-                </div>
-            </div>
-            </nav> */}
 
             <Header header="ระบบการรับสมัครนักเรียน" subhead="อัปโหลดผลคะแนนตามรายชื่อผู้สมัคร" />  
              
-    <div className="container-fluid">
-        <div className="row flex-nowrap">
-            {/* <Sidebar /> */}
-            
-        <div className="col-md">
-            {/* <div className="d-flex align-items-center flex-column">
-                <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px',paddingTop: '40px' }}>การจัดการข้อมูลการศึกษา</h2>
-            </div> */}
-            {/* <br /> */}
-            {/* <div className="container flex-column align-items-center">
-                <h2 className="card-heading text-left mx-auto ml-auto" style={{ fontSize: '20px', marginTop: '2px' }}>ผลการค้นหา</h2>
-            </div> */}
-            <div className="card" style={{Width: "1300px", border: '1px solid white' }}>
-                <div className="card-body">
-                    <div className="form-group col-md-0 fone" style={{ padding: '32px', margin: '10px', whiteSpace: "nowrap" }}>
-                        <div className="d-flex align-items-center">
-                            <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '0px' }}>อัปโหลดผลคะแนนตามรายชื่อผู้สมัคร</h2>
+            <div style={{height:"150vh",fontFamily:"Kanit, sans-serif"}}>
+            <div className="container"> 
+            <div className="flex-column"> 
+                <div className="justify-content-center"> 
+                       
+                <div className="container d-flex align-items-center"style={{ flexWrap: 'wrap',marginTop:"20px"  }}>
+                            <h2 className="card-heading"style={{ fontSize: '25px', fontWeight: 'bold'}}>อัปโหลดผลคะแนนตามรายชื่อผู้สมัคร</h2>
                         </div>
-<br />
-                        <div className="card mx-auto my-auto"  style={{ width: "1200px"}}>
+                    
+                    <div className="container d-flex align-items-center"style={{ flexWrap: 'wrap',marginTop:"20px"  }}>
+                        
+                        <div className="card"  style={{width: "100vw"}}>
                             <div className="card-body">
-                                <div className="form-group col-md-0 fone" style={{ padding: '10px', whiteSpace: "nowrap" }}>
+                                <div className="form-group col-md-0 fone" style={{ padding: '10px'}}>
+                                    {/* <br /> */}
+                                    <div style={{ display: 'flex', flexWrap: 'wrap', fontSize: '18px'}}>
                                     <div className="d-flex align-items-center">
-                                        <h2 className="card-heading px-0" style={{ fontSize: '20px', marginTop: '18px', marginLeft: '20px', fontWeight: 'bold' }}>หลักสูตร</h2>
-                                        <select value={selectedCourseOption} onChange={handleSelectChange} style={{ fontSize: '18px', fontFamily: 'Kanit, sans-serif', marginLeft: '20px', marginTop: '5px' }}>
+                                    <span style={{margin:"10px"}}>หลักสูตร :</span>
+                                    </div>
+                                        <div className="d-flex align-items-center">
+                                        <div className="dropdown" style={{ maxWidth: '100%',marginRight:"5px"}}>
+                                        <select value={selectedCourseOption} onChange={handleSelectChange} className="custom-select">
                                             <option value="หลักสูตร">เลือกหลักสูตร</option>
                                             <option value="English Program (EP)">English Program (EP)</option>
                                             <option value="Regular Program">Regular Program</option>
                                         </select>
                                     </div>
-
-                                    <br />
-                                    <div className="d-flex align-items-center">
-                                    <h2 className="card-heading px-0" style={{ fontSize: '18px', marginLeft: '20px', marginRight:'10px', marginTop: '0px' }}>คะแนนรายบุคคล</h2>
-                                    <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '-9px'}}><span>Export file</span></button>
-                                    <h2 className="card-heading px-2" style={{ fontSize: '18px', marginTop: '10px' }}>/ Update data</h2>
-                                    
-                                    <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '-9px'}}><span>
-                                    <i 
-                                        class="fs-5 bi-cloud-upload" 
-                                        style={{
-                                        color: 'white',
-                                        fontSize: '20px',
-                                        marginRight: '5px',
-                                        cursor: 'pointer' // เพิ่ม cursor: 'pointer' เพื่อแสดงว่าเป็นองค์ประกอบที่คลิกได้
-                                        }}
-                                    ></i>Upload file</span>
-                                    </button>
-                                </div>
-
-                                <br />
+                                    </div>
+                                    </div>
+                                    <div style={{ display: 'flex', flexWrap: 'wrap', fontSize: '18px'}}>
+                                    <div className="align-items-center">
+                                    <h2 className="card-heading" style={{fontSize: '18px',margin:"10px" }}>คะแนนรายบุคคล</h2>
+                                    </div>
+                                    <div className="align-items-center">
+                                            <button type="submit" class="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '1px',marginRight:"5px"}}><span>Export file</span></button>
+                                            </div>
+                                   
+                                        <div className="align-items-center">
+                                        <h2 className="card-heading" style={{ fontSize: '18px', marginTop: '10px',marginRight:"5px" }}>/ Update data</h2>
+                                        </div>
+                                        <div className="align-items-center">
+                                        <button type="submit" class="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '1px',marginRight:"5px"}}><span>
+                                        <i 
+                                            class="fs-5 bi-cloud-upload" 
+                                            style={{
+                                            color: 'white',
+                                            fontSize: '20px',
+                                            marginRight: '5px',
+                                            cursor: 'pointer' // เพิ่ม cursor: 'pointer' เพื่อแสดงว่าเป็นองค์ประกอบที่คลิกได้
+                                            }}
+                                        ></i>Upload file</span>
+                                        </button>
+                                    </div>
+                                    </div>
+                                    </div>
                                 <div className="d-flex align-items-center">
-                                    <h2 className="card-heading px-0" style={{ fontSize: '18px', marginLeft: '20px', marginTop: '2px' }}>ตัวอย่างไฟล์ที่อัปโหลด</h2>
+                                    <h2 className="card-heading" style={{ fontSize: '16px', marginLeft: '20px', marginTop: '2px' }}>ตัวอย่างไฟล์ที่อัปโหลด</h2>
                                 </div>
                                 
                                 <div className="container flex-column align-items-center">
-                                    <div className="d-flex justify-content-center" style={{ height: '400px', overflowY: 'auto', marginLeft: '0px', padding:'10px' }}>
-                                {/* <div className="card mx-auto my-0"  style={{ width: "800px"}}>
-                                    <div className="card-body"> */}
-                                        <table className="table-bordered" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center', fontFamily: 'Kanit, sans-serif', borderColor: '#D3D3D3' }}>
+                            {/* <table className="table-bordered" style={{ textAlign: 'center',fontFamily: 'Kanit, sans-serif'}}> */}
+                            <div className="d-flex justify-content-center" style={{ height: 'auto', overflowY: 'auto' }}>
+                            <div className="table-responsive">
+                            <table className="table table-striped table-bordered table-hover" style={{ borderCollapse: 'collapse', textAlign: 'center',fontFamily: 'Kanit, sans-serif', fontSize: '18px' }}>
                                             <thead>
                                                 <tr>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>เลขที่สอบ</th>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ชื่อ-นามสกุล</th>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>คะแนนที่ได้ (100)</th>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>สถานะ</th>
+                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF'}}>เลขที่สอบ</th>
+                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF'}}>ชื่อ-นามสกุล</th>
+                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF' }}>คะแนนที่ได้ (100)</th>
+                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF' }}>สถานะ</th>
                                                 </tr>
                                             </thead>
                                             {/* #32CD32 */}
@@ -181,25 +165,23 @@ const UploadScores_According_toApplicantNames = () => {
                                         </table>
                                     </div>
                                 </div>
-
+                                </div>
                                 <br />
                                 <Link to="/">
                                     <button type="Submit" class="btn btn-primary float-end" style={{ ...fontStyle, color: 'white', fontSize: '16px', textAlign: 'right'}}><span>Submit</span></button>
                                 </Link>
 
-                                </div>
+                                
                             </div>
                         </div>
-                            
-                        <br /><br />
-                        <br /><br />
+                        
                         
                     </div>
                 </div>
             </div>
         </div>
         </div>
-        </div>
+     
       
         </>
     );

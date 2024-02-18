@@ -39,22 +39,24 @@ function Student_Information() {
   };
 
   return (
-    <div>
-        {/* <br />
-        <div class="d-flex align-items-center">
-            <h2 class="card-heading px-3" style={{fontSize: '16px'}}>เลขประจำตัวประชาชน</h2>
-            <h2 class="card-heading px-3" style={{fontSize: '16px'}}>1-0000-00000-11-1</h2>
-        </div>
+    <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        fontFamily: 'Kanit, sans-serif',
+      }}>
 
-        <br />
-        <div class="d-flex align-items-center">
-            <h2 class="card-heading px-3" style={{fontSize: '16px'}}>เลขประจำตัวนักเรียน</h2>
-            <h2 class="card-heading px-3" style={{fontSize: '16px'}}>13333</h2>
-        </div> */}
-
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-4 d-flex align-items-center">
-                <label htmlFor="National_ID_Number" className="col-form-label mb-0 mx-3">เลขประจำตัวประชาชน</label>
+        <div className="d-flex flex-column"style={{fontFamily: 'Kanit, sans-serif'}}>
+        
+            <div className="d-flex align-items-center" style={{fontWeight:"bold",fontSize:"20px"}}>
+                <label htmlFor="surname" className="col-form-label">ข้อมูลส่วนตัวของนักเรียน</label>
+            </div>
+        
+        <div style={{ display: 'flex',flexWrap: 'wrap', gap: '10px', fontFamily: 'Kanit, sans-serif' }}>   
+        <div style={{ fontSize: '18px'}}> 
+            <div className="align-items-center">
+                <label htmlFor="National_ID_Number" className="col-form-label">เลขประจำตัวประชาชน</label>
+                </div> 
+            <div className="align-items-center"style={{maxWidth:"100%"}}>       
                 <input 
                     type="text" 
                     className="form-control"
@@ -62,15 +64,16 @@ function Student_Information() {
                     name="National_ID_Number" 
                     value="1-0000-00000-11-1" 
                     readOnly 
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '180px' }} 
+                    style={{ backgroundColor: '#DCDCDC', color: 'black' }} 
                 />
             </div>
-        </div>
-        
-        <br />
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-3 d-flex align-items-center">
-                <label htmlFor="Student_ID" className="col-form-label mb-0 mx-3">เลขประจำตัวนักเรียน</label>
+            </div>
+            <div style={{ fontSize: '18px'}}> 
+            <div className="align-items-center">
+           
+                <label htmlFor="Student_ID" className="col-form-label">เลขประจำตัวนักเรียน</label>
+                </div> 
+            <div className="align-items-center"style={{maxWidth:"100%"}}>  
                 <input
                     type="text"
                     className="form-control"
@@ -78,15 +81,18 @@ function Student_Information() {
                     name="Student_ID"
                     value="13333"
                     readOnly
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '100px' }} 
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}} 
                     />            
             </div>
-        </div>
-
-        <br></br>
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-3.1 d-flex align-items-center">
-                <label htmlFor="title" className="col-form-label mb-0 mx-3">คำนำหน้า</label>
+            </div>
+            </div>
+      
+      <div style={{ display: 'flex',flexWrap: 'wrap', gap: '10px', fontFamily: 'Kanit, sans-serif' }}> 
+        <div style={{ fontSize: '18px'}}> 
+            <div className="align-items-center">
+                <label htmlFor="title" className="col-form-label">คำนำหน้า</label>
+                </div> 
+            <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input 
                     type="text" 
                     className="form-control"
@@ -94,13 +100,16 @@ function Student_Information() {
                     name="title" 
                     value="เด็กหญิง" 
                     readOnly 
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '85px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                     // style={{ backgroundColor: '#DCDCDC', color: 'black', borderColor: '#808080' }}
                 />
             </div>
-
-            <div className="col-sm-4 d-flex align-items-center">
-                <label htmlFor="surname" className="col-form-label mb-0 mx-3">ชื่อ</label>
+            </div>
+        <div style={{ fontSize: '18px'}}>    
+            <div className=" align-items-center">
+                <label htmlFor="surname" className="col-form-label">ชื่อ</label>
+                </div> 
+            <div className=" align-items-center"style={{maxWidth:"100%"}}> 
                 <input
                     type="text"
                     className="form-control"
@@ -108,13 +117,15 @@ function Student_Information() {
                     name="surname"
                     value="ดวง"
                     readOnly
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '155px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                 />
-                        
+             </div>           
             </div>
-
-            <div className="col-sm-4 d-flex align-items-center">
-                <label htmlFor="lastname" className="col-form-label mb-0 mx-3">นามสกุล</label>
+            <div style={{ fontSize: '18px'}}> 
+            <div className="align-items-center">
+                <label htmlFor="lastname" className="col-form-label">นามสกุล</label>
+                </div> 
+            <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input
                     type="text"
                     className="form-control"
@@ -122,15 +133,16 @@ function Student_Information() {
                     name="lastname"
                     value="จันทร์"
                     readOnly
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '155px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                     />
             </div>
         </div>
 
-        <br />
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-2 d-flex align-items-center">
-                <label htmlFor="Date_of_Birth" className="col-form-label mb-0 mx-3">วัน/เดือน/ปีเกิด</label>
+        <div style={{fontSize: '18px' }}>
+            <div className="align-items-center"style={{ flexWrap: 'wrap' }}>
+                <label htmlFor="Date_of_Birth" className="col-form-label">วัน/เดือน/ปีเกิด</label>
+                </div> 
+            <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input
                     type="text"
                     className="form-control"
@@ -138,64 +150,54 @@ function Student_Information() {
                     name="Date_of_Birth"
                     value="01/05/2559"
                     readOnly
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '120px' }} 
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}} 
                     />            
             </div>
         </div>
-
-        <br />
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-3 d-flex align-items-center">
-                <label htmlFor="Copy_of_the_birth_certificate" className="col-form-label mb-0 mx-3">สำเนาสูติบัตร (ของนักเรียน)</label>
-                {/* <button type="submit" className="btn btn-primary">file</button> */}
-
-                <button 
-                    type="submit" 
-                    className="btn btn-custom" 
-                    style={{
-                    ...fontStyle, 
-                    color: 'white', 
-                    fontSize: '16px', 
-                    textAlign: 'center', 
-                    // marginTop: '10px', 
-                    // marginRight: '15px',
-                    backgroundColor: '#EE82EE',
-                    width: '80px', // กำหนดความกว้าง
-                    height: '38px'  // กำหนดความสูง
-                    }}
-                >
-                    <span>file</span>
-                </button>
-            </div>
         </div>
+       
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', alignItems: 'center', fontFamily: 'Kanit, sans-serif', fontSize: '18px'}}> 
+            
+                <div className="align-items-center"style={{flexWrap:"wrap", fontSize: '18px'}}>
+                <label htmlFor="Copy_of_the_birth_certificate" className="col-form-label">สำเนาสูติบัตร (ของนักเรียน)</label>
+                
+                </div> 
+                <button 
+                        type="submit" 
+                        className="btn btn-custom" 
+                        style={{
+                        ...fontStyle, 
+                        color: 'white', 
+                        fontSize: '18px', 
+                        textAlign: 'center', 
+                       
+                        backgroundColor: '#EE82EE',
+                        width: 'auto', // กำหนดความกว้าง
+                        height: 'auto'  // กำหนดความสูง
+                        }}
+                    >
+                        <span>file</span>
+                </button>
+            
+        </div>
+      
 
             {/* <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                 <button type="submit" className="btn btn-primary">file</button>
             </div> */}
 
-        <br />
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px', color: '#808080'}}>
-            <div className="col-sm-3 d-flex align-items-center">
-                <label htmlFor="Education_data" className="col-form-label mb-0 mx-3">ข้อมูลการศึกษา</label>
-           </div>
-        </div>
-
+            <div className="d-flex align-items-center" style={{fontWeight:"bold",fontSize:"20px"}}>
+                <label htmlFor="surname" className="col-form-label">ข้อมูลการศึกษา</label>
+            </div>
         
 
-        <br />
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-0 d-flex align-items-center">
-                <label htmlFor="Education_Document" className="col-form-label mb-0 mx-3">หลักฐานการศึกษาจากโรงเรียนเดิม</label>
-                {/* <input
-                    type="text"
-                    className="form-control"
-                    id="Education_Document"
-                    name="Education_Document"
-                    value="ปพ.1"
-                    readOnly
-                    style={{ backgroundColor: '#DCDCDC', color: 'black' }} 
-                    /> */}
-
+        
+        <div style={{ display: 'flex',flexWrap: 'wrap', gap: '10px', fontFamily: 'Kanit, sans-serif' }}>
+            <div className="align-items-center"style={{flexWrap:"wrap", fontSize: '18px'}}>
+                <label htmlFor="Education_Document" className="col-form-label">หลักฐานการศึกษาจากโรงเรียนเดิม</label>
+                
+                </div> 
+            <div className="align-items-center"style={{ maxWidth:"100%"}}> 
                 <input
                     type="text"
                     className="form-control"
@@ -206,80 +208,37 @@ function Student_Information() {
                     style={{
                         backgroundColor: '#DCDCDC',
                         color: 'black',
-                        minWidth: '70px',  // กำหนดความกว้างขั้นต่ำ
+                         // กำหนดความกว้างขั้นต่ำ
                         boxSizing: 'border-box',  // ตั้งค่า box-sizing
+                        fontSize: '18px'
                     }} 
                 />
             </div>
 
-            <div className="col-sm-0 d-flex align-items-center">
+            {/* <div className="align-items-center"> */}
                 <button 
                         type="submit" 
                         className="btn btn-custom" 
                         style={{
                         ...fontStyle, 
                         color: 'white', 
-                        fontSize: '16px', 
+                        fontSize: '18px', 
                         textAlign: 'center', 
-                        marginLeft: '-5px',
+                        
                         backgroundColor: '#EE82EE',
-                        width: '80px', // กำหนดความกว้าง
-                        height: '38px'  // กำหนดความสูง
+                        width: 'auto', // กำหนดความกว้าง
+                        height: 'auto'  // กำหนดความสูง
                         }}
                     >
                         <span>file</span>
                 </button>
 
-                
-                {/* <button 
-    type="submit" 
-    className="btn btn-custom" 
-    style={{
-        ...fontStyle, 
-        color: 'white', 
-        fontSize: '16px', 
-        textAlign: 'center', 
-        marginLeft: '15px',
-        backgroundColor: '#EE82EE',
-        width: '80px',
-        height: '38px',
-        padding: '8px',  // เพิ่ม padding
-        boxSizing: 'border-box',  // ตั้งค่า box-sizing
-    }}
->
-    <span>file</span>
-</button> */}
-
-            </div>
+               
         </div>
 
-        {/* <br></br>
-        <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100%', fontFamily: 'Kanit, sans-serif', fontSize: '16px' }}>
-            <Link to="/NewUser_menu">
-                <button 
-                        type="submit" 
-                        className="btn btn-custom" 
-                        style={{
-                        ...fontStyle, 
-                        color: 'white', 
-                        fontSize: '16px', 
-                        textAlign: 'center', 
-                        // marginTop: '10px', 
-                        // marginRight: '15px',
-                        // marginLeft: '15px',
-                        backgroundColor: '#40C0E0',
-                        width: '80px', // กำหนดความกว้าง
-                        height: '38px'  // กำหนดความสูง
-                        }}
-                    >
-                        <span>ถัดไป</span>
-                </button>
-            </Link>
-        </div> */}
-
-
-
-    </div>
+        </div>
+        </div>
+    
   );
 }
 

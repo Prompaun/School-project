@@ -51,62 +51,42 @@ const Student_List_Information = () => {
 
     return (
         <>
-            {/* <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-            <div className="container">
-                <Link className="navbar-brand" to="/">
-                
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <img src={school_logo} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
-                    <h5 style={{ textAlign: 'right', marginLeft: '10px', marginBottom: '0' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
-                </div>
-                </Link>
-                <div className="nav navbar-nav navbar-right">
-                <span className='nav-link'>
-                <Link to="/Login//Login_personnel" style={linkStyle}>
-                Log out
-              </Link>
-                </span>
-                </div>
-            </div>
-            </nav> */}
-
+           
             <Header header="ระบบจัดการสารสนเทศ" subhead="" />  
-    <div className="container-fluid">
-        <div className="row flex-nowrap">
-            {/* <Sidebar /> */}
-            
-        <div className="col-md">
-            {/* <div className="d-flex align-items-center flex-column">
-                <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px',paddingTop: '40px' }}>การจัดการข้อมูลการศึกษา</h2>
-            </div> */}
-            {/* <br /> */}
-            {/* <div className="container flex-column align-items-center">
-                <h2 className="card-heading text-left mx-auto ml-auto" style={{ fontSize: '20px', marginTop: '2px' }}>ผลการค้นหา</h2>
-            </div> */}
-            <br />
-            <div className="card" style={{border: '1px solid white' }}>
+    
+        <div className="container"style={{height:"100vh"}}> 
+            <div className="flex-column"> 
+                <div className="justify-content-center"> 
+                    {/* <div className="card" style={{border: '1px solid white',maxWidth:"100%"}}> */}
                 
-                    <div className="form-group col-md-0 fone" style={{paddingTop: '40px', padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
-                        <div className="d-flex align-items-center" style={{ marginBottom: '20px' }}>
-                            <h2 className="card-heading px-4" style={{ fontSize: '25px', fontWeight: 'bold' }}>ผลการค้นหา</h2>
+                    <div className="container d-flex align-items-center"style={{ flexWrap: 'wrap',marginTop:"20px"  }}>
+                        <div className="d-flex align-items-center">
+                            <h2 className="card-heading" style={{ fontSize: '25px', fontWeight: 'bold',padding:"10px"}}>ผลการค้นหา</h2>
+                        </div>
+                        
+                        <div className="d-flex align-items-center">
                             <Link to="/Filter_student_information">
-                                <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '-15px'}}><span>ค้นหาข้อมูลใหม่</span></button>
+                                <button type="submit" class="btn btn-primary" style={{ ...fontStyle, color: 'white', textAlign: 'center',padding:"10px"}}><span>ค้นหาข้อมูลใหม่</span></button>
                             </Link>
                         </div>
+                        </div>
+                    <div className="container d-flex align-items-center"style={{ flexWrap: 'wrap',marginTop:"20px"  }}>
 
-                        <div className="card mx-auto my-auto"  style={{ width: "1300px"}}>
+                        <div className="card" style={{width: "100vw"}}>
                             <div className="card-body">
-                                <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
+                                <div className="form-group col-md-0 fone">
                                     <div className="d-flex align-items-center">
-                                        <h2 className="card-heading px-2" style={{ fontSize: '20px', marginTop: '2px' }}>ข้อมูลรายชื่อ</h2>
+                                        <h2 className="card-heading" style={{ fontSize: '20px', marginTop: '2px',padding:"10px" }}>ข้อมูลรายชื่อ</h2>
                                     </div>
 
 
                                 
                                 <br />
-                                <div className="container flex-column align-items-center">
-                                    <div className="d-flex justify-content-center" style={{ height: '300px', overflowY: 'auto', marginLeft: '0px' }}>
-                                        <table className="table-bordered" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center', fontFamily: 'Kanit, sans-serif', borderColor: '#D3D3D3' }}>
+                                <div className="container align-items-center">
+                                        {/* <table className="table-bordered" style={{ textAlign: 'center',fontFamily: 'Kanit, sans-serif'}}> */}
+                                        <div className="d-flex justify-content-center" style={{ height: 'auto', overflowY: 'auto' }}>
+                                        <div className="table-responsive">
+                                        <table className="table table-bordered table-striped table-hover" style={{ borderCollapse: 'collapse', textAlign: 'center',fontFamily: 'Kanit, sans-serif' }}>
                                             <thead>
                                                 <tr>
                                                     <th rowSpan="2" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>เลขประจำตัวนักเรียน</th>
@@ -131,14 +111,7 @@ const Student_List_Information = () => {
                                                     <tr key={subject.id} style={{ height: '50px' }}>
                                                         <td style={{ backgroundColor: '#FFFFFF' }}>{subject.student_id}</td>
                                                         <td style={{ backgroundColor: '#FFFFFF' }}>{subject.first_name + "  " + subject.last_name}</td>
-                                                        {/* <td style={{ backgroundColor: '#FFFFFF' }}>
-                                                        <Link to="/Education_information" className="d-flex justify-content-center" style={{ textDecoration: 'none' }}>
-                                                            <button type="submit" class="btn btn-custom" style={{ ...fontStyle, backgroundColor: '#A0C3D2', color: 'white', fontSize: '16px' }}>
-                                                                <span>ดูข้อมูลส่วนบุคคล</span>
-                                                            </button>
-                                                        </Link>
-
-                                                        </td> */}
+                                                        
                                                         <td style={{ backgroundColor: '#FFFFFF' }}>
                                                             <a href="/Student_info" style={{ ...fontStyle}}>
                                                                 <i 
@@ -251,9 +224,11 @@ const Student_List_Information = () => {
                                                     </tr>
                                                 ))}
                                             </tbody>
-                                        </table>
+                                            </table>
                                     </div>
-                                </div>
+                                    </div>
+                                    
+                                    </div>
                                 
                                 <br />
                                 <Link to="/Filter_student_information">
@@ -266,7 +241,7 @@ const Student_List_Information = () => {
                 
             </div>
          
-            </div>
+            {/* </div> */}
         </div> 
     </div> 
         </>

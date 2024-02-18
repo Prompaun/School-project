@@ -74,57 +74,48 @@ const Manage_health_data = () => {
 
     return (
         <> 
-        {/* <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-            <div className="container">
-                <Link className="navbar-brand" to="/">
-      
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <img src={school_logo} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
-                    <h5 style={{ textAlign: 'right', marginLeft: '10px', marginBottom: '0' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
-                </div>
-                </Link>
-                <div className="nav navbar-nav navbar-right">
-                <span className='nav-link'>
-                <Link
-                        to = "/Login_personnel"
-                        style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>
-                        Log out
-                    </Link>
-                </span>
-                </div>
-            </div>
-            </nav> */}
+        
 
             <Header header="ระบบจัดการข้อมูลสุขภาพ" subhead="อัปโหลดข้อมูลสุขภาพ" />  
              
-    <div className="container-fluid">
-        <div className="row flex-nowrap">
-            {/* <Sidebar />        */}
-        <div className="col-md">
-            <div className="card " style={{maxWidth: "1300px", border: '1px solid white' }}>
-                <div className="card-body">
-                    <div className="form-group col-md-0 fone" style={{ padding: '32px', margin: '10px', whiteSpace: "nowrap" }}>
-                        <div className="d-flex align-items-center">
-                            <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '0px' }}>รายชื่อนักเรียน</h2>
+            <div style={{height:"150vh",fontFamily:"Kanit, sans-serif"}}>
+            <div className="container"> 
+            <div className="flex-column"> 
+                <div className="justify-content-center"> 
+                       
+                <div className="container d-flex align-items-center"style={{ flexWrap: 'wrap',marginTop:"20px"  }}>
+                            <h2 className="card-heading"style={{ fontSize: '25px', fontWeight: 'bold'}}>รายชื่อนักเรียน</h2>
                         </div>
-
-                        <div className="card mx-auto my-auto"  style={{ width: "1200px"}}>
+                    
+                    <div className="container d-flex align-items-center"style={{ flexWrap: 'wrap',marginTop:"20px"  }}>
+                        
+                        <div className="card"  style={{width: "100vw"}}>
                             <div className="card-body">
-                                <div className="form-group col-md-0 fone" style={{ padding: '10px', whiteSpace: "nowrap" }}>
+                                <div className="form-group col-md-0 fone" style={{ padding: '10px'}}>
                                     {/* <br /> */}
+                                    <div style={{ display: 'flex', flexWrap: 'wrap', fontSize: '18px'}}>
                                     <div className="d-flex align-items-center">
-                                        <h2 className="card-heading px-0" style={{ fontSize: '18px', marginLeft: '20px', marginRight:'0px', marginTop: '15px' }}>ปีการศึกษา</h2>
+                                    <span style={{margin:"10px"}}>ปีการศึกษา :</span>
+                                    </div>
+                                        <div className="d-flex align-items-center">
+                                        <div className="dropdown" style={{ maxWidth: '100%',marginRight:"5px"}}>
 
-                                        <select value={selectedOption} onChange={handleSelectChange} style={{ fontSize: '18px', fontFamily: 'Kanit, sans-serif', marginLeft: '10px', marginRight:'20px', marginTop: '0px' }}>
+                                        <select value={selectedOption} onChange={handleSelectChange} className="custom-select">
                                             <option value="เลือกหลักสูตร">เลือกปีการศึกษา</option>
                                             <option value="English Program (EP)">2566</option>
                                             <option value="Regular Program">2565</option>
                                         </select>
-
-                                        <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '-9px'}}><span>Export file</span></button>
-                                        <h2 className="card-heading px-2" style={{ fontSize: '18px', marginTop: '10px' }}>/ Update data</h2>
-                                        
-                                        <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '-9px'}}><span>
+                                        </div>
+                                        </div>
+                                        <div className="align-items-center">
+                                            <button type="submit" class="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '1px',marginRight:"5px"}}><span>Export file</span></button>
+                                            </div>
+                                   
+                                        <div className="align-items-center">
+                                        <h2 className="card-heading" style={{ fontSize: '18px', marginTop: '10px',marginRight:"5px" }}>/ Update data</h2>
+                                        </div>
+                                        <div className="align-items-center">
+                                        <button type="submit" class="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '1px',marginRight:"5px"}}><span>
                                         <i 
                                             class="fs-5 bi-cloud-upload" 
                                             style={{
@@ -136,24 +127,20 @@ const Manage_health_data = () => {
                                         ></i>Upload file</span>
                                         </button>
                                     </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <br />
-                        <div className="card mx-auto my-auto"  style={{ width: "1200px"}}>
-                            <div className="card-body">
+
                                 <div className="container flex-column align-items-center">
-                                    <div className="d-flex justify-content-center" style={{ height: '150px', overflowY: 'auto', marginLeft: '0px', padding:'10px' }}>
-                                {/* <div className="card mx-auto my-0"  style={{ width: "800px"}}>
-                                    <div className="card-body"> */}
-                                        <table className="table-bordered" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center', fontFamily: 'Kanit, sans-serif', borderColor: '#D3D3D3' }}>
+                            {/* <table className="table-bordered" style={{ textAlign: 'center',fontFamily: 'Kanit, sans-serif'}}> */}
+                            <div className="d-flex justify-content-center" style={{ height: 'auto', overflowY: 'auto' }}>
+                            <div className="table-responsive">
+                            <table className="table table-striped table-bordered table-hover" style={{ borderCollapse: 'collapse', textAlign: 'center',fontFamily: 'Kanit, sans-serif' }}>
                                             <thead>
                                                 <tr>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>เลขประจำตัวนักเรียน</th>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ชื่อ-นามสกุล</th>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>รายละเอียด</th>
-                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>พิมพ์ข้อมูล</th>
+                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'bold',fontSize:"18px" }}>เลขประจำตัวนักเรียน</th>
+                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'bold',fontSize:"18px" }}>ชื่อ-นามสกุล</th>
+                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'bold',fontSize:"18px" }}>รายละเอียด</th>
+                                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'bold',fontSize:"18px" }}>พิมพ์ข้อมูล</th>
                                                 </tr>
                                             </thead>
                                             {/* #32CD32 */}
@@ -193,17 +180,17 @@ const Manage_health_data = () => {
                                         </table>
                                     </div>
                                 </div>
-                                
-                                {/* <br /> */}
+                                </div>
+                                </div>
+                        </div>
                             </div>
                         </div>
                         
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
-        </div>
+        
+      
         </>
     );
 };

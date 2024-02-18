@@ -39,30 +39,24 @@ function Parent_Information() {
   };
 
   return (
-    <div>
-        {/* <br />
-        <div class="d-flex align-items-center">
-            <h2 class="card-heading px-3" style={{fontSize: '16px'}}>เลขประจำตัวประชาชน</h2>
-            <h2 class="card-heading px-3" style={{fontSize: '16px'}}>1-0000-00000-11-1</h2>
+    <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        fontFamily: 'Kanit, sans-serif',
+      }}>
+       
+       <div className="d-flex flex-column"style={{fontFamily: 'Kanit, sans-serif'}}>
+            <div className="d-flex align-items-center" style={{fontWeight:"bold",fontSize:"20px"}}>
+                    <label htmlFor="father_data" className="col-form-labe">ข้อมูลบิดา</label>
+            </div>
         </div>
-
-        <br />
-        <div class="d-flex align-items-center">
-            <h2 class="card-heading px-3" style={{fontSize: '16px'}}>เลขประจำตัวนักเรียน</h2>
-            <h2 class="card-heading px-3" style={{fontSize: '16px'}}>13333</h2>
-        </div> */}
-
-        {/* <div className="row" style={{ fontFamily: 'Kanit, sans-serif',fontWeight: 'bold', fontSize: '20px', marginRight: '5px', gap: '0'}}> */}
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap',fontWeight: 'bold', fontFamily: 'Kanit, sans-serif', fontSize: '20px'}}>
-            <div className="col-sm-4 d-flex align-items-center">
-                    <label htmlFor="father_data" className="col-form-label mb-0 mx-3">ข้อมูลบิดา</label>
+        <div className="d-flex flex-column"style={{fontFamily: 'Kanit, sans-serif'}}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontFamily: 'Kanit, sans-serif'}}>            
+        <div style={{ fontSize: '18px'}}> 
+            <div className="align-items-center">
+                <label htmlFor="name_father" className="col-form-label">ชื่อ</label>
                 </div>
-        </div>
-
-        <br />
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-5 d-flex align-items-center">
-                <label htmlFor="name_father" className="col-form-label mb-0 mx-3">ชื่อ</label>
+              <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input 
                     type="text" 
                     className="form-control"
@@ -70,13 +64,16 @@ function Parent_Information() {
                     name="name_father" 
                     value="สมใจ" 
                     readOnly 
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '155px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                     // style={{ backgroundColor: '#DCDCDC', color: 'black', borderColor: '#808080' }}
                 />
             </div>
-
-            <div className="col-sm-5 d-flex align-items-center">
-                <label htmlFor="lastname_father" className="col-form-label mb-0 mx-3">นามสกุล</label>
+            </div>
+            <div style={{ fontSize: '18px'}}> 
+            <div className="align-items-center">
+                <label htmlFor="lastname_father" className="col-form-label">นามสกุล</label>
+                </div>
+              <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input
                     type="text"
                     className="form-control"
@@ -84,30 +81,36 @@ function Parent_Information() {
                     name="lastname_father"
                     value="ปรารถนา"
                     readOnly
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '155px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                 />
-                        
+                </div>         
             </div>
-
-            <div className="col-sm-1 d-flex align-items-center">
-                <label htmlFor="age_father" className="col-form-label mb-0 mx-3">อายุ</label>
+            </div>
+       
+       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontFamily: 'Kanit, sans-serif'}}>  
+            <div style={{ fontSize: '18px'}}> 
+            <div className="align-items-center">
+                <label htmlFor="DOB_father" className="col-form-label">วัน/เดือน/ปีเกิด</label>
+                </div>
+              <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input
                     type="text"
                     className="form-control"
-                    id="age_father"
-                    name="age_father"
+                    id="DOB_father"
+                    name="DOB_father"
                     value="45"
                     readOnly
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '60px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                     />
-                <label htmlFor="year" className="col-form-label mb-0 mx-3">ปี</label>
+                
             </div>
         </div>
-        
-        <br />
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-3 d-flex align-items-center">
-                <label htmlFor="Nationality_father" className="col-form-label mb-0 mx-3">สัญชาติ</label>
+                  
+        <div style={{ fontSize: '18px'}}> 
+            <div className="align-items-center">
+                <label htmlFor="Nationality_father" className="col-form-label">สัญชาติ</label>
+                </div>
+                <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input 
                     type="text" 
                     className="form-control"
@@ -115,15 +118,19 @@ function Parent_Information() {
                     name="Nationality_father" 
                     value="ไทย" 
                     readOnly 
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '100px' }} 
+                    style={{ backgroundColor: '#DCDCDC', color: 'black' }} 
                 />
             </div>
+            
         </div>
-
-        <br />
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-2.5 d-flex align-items-center">
-                <label htmlFor="Educational_qualification_father" className="col-form-label mb-0 mx-3">วุฒิการศึกษา</label>
+        
+                  
+                  <div style={{ fontSize: '18px'}}> 
+       
+            <div className="align-items-center">
+                <label htmlFor="Educational_qualification_father" className="col-form-label">วุฒิการศึกษา</label>
+                </div>
+                <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input 
                     type="text" 
                     className="form-control"
@@ -131,13 +138,17 @@ function Parent_Information() {
                     name="Educational_qualification_father" 
                     value="ปริญญาเอก" 
                     readOnly 
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '155px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                     // style={{ backgroundColor: '#DCDCDC', color: 'black', borderColor: '#808080' }}
                 />
             </div>
-
-            <div className="col-sm-2.5 d-flex align-items-center">
-                <label htmlFor="Occupation_father" className="col-form-label mb-0 mx-3">อาชีพ</label>
+            </div>
+                  
+                  <div style={{ fontSize: '18px'}}> 
+            <div className="align-items-center">
+                <label htmlFor="Occupation_father" className="col-form-label">อาชีพ</label>
+                </div>
+                <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input
                     type="text"
                     className="form-control"
@@ -145,12 +156,16 @@ function Parent_Information() {
                     name="Occupation_father"
                     value="ธุกิจส่วนตัว"
                     readOnly
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '155px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                 />
             </div>
-
-            <div className="col-sm-4 d-flex align-items-center">
-                <label htmlFor="Workplace_father" className="col-form-label mb-0 mx-3">สถานที่ทำงาน</label>
+            </div>
+                  
+                  <div style={{ fontSize: '18px'}}> 
+            <div className="align-items-center">
+                <label htmlFor="Workplace_father" className="col-form-label">สถานที่ทำงาน</label>
+                </div>
+                <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input
                     type="text"
                     className="form-control"
@@ -158,38 +173,47 @@ function Parent_Information() {
                     name="Workplace_father"
                     value="บริษัทสมใจปรารถนา"
                     readOnly
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '155px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                     />
             </div>
-        </div>
         
-        <br />
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-2.5 d-flex align-items-center">
-                <label htmlFor="Phone_father" className="col-form-label mb-0 mx-3">โทรศัพท์</label>
-                <input 
-                    type="text" 
-                    className="form-control"
-                    id="Phone_father" 
-                    name="Phone_father" 
-                    value="0600000000" 
-                    readOnly 
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '100px' }} 
-                />
-            </div>
         </div>
-
-        <br />
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap',fontWeight: 'bold', fontFamily: 'Kanit, sans-serif', fontSize: '20px'}}>
-            <div className="col-sm-4 d-flex align-items-center">
-                    <label htmlFor="mother_data" className="col-form-label mb-0 mx-3">ข้อมูลมารดา</label>
+                  
+            <div style={{ fontSize: '18px'}}> 
+                <div className="align-items-center">
+                    <label htmlFor="Phone_father" className="col-form-label">โทรศัพท์</label>
                 </div>
-        </div>
+                <div className="align-items-center"style={{maxWidth:"100%"}}> 
+                    <input 
+                        type="text" 
+                        className="form-control"
+                        id="Phone_father" 
+                        name="Phone_father" 
+                        value="0600000000" 
+                        readOnly 
+                        style={{ backgroundColor: '#DCDCDC', color: 'black'}} 
+                    />
+                </div>
+            </div>
+    </div>
+    <br />
 
-        <br />
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-5 d-flex align-items-center">
-                <label htmlFor="name_mother" className="col-form-label mb-0 mx-3">ชื่อ</label>
+    <div className="d-flex flex-column"style={{fontFamily: 'Kanit, sans-serif'}}>        
+        <div className="d-flex align-items-center" style={{fontWeight:"bold",fontSize:"20px"}}>
+                    <div className="align-items-center">
+                            <label htmlFor="mother_data" className="col-form-label">ข้อมูลมารดา</label>
+                        </div>
+                
+            </div>
+        
+            </div>
+            <div className="d-flex flex-column"style={{fontFamily: 'Kanit, sans-serif'}}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontFamily: 'Kanit, sans-serif'}}>            
+        <div style={{ fontSize: '18px'}}> 
+            <div className="align-items-center">
+                <label htmlFor="name_mother" className="col-form-label">ชื่อ</label>
+                </div>
+                <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input 
                     type="text" 
                     className="form-control"
@@ -197,13 +221,16 @@ function Parent_Information() {
                     name="name_mother" 
                     value="สมพร" 
                     readOnly 
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '155px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                     // style={{ backgroundColor: '#DCDCDC', color: 'black', borderColor: '#808080' }}
                 />
             </div>
-
-            <div className="col-sm-5 d-flex align-items-center">
-                <label htmlFor="lastname_mother" className="col-form-label mb-0 mx-3">นามสกุล</label>
+            </div>
+            <div style={{ fontSize: '18px'}}> 
+            <div className="align-items-center">
+                <label htmlFor="lastname_mother" className="col-form-label">นามสกุล</label>
+                </div>
+                <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input
                     type="text"
                     className="form-control"
@@ -211,30 +238,34 @@ function Parent_Information() {
                     name="lastname_mother"
                     value="ปรารถนา"
                     readOnly
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '155px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                 />
                         
             </div>
-
-            <div className="col-sm-1 d-flex align-items-center">
-                <label htmlFor="age_mother" className="col-form-label mb-0 mx-3">อายุ</label>
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontFamily: 'Kanit, sans-serif'}}>  
+            <div style={{ fontSize: '18px'}}> 
+            <div className="align-items-center">
+                <label htmlFor="DOB_mother" className="col-form-label">วัน/เดือน/ปีเกิด</label>
+                </div>
+                <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input
                     type="text"
                     className="form-control"
-                    id="age_mother"
-                    name="age_mother"
+                    id="DOB_mother"
+                    name="DOB_mother"
                     value="45"
                     readOnly
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '60px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                     />
-                <label htmlFor="year" className="col-form-label mb-0 mx-3">ปี</label>
+              
             </div>
-        </div>
-        
-        <br />
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-3 d-flex align-items-center">
-                <label htmlFor="Nationality_mother" className="col-form-label mb-0 mx-3">สัญชาติ</label>
+            </div>
+            <div style={{ fontSize: '18px'}}>
+            <div className="align-items-center">
+                <label htmlFor="Nationality_mother" className="col-form-label">สัญชาติ</label>
+                </div>
+                <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input 
                     type="text" 
                     className="form-control"
@@ -242,15 +273,17 @@ function Parent_Information() {
                     name="Nationality_mother" 
                     value="ไทย" 
                     readOnly 
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '100px' }} 
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}} 
                 />
             </div>
-        </div>
-
-        <br />
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-2.5 d-flex align-items-center">
-                <label htmlFor="Educational_qualification_mother" className="col-form-label mb-0 mx-3">วุฒิการศึกษา</label>
+        
+            </div>
+            <div style={{ fontSize: '18px'}}> 
+       
+            <div className="align-items-center">
+                <label htmlFor="Educational_qualification_mother" className="col-form-label">วุฒิการศึกษา</label>
+                </div>
+                <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input 
                     type="text" 
                     className="form-control"
@@ -258,13 +291,17 @@ function Parent_Information() {
                     name="Educational_qualification_mother" 
                     value="ปริญญาเอก" 
                     readOnly 
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '155px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                     // style={{ backgroundColor: '#DCDCDC', color: 'black', borderColor: '#808080' }}
                 />
             </div>
-
-            <div className="col-sm-2.5 d-flex align-items-center">
-                <label htmlFor="Occupation_mother" className="col-form-label mb-0 mx-3">อาชีพ</label>
+            </div>
+           
+            <div style={{ fontSize: '18px'}}> 
+            <div className="align-items-center">
+                <label htmlFor="Occupation_mother" className="col-form-label">อาชีพ</label>
+                </div>
+                <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input
                     type="text"
                     className="form-control"
@@ -272,12 +309,15 @@ function Parent_Information() {
                     name="Occupation_mother"
                     value="ธุกิจส่วนตัว"
                     readOnly
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '155px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                 />
             </div>
-
-            <div className="col-sm-4 d-flex align-items-center">
-                <label htmlFor="Workplace_mother" className="col-form-label mb-0 mx-3">สถานที่ทำงาน</label>
+            </div>
+            <div style={{ fontSize: '18px'}}> 
+            <div className="align-items-center">
+                <label htmlFor="Workplace_mother" className="col-form-label">สถานที่ทำงาน</label>
+                </div>
+                <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input
                     type="text"
                     className="form-control"
@@ -285,15 +325,17 @@ function Parent_Information() {
                     name="Workplace_mother"
                     value="บริษัทสมใจปรารถนา"
                     readOnly
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '155px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                     />
             </div>
-        </div>
+            </div>
         
-        <br />
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-2.5 d-flex align-items-center">
-                <label htmlFor="Phone_mother" className="col-form-label mb-0 mx-3">โทรศัพท์</label>
+            <div style={{ fontSize: '18px'}}> 
+        
+            <div className="align-items-center">
+                <label htmlFor="Phone_mother" className="col-form-label">โทรศัพท์</label>
+                </div>
+                <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input 
                     type="text" 
                     className="form-control"
@@ -301,22 +343,30 @@ function Parent_Information() {
                     name="Phone_mother" 
                     value="0600000000" 
                     readOnly 
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '100px' }} 
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}} 
                 />
             </div>
-        </div>
+            </div>
 
-        <br />
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap',fontWeight: 'bold', fontFamily: 'Kanit, sans-serif', fontSize: '20px'}}>
-            <div className="col-sm-4 d-flex align-items-center">
-                    <label htmlFor="data_parent" className="col-form-label mb-0 mx-3">ข้อมูลผู้ปกครอง</label>
+        </div>
+        </div>
+        
+       <br />
+       <div className="d-flex flex-column"style={{fontFamily: 'Kanit, sans-serif'}}>        
+        <div className="d-flex align-items-center" style={{fontWeight:"bold",fontSize:"20px"}}>
+            <div className="align-items-center">
+                    <label htmlFor="data_parent" className="col-form-label">ข้อมูลผู้ปกครอง</label>
                 </div>
         </div>
+        </div>
+        <div className="d-flex flex-column"style={{fontFamily: 'Kanit, sans-serif'}}>   
 
-        <br />
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-5 d-flex align-items-center">
-                <label htmlFor="name_parent" className="col-form-label mb-0 mx-3">ชื่อ</label>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontFamily: 'Kanit, sans-serif'}}>  
+        <div style={{ fontSize: '18px'}}> 
+            <div className="align-items-center">
+                <label htmlFor="name_parent" className="col-form-label">ชื่อ</label>
+                </div>
+                <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input 
                     type="text" 
                     className="form-control"
@@ -324,13 +374,16 @@ function Parent_Information() {
                     name="name_parent" 
                     value="-" 
                     readOnly 
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '155px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                     // style={{ backgroundColor: '#DCDCDC', color: 'black', borderColor: '#808080' }}
                 />
             </div>
-
-            <div className="col-sm-5 d-flex align-items-center">
-                <label htmlFor="lastname_parent" className="col-form-label mb-0 mx-3">นามสกุล</label>
+            </div>
+            <div style={{ fontSize: '18px'}}> 
+            <div className="align-items-center">
+                <label htmlFor="lastname_parent" className="col-form-label">นามสกุล</label>
+                </div>
+                <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input
                     type="text"
                     className="form-control"
@@ -338,41 +391,54 @@ function Parent_Information() {
                     name="lastname_parent"
                     value="-"
                     readOnly
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '155px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                 />
                         
             </div>
-
-            <div className="col-sm-1 d-flex align-items-center">
-                <label htmlFor="age_parent" className="col-form-label mb-0 mx-3">อายุ</label>
+     
+            </div>
+           
+            </div> 
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontFamily: 'Kanit, sans-serif'}}>  
+        <div style={{ fontSize: '18px'}}> 
+            <div className="align-items-center">
+                <label htmlFor="DOB_parent" className="col-form-label">วัน/เดือน/ปีเกิด</label>
+                </div>
+                <div className="align-items-center"style={{maxWidth:"100%"}}> 
                 <input
                     type="text"
                     className="form-control"
-                    id="age_parent"
-                    name="age_parent"
+                    id="DOB_parent"
+                    name="DOB_parent"
                     value="-"
                     readOnly
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '60px'}}
+                    style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                     />
-                <label htmlFor="year" className="col-form-label mb-0 mx-3">ปี</label>
+                
             </div>
         </div>
+        
 
-        <br />
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', whiteSpace: 'nowrap', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>
-            <div className="col-sm-2.5 d-flex align-items-center">
-                <label htmlFor="Phone_parent" className="col-form-label mb-0 mx-3">เกี่ยวข้องเป็น</label>
-                <input 
-                    type="text" 
-                    className="form-control"
-                    id="Phone_parent" 
-                    name="Phone_parent" 
-                    value="-" 
-                    readOnly 
-                    style={{ backgroundColor: '#DCDCDC', color: 'black', minWidth: '100px' }} 
-                />
+            <div style={{ fontSize: '18px'}}> 
+                <div className="align-items-center">
+                    <label htmlFor="Phone_parent" className="col-form-label">เกี่ยวข้องเป็น</label>
+                    </div>
+                    <div className="align-items-center"style={{maxWidth:"100%"}}> 
+                    <input 
+                        type="text" 
+                        className="form-control"
+                        id="Phone_parent" 
+                        name="Phone_parent" 
+                        value="-" 
+                        readOnly 
+                        style={{ backgroundColor: '#DCDCDC', color: 'black'}} 
+                    />
+                </div>
+            </div>
             </div>
         </div>
+        </div>
+    </div>
     </div>
   );
 }

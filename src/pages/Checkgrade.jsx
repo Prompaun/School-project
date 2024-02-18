@@ -97,24 +97,7 @@ const Checkgrade = () => {
 
   return (
     <>
-      {/* <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-        <div className="container">
-          <Link className="navbar-brand" to="/">
-            <img src="src\images\IMG_5416.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top" style={{ float: 'left', marginRight: '10px' }} />
-            <span style={{ fontFamily: 'Kanit, sans-serif',marginLeft: '0px' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</span>
-          </Link>
-          <div className="nav navbar-nav navbar-right">
-            <span className='nav-link'>
-              <Link
-                onClick={handleGoBack}
-                style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>
-                เลือกเมนู
-              </Link>
-
-            </span>
-          </div>
-        </div>
-      </nav>  */}
+      
 
       <Header header="ระบบจัดการสารสนเทศ" subhead="บริการสำหรับนักเรียน" />
       <br />

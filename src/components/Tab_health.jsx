@@ -32,8 +32,8 @@ const Tab_health = () => {
     };
     return (
         
-        <div className="d-flex flex-column align-items-center">
-        <div class="card" style={{width: '70vw', height: 'auto'}}>
+        
+        <div class="card" style={{width: 'auto', height: 'auto'}}>
           <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
@@ -95,7 +95,7 @@ const Tab_health = () => {
                 </div>
             </div>
             </div>
-            </div>
+           
       
     );
 };
