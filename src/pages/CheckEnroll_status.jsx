@@ -261,7 +261,7 @@ function CheckEnroll_status() {
       <br />
       <div className="container d-flex align-items-center justify-content-center"style={{ flexWrap: 'wrap' }}>
 
-      <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontFamily: 'Kanit, sans-serif', fontSize: '18px' }}>
         <div className="d-flex align-items-center">
           <span style={{ marginRight: "10px" }}>ตรวจสอบข้อมูลผู้สมัคร :</span>
         </div>
