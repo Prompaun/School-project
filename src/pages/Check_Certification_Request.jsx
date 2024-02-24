@@ -42,69 +42,45 @@ const Check_Certification_Request = () => {
 
     return (
         <>
-            {/* <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-            <div className="container">
-                <Link className="navbar-brand" to="/">
-                
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <img src={school_logo} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
-                    <h5 style={{ textAlign: 'right', marginLeft: '10px', marginBottom: '0' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
-                </div>
-                </Link>
-                <div className="nav navbar-nav navbar-right">
-                <span className='nav-link'>
-                <Link
-                        to = "/Login_personnel"
-                        style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>
-                        Log out
-                    </Link>
-                </span>
-                </div>
-            </div>
-            </nav> */}
+            
 
             <Header header="ระบบการออกใบรับรอง" subhead="ตรวจสอบคำขอใบรับรอง" />  
-    <div className="container-fluid">
-        <div className="row flex-nowrap">
-            {/* <Sidebar /> */}
-        
-        <div className="col-md">
-                       
-            <br />
-            
-        {/* <div className="card mx-auto my-auto" style={{maxWidth: "1000px", border: '1px solid white' }}> */}
-            {/* <br /> */}
-            {/* <div className="card mx-auto my-0" style={{ width: "1000px", border: '1px solid white' }}> */}
-                <div className="card-body">
-                    <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
-                        <div className="d-flex align-items-center">
-                            <h2 className="card-heading px-0" style={{ fontSize: '20px', marginTop: '2px' }}>สถานะคำร้องขอใบรับรอง</h2>
-                        </div>
-
-                        {/* <br /> */}
-                        <select value={selectedOption} onChange={handleSelectChange} style={{ fontSize: '18px', fontFamily: 'Kanit, sans-serif', marginTop: '5px' }}>
-                            <option value="เลือกสถานะคำร้องขอใบรับรอง">เลือกสถานะคำร้องขอใบรับรอง</option>
-                            <option value="รอดำเนินการ">รอดำเนินการ</option>
-                            <option value="ดำเนินการเสร็จสิ้น">ดำเนินการเสร็จสิ้น</option>
-                            <option value="กำลังดำเนินการ">กำลังดำเนินการ</option>
-                        </select>
-
-                        <br /><br />
-                        <table className="table-bordered" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center', fontFamily: 'Kanit, sans-serif', borderColor: '#D3D3D3' }}>
+            <div className="d-flex flex-column"style={{fontFamily: 'Kanit, sans-serif',height:"100vh"}}>
+                <div className="container flex-column align-items-center">
+                    <div className="mb-3"><br />
+                    <h2 className="align-items-center justify-content-center"style={{fontWeight:"bolder",fontSize:"25px"}}>สถานะคำร้องขอใบรับรอง</h2>
+                    <br />
+                    <div className="d-flex"style={{ flexWrap: 'wrap', margin: 'auto', fontSize: '18px' }}>
+                        <div>
+                            <span style={{fontWeight:"bolder",fontSize:"20px",marginRight:"10px"}}>เลือกสถานะ</span>
+                            </div>
+                    <div className="dropdown" style={{ maxWidth: '100%'}}>
+                    <select value={selectedOption} onChange={handleSelectChange}className="custom-select w-full">
+                        <option value="เลือกสถานะคำร้องขอใบรับรอง">เลือกสถานะคำร้องขอใบรับรอง</option>
+                        <option value="รอดำเนินการ">รอดำเนินการ</option>
+                        <option value="ดำเนินการเสร็จสิ้น">ดำเนินการเสร็จสิ้น</option>
+                        <option value="กำลังดำเนินการ">กำลังดำเนินการ</option>
+                    </select>
+                    </div>
+                    </div>
+                    </div>
+                    <div className="d-flex justify-content-center" style={{ height: 'auto', overflowY: 'auto' }}>
+                    <div className="table-wrapper">
+                        <table className="table table-bordered table-striped table-hover" style={{borderCollapse: 'collapse', textAlign: 'center',fontFamily: 'Kanit, sans-serif' }}>
                             <thead>
                                 <tr>
-                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>วันที่ทำรายการ</th>
-                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>เลขที่คำร้อง</th>
-                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ประเภทใบรับรอง</th>
-                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>รายละเอียด</th>
-                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>พิมพ์ใบรับรอง</th>
-                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>อัพเดตสถานะ</th>
+                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF' }}>วันที่ทำรายการ</th>
+                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF'}}>เลขที่คำร้อง</th>
+                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF' }}>ประเภทใบรับรอง</th>
+                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF' }}>รายละเอียด</th>
+                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF' }}>พิมพ์ใบรับรอง</th>
+                                    <th rowSpan="1" style={{ backgroundColor: '#FFFFFF' }}>อัพเดตสถานะ</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 {data[0].requests.map((request) => (
-                                    <tr key={request.id} style={{ height: '100px' }}>
+                                    <tr key={request.id} style={{ height: 'auto' }}>
                                         <td style={{ backgroundColor: '#FFFFFF', fontSize: '16px' }}>{request.request_date}</td>
                                         <td style={{ backgroundColor: '#FFFFFF', fontSize: '16px' }}>{request.request_number}</td>
                                         <td style={{ backgroundColor: '#FFFFFF', fontSize: '16px' }}>{request.certificate_type}
@@ -151,11 +127,8 @@ const Check_Certification_Request = () => {
 
                     </div>
                 </div>
-            </div>
-        {/* </div> */}
-        {/* </div>        */}
-    </div>
-    </div> 
+                </div>
+      </div>
         </>
     );
 };

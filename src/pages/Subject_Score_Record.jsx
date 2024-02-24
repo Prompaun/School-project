@@ -64,60 +64,37 @@ const Subject_Score_Record = () => {
 
     return (
         <>
-            {/* <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-            <div className="container">
-                <Link className="navbar-brand" to="/">
-              
-               <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <img src={school_logo} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
-                    <h5 style={{ textAlign: 'right', marginLeft: '10px', marginBottom: '0' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
-                </div>
-                </Link>
-                <div className="nav navbar-nav navbar-right">
-                <span className='nav-link'>
-                <Link
-                        to = "/Login_personnel"
-                        style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>
-                        Log out
-                    </Link>
-                </span>
-                </div>
-            </div>
-            </nav> */}
-
+           
             <Header header="ระบบจัดการข้อมูลการศึกษา" subhead="บันทึกคะแนนรายวิชา" />  
-             
-    <div className="container-fluid">
-        <div className="row flex-nowrap">
-            {/* <Sidebar /> */}
-        
-        <div className="col-md">
+             <div style={{height:"150vh",fontFamily:"Kanit, sans-serif"}}>
+            <div className="container"> 
+            <div className="flex-column"> 
+                <div className="justify-content-center"> 
                        
-            {/* <br /> */}
-            
-            <div className="card " style={{maxWidth: "1300px", border: '1px solid white' }}>
-                <div className="card-body">
-                    <div className="form-group col-md-0 fone" style={{ padding: '32px', margin: '10px', whiteSpace: "nowrap" }}>
-                        <div className="d-flex align-items-center">
-                            <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '2px' }}>บันทึกคะแนน</h2>
+                <div className="container d-flex align-items-center"style={{ flexWrap: 'wrap',marginTop:"20px"  }}>
+                            <h2 className="card-heading"style={{ fontSize: '25px', fontWeight: 'bold'}}>บันทึกคะแนน</h2>
                         </div>
-
-                        <div className="card mx-auto my-auto"  style={{ width: "1200px"}}>
+                    
+                    <div className="container d-flex align-items-center"style={{ flexWrap: 'wrap',marginTop:"20px"  }}>
+                        
+                        <div className="card"  style={{width: "100vw"}}>
                             <div className="card-body">
-                                <div className="form-group col-md-0 fone" style={{ padding: '10px', whiteSpace: "nowrap" }}>
-                                    <div className="d-flex align-items-center">
-                                        <h2 className="card-heading px-2" style={{ fontSize: '20px', marginTop: '2px' }}>รายละเอียด</h2>
+                                <div className="form-group col-md-0 fone" style={{ padding: '10px' }}>
+                                <div className="d-flex align-items-center"style={{ flexWrap: 'wrap'}}>
+                                    <span style={{margin:"10px",fontWeight: 'bold',fontSize:"20px"}}>เกณฑ์การให้คะแนน</span>
                                     </div>
-
-                                    <br />
+                        
+                                    <div className="d-flex align-items-center"style={{ flexWrap: 'wrap' }}>
+                                    <div style={{ display: 'flex', flexWrap: 'wrap', fontSize: '18px'}}>
                                     <div className="d-flex align-items-center">
-                                        <h2 className="card-heading px-0" style={{ fontSize: '18px', marginTop: '2px', marginLeft: '20px', marginRight: '15px' }}>ปีการศึกษา</h2>
-                                        <div className="dropdown px-0" style={{ width: '150px', marginRight: '30px' }}>
+                                        <span style={{margin:"10px"}}>ปีการศึกษา :</span>
+                                        </div>
+                                        <div className="d-flex align-items-center">
+                                        <div className="dropdown" style={{ maxWidth: '100%' }}>
                                             <select
                                             value={selectedYear}
                                             onChange={handleSelectYearChange}
                                             className="custom-select"
-                                            style={{ width: '150px' }}
                                             >
                                             <option value="เลือกปีการศึกษา">เลือกปีการศึกษา</option>
                                             {yearsList.map((year) => (
@@ -128,16 +105,22 @@ const Subject_Score_Record = () => {
                                             ))}
                                             </select>
                                         </div>
-
+                                        </div>
+                                        </div>
                                         {/* แสดง "ภาคการศึกษา" เมื่อเลือก "ปีการศึกษา" */}
-                                        
-                                        <h2 className="card-heading px-0" style={{ fontSize: '18px', marginTop: '2px', marginRight: '15px' }}>ภาคการศึกษา</h2>
-                                        <div className="dropdown px-0" style={{ width: '150px', marginRight: '30px' }}>
+                                    <div style={{ display: 'flex', flexWrap: 'wrap', fontSize: '18px'}}>
+                                    <div className="d-flex align-items-center">
+                                    <span style={{margin:"10px"}}>ภาคการศึกษา :</span>
+                                    </div>
+                                        <div className="d-flex align-items-center">
+                                        <div className="dropdown" style={{ maxWidth: '100%' }}>
+                                        </div>
+                                        <div className="d-flex align-items-center">
                                             <select
                                             value={selectedSemester}
                                             onChange={handleSelectSemesterChange}
                                             className="custom-select"
-                                            style={{ width: '150px' }}
+                                            
                                             >
                                                 
                                             <option value="เลือกภาคการศึกษา">เลือกภาคการศึกษา</option>
@@ -150,16 +133,18 @@ const Subject_Score_Record = () => {
                                             </select>
                                         </div>
                                     </div>
-                                    
-                                    <br />
+                                    </div>
+                                    <div style={{ display: 'flex', flexWrap: 'wrap', fontSize: '18px'}}>
                                     <div className="d-flex align-items-center">
-                                        <h2 className="card-heading px-0" style={{ fontSize: '18px', marginTop: '2px', marginLeft: '20px', marginRight: '15px' }}>วิชา</h2>
-                                        <div className="dropdown px-0" style={{ width: '150px', marginRight: '30px' }}>
+                                    <span style={{margin:"10px"}}>วิชา :</span>
+                                    </div>
+                                        <div className="d-flex align-items-center">
+                                        <div className="dropdown" style={{ maxWidth: '100%' }}>
                                             <select
                                             value={selectedSubject}
                                             onChange={handleSelectSubjectChange}
                                             className="custom-select"
-                                            style={{ width: '150px' }}
+                                      
                                             >
                                             <option value="เลือกวิชา">เลือกวิชา</option>
 
@@ -171,14 +156,18 @@ const Subject_Score_Record = () => {
                                             )}
                                             </select>
                                         </div>
-                                               
-                                        <h2 className="card-heading px-0" style={{ fontSize: '18px', marginTop: '2px', marginRight: '15px' }}>ห้อง</h2>
-                                        <div className="dropdown px-0" style={{ width: '150px' }}>
+                                        </div>
+                                        <div style={{ display: 'flex', flexWrap: 'wrap', fontSize: '18px'}}>
+                                    <div className="d-flex align-items-center">    
+                                    <span style={{margin:"10px"}}>ห้อง :</span>
+                                    </div>
+                                        <div className="d-flex align-items-center">
+                                        <div className="dropdown" style={{ maxWidth: '100%' }}>
                                             <select
                                             value={selectedRoom}
                                             onChange={handleSelectRoomChange}
                                             className="custom-select"
-                                            style={{ width: '150px' }}
+                                           
                                             >
                                             <option value="เลือกห้อง">เลือกห้อง</option>
                                                 {selectedSubject !== "เลือกวิชา" && (
@@ -189,24 +178,26 @@ const Subject_Score_Record = () => {
                                                 )}
                                             </select>
                                         </div>
+                                            </div>
+                                            </div>
+                                        
                                     </div>
+                                    
                                 </div>
                             </div>
-                        </div>
-                            
-                        <br /><br />
+                       
                         
-                            <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '2px' }}>เกณฑ์การให้คะแนน</h2>
-                        
-                            <div className="card mx-auto my-auto"  style={{ width: "1200px"}}>
-                        <div className="card-body">                        
-                            <div className="d-flex justify-content-center" style={{ height: '500px', overflowY: 'auto', marginLeft: '0px' }}>
-                                <table className="table-bordered" style={{ fontSize: '16px', width: '100%', borderCollapse: 'collapse', textAlign: 'center', fontFamily: 'Kanit, sans-serif', borderColor: '#D3D3D3', marginTop: '0px' }}>
+                           
+                        <div className="container flex-column align-items-center">
+                            {/* <table className="table-bordered" style={{ textAlign: 'center',fontFamily: 'Kanit, sans-serif'}}> */}
+                            <div className="d-flex justify-content-center" style={{ height: 'auto', overflowY: 'auto' }}>
+                            <div className="table-responsive">
+                            <table className="table table-bordered table-hover" style={{ borderCollapse: 'collapse', textAlign: 'center',fontFamily: 'Kanit, sans-serif' }}>
                                     <thead>
                                         <tr style={{ height: '50px' }}>
-                                            <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>กิจกรรมที่</th>
-                                            <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>การประเมิน</th>
-                                            <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>สัดส่วนการประเมิน</th>
+                                            <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'bold',fontSize:"18px" }}>กิจกรรมที่</th>
+                                            <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'bold',fontSize:"18px" }}>การประเมิน</th>
+                                            <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'bold',fontSize:"18px" }}>สัดส่วนการประเมิน</th>
                                         </tr>
                                     </thead>
 
@@ -252,43 +243,46 @@ const Subject_Score_Record = () => {
                             </div>
                         </div>
                         </div>
-                        <br /><br />
-                        <div className="d-flex align-items-center">
-                            <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '2px' }}>การบันทึกคะแนน</h2>
-                        </div>
-
-                        <div className="card mx-auto my-0"  style={{ width: "1200px"}}>
-                            <div className="card-body">
-                                <div className="form-group col-md-0 fone" style={{ padding: '10px', whiteSpace: "nowrap" }}>
-
-                                {/* <div className="container flex-column align-items-center">
-                                </div> */}
-
-                                <div className="d-flex align-items-center">
-                                    <h2 className="card-heading px-2" style={{ fontSize: '18px', marginLeft: '20px', marginTop: '10px' }}>อัปโหลดไฟล์คะแนน</h2>
-                                    <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '1px'}}><span>Export file</span></button>
-                                    <h2 className="card-heading px-2" style={{ fontSize: '18px', marginTop: '10px' }}>/ Update data</h2>
-                                    <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '1px'}}><span>
-                                    <i 
-                                        class="fs-5 bi-cloud-upload" 
-                                        style={{
-                                        color: 'white',
-                                        fontSize: '20px',
-                                        marginRight: '5px',
-                                        cursor: 'pointer' // เพิ่ม cursor: 'pointer' เพื่อแสดงว่าเป็นองค์ประกอบที่คลิกได้
-                                        }}
-                                    ></i>Upload file</span>
-                                    </button>
+                        
+                        
+                       
+                                <div className="form-group col-md-0 fone" style={{ padding: '10px'}}> 
+                                <div className="d-flex align-items-center"style={{ flexWrap: 'wrap'}}>
+                                    <span style={{margin:"10px",fontWeight: 'bold',fontSize:"20px"}}>การบันทึกคะแนน</span>
                                 </div>
-
-                                <br />
+                                <div style={{ display: 'flex', flexWrap: 'wrap', fontSize: '18px',padding:"10px"}}>
+                                        <div className="align-items-center">
+                                            <h2 className="card-heading" style={{ fontSize: '18px', marginTop: '10px',marginRight:"5px" }}>อัปโหลดไฟล์คะแนน</h2>
+                                            </div>
+                                            <div className="align-items-center">
+                                            <button type="submit" class="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '1px',marginRight:"5px"}}><span>Export file</span></button>
+                                            </div>
+                                   
+                                        <div className="align-items-center">
+                                        <h2 className="card-heading" style={{ fontSize: '18px', marginTop: '10px',marginRight:"5px" }}>/ Update data</h2>
+                                        </div>
+                                        <div className="align-items-center">
+                                        <button type="submit" class="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '1px',marginRight:"5px"}}><span>
+                                        <i 
+                                            class="fs-5 bi-cloud-upload" 
+                                            style={{
+                                            color: 'white',
+                                            fontSize: '20px',
+                                            marginRight: '5px',
+                                            cursor: 'pointer' // เพิ่ม cursor: 'pointer' เพื่อแสดงว่าเป็นองค์ประกอบที่คลิกได้
+                                            }}
+                                        ></i>Upload file</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                    <div className="align-items-center"style={{ padding: '10px'}}>
                                 <div className="d-flex align-items-center">
-                                    <h2 className="card-heading px-2" style={{ fontSize: '16px', marginLeft: '20px', marginTop: '2px' }}>ตัวอย่างไฟล์ที่อัปโหลด</h2>
+                                    <h2 className="card-heading" style={{ fontSize: '16px', marginTop: '2px' }}>ตัวอย่างไฟล์ที่อัปโหลด</h2>
                                 </div>
 
                                 {/* <div className="container flex-column align-items-center"> */}
                                 
-                                <div className="card mx-auto my-0"  style={{ width: "800px"}}>
+                                <div className="card"  style={{ maxWidth:"100%"}}>
                                     <div className="card-body">
                                         {/* <div className="form-group col-md-0 fone" style={{ padding: '10px', whiteSpace: "nowrap" }}>
                                 
@@ -303,14 +297,15 @@ const Subject_Score_Record = () => {
                                 </Link>
                                 </div>
                             </div>
+                            </div>
+                        </div>
+                        </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                    </div>  
+            
         </div>
-        </div>
-      
-    </div>
+        
         </>
     );
 };

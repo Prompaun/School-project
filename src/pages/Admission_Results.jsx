@@ -87,62 +87,51 @@ const Admission_Results = () => {
 
     return (
         <>        
-         {/* <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-            <div className="container">
-                <Link className="navbar-brand" to="/">
-                
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <img src={school_logo} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
-                    <h5 style={{ textAlign: 'right', marginLeft: '10px', marginBottom: '0' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
-                </div>
-                </Link>
-                <div className="nav navbar-nav navbar-right">
-                <span className='nav-link'>
-                <Link
-                        to = "/Login_personnel"
-                        style={{ ...linkStyle, fontFamily: 'Kanit, sans-serif' }}>
-                        Log out
-                    </Link>
-                </span>
-                </div>
-            </div>
-            </nav> */}
 
             <Header header="ระบบการรับสมัครนักเรียน" subhead="ผลคะแนนการสอบรายบุคคล" />  
              
-    <div className="container-fluid">
-        <div className="row flex-nowrap">
-            {/* <Sidebar /> */}
-        
-        <div className="col-md">
+            <div style={{height:"150vh",fontFamily:"Kanit, sans-serif"}}>
+            <div className="container"> 
+            <div className="flex-column"> 
+                <div className="justify-content-center"> 
                        
-            {/* <br /> */}
-            
-            <div className="card mx-0 my-0" style={{maxWidth: "1300px", border: '1px solid white' }}>
-                <div className="card-body">
-                    <div className="form-group col-md-0 fone" style={{ padding: '32px', margin: '10px', whiteSpace: "nowrap" }}>
-                        <h2 className="card-heading px-4" style={{ fontSize: '20px', marginTop: '2px' }}>ผลคะแนนรายบุคคล</h2>
-                    <br />
-                        <div className="card mx-auto my-auto"  style={{ width: "1200px"}}>
+                <div className="container d-flex align-items-center"style={{ flexWrap: 'wrap',marginTop:"20px"  }}>
+                            <h2 className="card-heading"style={{ fontSize: '25px', fontWeight: 'bold'}}>ผลคะแนนการสอบรายบุคคล</h2>
+                        </div>
+                    
+                    <div className="container d-flex align-items-center"style={{ flexWrap: 'wrap',marginTop:"20px"  }}>
+                        
+                        <div className="card"  style={{width: "100vw"}}>
                             <div className="card-body">                        
-                                <div className="form-group col-md-0 fone" style={{ padding: '10px', whiteSpace: "nowrap" }}>
+                                <div className="form-group col-md-0 fone" style={{ padding: '10px' }}>
+                                <div style={{ display: 'flex', flexWrap: 'wrap', fontSize: '18px'}}>
                                     <div className="d-flex align-items-center">
-                                        <h2 className="card-heading px-0" style={{ fontSize: '20px', marginTop: '18px', marginLeft: '20px', fontWeight: 'bold' }}>หลักสูตร</h2>
-                                        <select value={selectedCourseOption} onChange={handleSelectChange} style={{ fontSize: '18px', fontFamily: 'Kanit, sans-serif', marginLeft: '20px', marginTop: '5px' }}>
+                                    <span style={{margin:"10px"}}>หลักสูตร :</span>
+                                    </div>
+                                    <div className="d-flex align-items-center">
+                                        <div className="dropdown" style={{ maxWidth: '100%',marginRight:"5px"}}>
+                                        <select value={selectedCourseOption} onChange={handleSelectChange}className="custom-select">
                                             <option value="เลือกหลักสูตร">เลือกหลักสูตร</option>
                                             <option value="English Program (EP)">English Program (EP)</option>
                                             <option value="Regular Program">Regular Program</option>
                                         </select>
-
-                                        <h2 className="card-heading px-0" style={{ fontSize: '20px', marginTop: '18px', marginLeft: '20px', fontWeight: 'normal' }}>สถานะ</h2>
-                                        <select value={selectedStatusOption} onChange={handleStatusChange} style={{ fontSize: '18px', fontFamily: 'Kanit, sans-serif', marginLeft: '20px', marginTop: '5px' }}>
+                                        </div>
+                                        </div>
+                                        <div className="d-flex align-items-center">
+                                        <span style={{margin:"10px"}}>สถานะ :</span>
+                                        </div>
+                                        <div className="d-flex align-items-center">
+                                        <div className="dropdown" style={{ maxWidth: '100%',marginRight:"5px"}}>
+                                        <select value={selectedStatusOption} onChange={handleStatusChange} className="custom-select">
                                             <option value="เลือกสถานะ">เลือกสถานะ</option>
                                             <option value="ผ่าน">ผ่าน</option>
                                             <option value="ไม่ผ่าน">ไม่ผ่าน</option>
                                             <option value="ขาดสอบ">ขาดสอบ</option>
                                         </select>
-
-                                        <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '5px', marginLeft: '20px'}}><span>
+                                        </div>
+                                        </div>
+                                        <div className="align-items-center">
+                                        <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '1px',marginRight:"5px"}}><span>
                                             <i 
                                                 class="fs-5 bi-printer" 
                                                 style={{
@@ -153,13 +142,16 @@ const Admission_Results = () => {
                                                 }}
                                             ></i>พิมพ์รายชื่อ</span>
                                         </button>
+                                        </div>
                                     </div>
                                     
-                                    <br />
+                                    </div>
                                     <div className="container flex-column align-items-center">
-                                        <div className="d-flex justify-content-center" style={{ height: '400px', overflowY: 'auto', marginLeft: '0px', padding:'10px' }}>
-                                            <table className="table-bordered" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center', fontFamily: 'Kanit, sans-serif', borderColor: '#D3D3D3' }}>
-                                                <thead>
+                                   
+                                        <div className="d-flex justify-content-center" style={{ height: 'auto', overflowY: 'auto' }}>
+                                        <div className="table-responsive">
+                                        <table className="table table-striped table-bordered table-hover" style={{ borderCollapse: 'collapse', textAlign: 'center',fontFamily: 'Kanit, sans-serif' }}>
+                                                 <thead>
                                                     <tr>
                                                         <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>เลขที่สอบ</th>
                                                         <th rowSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ชื่อ-นามสกุล</th>
@@ -181,7 +173,9 @@ const Admission_Results = () => {
                                                 </tbody>
                                             </table>
                                         </div>
-
+                                        </div>
+                                        </div>
+                                        {/* <br />
                                         <nav aria-label="Page navigation example">
                                             <ul class="pagination justify-content-end">
                                                 <li class="page-item"><a class="page-link" href="#"> &lt;&lt; </a></li>
@@ -193,20 +187,18 @@ const Admission_Results = () => {
                                                 <li class="page-item"><a class="page-link" href="#"> &gt; </a></li>
                                                 <li class="page-item"><a class="page-link" href="#"> &gt;&gt; </a></li>
                                             </ul>
-                                        </nav>
+                                        </nav> */}
 
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <br /><br />
                         
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
-        </div>
+        
+       
         </>
     );
 };

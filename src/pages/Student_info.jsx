@@ -53,62 +53,49 @@ const Student_info = () => {
 
     return (
         <>
-            {/* <nav className="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
-            <div className="container">
-                <Link className="navbar-brand" to="/">
-                
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <img src={school_logo} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
-                    <h5 style={{ textAlign: 'right', marginLeft: '10px', marginBottom: '0' }}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
-                </div>
-                </Link>
-                <div className="nav navbar-nav navbar-right">
-                <span className='nav-link'>
-                <Link to="/Login_personnel" style={linkStyle}>
-                Log out
-              </Link>
-                </span>
-                </div>
-            </div>
-            </nav> */}
+           
 
             <Header header="ระบบจัดการข้อมูลส่วนบุคคล" subhead="" />  
              
-    <div className="container-fluid">
-        <div className="row flex-nowrap">
-            {/* <Sidebar /> */}
-            
-        <div className="col-md">
-            {/* <div className="container flex-column align-items-center">
-                <h2 className="card-heading text-left mx-auto ml-auto" style={{ fontSize: '20px', marginTop: '2px' }}>ผลการค้นหา</h2>
-            </div> */}
-            <br />
-            <div className="card" style={{ border: '1px solid white' }}>
-                
-                    <div className="form-group col-md-0 fone" style={{paddingTop: '40px', padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
-                        <div className="d-flex align-items-center" style={{ marginBottom: '20px' }}>
-                            <h2 className="card-heading px-4" style={{ fontSize: '25px', fontWeight: 'bold' }}>ผลการค้นหา</h2>
+            <div className="container"style={{height:"100vh"}}> 
+            <div className="flex-column"> 
+                <div className="justify-content-center"> 
+           
+                <div className="container d-flex align-items-center"style={{ flexWrap: 'wrap',marginTop:"20px"  }}>
+                        <div className="d-flex align-items-center">
+                            <h2 className="card-heading" style={{ fontSize: '25px', fontWeight: 'bold',padding:"10px"}}>ผลการค้นหา</h2>
+                        </div>
+                        
+                        <div className="d-flex align-items-center">
                             <Link to="/Filter_student_information">
-                                <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, color: 'white', fontSize: '18px', textAlign: 'right', marginTop: '-15px'}}><span>ค้นหาข้อมูลใหม่</span></button>
+                                <button type="submit" class="btn btn-primary" style={{ ...fontStyle, color: 'white', textAlign: 'center',padding:"10px"}}><span>ค้นหาข้อมูลใหม่</span></button>
                             </Link>
                         </div>
+                        </div>
+                    <div className="container d-flex align-items-center"style={{ flexWrap: 'wrap',marginTop:"20px"  }}>
 
-                        <div className="card mx-auto my-auto"  style={{ width: "1300px"}}>
+                        <div className="card" style={{width: "100vw"}}>
                             <div className="card-body">
-                                <div className="form-group col-md-0 fone" style={{ padding: '10px', margin: '10px', whiteSpace: "nowrap" }}>
+                                
+                                <div className="form-group col-md-0 fone">
+                                <div className="d-flex align-items-center"style={{ flexWrap: 'wrap' }}>
                                     <div className="d-flex align-items-center">
-                                        <h2 className="card-heading px-2" style={{ fontSize: '20px', marginTop: '2px' }}>ข้อมูลรายชื่อ</h2>
-                                        <h2 className="card-heading px-2" style={{ fontSize: '20px', marginTop: '2px' }}>&gt;</h2>
-                                        <h2 className="card-heading px-2" style={{ fontSize: '20px', marginTop: '2px' }}>รายละเอียด</h2>
+                                        <h2 className="card-heading" style={{ fontSize: '20px', marginTop: '2px',padding:"10px" ,flexWrap: 'wrap'}}>ข้อมูลรายชื่อ</h2>
+                                        </div>   
+                                        <div className="d-flex align-items-center">    
+                                        <h2 className="card-heading" style={{ fontSize: '20px', marginTop: '2px',padding:"10px",flexWrap: 'wrap' }}>&gt;</h2>
+                                        </div>
+                                        <div className="d-flex align-items-center">   
+                                        <h2 className="card-heading" style={{ fontSize: '20px', marginTop: '2px',padding:"10px",flexWrap: 'wrap' }}>รายละเอียด</h2>
                                     </div>
-                                    {/* <br /> */}
-                                <div className="card mx-auto my-auto"  style={{ border: '1px solid white',width: "1200px"}}>
+                                    </div>
+                                
                                     
-                                        <div className="form-group col-md-0 fone" style={{ whiteSpace: "nowrap" }}>
-                                            <div className="container d-flex justify-content-end">
+                                        
+                                            <div className='container d-flex justify-content-end'>
                                                 <span
-                                                className="btn btn-link px-0"
-                                                style={{ color: 'black', textDecoration: 'none', fontFamily: 'Kanit, sans-serif', marginRight: '4px', cursor: 'pointer', marginTop: '-2px' }}
+                                                className="btn btn-link float-end"
+                                                style={{ color: 'black', textDecoration: 'none', fontFamily: 'Kanit, sans-serif', cursor: 'pointer'}}
                                                 onClick={() => {
                                                     const fileUrl = "src/assets/พิมพ์ใบสมัครป.1.pdf";
                                                     const printWindow = window.open(fileUrl, "_blank", 'width=1000,height=800');
@@ -121,7 +108,7 @@ const Student_info = () => {
                                                 <img
                                                     src={printer_icon}  // Replace with the path to your printer icon image
                                                     alt="Printer Icon"
-                                                    style={{ width: '25px', height: '25px', cursor: 'pointer', marginTop: '5px' }}
+                                                    style={{ width: '25px', height: '25px', cursor: 'pointer',marginTop:"5px" }}
                                                     // onClick={() => {
                                                     //     const fileUrl = "src/assets/พิมพ์ใบสมัครป.1.pdf";
                                                     //     const printWindow = window.open(fileUrl, "_blank", 'width=1000,height=800');
@@ -130,7 +117,7 @@ const Student_info = () => {
                                                 />
                                             </div>
                                             
-            {/* <div class="card"style={{ border: '10px' }} >                         */}
+            <div class="card" style={{width: 'auto', height: 'auto'}}>
                 <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
                     <li class="nav-item">
@@ -152,20 +139,24 @@ const Student_info = () => {
                 </div>
             </div>
             </div>
-                                    </div>
-                                </div>              
-                                <br />
+                                    
+                                    <br />
                                 <Link to="/Student_List_Information">
                                     <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, fontSize: '16px', textAlign: 'right'}}><span>ย้อนกลับ</span></button>
                                 </Link>
+                                    
+                                    </div>
+                                </div>              
+                                
+                                
                                 </div>
-                            </div>
-                        </div>
+                                </div>
+                           
+                       
                     </div>
                 </div>
             </div>
-                </div>
-            {/* </div> */}
+              
 
         </>
     );
