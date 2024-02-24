@@ -44,6 +44,7 @@ import Growth_nutrition from './pages/Growth_nutrition';
 import Personnel_menu from './pages/Personnel_menu';
 import Navbar from './components/Navbar';
 import Register_info from './pages/Register_info';
+// import GoogleDriveFileUploader from './pages/GoogleDriveFileUploader';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -51,7 +52,6 @@ const router = createBrowserRouter(
         <Route path="/Login" element={<Login />} />
         <Route path ="/Login/Login_student" element={<Login_student />} />
         <Route path ="/Login/Login_parent" element={<Login_parent />} />
-        
 
         {/* <Route path ="/Login/login_student/Student_menu" element={<Student_menu />} />
         <Route path ="/Login/Login_parent/Parent_menu" element={<Parent_menu />} /> */}
@@ -102,6 +102,7 @@ const router = createBrowserRouter(
         <Route path="/Health_Checkup" element={<Health_Checkup />} />
         <Route path="/Growth_nutrition" element={<Growth_nutrition />} />
         {/* <Route path="/ParentsInfo" element={<ParentsInfo />} /> */}
+        {/* <Route path ="/GoogleDriveFileUploader" element={<GoogleDriveFileUploader />} /> */}
 
     </>
   )
@@ -120,7 +121,6 @@ function App() {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
         },
       })
         .then((response) => {
@@ -128,8 +128,10 @@ function App() {
           throw new Error("authentication has been failed!");
         })
         .then((resObject) => {
-          setUser(resObject.user);
-        })
+          console.log(resObject); // ตรวจสอบข้อมูลที่ได้รับกลับมาจาก API endpoint
+          console.log("res.credentials",resObject.credentials);
+          setUser(resObject.user); // ตั้งค่าข้อมูลผู้ใช้ในตัวแปร user
+        })        
         .catch((err) => {
           console.log(err);
         });
@@ -137,8 +139,13 @@ function App() {
     getUser();
   }, []);
   
+  if (user && user.email) {
+    console.log(user.email);
+  } else {
+    console.log('User email is not available.');
+  }
+  
 
-  console.log(user)
 
   return (
       <>
