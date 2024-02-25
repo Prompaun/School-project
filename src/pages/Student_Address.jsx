@@ -189,7 +189,7 @@ function Parent_Information() {
                     backgroundColor: '#EE82EE',
                     width: 'auto', // กำหนดความกว้าง
                     height: 'auto',  // กำหนดความสูง
-                    fontSize:"18px"
+                    // fontSize:"18px"
                     }}
                 >
                     <span>file</span>

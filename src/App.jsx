@@ -45,6 +45,7 @@ import Personnel_menu from './pages/Personnel_menu';
 import Navbar from './components/Navbar';
 import Register_info from './pages/Register_info';
 // import GoogleDriveFileUploader from './pages/GoogleDriveFileUploader';
+import Tab_enroll from './components/Tab_enroll';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -59,6 +60,7 @@ const router = createBrowserRouter(
         <Route path="/Register" element={<Register />} />
         <Route path="/NewUser_menu" element={<NewUser_menu />} />
         {/* <Route path="/Tab_enroll" element={<Tab_enroll />} /> */}
+
         <Route path="/Open_course" element={<Open_course />} />
         <Route path="/Enrollment_info" element={<Enrollment_info />} />
         <Route path="/CheckEnroll_status" element={<CheckEnroll_status/>} />
@@ -129,8 +131,9 @@ function App() {
         })
         .then((resObject) => {
           console.log(resObject); // ตรวจสอบข้อมูลที่ได้รับกลับมาจาก API endpoint
-          console.log("res.credentials",resObject.credentials);
+          // console.log("res.credentials",resObject.credentials);
           setUser(resObject.user); // ตั้งค่าข้อมูลผู้ใช้ในตัวแปร user
+          // console.log(resObject.user.emails[0].value);
         })        
         .catch((err) => {
           console.log(err);
@@ -138,19 +141,22 @@ function App() {
     };
     getUser();
   }, []);
+
   
-  if (user && user.email) {
-    console.log(user.email);
-  } else {
-    console.log('User email is not available.');
-  }
+  // if (user && user.emails[0].value) {
+  //   console.log(user.emails[0].value);
+  // } else {
+  //   console.log('User email is not available.');
+  // }
   
 
 
   return (
       <>
       <BrowserRouter>
-      <Navbar user={user}/>  
+      
+
+      <Navbar user={user}/>
         {/* <RouterProvider router={router}> */}
           
           <Routes>
@@ -172,6 +178,9 @@ function App() {
             />
         <Route path="/NewUser_menu" element={<NewUser_menu />} />
         {/* <Route path="/Tab_enroll" element={<Tab_enroll />} /> */}
+        {/* <Route path="/Tab_enroll" element={<Tab_enroll user={user} />} /> */}
+        <Route path="/Tab_enroll" element={<Tab_enroll user={user} />} />
+
         <Route path="/Open_course" element={<Open_course />} />
         <Route path="/Enrollment_info" element={<Enrollment_info />} />
         <Route path="/CheckEnroll_status" element={<CheckEnroll_status/>} />

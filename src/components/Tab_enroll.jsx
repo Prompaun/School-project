@@ -3,10 +3,10 @@ import React, { useState, useEffect, useRef  } from 'react';
 import NewStudent_info from '../pages/NewStudent_info';
 import HouseholdInfo from '../pages/HouseholdInfo';
 import ParentsInfo from '../pages/ParentInfo';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function Tab_enroll() {
+function Tab_enroll({ user }) {
 
   const linkStyle = {
       color: 'gray',
@@ -23,6 +23,10 @@ function Tab_enroll() {
   const handleTabChange = (tabId) => {
       setActiveTab(tabId);
   };
+
+  const [ParentEmail, setParentEmail] = useState({});
+  // console.log("user",user);
+
 
   const [studentData, setStudentData] = useState({});
     
@@ -96,38 +100,101 @@ function Tab_enroll() {
     setPreviousSchoolEducationalRecordsFile(fileData);
   };
 
-
+  const navigate = useNavigate();
   const handleSubmit = async (StudentImageFile, CopyofStudentIDCardFile, PreviousSchoolEducationalRecordsFile, studentNID, nameTitle, FirstName, LastName, DateOfBirth, EducationalProof) => {
-    try {
-        const formData = new FormData();
-        formData.append('file', StudentImageFile);
-        formData.append('file', CopyofStudentIDCardFile);
-        formData.append('file', PreviousSchoolEducationalRecordsFile);
-
-        // เพิ่มข้อมูลของนักเรียนเข้าไปใน formData
-        formData.append('studentNID', studentNID);
-        formData.append('nameTitle', nameTitle);
-        formData.append('FirstName', FirstName);
-        formData.append('LastName', LastName);
-        formData.append('DateOfBirth', DateOfBirth);
-        formData.append('EducationalProof', EducationalProof);
-
-        await axios.post('http://localhost:8080/upload', formData, {
+    const confirmSubmit = window.confirm("ยืนยันที่จะส่งข้อมูลหรือไม่?");
+    if (confirmSubmit) {
+      try {
+          // แสดงกล่องข้อความยืนยันและตรวจสอบผลลัพธ์
+          const formData = new FormData();
+          formData.append('file', StudentImageFile);
+          formData.append('file', CopyofStudentIDCardFile);
+          formData.append('file', PreviousSchoolEducationalRecordsFile);
+          
+          // เพิ่มข้อมูลของนักเรียนเข้าไปใน formData
+          formData.append('Student_NID', studentNID);
+          formData.append('NameTitle', nameTitle);
+          formData.append('FirstName', FirstName);
+          formData.append('LastName', LastName);
+          formData.append('Student_DOB', DateOfBirth);
+          formData.append('EducationalProof', EducationalProof);
+          formData.append('ParentEmail', ParentEmail);
+    
+          await axios.post('http://localhost:8080/upload', formData, {
             headers: {
-                'Content-Type': 'multipart/form-data'
+              'Content-Type': 'multipart/form-data'
             }
-        });
-
-        setMessage('Successfully uploaded to drive');
-    } catch (error) {
-        setMessage('Was not uploaded' + error);
-        console.error(error);
+          });
+    
+          setMessage('Successfully uploaded to drive');
+          navigate("/NewUser_menu");
+        
+      } catch (error) {
+        if (error.response && error.response.status === 409) {
+          setMessage('Identification number already exists. Please try with a different one.');
+          alert('Identification number already exists. Please try with a different one.');
+        } else {
+          setMessage('Was not uploaded' + error);
+          console.error(error);
+        }
+      }
     }
-};
-
-  const handleButtonClick = () => {
-    handleSubmit(StudentImageFile, CopyofStudentIDCardFile, PreviousSchoolEducationalRecordsFile, studentNID, nameTitle, FirstName, LastName, DateOfBirth, EducationalProof);
   };
+  
+  const handleButtonClick = async () => {
+    await handleSubmit(StudentImageFile, CopyofStudentIDCardFile, PreviousSchoolEducationalRecordsFile, studentNID, nameTitle, FirstName, LastName, DateOfBirth, EducationalProof);
+  };
+
+  const handleNewstudent_infoClick = async () => {
+    if (!studentNID) {
+      alert('กรุณากรอก studentNID ด้วยค่ะ');
+      return;
+    }
+    if (!nameTitle) {
+      alert('กรุณากรอก nameTitle ด้วยค่ะ');
+      return;
+    }
+    if (!FirstName) {
+      alert('กรุณากรอก FirstName ด้วยค่ะ');
+      return;
+    }
+    if (!LastName) {
+      alert('กรุณากรอก LastName ด้วยค่ะ');
+      return;
+    }
+    if (!DateOfBirth) {
+      alert('กรุณากรอก DateOfBirth ด้วยค่ะ');
+      return;
+    }
+    if (!EducationalProof) {
+      alert('กรุณากรอก EducationalProof ด้วยค่ะ');
+      return;
+    }
+    if (!StudentImageFile) {
+      alert('กรุณาเลือกไฟล์รูปภาพของนักเรียน ด้วยค่ะ');
+      return;
+    }
+    if (!CopyofStudentIDCardFile) {
+      alert('กรุณาเลือกไฟล์สำเนาบัตรประชาชนของนักเรียน ด้วยค่ะ');
+      return;
+    }
+    if (!PreviousSchoolEducationalRecordsFile) {
+      alert('กรุณาเลือกไฟล์ประกาศนียบัตรการศึกษาของโรงเรียนก่อนหน้า ด้วยค่ะ');
+      return;
+    }
+
+    handleTabChange('menu2');
+  
+    // กรณีที่ข้อมูลทั้งหมดถูกกรอกครบ
+    setParentEmail(user.emails[0].value);
+    if (user && user.emails[0].value) {
+      console.log("user", user.emails[0].value);
+    } else {
+      console.log('User email is not available.');
+    }
+  };
+
+
 
 
     return (
@@ -196,7 +263,9 @@ function Tab_enroll() {
 
                 
                   <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'flex-end' }}>
-                    <button type="button" onClick={() => handleTabChange('menu2')} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>ถัดไป</button>
+                    <button type="button" onClick={() => { handleNewstudent_infoClick();} } className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
+                      ถัดไป
+                    </button>
                   </div>
                   
               </div>
@@ -209,13 +278,15 @@ function Tab_enroll() {
                 <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', width: '100%' }}>
 
                   <div style={{ display: 'flex',justifyContent: 'flex-start' }}>
-                    <button type="button" onClick={() => handleTabChange('menu1')} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
+                    <button type="button" onClick={() => {handleTabChange('menu1');  }} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
                       ย้อนกลับ
                     </button>
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <button type="button" onClick={() => handleTabChange('menu3')} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>ถัดไป</button>
+                    <button type="button" onClick={() => {handleTabChange('menu3');  }} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
+                      ถัดไป
+                    </button>
                   </div>
                   
                 </div>
@@ -232,28 +303,32 @@ function Tab_enroll() {
                     </button>
                   </div>
 
-                  <Link to ="/NewUser_menu">
-                        {/* <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                            <button type="submit" className="btn btn-primary">ส่งข้อมูล</button>
-                        </div> */}
-                  {/* <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <button type="button" onClick={() => handleTabChange('menu3')} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>ส่งข้อมูล</button>
-                  </div> */}
+                  <div>
+                    {/* {message && <p>{message}</p>} //แสดงข้อความแจ้งเตือนในกรณีที่มีข้อผิดพลาด */}
 
-                  {/* <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                      <button type="button" onClick={handleSubmit} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
+                    {/* {message === "Successfully uploaded to drive" ? ( */}
+                      {/* <Link to="/NewUser_menu" > */}
+                        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                          <button type="button" onClick={() => { handleTabChange('menu3'); handleButtonClick(); }} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px' }}>
+                            ส่งข้อมูล
+                          </button>
+                        </div>
+                      {/* </Link> */}
+                     {/* ) : ( */}
+                       {/* <div style={{ display: 'flex', justifyContent: 'flex-end' }}> */}
+                         {/* <button
+                          type="button"
+                          onClick={handleButtonClick}
+                          className="btn btn-primary"
+                          style={{ ...fontStyle, color: 'white', fontSize: '16px' }}
+                        >
                           ส่งข้อมูล
-                      </button>
-                  </div> */}
+                        </button>
+                      </div>
+                    )} */}
 
-                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                      <button type="button" onClick={() => {handleTabChange('menu3'); handleButtonClick();}} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
-                          ส่งข้อมูล
-                      </button>
+                    {/* </div> */}
                   </div>
-
-
-                  </Link>
                 </div>
               </div>
 

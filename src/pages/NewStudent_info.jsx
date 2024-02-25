@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Date_Picker from '../components/Date_Picker';
 import axios from 'axios';
+import { format } from 'date-fns';
 
 function NewStudent_info({ 
     sendImageDataToEnroll, 
@@ -10,7 +11,7 @@ function NewStudent_info({
     sendPreviousSchoolEducationalRecordsFileToEnroll,
     sendstudentNIDToEnroll,
     sendnameTitleToEnroll,
-    sendNameToEnroll,
+    sendFirstNameToEnroll,
     sendLastNameToEnroll,
     sendDateOfBirthToEnroll,
     sendEducationalProofToEnroll
@@ -22,8 +23,8 @@ function NewStudent_info({
     const [message, setMessage] = useState('');
     const [studentNID, setStudentNID] = useState('');
     const [nameTitle, setnameTitle] = useState('');
-    const [name, setName] = useState('');
-    const [lastName, setLastName] = useState('');
+    const [FirstName, setFirstName] = useState('');
+    const [LastName, setLastName] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
     const [educationalProof, setEducationalProof] = useState('');
 
@@ -41,27 +42,30 @@ function NewStudent_info({
 
     useEffect(() => {
         if (dateOfBirth !== '') {
-            sendstudentNIDToEnroll(dateOfBirth);
+            sendDateOfBirthToEnroll(dateOfBirth);
+        } else {
+            const formattedDate = format(new Date(), 'yyyy-MM-dd'); // ใช้ new Date() เพื่อเรียกใช้งานวันที่ปัจจุบัน
+            setDateOfBirth(formattedDate);
         }
     }, [dateOfBirth, sendDateOfBirthToEnroll]);
     
     useEffect(() => {
         if (educationalProof !== '') {
-            sendnameTitleToEnroll(educationalProof);
+            sendEducationalProofToEnroll(educationalProof);
         }
     }, [educationalProof, sendEducationalProofToEnroll]);    
 
     useEffect(() => {
-        if (name !== '') {
-            sendnameTitleToEnroll(name);
+        if (FirstName !== '') {
+            sendFirstNameToEnroll(FirstName);
         }
-    }, [name, sendNameToEnroll]);    
+    }, [FirstName, sendFirstNameToEnroll]);    
 
     useEffect(() => {
-        if (lastName !== '') {
-            sendnameTitleToEnroll(lastName);
+        if (LastName !== '') {
+            sendLastNameToEnroll(LastName);
         }
-    }, [lastName, sendLastNameToEnroll]);    
+    }, [LastName, sendLastNameToEnroll]);    
 
     // ฟังก์ชัน handleStudentNIDChange สำหรับการเปลี่ยนแปลงค่า studentNID
     const handleStudentNIDChange = (event) => {
@@ -73,8 +77,8 @@ function NewStudent_info({
         // sendnameTitleToEnroll(nameTitle)s
     };
 
-    const handleNameChange = (event) => {
-        setName(event.target.value);
+    const handleFirstNameChange = (event) => {
+        setFirstName(event.target.value);
     };
 
     const handleLastNameChange = (event) => {
@@ -82,9 +86,11 @@ function NewStudent_info({
     };
 
     const handleDateOfBirthChange = (date) => {
-        // ต้องแปลง date ให้เป็น string ก่อนเซ็ตค่า
-        setDateOfBirth(date.toString());
-        console.log("say hi", date);
+        // ใช้ date-fns เพื่อแปลงวันที่ให้เป็นรูปแบบ 'ปี-เดือน-วัน'
+        const formattedDate = format(date, 'yyyy-MM-dd');
+        // เซ็ตค่าวันที่ที่แปลงรูปแบบแล้ว
+        setDateOfBirth(formattedDate);
+        console.log("say hi", formattedDate);
     };
 
     const handleEducationalProofChange = (event) => {
@@ -223,7 +229,7 @@ function NewStudent_info({
     sendPreviousSchoolEducationalRecordsFileToEnroll={sendPreviousSchoolEducationalRecordsFileToEnroll}
     sendstudentNIDToEnroll={sendstudentNIDToEnroll}
     sendnameTitleToEnroll={sendnameTitleToEnroll}
-    sendNameToEnroll={sendLastNameToEnroll}
+    sendFirstNameTitleToEnroll={sendFirstNameToEnroll}
     sendLastNameToEnroll={sendLastNameToEnroll}
     sendDateOfBirthToEnroll={sendDateOfBirthToEnroll}
     sendEducationalProofToEnroll={sendEducationalProofToEnroll}
@@ -309,15 +315,15 @@ function NewStudent_info({
             </div>
 
             <div className="align-items-center" style={{ maxWidth: "100%" }}>
-                <input type="text" className="form-control" id="surname" name="surname" placeholder="กรอกชื่อ" value={name} onChange={handleNameChange} />
+                <input type="text" className="form-control" id="surname" name="surname" placeholder="กรอกชื่อ" value={FirstName} onChange={handleFirstNameChange} />
             </div>
 
             <div className="d-flex align-items-center">
-                <label htmlFor="lastname" className="col-form-label" style={{ flexWrap: 'wrap' }}>นามสกุล</label>
+                <label htmlFor="LastName" className="col-form-label" style={{ flexWrap: 'wrap' }}>นามสกุล</label>
             </div>
 
             <div className="align-items-center" style={{ maxWidth: "100%" }}>
-                <input type="text" className="form-control" id="lastname" name="lastname" placeholder="กรอกนามสกุล" value={lastName} onChange={handleLastNameChange} />
+                <input type="text" className="form-control" id="LastName" name="LastName" placeholder="กรอกนามสกุล" value={LastName} onChange={handleLastNameChange} />
             </div>
         </div>
         <br></br>
