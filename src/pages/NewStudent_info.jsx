@@ -29,15 +29,16 @@ function NewStudent_info({
     const [Transcript_type, setTranscript_type] = useState('');
 
     useEffect(() => {
-        if (studentNID !== '' && studentNID.length === 13) {
+        // if (studentNID !== '' && studentNID.length === 13) {
+        if (studentNID.length === 13) {
             sendstudentNIDToEnroll(studentNID);
         }
     }, [studentNID, sendstudentNIDToEnroll]);
     
     useEffect(() => {
-        if (nameTitle !== '') {
+        // if (nameTitle !== '') {
             sendnameTitleToEnroll(nameTitle);
-        }
+        // }
     }, [nameTitle, sendnameTitleToEnroll]);    
 
     useEffect(() => {
@@ -50,21 +51,21 @@ function NewStudent_info({
     }, [dateOfBirth, sendDateOfBirthToEnroll]);
     
     useEffect(() => {
-        if (Transcript_type !== '') {
+        // if (Transcript_type !== '') {
             sendTranscript_typeToEnroll(Transcript_type);
-        }
+        // }
     }, [Transcript_type, sendTranscript_typeToEnroll]);    
 
     useEffect(() => {
-        if (FirstName !== '') {
+        // if (FirstName !== '') {
             sendFirstNameToEnroll(FirstName);
-        }
+        // }
     }, [FirstName, sendFirstNameToEnroll]);    
 
     useEffect(() => {
-        if (LastName !== '') {
+        // if (LastName !== '') {
             sendLastNameToEnroll(LastName);
-        }
+        // }
     }, [LastName, sendLastNameToEnroll]);    
 
     // ฟังก์ชัน handleStudentNIDChange สำหรับการเปลี่ยนแปลงค่า studentNID

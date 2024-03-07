@@ -41,51 +41,51 @@ function HouseholdInfo  ({  //------------------1------------------
 
   //------------------2------------------
   useEffect(() => {
-    if (HouseNumber !== '') {
+    // if (HouseNumber !== '') {
         sendHouseNumberToEnroll(HouseNumber);
-    }
+    // }
 }, [HouseNumber, sendHouseNumberToEnroll]);
 
   useEffect(() => {
-    if (Moo !== '') {
+    // if (Moo !== '') {
         sendMooToEnroll(Moo);
-    }
+    // }
   }, [Moo, sendMooToEnroll]);
 
   useEffect(() => {
-    if (Soi !== '') {
+    // if (Soi !== '') {
         sendSoiToEnroll(Soi);
-    }
+    // }
   }, [Soi, sendSoiToEnroll]);
 
   useEffect(() => {
-    if (Road !== '') {
+    // if (Road !== '') {
         sendRoadToEnroll(Road);
-    }
+    // }
   }, [Road, sendRoadToEnroll]);
 
   useEffect(() => {
-    if (Province !== '') {
+    // if (Province !== '') {
         sendProvinceToEnroll(Province);
-    }
+    // }
   }, [Province, sendProvinceToEnroll]);
 
   useEffect(() => {
-    if (District !== '') {
+    // if (District !== '') {
         sendDistrictToEnroll(District);
-    }
+    // }
   }, [District, sendDistrictToEnroll]);
 
   useEffect(() => {
-    if (SubDistrict !== '') {
+    // if (SubDistrict !== '') {
         sendSubDistrictToEnroll(SubDistrict);
-    }
+    // }
   }, [SubDistrict, sendSubDistrictToEnroll]);
 
   useEffect(() => {
-    if (HouseReg_file !== '') {
+    // if (HouseReg_file !== '') {
         sendHouseReg_fileToEnroll(HouseReg_file);
-    }
+    // }
   }, [HouseReg_file, sendHouseReg_fileToEnroll]);
 
 
