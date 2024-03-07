@@ -374,7 +374,7 @@ function Tab_enroll({ user }) {
 
   const handleNewstudent_infoClick = async () => {
     // handleTabChange('menu1');
-    if (!studentNID || !nameTitle ||  !FirstName||  !LastName ||  !DateOfBirth ||  !Transcript_type || !StudentImageFile ||  !CopyofStudentIDCardFile ||  !PreviousSchoolEducationalRecordsFile) {
+    if (!studentNID || !nameTitle ||  !FirstName||  !LastName ||  !DateOfBirth ||  !Transcript_type || StudentImageFile === '' ||  CopyofStudentIDCardFile === '' ||  PreviousSchoolEducationalRecordsFile === '') {
       // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
       alert('กรุณากรอกข้อมูลส่วนตัวนักเรียนให้ครบถ้วน');
       handleTabChange('menu1');
@@ -385,9 +385,10 @@ function Tab_enroll({ user }) {
     if (studentNID && nameTitle && FirstName && LastName && DateOfBirth && Transcript_type && StudentImageFile && CopyofStudentIDCardFile && PreviousSchoolEducationalRecordsFile) {
       // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
       handleTabChange('menu2');
-      // href="#menu2"
+      
+            // href="#menu2"
     }
-    if (!StudentImageFile) {
+    if (StudentImageFile === '') {
       alert('กรุณาเลือกไฟล์รูปภาพของนักเรียนด้วยค่ะ');
       return false;
     }
@@ -416,11 +417,11 @@ function Tab_enroll({ user }) {
       return false;
     }
     
-    if (!CopyofStudentIDCardFile) {
+    if (CopyofStudentIDCardFile === '') {
       alert('กรุณาเลือกไฟล์สำเนาบัตรประชาชนของนักเรียนด้วยค่ะ');
       return false;
     }
-    if (!PreviousSchoolEducationalRecordsFile) {
+    if (PreviousSchoolEducationalRecordsFile === '') {
       alert('กรุณาเลือกไฟล์ประกาศนียบัตรการศึกษาของโรงเรียนก่อนหน้าด้วยค่ะ');
       return false;
     }
@@ -439,45 +440,53 @@ function Tab_enroll({ user }) {
 
   };
   const handleHousehold_infoClick = async () => {
-    if (!HouseNumber ||  !Province||  !District ||  !SubDistrict ||  !HouseReg_file) {
-      // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
+    let numMissingFields = 0;
+  
+    if (!HouseNumber) {
+      numMissingFields++;
+    }
+    if (!Province) {
+      numMissingFields++;
+    }
+    if (!District) {
+      numMissingFields++;
+    }
+    if (!SubDistrict) {
+      numMissingFields++;
+    }
+    if (!HouseReg_file) {
+      numMissingFields++;
+    }
+
+    if (numMissingFields > 1) {
       alert('กรุณากรอกข้อมูลที่อยู่ตามทะเบียนบ้านให้ครบถ้วน');
       handleTabChange('menu2');
       return false;
-      // href="#menu2"
     }
-    if (HouseNumber && Province && District && SubDistrict && HouseReg_file) {
-      // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
-      
-      handleTabChange('menu3');
-      
-      // href="#menu2"
-    }
-    if (!HouseNumber) {
-      alert('กรุณากรอกบ้านเลขที่ด้วยค่ะ');
-      return false;
-    }
-    if (!Province) {
-      alert('กรุณากรอกจังหวัดของที่อยู่ตามทะเบียนบ้านด้วยค่ะ');
-      return false;
-    }
-    if (!District) {
-      alert('กรุณากรอกเขต/อำเภอของที่อยู่ตามทะเบียนบ้านด้วยค่ะ');
-      return false;
-    }
-    if (!SubDistrict) {
-      alert('กรุณากรอกแขวง/ตำบลของที่อยู่ตามทะเบียนบ้านด้วยค่ะ');
-      return false;
-    }
-    if (!HouseReg_file) {
-      alert('กรุณาอัพโหลดไฟล์สำเนาทะเบียนบ้านด้วยค่ะ');
-      return false;
+    else {
+      if (!HouseNumber) {
+        alert('กรุณากรอกบ้านเลขที่ด้วยค่ะ');
+      }
+      if (!Province) {
+        alert('กรุณากรอกจังหวัดของที่อยู่ตามทะเบียนบ้านด้วยค่ะ');
+      }
+      if (!District) {
+        alert('กรุณากรอกเขต/อำเภอของที่อยู่ตามทะเบียนบ้านด้วยค่ะ');
+      }
+      if (!SubDistrict) {
+        alert('กรุณากรอกแขวง/ตำบลของที่อยู่ตามทะเบียนบ้านด้วยค่ะ');
+      }
+      if (!HouseReg_file) {
+        alert('กรุณาอัพโหลดไฟล์สำเนาทะเบียนบ้านด้วยค่ะ');
+      }
+  
     }
 
-    
+
     return true;
-
   };
+
+
     return (
       <div className="d-flex flex-column align-items-center">
         <div class="card" style={{width: '60vw', height: 'auto'}}>
@@ -545,7 +554,17 @@ function Tab_enroll({ user }) {
 
                 
                   <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'flex-end' }}>
-                    <button type="button" onClick={() => { handleNewstudent_infoClick();} } className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
+                    <button type="button" onClick={() => { 
+                      handleNewstudent_infoClick();
+                      // if (handleNewstudent_infoClick()) {
+                      //   handleTabChange('menu2');
+                      // }
+                      // else {
+                      //   handleTabChange('menu1');
+                      // }
+                    } } 
+                    
+                    className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
                       ถัดไป
                     </button>
                   </div>
@@ -569,13 +588,37 @@ function Tab_enroll({ user }) {
                 <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', width: '100%' }}>
 
                   <div style={{ display: 'flex',justifyContent: 'flex-start' }}>
-                    <button type="button" onClick={() => {handleHousehold_infoClick();   }} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
+                    <button type="button" 
+                    onClick={() => {
+                     
+                        if (HouseNumber && Province && District && SubDistrict && HouseReg_file) {
+                          // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
+                          handleTabChange('menu1');
+                        };
+                        
+                        handleHousehold_infoClick();
+                       
+
+                    }} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
                       ย้อนกลับ
                     </button>
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <button type="button" onClick={() => {handleHousehold_infoClick();  }} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
+                    <button type="button" onClick={() => {
+                     
+                     if (HouseNumber && Province && District && SubDistrict && HouseReg_file) {
+                      // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
+                      handleTabChange('menu3');
+                      
+                      // href="#menu2"
+                    };
+
+                    handleHousehold_infoClick();
+                    
+                    }} 
+                    
+                    className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
                       ถัดไป
                     </button>
                   </div>
