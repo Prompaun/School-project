@@ -374,7 +374,23 @@ function Tab_enroll({ user }) {
 
   const handleNewstudent_infoClick = async () => {
     // handleTabChange('menu1');
-    console.log('hello world');
+    if (!studentNID || !nameTitle ||  !FirstName||  !LastName ||  !DateOfBirth ||  !Transcript_type || !StudentImageFile ||  !CopyofStudentIDCardFile ||  !PreviousSchoolEducationalRecordsFile) {
+      // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
+      alert('กรุณากรอกข้อมูลส่วนตัวนักเรียนให้ครบถ้วน');
+      handleTabChange('menu1');
+      return false;
+      // href="#menu2"
+    }
+
+    if (studentNID && nameTitle && FirstName && LastName && DateOfBirth && Transcript_type && StudentImageFile && CopyofStudentIDCardFile && PreviousSchoolEducationalRecordsFile) {
+      // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
+      handleTabChange('menu2');
+      // href="#menu2"
+    }
+    if (!StudentImageFile) {
+      alert('กรุณาเลือกไฟล์รูปภาพของนักเรียนด้วยค่ะ');
+      return false;
+    }
     if (!studentNID) {
       alert('กรุณากรอกเลขประจำตัวประชาชนของนักเรียนด้วยค่ะ');
       return false;
@@ -399,10 +415,7 @@ function Tab_enroll({ user }) {
       alert('กรุณากรอกประเภทของหลักฐานการศึกษาจากโรงเรียนเดิมด้วยค่ะ');
       return false;
     }
-    if (!StudentImageFile) {
-      alert('กรุณาเลือกไฟล์รูปภาพของนักเรียนด้วยค่ะ');
-      return false;
-    }
+    
     if (!CopyofStudentIDCardFile) {
       alert('กรุณาเลือกไฟล์สำเนาบัตรประชาชนของนักเรียนด้วยค่ะ');
       return false;
@@ -410,18 +423,6 @@ function Tab_enroll({ user }) {
     if (!PreviousSchoolEducationalRecordsFile) {
       alert('กรุณาเลือกไฟล์ประกาศนียบัตรการศึกษาของโรงเรียนก่อนหน้าด้วยค่ะ');
       return false;
-    }
-
-    if (!studentNID || !nameTitle || !FirstName || !LastName || !DateOfBirth || !Transcript_type || !StudentImageFile || !CopyofStudentIDCardFile || !PreviousSchoolEducationalRecordsFile) {
-      // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
-      handleTabChange('menu1');
-      // href="#menu2"
-    }
-
-    if (studentNID && nameTitle && FirstName && LastName && DateOfBirth && Transcript_type && StudentImageFile && CopyofStudentIDCardFile && PreviousSchoolEducationalRecordsFile) {
-      // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
-      handleTabChange('menu2');
-      // href="#menu2"
     }
 
     if (user && user.emails[0].value) {
@@ -432,6 +433,48 @@ function Tab_enroll({ user }) {
     }
     
     // กรณีที่ผ่านเงื่อนไขทั้งหมด
+    return true;
+
+      
+
+  };
+  const handleHousehold_infoClick = async () => {
+    if (!HouseNumber ||  !Province||  !District ||  !SubDistrict ||  !HouseReg_file) {
+      // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
+      alert('กรุณากรอกข้อมูลที่อยู่ตามทะเบียนบ้านให้ครบถ้วน');
+      handleTabChange('menu2');
+      return false;
+      // href="#menu2"
+    }
+    if (HouseNumber && Province && District && SubDistrict && HouseReg_file) {
+      // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
+      
+      handleTabChange('menu3');
+      
+      // href="#menu2"
+    }
+    if (!HouseNumber) {
+      alert('กรุณากรอกบ้านเลขที่ด้วยค่ะ');
+      return false;
+    }
+    if (!Province) {
+      alert('กรุณากรอกจังหวัดของที่อยู่ตามทะเบียนบ้านด้วยค่ะ');
+      return false;
+    }
+    if (!District) {
+      alert('กรุณากรอกเขต/อำเภอของที่อยู่ตามทะเบียนบ้านด้วยค่ะ');
+      return false;
+    }
+    if (!SubDistrict) {
+      alert('กรุณากรอกแขวง/ตำบลของที่อยู่ตามทะเบียนบ้านด้วยค่ะ');
+      return false;
+    }
+    if (!HouseReg_file) {
+      alert('กรุณาอัพโหลดไฟล์สำเนาทะเบียนบ้านด้วยค่ะ');
+      return false;
+    }
+
+    
     return true;
 
   };
@@ -526,13 +569,13 @@ function Tab_enroll({ user }) {
                 <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', width: '100%' }}>
 
                   <div style={{ display: 'flex',justifyContent: 'flex-start' }}>
-                    <button type="button" onClick={() => {handleTabChange('menu1');  }} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
+                    <button type="button" onClick={() => {handleHousehold_infoClick();   }} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
                       ย้อนกลับ
                     </button>
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <button type="button" onClick={() => {handleTabChange('menu3');  }} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
+                    <button type="button" onClick={() => {handleHousehold_infoClick();  }} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
                       ถัดไป
                     </button>
                   </div>
