@@ -301,6 +301,46 @@ const sendMotherTelToEnroll = (MotherTel) => {
   setMotherTel(MotherTel);
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+const sendParentFirstnameToEnroll = (ParentFirstname) => {
+  console.log('Received ParentFirstname:', ParentFirstname);
+  setParentFirstname(ParentFirstname);
+};
+
+const sendParentLastnameToEnroll = (ParentLastname) => {
+  console.log('Received ParentLastname:', ParentLastname);
+  setParentLastname(ParentLastname);
+};
+
+const sendParentDateOfBirthToEnroll = (ParentDateOfBirth) => {
+  console.log('Received ParentDateOfBirth:', ParentDateOfBirth);
+  setParentDateOfBirth(ParentDateOfBirth);
+};
+
+const sendisParentForeignerToEnroll = (IsParentForeigner) => {
+  console.log('Received IsParentForeigner:', IsParentForeigner);
+  setIsParentForeigner(IsParentForeigner);
+};
+
+const sendParentNationalityToEnroll = (ParentNationality) => {
+  console.log('Received ParentNationality:', ParentNationality);
+  setParentNationality(ParentNationality);
+};
+
+const sendParentOccupationToEnroll = (ParentOccupation) => {
+  console.log('Received ParentOccupation:', ParentOccupation);
+  setParentOccupation(ParentOccupation);
+};
+
+const sendParentOfficeToEnroll = (ParentOffice) => {
+  console.log('Received ParentOffice:', ParentOffice);
+  setParentOffice(ParentOffice);
+};
+
+const sendParentTelToEnroll = (ParentTel) => {
+  console.log('Received ParentTel:', ParentTel);
+  setParentTel(ParentTel);
+};
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
   const navigate = useNavigate();
   const handleSubmit = async (StudentImageFile, CopyofStudentIDCardFile, PreviousSchoolEducationalRecordsFile, studentNID, nameTitle, FirstName, LastName, DateOfBirth, Transcript_type, HouseNumber, Moo, Soi, Road, Province, District, SubDistrict, HouseReg_file) => {
@@ -817,8 +857,6 @@ const sendMotherTelToEnroll = (MotherTel) => {
               </div>
               <div class={`tab-pane container ${activeTab === 'menu3' ? 'active' : ''}`} id="menu3">
               <ParentsInfo
-                sendSomeoneElseEmailToEnroll={sendSomeoneElseEmailToEnroll}
-
                 sendFatherEmailToEnroll={sendFatherEmailToEnroll} 
                 sendisFatherRecordDataToEnroll={sendisFatherRecordDataToEnroll}
                 sendFatherFirstnameToEnroll={sendFatherFirstnameToEnroll}
@@ -840,6 +878,17 @@ const sendMotherTelToEnroll = (MotherTel) => {
                 sendMotherOccupationToEnroll={sendMotherOccupationToEnroll}
                 sendMotherOfficeToEnroll={sendMotherOfficeToEnroll}
                 sendMotherTelToEnroll={sendMotherTelToEnroll}
+
+                sendSomeoneElseEmailToEnroll={sendSomeoneElseEmailToEnroll}
+                sendisParentRecordDataToEnroll={sendisParentRecordDataToEnroll}
+                sendParentFirstnameToEnroll={sendParentFirstnameToEnroll}
+                sendParentLastnameToEnroll={sendParentLastnameToEnroll}
+                sendParentDateOfBirthToEnroll={sendParentDateOfBirthToEnroll}
+                sendisParentForeignerToEnroll={sendisParentForeignerToEnroll}
+                sendParentNationalityToEnroll={sendParentNationalityToEnroll}
+                sendParentOccupationToEnroll={sendParentOccupationToEnroll}
+                sendParentOfficeToEnroll={sendParentOfficeToEnroll}
+                sendParentTelToEnroll={sendParentTelToEnroll}
                 />
 
                 <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', width: '100%' }}>
