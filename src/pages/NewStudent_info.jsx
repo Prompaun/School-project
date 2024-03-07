@@ -90,7 +90,7 @@ function NewStudent_info({
         // ใช้ date-fns เพื่อแปลงวันที่ให้เป็นรูปแบบ 'ปี-เดือน-วัน'
         const formattedDate = format(date, 'yyyy-MM-dd');
         // เซ็ตค่าวันที่ที่แปลงรูปแบบแล้ว
-        setDateOfBirth(formattedDate);
+        setDateOfBirth(date);
         console.log("say hi1", formattedDate);
     };
 
