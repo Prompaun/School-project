@@ -840,11 +840,11 @@ const hasParentInfo =
         numMissingFields++;
       }
     }
-    if (!ParentEmail){
-      numMissingFields++;
-    }
+    
     if (!isParentRecordData) {
-
+      if (!ParentEmail){
+        numMissingFields++;
+      }
       if (!ParentFirstname) {
         numMissingFields++;
       }
@@ -937,10 +937,11 @@ const hasParentInfo =
           alert('กรุณากรอกเลขเบอร์โทรศัพท์ของมารดา');
         }
     }
-    if (!ParentEmail){
-      alert('กรุณากรอกอีเมลผู้ปกครอง');
-    }
+    
     if (!isParentRecordData) {
+      if (!ParentEmail){
+        alert('กรุณากรอกอีเมลผู้ปกครอง');
+      }
       if (!ParentFirstname) {
         alert('กรุณากรอกชื่อผู้ปกครอง');
       }
