@@ -58,7 +58,7 @@ function Tab_enroll({ user }) {
   const [FatherEmail, setFatherEmail] = useState('');
 
 
-  const [MotherEmail, setMotherEmail] = useState('');
+  const [MotherEmail, setMotherEmail] = useState('22');
   const [SomeoneElseEmail, setSomeoneElseEmail] = useState('');
 
   const [isFatherRecordData, setIsFatherRecordData] = useState(false);
@@ -371,6 +371,7 @@ const sendParentTelToEnroll = (ParentTel) => {
           formData.append('SubDistrict', SubDistrict);
           formData.append('file', HouseReg_file);
     
+
           await axios.post('http://localhost:8080/upload', formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
@@ -467,6 +468,8 @@ const sendParentTelToEnroll = (ParentTel) => {
                   SubDistrict,
                   HouseReg_file
               );
+
+              
             } catch (error) {
                 console.error('Error handling button click:', error);
             }
@@ -650,7 +653,6 @@ const sendParentTelToEnroll = (ParentTel) => {
       if (!FatherFirstname) {
         numMissingFields++;
       }
-      console.log("dja")
       if (!FatherLastname) {
         numMissingFields++;
       }
@@ -675,7 +677,67 @@ const sendParentTelToEnroll = (ParentTel) => {
         numMissingFields++;
       }
     }
-   
+    if (!isMotherRecordData) {
+
+      if (!MotherFirstname) {
+        numMissingFields++;
+      }
+      if (!MotherLastname) {
+        numMissingFields++;
+      }
+      if (!MotherDateOfBirth) {
+        numMissingFields++;
+      }
+      if (isMotherForeigner) {
+        if (!MotherNationality) {
+          numMissingFields++;
+        }
+      }
+      else {
+        setFatherNationality("ไทย");
+      }
+      if (!MotherOccupation) {
+        numMissingFields++;
+      }
+      if (!MotherOffice) {
+        numMissingFields++;
+      }
+      if (!MotherTel) {
+        numMissingFields++;
+      }
+    }
+    if (!SomeoneElseEmail){
+      numMissingFields++;
+    }
+    if (!isParentRecordData) {
+
+      if (!ParentFirstname) {
+        numMissingFields++;
+      }
+      if (!ParentLastname) {
+        numMissingFields++;
+      }
+      if (!ParentDateOfBirth) {
+        numMissingFields++;
+      }
+      if (isParentForeigner) {
+        if (!ParentNationality) {
+          numMissingFields++;
+        }
+      }
+      else {
+        setFatherNationality("ไทย");
+      }
+      if (!ParentOccupation) {
+        numMissingFields++;
+      }
+      if (!ParentOffice) {
+        numMissingFields++;
+      }
+      if (!ParentTel) {
+        numMissingFields++;
+      }
+    }
     if (numMissingFields > 1) {
       alert('กรุณากรอกข้อมูลผู้ปกครองให้ครบถ้วน');
       handleTabChange('menu3');
@@ -714,10 +776,64 @@ const sendParentTelToEnroll = (ParentTel) => {
           alert('กรุณากรอกเลขเบอร์โทรศัพท์ของบิดา');
         }
       }
+      if (!isMotherRecordData) {
+        if (!MotherFirstname) {
+          alert('กรุณากรอกชื่อมารดา');
+        }
+        if (!MotherLastname) {
+          alert('กรุณากรอกนามสกุลมารดา');
+        }
+        if (!MotherDateOfBirth) {
+          alert('กรุณากรอกวัน/เดือน/ปีเกิดของมารดา');
+        }
+        if (isMotherForeigner) {
+          if (!MotherNationality) {
+            alert('กรุณากรอกสัญชาติของมารดา');
+          }
+        }
+        
+        if (!MotherOccupation) {
+          alert('กรุณากรอกอาชีพของมารดา');
+        }
+        if (!MotherOffice) {
+          alert('กรุณากรอกสถานที่ทำงานของมารดา');
+        }
+        if (!MotherTel) {
+          alert('กรุณากรอกเลขเบอร์โทรศัพท์ของมารดา');
+        }
     }
+    if (!SomeoneElseEmail){
+      alert('กรุณากรอกอีเมลผู้ปกครอง');
+    }
+    if (!isParentRecordData) {
+      if (!ParentFirstname) {
+        alert('กรุณากรอกชื่อผู้ปกครอง');
+      }
+      if (!ParentLastname) {
+        alert('กรุณากรอกนามสกุลผู้ปกครอง');
+      }
+      if (!ParentDateOfBirth) {
+        alert('กรุณากรอกวัน/เดือน/ปีเกิดของผู้ปกครอง');
+      }
+      if (isParentForeigner) {
+        if (!ParentNationality) {
+          alert('กรุณากรอกสัญชาติของผู้ปกครอง');
+        }
+      }
+      
+      if (!ParentOccupation) {
+        alert('กรุณากรอกอาชีพของผู้ปกครอง');
+      }
+      if (!ParentOffice) {
+        alert('กรุณากรอกสถานที่ทำงานของผู้ปกครอง');
+      }
+      if (!ParentTel) {
+        alert('กรุณากรอกเลขเบอร์โทรศัพท์ของผู้ปกครอง');
+      }
+  }
     return true;
-  };
-
+  }};
+  
     return (
       <div className="d-flex flex-column align-items-center">
         <div class="card" style={{width: '60vw', height: 'auto'}}>
@@ -895,11 +1011,15 @@ const sendParentTelToEnroll = (ParentTel) => {
 
                   <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                     <button type="button" onClick={() => {
-                      if (FatherEmail && FatherFirstname && FatherLastname && FatherDateOfBirth && FatherNationality && FatherOccupation && FatherOffice && FatherTel) {
+                      if (FatherEmail && FatherFirstname && FatherLastname && FatherDateOfBirth && FatherNationality && FatherOccupation && FatherOffice && FatherTel &&
+                        MotherEmail && MotherFirstname && MotherLastname && MotherDateOfBirth && MotherNationality && MotherOccupation && MotherOffice && MotherTel &&
+                        SomeoneElseEmail && MotherFirstname && ParentLastname && ParentDateOfBirth && ParentNationality && ParentOccupation && ParentOffice && ParentTel
+                        
+                        ) {
                         // if (FatherEmail && isFatherRecordData) {
 
                         // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
-                        handleTabChange('menu3');
+                        handleTabChange('menu2');
                         
                         // href="#menu2"
                       };

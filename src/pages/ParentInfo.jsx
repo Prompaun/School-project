@@ -875,15 +875,7 @@ function ParentsInfo({  //------------------1------------------
                         <div className="align-items-center" style={{ marginTop: '5px',maxWidth:"100%"}}>   
                             <input type="text" className="form-control" id="father_phoneNumber" name="father_phoneNumber" value={FatherTel} placeholder="กรอกหมายเลขโทรศัพท์" onChange={handleFatherTelChange}/>
                         </div>
-                        <div className="d-flex align-items-center" style={{ marginTop: '5px',maxWidth:"100%"}}>
-                            <label htmlFor="father_Email" className="col-form-label">อีเมล</label>
-                        </div>
-                        {/* <div className="align-items-center" style={{maxWidth:"100%"}}>   
-                            <input type="text" className="form-control" id="father_Email" name="father_Email" placeholder="กรอกอีเมล" />
-                        </div> */}
-                        <div className="align-items-center"style={{ marginTop: '5px',maxWidth:"100%"}}> 
-                            <input type="text" className="form-control" id="Father_Email" name="Father_Email" value={FatherEmail} placeholder="กรอกอีเมลบิดา" onChange={handleFatherEmailChange}/>
-                        </div>
+                        
                         
                 </div>
             {/* </>
@@ -930,7 +922,7 @@ function ParentsInfo({  //------------------1------------------
                             (อีเมลที่ท่านกรอกนี้สามารถใช้ตรวจสอบข้อมูลนักเรียนของโรงเรียนซึ่งเป็นบุตรหลานของท่าน)
                         </h2>
                     </div>
-                    <div className="align-items-center"style={{ marginTop: '5px',maxWidth:"65%"}}>  
+                    <div className="align-items-center"style={{ marginTop: '5px',maxWidth:"35%"}}>  
                         <input type="text" className="form-control mb-0 mx-3" id="Mother_Email" name="Mother_Email" placeholder="กรอกอีเมลมารดา" value={MotherEmail} onChange={handleMotherEmailChange} />
                     </div>
                 </div>
@@ -946,13 +938,13 @@ function ParentsInfo({  //------------------1------------------
                         <label htmlFor="mother_surname" className="col-form-label">ชื่อ</label>
                     </div>
                     <div className="align-items-center" style={{maxWidth:"100%"}}>
-                        <input type="text" className="form-control" id="mother_surname" name="mother_surname" placeholder="กรอกชื่อ" />
+                        <input type="text" className="form-control" id="mother_surname" name="mother_surname" placeholder="กรอกชื่อ" value={MotherFirstname} onChange={handleMotherFirstnameChange} />
                         </div>
                     <div className="align-items-center">
                         <label htmlFor="mother_lastname" className="col-form-label">นามสกุล</label>
                         </div>
                     <div className="align-items-center" style={{maxWidth:"100%"}}>
-                        <input type="text" className="form-control" id="mother_lastname" name="mother_lastname" placeholder="กรอกนามสกุล" />
+                        <input type="text" className="form-control" id="mother_lastname" name="mother_lastname" placeholder="กรอกนามสกุล"value={MotherLastname} onChange={handleMotherLastnameChange}  />
                         </div>
                     <div className="align-items-center">
                         <label htmlFor="mother_dob" className="col-form-label">วัน/เดือน/ปีเกิด</label>
@@ -969,13 +961,13 @@ function ParentsInfo({  //------------------1------------------
                     <h2 className="col-form-label" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
                     <div className="d-flex align-items-center"style={{ flexWrap: 'wrap'}} >
                         <div className="form-check">
-                            <input className="form-check-input" type="radio" name="Motherforeigner?" id="MotherForeigner" onChange={handleIsMotherForeigner} />
+                            <input className="form-check-input" type="radio" name="Motherforeigner?" id="MotherForeigner" value={isMotherForeigner} onChange={handleIsMotherForeigner} />
                             <label className="form-check-label custom-body"style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="MotherForeigner">
                             ใช่
                             </label>
                         </div>
                         <div className="form-check">
-                            <input className="form-check-input" type="radio" name="Motherforeigner?" id="MotherNotForeigner" onChange={handleIsMotherForeigner} />
+                            <input className="form-check-input" type="radio" name="Motherforeigner?" id="MotherNotForeigner" value={isMotherForeigner} onChange={handleIsMotherForeigner} />
                             <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="MotherNotForeigner">
                             ไม่
                             </label>
@@ -990,7 +982,7 @@ function ParentsInfo({  //------------------1------------------
                         <label htmlFor="mother_Nationality" className="col-form-label">สัญชาติ</label>
                         </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>
-                        <input type="text" className="form-control" id="mother_Nationality" name="mother_Nationality" placeholder="กรอกสัญชาติ" onChange={handleMotherNationalityChange}/>
+                        <input type="text" className="form-control" id="mother_Nationality" name="mother_Nationality" placeholder="กรอกสัญชาติ"value={MotherNationality} onChange={handleMotherNationalityChange}/>
                         </div>
                         </>
                     )}
@@ -1019,26 +1011,21 @@ function ParentsInfo({  //------------------1------------------
                             <label htmlFor="mother_Occupation" className="col-form-label">อาชีพ</label>
                         </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>       
-                            <input type="text" className="form-control" id="mother_Occupation" name="mother_Occupation" placeholder="กรอกอาชีพ" />
+                            <input type="text" className="form-control" id="mother_Occupation" name="mother_Occupation" placeholder="กรอกอาชีพ"value={MotherOccupation} onChange={handleMotherOccupationChange} />
                         </div>
                         <div className="d-flex align-items-center">
                             <label htmlFor="mother_Workplace" className="col-form-label">สถานที่ทำงาน</label>
                         </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>   
-                            <input type="text" className="form-control" id="mother_Workplace" name="mother_Workplace" placeholder="กรอกสถานที่ทำงาน" />
+                            <input type="text" className="form-control" id="mother_Workplace" name="mother_Workplace" placeholder="กรอกสถานที่ทำงาน"value={MotherOffice} onChange={handleMotherOfficeChange} />
                         </div>
                         <div className="d-flex align-items-center">
                             <label htmlFor="mother_phoneNumber" className="col-form-label">โทรศัพท์</label>
                             </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>   
-                            <input type="text" className="form-control" id="mother_phoneNumber" name="mother_phoneNumber" placeholder="กรอกหมายเลขโทรศัพท์" />
+                            <input type="text" className="form-control" id="mother_phoneNumber" name="mother_phoneNumber" placeholder="กรอกหมายเลขโทรศัพท์"value={MotherTel} onChange={handleMotherTelChange} />
                         </div>
-                        <div className="d-flex align-items-center">
-                            <label htmlFor="mother_Email" className="col-form-label">อีเมล</label>
-                        </div>
-                        <div className="align-items-center" style={{maxWidth:"100%"}}>   
-                            <input type="text" className="form-control" id="mother_Email" name="mother_Email" placeholder="กรอกอีเมล" />
-                        </div>
+                     
                         
                 </div>
             {/* </>
@@ -1131,6 +1118,7 @@ function ParentsInfo({  //------------------1------------------
                         </div>
                         
                         <div className="align-items-center" style={{maxWidth:"100%"}}>
+                            <input type="text" className="form-control" id="SomeoneElseIsParent_surname" name="SomeoneElseIsParent_surname" placeholder="กรอกชื่อ" value={ParentFirstname} onChange={handleParentFirstnameChange}/>
                             <input type="text" className="form-control" id="SomeoneElseIsParent_surname" name="SomeoneElseIsParent_surname" placeholder="กรอกชื่อ"  value={ParentFirstname} onChange={handleParentFirstnameChange}/>
                         </div>
 
@@ -1139,6 +1127,7 @@ function ParentsInfo({  //------------------1------------------
                         </div>
 
                         <div className="align-items-center" style={{maxWidth:"100%"}}>
+                            <input type="text" className="form-control" id="SomeoneElseIsParent_lastname" name="SomeoneElseIsParent_lastname" placeholder="กรอกนามสกุล" value={ParentLastname} onChange={handleParentLastnameChange}/>
                             <input type="text" className="form-control" id="SomeoneElseIsParent_lastname" name="SomeoneElseIsParent_lastname" placeholder="กรอกนามสกุล"  value={ParentLastname} onChange={handleParentLastnameChange}/>
                         </div>
 
@@ -1165,11 +1154,13 @@ function ParentsInfo({  //------------------1------------------
                         <div className="d-flex align-items-center"style={{ flexWrap: 'wrap'}}>
                             <div className="form-check">
                                 <input className="form-check-input" type="radio" name="Parentforeigner?" id="ParentForeigner" value={isParentForeigner} onChange={handleIsParentForeigner} />
+                                <input className="form-check-input" type="radio" name="Parentforeigner?" id="ParentForeigner" value={isParentForeigner} onChange={handleIsParentForeigner} />
                                 <label className="form-check-label custom-body"style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="ParentForeigner">
                                 ใช่
                                 </label>
                             </div>
                             <div className="form-check">
+                                <input className="form-check-input" type="radio" name="Parentforeigner?" id="ParentNotForeigner" value={isParentForeigner}onChange={handleIsParentForeigner} />
                                 <input className="form-check-input" type="radio" name="Parentforeigner?" id="ParentNotForeigner" value={isParentForeigner} onChange={handleIsParentForeigner} />
                                 <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="ParentNotForeigner">
                                 ไม่
@@ -1185,6 +1176,7 @@ function ParentsInfo({  //------------------1------------------
                                 <label htmlFor="parent_Nationality" className="col-form-label">สัญชาติ</label>
                             </div>
                             <div className="align-items-center" style={{maxWidth:"100%"}}>
+                                <input type="text" className="form-control" id="parent_Nationality" name="parent_Nationality" placeholder="กรอกสัญชาติ"value={ParentNationality} onChange={handleParentNationalityChange}/>
                                 <input type="text" className="form-control" id="parent_Nationality" name="parent_Nationality" placeholder="กรอกสัญชาติ" value={ParentNationality} onChange={handleParentNationalityChange}/>
                             </div>
                             </>
@@ -1215,29 +1207,35 @@ function ParentsInfo({  //------------------1------------------
                         </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>       
                             <input type="text" className="form-control" id="Parent_Occupation" name="Parent_Occupation" placeholder="กรอกอาชีพ" value={ParentOccupation} onChange={handleParentOccupationChange}/>
+                            <input type="text" className="form-control" id="Parent_Occupation" name="Parent_Occupation" placeholder="กรอกอาชีพ" value={ParentOccupation} onChange={handleParentOccupationChange}/>
                         </div>
                         <div className="d-flex align-items-center">
                             <label htmlFor="Parent_Workplace" className="col-form-label">สถานที่ทำงาน</label>
                         </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>   
+                            <input type="text" className="form-control" id="Parent_Workplace" name="Parent_Workplace" placeholder="กรอกสถานที่ทำงาน"value={ParentOffice} onChange={handleParentOfficeChange} />
                             <input type="text" className="form-control" id="Parent_Workplace" name="Parent_Workplace" placeholder="กรอกสถานที่ทำงาน" value={ParentOffice} onChange={handleParentOfficeChange}/>
                         </div>
                         <div className="d-flex align-items-center">
                             <label htmlFor="SomeoneElseIsParent_phoneNumber" className="col-form-label">โทรศัพท์</label>
                         </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>   
+                            <input type="text" className="form-control" id="SomeoneElseIsParent_phoneNumber" name="SomeoneElseIsParent_phoneNumber" placeholder="กรอกหมายเลขโทรศัพท์"value={ParentTel} onChange={handleParentTelChange} />
                             <input type="text" className="form-control" id="SomeoneElseIsParent_phoneNumber" name="SomeoneElseIsParent_phoneNumber" placeholder="กรอกหมายเลขโทรศัพท์" value={ParentTel} onChange={handleParentTelChange}/>
                         </div>
+                        {/* <div className="d-flex align-items-center">
                         {/* <div className="d-flex align-items-center">
                             <label htmlFor="SomeoneElseIsParentEmail" className="col-form-label">อีเมล</label>
                         </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>   
                             <input type="text" className="form-control" id="SomeoneElseIsParentEmail" name="SomeoneElseIsParentEmail" placeholder="กรอกอีเมลผู้ปกครอง"/>
                         </div> */}
+                        </div> */}
                         <div className="d-flex align-items-center">
                             <label htmlFor="Parent_Relation" className="col-form-label">เกี่ยวข้องเป็น</label>
                             </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>   
+                            <input type="text" className="form-control" id="Parent_Relation" name="Parent_Relation" placeholder="กรอกความเกี่ยวข้องกับผู้สมัคร" value={ParentRole} onChange={handleParentRoleChange}/>
                             <input type="text" className="form-control" id="Parent_Relation" name="Parent_Relation" placeholder="กรอกความเกี่ยวข้องกับผู้สมัคร" value={ParentRole} onChange={handleParentRoleChange}/>
                         </div>
                         
