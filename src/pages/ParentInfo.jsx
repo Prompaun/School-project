@@ -1,57 +1,360 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Date_Picker from '../components/Date_Picker';
+import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-function ParentsInfo() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [age, setAge] = useState('');
-  const [selectedOption, setSelectedOption] = useState('ระบุหมายเหตุ');
-  const [isFatherRecordData, setIsFatherRecordData] = useState(false);
-  const [isMotherRecordData, setIsMotherRecordData] = useState(false);
-  const [isParentRecordData, setIsParentRecordData] = useState(false);
-  const [nationality, setNationality] = useState(''); // State สำหรับเก็บข้อมูลสัญชาติ
-  const [isFatherForeigner, setIsFatherForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
-  const [isMotherForeigner, setIsMotherForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
-  const [isParentForeigner, setIsParentForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
-  const [whoAreParent, setParent] = useState('');
+function ParentsInfo({  //------------------1------------------
+    sendFatherEmailToEnroll,
+    sendMotherEmailToEnroll,
+    sendSomeoneElseEmailToEnroll,
+    sendisFatherRecordDataToEnroll,
+    sendisMotherRecordDataToEnroll,
+    sendisParentRecordDataToEnroll,
+    sendFatherFirstnameToEnroll
+    }) {
 
-  const handleIsFatherRecordData = (event) => {
-    setIsFatherRecordData(event.target.id === 'usedToRecordFatherData'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
-  }; 
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [MotherDateOfBirth, setMotherDateOfBirth] = useState('');
+    const [ParentDateOfBirth, setParentDateOfBirth] = useState('');
+    // const [age, setAge] = useState(''); 
+    const [selectedOption, setSelectedOption] = useState('ระบุหมายเหตุ');
 
-  const handleIsMotherRecordData = (event) => {
-    setIsMotherRecordData(event.target.id === 'usedToRecordMotherData'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
-  }; 
+    const [FatherFirstname, setFatherFirstname] = useState('');
+    const [FatherLastname, setFatherLastname] = useState('');
+    const [FatherDateOfBirth, setFatherDateOfBirth] = useState('');
+    const [isFatherForeigner, setIsFatherForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
+    const [FatherNationality, setFatherNationality] = useState(''); // State สำหรับเก็บข้อมูลสัญชาติ
+    const [FatherOccupation, setFatherOccupation] = useState('');
+    const [FatherOffice, setFatherOffice] = useState('');
+    const [FatherTel, setFatherTel] = useState('');
 
-  const handleIsParentRecordData = (event) => {
-    setIsParentRecordData(event.target.id === 'usedToRecordParentData'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
-  }; 
+    const [FatherRole, setFatherRole] = useState('');
 
-  const handleIsFatherForeigner = (event) => {
-    setIsFatherForeigner(event.target.id === 'FatherForeigner'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
-  }; 
+    const [MotherOccupation, setMotherOccupation] = useState('');
+    const [MotherOffice, setMotherOffice] = useState('');
+    const [MotherTel, setMotherTel] = useState('');
+    const [MotherRole, setMotherRole] = useState('');
 
-  const handleIsMotherForeigner = (event) => {
-    setIsMotherForeigner(event.target.id === 'MotherForeigner');
-  }; 
+    const [ParentOccupation, setParentOccupation] = useState('');
+    const [ParentOffice, setParentOffice] = useState('');
+    const [ParentTel, setParentTel] = useState('');
+    const [ParentRole, setParentRole] = useState('');
 
-  const handleIsParentForeigner = (event) => {
-    setIsParentForeigner(event.target.id === 'ParentForeigner');
-  }; 
 
-const handlewhoAreParent = (event) => {
-    setParent(event.target.id);
-};
+    const [FoundFather, setFoundFather] = useState(true);
+    const [FatherEmail, setFatherEmail] = useState('');
+    const [MotherEmail, setMotherEmail] = useState('');
+    const [ParentEmail, setParentEmail] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Perform form submission logic here, e.g., send data to server via API call
-    console.log('Form submitted:', { firstName, lastName, age });
-  };
+    const [isFatherRecordData, setIsFatherRecordData] = useState(false);
+    const [FatherNotRecordData, setFatherNotRecordData] = useState(false);
+    const [isMotherRecordData, setIsMotherRecordData] = useState(false);
+    const [isParentRecordData, setIsParentRecordData] = useState(false);
 
-  const handleSelectChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
+    const [MotherNationality, setMotherNationality] = useState('');
+    const [ParentNationality, setParentNationality] = useState('');
+    
+    const [isMotherForeigner, setIsMotherForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
+    const [isParentForeigner, setIsParentForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
+    const [whoAreParent, setParent] = useState('');
+
+    const handleFatherDateOfBirthChange = (date) => {
+        // ใช้ date-fns เพื่อแปลงวันที่ให้เป็นรูปแบบ 'วัน/เดือน/ปี'
+        // const formattedDate = format(date, 'dd/MM/yyyy');
+        if(FatherDateOfBirth === ''){
+            setFatherDateOfBirth(date);
+        }
+        // if (!isFatherRecordData) { // ตรวจสอบว่าสามารถแก้ไขได้หรือไม่
+        //     setFatherDateOfBirth(date); // อัปเดตค่าเฉพาะเมื่อสามารถแก้ไขได้
+        // }
+
+        // ใช้ date-fns เพื่อแปลงวันที่ให้เป็นรูปแบบ 'ปี-เดือน-วัน'
+        // const formattedDate = format(date, 'yyyy-MM-dd');
+        console.log("FatherDateOfBirth--------------:", date);
+    };
+
+    const handlMotherDateOfBirthChange = (date) => {
+        // const formattedDate = format(date, 'yyyy-MM-dd');
+        setMotherDateOfBirth(date);
+        // console.log("MotherDateOfBirth", formattedDate);
+    };
+
+    const handlParentDateOfBirthChange = (date) => {
+        // const formattedDate = format(date, 'yyyy-MM-dd');
+        setParentDateOfBirth(date);
+        // console.log("MotherDateOfBirth", formattedDate);
+    };
+
+    useEffect(() => {
+        if (!isFatherRecordData){
+            sendFatherFirstnameToEnroll(FatherFirstname);
+        }
+        
+    // }, [isFatherRecordData, FatherFirstname, sendFatherEmailToEnroll, sendFatherFirstnameToEnroll]);
+    }, [FatherFirstname, sendFatherFirstnameToEnroll]);
+
+    useEffect(() => {
+        setFoundFather(checkEmail(FatherEmail));
+        if (!isFatherRecordData){
+            sendFatherEmailToEnroll(FatherEmail);
+            sendisFatherRecordDataToEnroll(isFatherRecordData);
+        }
+        
+    // }, [isFatherRecordData, FatherEmail, sendisFatherRecordDataToEnroll, sendFatherEmailToEnroll]); 
+    }, [FatherEmail, sendFatherEmailToEnroll]); 
+
+    const handleFatherEmailChange = (event) => {
+        setFatherEmail(event.target.value);
+    };
+
+    useEffect(() => {
+        if (isMotherRecordData) {
+            // if (MotherEmail !== '') {
+                sendMotherEmailToEnroll(MotherEmail);
+            // }
+            sendisMotherRecordDataToEnroll(isMotherRecordData);
+        }
+    }, [isMotherRecordData, MotherEmail, sendisMotherRecordDataToEnroll, sendMotherEmailToEnroll]); 
+    
+    const handleMotherEmailChange = (event) => {
+        setMotherEmail(event.target.value);
+    };
+
+    useEffect(() => {
+        // if (isParentRecordData) {
+            // if (ParentEmail !== '') {
+            // sendSomeoneElseEmailToEnroll(ParentEmail);
+            // }
+            // sendisParentRecordDataToEnroll(isParentRecordData);
+        // }
+    }, [isParentRecordData, ParentEmail, sendisParentRecordDataToEnroll, sendSomeoneElseEmailToEnroll]);
+    
+    const handleParentEmailChange = (event) => {
+            setParentEmail(event.target.value);
+        };
+    
+    useEffect(() => {
+        if (FatherDateOfBirth !== new Date()) {
+            // sendFatherDateOfBirthToEnroll(FatherDateOfBirth);
+            console.log("FatherDateOfBirth", FatherDateOfBirth);
+        } 
+        // else {
+        //     const formattedDate = format(new Date(), 'yyyy-MM-dd'); // ใช้ new Date() เพื่อเรียกใช้งานวันที่ปัจจุบัน
+            // setFatherDateOfBirth(formattedDate);
+        //     console.log("FatherDateOfBirth2222", FatherDateOfBirth);
+        // }
+    // }, [FatherDateOfBirth, sendFatherDateOfBirthToEnroll]);
+    }, [isFatherRecordData, FatherDateOfBirth]);
+
+    useEffect(() => {
+        if (MotherDateOfBirth !== new Date()) {
+            // console.log("MotherDateOfBirth", MotherDateOfBirth);
+        } 
+    }, [isMotherRecordData, MotherDateOfBirth]);
+
+    useEffect(() => {
+        if (ParentDateOfBirth !== new Date()) {
+            // console.log("ParentDateOfBirth", ParentDateOfBirth);
+        } 
+    }, [isParentRecordData, ParentDateOfBirth]);
+    
+    
+
+    const handleFatherFirstnameChange = (event) => {
+        setFatherFirstname(event.target.value);
+    };
+
+    const handleFatherLastnameChange = (event) => {
+        setFatherLastname(event.target.value);
+    };
+
+    const handleFatherOccupationChange = (event) => {
+        setFatherOccupation(event.target.value);
+    }
+
+    const handleFatherOfficeChange = (event) => {
+        setFatherOffice(event.target.value);
+    }
+    
+    const handleFatherTelChange = (event) => {
+        setFatherTel(event.target.value);
+    }
+
+
+
+    // const handleIsFatherRecordData = (event) => {
+    //     setIsFatherRecordData(event.target.id === 'usedToRecordFatherData'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
+    // }; 
+
+    // const handleFatherNotRecordData = (event) => {
+    //     setFatherNotRecordData(event.target.id === 'notYetRecordFatherData'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
+    // }; 
+
+    const handleIsMotherRecordData = (event) => {
+        setIsMotherRecordData(event.target.id === 'usedToRecordMotherData'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
+        if (isMotherRecordData){
+            setIsMotherForeigner(false);
+        }
+        else{
+            setMotherEmail('');
+        }
+    }; 
+
+    const handleIsParentRecordData = (event) => {
+        setIsParentRecordData(event.target.id === 'usedToRecordParentData'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
+        if (isParentRecordData){
+            setIsParentForeigner(false);
+        }
+        else{
+            setParentEmail('');
+        }
+    }; 
+
+
+
+    const handleIsFatherForeigner = (event) => {
+        setIsFatherForeigner(event.target.id === 'FatherForeigner'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
+    }; 
+
+    const handleIsMotherForeigner = (event) => {
+        setIsMotherForeigner(event.target.id === 'MotherForeigner');
+    }; 
+
+    const handleIsParentForeigner = (event) => {
+        setIsParentForeigner(event.target.id === 'ParentForeigner');
+    }; 
+
+
+
+    const handlewhoAreParent = (event) => {
+        setParent(event.target.id);
+        if (event.target.id === "FatherIsParent" | event.target.id === "MotherIsParent" | event.target.id === "FatherAndMotherAreParent"){
+            setIsParentRecordData(false);
+        }
+    };
+
+    useEffect(() => {
+        if (isFatherForeigner) {
+            if (FatherNationality !== '') {
+                // sendFatherNationalityToEnroll(FatherNationality);
+            }
+            // sendisFatherRecordDataToEnroll(isFatherForeigner);
+        }
+    // }, [isFatherRecordData, FatherEmail, sendFatherNationalityToEnroll]); 
+    }, [isFatherForeigner, FatherEmail]); 
+
+    const handleFatherNationalityChange = (event) => {
+        setFatherNationality(event.target.value);
+        console.log("FatherNationality",FatherNationality);
+    };
+
+    useEffect(() => {
+        if (isMotherForeigner) {
+            if (MotherNationality !== '') {
+                // sendMotherNationalityToEnroll(MotherNationality);
+            }
+            // sendisMotherForeignerToEnroll(isMotherForeigner);
+        }
+    // }, [isMotherForeigner, MotherNationality, sendMotherNationalityToEnroll]); 
+    }, [isMotherForeigner, MotherNationality]); 
+
+    const handleMotherNationalityChange = (event) => {
+        setMotherNationality(event.target.value);
+    };
+
+    useEffect(() => {
+        if (isParentForeigner) {
+            if (ParentNationality !== '') {
+                // sendParentNationalityToEnroll(ParentNationality);
+            }
+            // sendisParentForeignerToEnroll(isParentForeigner);
+        }
+    // }, [isParentForeigner, ParentNationality, sendParentNationalityToEnroll]);
+    }, [isParentForeigner, ParentNationality]);
+
+    const handleParentNationalityChange = (event) => {
+        setParentNationality(event.target.value);
+    };
+
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Perform form submission logic here, e.g., send data to server via API call
+        console.log('Form submitted:', { firstName, lastName, age });
+    };
+
+    const handleSelectChange = (event) => {
+        setSelectedOption(event.target.value);
+    };
+
+    const checkEmail = async (email) => {
+        try {
+            const response = await axios.get(`http://localhost:8080/check-email?email=${email}`);
+            const data = response.data;
+            // console.log("11111111111111111111");
+
+            if (data.results) {
+                console.log("data.results",data.results);
+                setFatherFirstname(data.results[0].FirstName);
+                setFatherLastname(data.results[0].LastName);
+
+                // กำหนดวันที่ในรูปแบบ 'YYYY-MM-DD'
+                const dateString = data.results[0].DateOfBirth;
+
+                // แปลงวันที่ในรูปแบบ 'YYYY-MM-DD' เป็นวันที่ใน JavaScript
+                const date = new Date(dateString);
+
+                // รูปแบบวันที่ใน JavaScript โดยใช้วิธี toLocaleDateString()
+                const formattedDate = date.toLocaleDateString();
+
+
+                setFatherDateOfBirth(date);
+                // handleFatherDateOfBirthChange(date);
+
+                setFatherNationality(data.results[0].Nationality);
+                setIsFatherRecordData(true);
+                setFatherOccupation(data.results[0].Occupation);
+                setFatherOffice(data.results[0].Office);
+                setFatherTel(data.results[0].Tel);
+
+                // console.log("yokkk",date);
+
+                return true;
+            } 
+            else {
+                
+                setIsFatherRecordData(false);
+
+                // setFatherFirstname('');
+                // setFatherLastname('');
+                // setFatherDateOfBirth('');
+                // setFatherNationality('');
+                // setFatherOccupation('');
+                // setFatherOffice('');
+                // setFatherTel('');
+
+                console.log("isssss",isFatherRecordData);
+                
+                return false;
+            }
+        } catch (error) {
+            console.error('Error checking email:', error);
+            alert('An error occurred while checking email.');
+        }
+    };
+
+  <ParentsInfo 
+    sendFatherEmailToEnroll={sendFatherEmailToEnroll} 
+    sendMotherEmailToEnroll={sendMotherEmailToEnroll} 
+    sendSomeoneElseEmailToEnroll={sendSomeoneElseEmailToEnroll}
+    sendisFatherRecordDataToEnroll={sendisFatherRecordDataToEnroll}
+    sendisMotherRecordDataToEnroll={sendisMotherRecordDataToEnroll}
+    sendisParentRecordDataToEnroll={sendisParentRecordDataToEnroll}
+    sendFatherFirstnameToEnroll={sendFatherFirstnameToEnroll}
+    />
 
   return (
     <div className="d-flex flex-column"style={{fontFamily: 'Kanit, sans-serif'}}>
@@ -60,28 +363,29 @@ const handlewhoAreParent = (event) => {
                     <label htmlFor="father_data" className="col-form-label">ข้อมูลบิดา</label>
                 </div>
         </div>
-            <br />
-        <h2 className="col-sm d-flex align-items-center" style={{marginLeft: '15px',fontSize: '18px'}}>เคยบันทึกข้อมูลบิดาแล้วหรือไม่</h2>
-        <h2 className="card-heading mb-0 mx-3" style={{ fontSize: '16px', color: 'red' ,marginTop:"5px"}}>
-                    **เลือก ใช่ กรณีเคยบันทึกข้อมูลของตนสำหรับใช้สมัครเรียนให้บุตรหลานของท่าน
-                </h2>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '16px',marginLeft: '15px' ,marginTop:"5px"}}>
-                <div className="form-check">
-                    <input className="form-check-input" type="radio" name="usedToRecordFatherData?" id="usedToRecordFatherData" onChange={handleIsFatherRecordData} />
-                    <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="usedToRecordFatherData">
-                    ใช่
-                    </label>
-                </div>
-                <div className="form-check">
-                    <input className="form-check-input" type="radio" name="usedToRecordFatherData?" id="notYetRecordFatherData" onChange={handleIsFatherRecordData} />
-                    <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="notYetRecordFatherData">
-                    ไม่ใช่
-                    </label>
-                </div>
-            </div>
+            {/* <br /> */}
+        {/* <h2 className="col-sm d-flex align-items-center" style={{marginLeft: '15px',fontSize: '18px'}}>เคยบันทึกข้อมูลบิดาแล้วหรือไม่</h2> */}
+        {/* <h2 className="card-heading mb-0 mx-3" style={{ fontSize: '16px', color: 'red' ,marginTop:"5px"}}>
+            **เลือก ใช่ กรณีเคยบันทึกข้อมูลของตนสำหรับใช้สมัครเรียนให้บุตรหลานของท่าน
+        </h2> */}
 
-        {isFatherRecordData ? (
-            <>
+        {/* <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '16px',marginLeft: '15px' ,marginTop:"5px"}}>
+            <div className="form-check" style={{ marginTop: '10px',maxWidth:"100%"}}>
+                <input className="form-check-input" type="radio" name="usedToRecordFatherData?" id="usedToRecordFatherData" value="ใช่" onChange={handleIsFatherRecordData} />
+                <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="usedToRecordFatherData">
+                ใช่
+                </label>
+            </div>
+            <div className="form-check" style={{ marginTop: '10px',maxWidth:"100%"}}>
+                <input className="form-check-input" type="radio" name="usedToRecordFatherData?" id="notYetRecordFatherData" value="ไม่ใช่" onChange={handleIsFatherRecordData} />
+                <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="notYetRecordFatherData">
+                ไม่ใช่
+                </label>
+            </div>
+        </div> */}
+
+        {/* {!isFatherRecordData ? (
+            <> */}
                 <div style={{fontSize: '18px',marginTop:"5px"}}>
                     <div className="d-flex align-items-center"style={{flexWrap:"wrap"}}>
                         <label htmlFor="Father_Email" className="col-form-label mb-0 mx-3">อีเมล</label>
@@ -92,53 +396,79 @@ const handlewhoAreParent = (event) => {
                     </h2>
                     </div>
                 
-                <div className="align-items-center"style={{ marginTop: '5px',maxWidth:"65%"}}> 
-                        <input type="text" className="form-control mb-0 mx-3" id="Father_Email" name="Father_Email" placeholder="กรอกอีเมลบิดา" />
+                <div className="align-items-center"style={{ marginTop: '5px',maxWidth:"35%"}}> 
+                    <input type="text" className="form-control mb-0 mx-3" id="Father_Email" name="Father_Email" value={FatherEmail} placeholder="กรอกอีเมลบิดา" onChange={handleFatherEmailChange}/>
                 </div>
                 </div>
-            </>
+            {/* </>
         ) : (
-            <>
+            <> */}
             <br />
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px' }}>
 
-                    <div className="d-flex align-items-center">
-                        <label htmlFor="father_surname" className="col-form-label">ชื่อ</label>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px' , marginTop: '0px',maxWidth:"100%"}}>
+
+                    <div className="d-flex align-items-center" >
+                        <label htmlFor="father_Firstname" className="col-form-label">ชื่อ</label>
                     </div>
-                    <div className="align-items-center" style={{maxWidth:"100%"}}>
-                        <input type="text" className="form-control" id="father_surname" name="father_surname" placeholder="กรอกชื่อ" />
-                        </div>
+
+                    <div className="align-items-center" style={{ maxWidth: "100%" }}>
+                        <input 
+                            type="text" 
+                            className="form-control" 
+                            id="father_Firstname" 
+                            name="father_Firstname" 
+                            placeholder="กรอกชื่อ" 
+                            value={FatherFirstname} 
+                            onChange={handleFatherFirstnameChange} 
+                            readOnly={isFatherRecordData} // กำหนด prop readOnly ตามค่าของ isFatherRecordData
+                            // required
+                        />
+                    </div>
+
                     <div className="align-items-center">
                         <label htmlFor="father_lastname" className="col-form-label">นามสกุล</label>
-                        </div>
-                    <div className="align-items-center" style={{maxWidth:"100%"}}>
-                        <input type="text" className="form-control" id="father_lastname" name="father_lastname" placeholder="กรอกนามสกุล" />
-                        </div>
-                    <div className="align-items-center">
-                        <label htmlFor="father_age" className="col-form-label">อายุ</label>
-                        </div>
-                    <div className="d-flex align-items-center" style={{maxWidth:"100%"}}>
-                        <input type="text" className="form-control" id="father_age" name="father_age" placeholder="กรอกอายุ" />
-                        {/* </div>
-                    <div className="align-items-center"> */}
-                        <label htmlFor="year" className="col-form-label"style={{marginLeft: '15px'}}>ปี</label>
                     </div>
+
+                    <div className="align-items-center" style={{maxWidth:"100%"}}>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="father_lastname"
+                            name="father_lastname"
+                            placeholder="กรอกนามสกุล"
+                            value={FatherLastname}
+                            onChange={handleFatherLastnameChange}
+                            readOnly={isFatherRecordData}/>
+                    </div>
+
+                    <div className="align-items-center">
+                        <label htmlFor="father_dob" className="col-form-label">วัน/เดือน/ปีเกิด</label>
+                    </div>
+
+                    <div className="align-items-center" style={{ marginLeft: '15px' }}>
+                        <Date_Picker value={FatherDateOfBirth} onChange={handleFatherDateOfBirthChange} readOnly={isFatherRecordData}/>
+                    </div>
+
+                    {/* <div className="d-flex align-items-center" style={{maxWidth:"100%"}}>
+                        <input type="text" className="form-control" id="father_dob" name="father_dob" placeholder="กรอกอายุบิดา" />
+                        <label htmlFor="year" className="col-form-label"style={{marginLeft: '15px'}}>ปี</label>
+                    </div> */}
                 </div>
 
                
 
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px' }}>
 
-                    <h2 className="col-form-label" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
-                    <div className="d-flex align-items-center"style={{ flexWrap: 'wrap'}}>
-                        <div className="form-check">
-                            <input className="form-check-input" type="radio" name="Fatherforeigner?" id="FatherForeigner" onChange={handleIsFatherForeigner} />
+                    <h2 className="col-form-label" style={{ marginTop: '10px', fontFamily: 'Kanit, sans-serif', fontSize: '18px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
+                    <div className="d-flex align-items-center"style={{ flexWrap: 'wrap'}} >
+                        <div className="form-check" style={{ marginTop: '10px',maxWidth:"100%"}}>
+                            <input className="form-check-input" type="radio" name="Fatherforeigner?" id="FatherForeigner" value={isFatherForeigner} onChange={handleIsFatherForeigner} />
                             <label className="form-check-label custom-body"style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="FatherForeigner">
                             ใช่
                             </label>
                         </div>
-                        <div className="form-check">
-                            <input className="form-check-input" type="radio" name="Fatherforeigner?" id="FatherNotForeigner" onChange={handleIsFatherForeigner} />
+                        <div className="form-check" style={{ marginTop: '10px',maxWidth:"100%"}}>
+                            <input className="form-check-input" type="radio" name="Fatherforeigner?" id="FatherNotForeigner" value={isFatherForeigner} onChange={handleIsFatherForeigner} />
                             <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="FatherNotForeigner">
                             ไม่
                             </label>
@@ -149,26 +479,26 @@ const handlewhoAreParent = (event) => {
                     {/* ใช้เงื่อนไขเพื่อตรวจสอบว่าถ้าเป็นคนต่างชาติให้แสดงส่วนของสัญชาติ */}
                     {isFatherForeigner && (
                         <>
-                        <div className="d-flex align-items-center">
-                        <label htmlFor="father_Nationality" className="col-form-label">สัญชาติ</label>
+                        <div className="d-flex align-items-center" style={{ marginTop: '10px',maxWidth:"100%"}}>
+                            <label htmlFor="father_Nationality" className="col-form-label">สัญชาติ</label>
                         </div>
-                        <div className="align-items-center" style={{maxWidth:"100%"}}>
-                        <input type="text" className="form-control" id="father_Nationality" name="father_Nationality" placeholder="กรอกสัญชาติ" />
+                        <div className="align-items-center" style={{marginTop: '10px',maxWidth:"100%"}}>
+                            <input type="text" className="form-control" id="father_Nationality" name="father_Nationality" placeholder="กรอกสัญชาติ" value={FatherNationality} onChange={handleFatherNationalityChange}/>
                         </div>
                         </>
                     )}
                 </div>
                 
 
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px' }}>
+                {/* <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px' }}>
                 
-                        <div className="d-flex align-items-center">
+                        <div className="d-flex align-items-center" style={{ marginTop: '10px',maxWidth:"100%"}}>
                             <label htmlFor="father_Occupation" className="col-form-label">วุฒิการศึกษา</label>
                         </div>
                         <div class="h-screen flex flex-col justify-left sm:flex-row">
                         <div class="sm:w-1_3 sm:pr-3">
-                            <div class="dropdown" style={{ maxWidth: '100%' }}> {/* กำหนดความกว้างของ dropdown ที่นี่ */}
-                                <select value={selectedOption} onChange={handleSelectChange} class="custom-select w-full" > {/* กำหนดความกว้างของตัวเลือกใน dropdown ที่นี่ */}
+                            <div class="dropdown" style={{ marginTop: '10px', maxWidth: '100%' }}> 
+                                <select value={selectedOption} onChange={handleSelectChange} class="custom-select w-full" > 
                                     <option value="ระบุหมายเหตุ">ระบุวุฒิการศึกษา</option>
                                     <option value="เพื่อใช้ในการขอทุนการศึกษา">ปริญญาตรี</option>
                                     <option value="เพื่อใช้ในการสมัครเข้าศึกษาต่อ">ปริญญาโท</option>
@@ -178,31 +508,45 @@ const handlewhoAreParent = (event) => {
                         </div>
                         </div>
                         
-                </div>
+                </div> */}
                 
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px' }}>
-                        <div className="d-flex align-items-center">
+                        <div className="d-flex align-items-center" style={{ marginTop: '10px',maxWidth:"100%"}}>
                             <label htmlFor="father_Occupation" className="col-form-label">อาชีพ</label>
                         </div>
-                        <div className="align-items-center" style={{maxWidth:"100%"}}>       
-                            <input type="text" className="form-control" id="father_Occupation" name="father_Occupation" placeholder="กรอกอาชีพ" />
+                        <div className="align-items-center" style={{ marginTop: '10px',maxWidth:"100%"}}>       
+                            <input type="text" className="form-control" id="father_Occupation" name="father_Occupation" value={FatherOccupation} placeholder="กรอกอาชีพ" onChange={handleFatherOccupationChange}/>
                         </div>
-                        <div className="d-flex align-items-center">
+                        <div className="d-flex align-items-center" style={{ marginTop: '10px',maxWidth:"100%"}}>
                             <label htmlFor="father_Workplace" className="col-form-label">สถานที่ทำงาน</label>
                         </div>
-                        <div className="align-items-center" style={{maxWidth:"100%"}}>   
-                            <input type="text" className="form-control" id="father_Workplace" name="father_Workplace" placeholder="กรอกสถานที่ทำงาน" />
+                        <div className="align-items-center" style={{ marginTop: '10px',maxWidth:"100%"}}>   
+                            <input type="text" className="form-control" id="father_Workplace" name="father_Workplace" value={FatherOffice} placeholder="กรอกสถานที่ทำงาน" onChange={handleFatherOfficeChange}/>
                         </div>
-                        <div className="d-flex align-items-center">
+                        <div className="d-flex align-items-center" style={{ marginTop: '10px',maxWidth:"100%"}}>
                             <label htmlFor="father_phoneNumber" className="col-form-label">โทรศัพท์</label>
                             </div>
-                        <div className="align-items-center" style={{maxWidth:"100%"}}>   
-                            <input type="text" className="form-control" id="father_phoneNumber" name="father_phoneNumber" placeholder="กรอกหมายเลขโทรศัพท์" />
+                        <div className="align-items-center" style={{ marginTop: '10px',maxWidth:"100%"}}>   
+                            <input type="text" className="form-control" id="father_phoneNumber" name="father_phoneNumber" value={FatherTel} placeholder="กรอกหมายเลขโทรศัพท์" onChange={handleFatherTelChange}/>
+                        </div>
+                        <div className="d-flex align-items-center" style={{ marginTop: '10px',maxWidth:"100%"}}>
+                            <label htmlFor="father_Email" className="col-form-label">อีเมล</label>
+                        </div>
+                        {/* <div className="align-items-center" style={{maxWidth:"100%"}}>   
+                            <input type="text" className="form-control" id="father_Email" name="father_Email" placeholder="กรอกอีเมล" />
+                        </div> */}
+                        <div className="align-items-center"style={{ marginTop: '10px',maxWidth:"100%"}}> 
+                            <input type="text" className="form-control" id="Father_Email" name="Father_Email" value={FatherEmail} placeholder="กรอกอีเมลบิดา" onChange={handleFatherEmailChange}/>
                         </div>
                         
                 </div>
-            </>
-        )}
+            {/* </>
+        )} */}
+
+
+
+
+
 
         <br />
         <div className="row" style={{fontWeight: 'bold', fontSize: '20px', marginRight: '5px', gap: '0',Height: '100vh'}}>
@@ -241,7 +585,7 @@ const handlewhoAreParent = (event) => {
                         </h2>
                     </div>
                     <div className="align-items-center"style={{ marginTop: '5px',maxWidth:"65%"}}>  
-                        <input type="text" className="form-control mb-0 mx-3" id="Mother_Email" name="Mother_Email" placeholder="กรอกอีเมลมารดา" />
+                        <input type="text" className="form-control mb-0 mx-3" id="Mother_Email" name="Mother_Email" placeholder="กรอกอีเมลมารดา" onChange={handleMotherEmailChange} />
                     </div>
                 </div>
             </>
@@ -263,13 +607,12 @@ const handlewhoAreParent = (event) => {
                         <input type="text" className="form-control" id="mother_lastname" name="mother_lastname" placeholder="กรอกนามสกุล" />
                         </div>
                     <div className="align-items-center">
-                        <label htmlFor="mother_age" className="col-form-label">อายุ</label>
-                        </div>
+                        <label htmlFor="mother_dob" className="col-form-label">วัน/เดือน/ปีเกิด</label>
+                    </div>
                     <div className="d-flex align-items-center" style={{maxWidth:"100%"}}>
-                        <input type="text" className="form-control" id="mother_age" name="mother_age" placeholder="กรอกอายุ" />
-                        {/* </div>
-                    <div className="align-items-center"> */}
-                        <label htmlFor="year" className="col-form-label"style={{marginLeft: '15px'}}>ปี</label>
+                        <Date_Picker value={MotherDateOfBirth} onChange={handlMotherDateOfBirthChange} />
+                        {/* <input type="text" className="form-control" id="mother_age" name="mother_age" placeholder="กรอกอายุ" /> */}
+                        {/* <label htmlFor="year" className="col-form-label"style={{marginLeft: '15px'}}>ปี</label> */}
                     </div>
                 </div>
                 
@@ -299,7 +642,7 @@ const handlewhoAreParent = (event) => {
                         <label htmlFor="mother_Nationality" className="col-form-label">สัญชาติ</label>
                         </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>
-                        <input type="text" className="form-control" id="mother_Nationality" name="mother_Nationality" placeholder="กรอกสัญชาติ" />
+                        <input type="text" className="form-control" id="mother_Nationality" name="mother_Nationality" placeholder="กรอกสัญชาติ" onChange={handleMotherNationalityChange}/>
                         </div>
                         </>
                     )}
@@ -341,6 +684,12 @@ const handlewhoAreParent = (event) => {
                             </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>   
                             <input type="text" className="form-control" id="mother_phoneNumber" name="mother_phoneNumber" placeholder="กรอกหมายเลขโทรศัพท์" />
+                        </div>
+                        <div className="d-flex align-items-center">
+                            <label htmlFor="mother_Email" className="col-form-label">อีเมล</label>
+                        </div>
+                        <div className="align-items-center" style={{maxWidth:"100%"}}>   
+                            <input type="text" className="form-control" id="mother_Email" name="mother_Email" placeholder="กรอกอีเมล" />
                         </div>
                         
                 </div>
@@ -412,13 +761,13 @@ const handlewhoAreParent = (event) => {
                     <>
                         <div style={{fontSize: '18px',marginTop:"5px"}}>
                             <div className="d-flex align-items-center">
-                                <label htmlFor="Parent_Email" className="col-form-label mb-0 mx-3">อีเมล</label>
+                                <label htmlFor="ParentEmail" className="col-form-label mb-0 mx-3">อีเมล</label>
                                 <h2 className="card-heading mb-0 mx-3" style={{ fontSize: '16px', color: 'blue' }}>
                                     (อีเมลที่ท่านกรอกนี้สามารถใช้ตรวจสอบข้อมูลนักเรียนของโรงเรียนซึ่งเป็นบุตรหลานของท่าน)
                                 </h2>
                             </div>
                             <div className="align-items-center"style={{ marginTop: '5px',maxWidth:"65%"}}>  
-                                <input type="text" className="form-control mb-0 mx-3" id="Parent_Email" name="Parent_Email" placeholder="กรอกอีเมลผู้ปกครอง" />
+                                <input type="text" className="form-control mb-0 mx-3" id="ParentEmail" name="ParentEmail" placeholder="กรอกอีเมลผู้ปกครอง" onChange={handleParentEmailChange}/>
                             </div>
                         </div>
                     </>
@@ -431,23 +780,33 @@ const handlewhoAreParent = (event) => {
                         <div className="d-flex align-items-center">
                             <label htmlFor="SomeoneElseIsParent_surname" className="col-form-label">ชื่อ</label>
                         </div>
+                        
                         <div className="align-items-center" style={{maxWidth:"100%"}}>
                             <input type="text" className="form-control" id="SomeoneElseIsParent_surname" name="SomeoneElseIsParent_surname" placeholder="กรอกชื่อ" />
-                            </div>
+                        </div>
+
                         <div className="align-items-center">
                             <label htmlFor="SomeoneElseIsParent_lastname" className="col-form-label">นามสกุล</label>
-                            </div>
+                        </div>
+
                         <div className="align-items-center" style={{maxWidth:"100%"}}>
                             <input type="text" className="form-control" id="SomeoneElseIsParent_lastname" name="SomeoneElseIsParent_lastname" placeholder="กรอกนามสกุล" />
-                            </div>
-                        <div className="align-items-center">
+                        </div>
+
+                        {/* <div className="align-items-center">
                             <label htmlFor="SomeoneElseIsParent_age" className="col-form-label">อายุ</label>
-                            </div>
+                        </div>
+
                         <div className="d-flex align-items-center" style={{maxWidth:"100%"}}>
                             <input type="text" className="form-control" id="SomeoneElseIsParent_age" name="SomeoneElseIsParent_age" placeholder="กรอกอายุ" />
-                            {/* </div>
-                        <div className="align-items-center"> */}
                             <label htmlFor="year" className="col-form-label"style={{marginLeft: '15px'}}>ปี</label>
+                        </div> */}
+
+                        <div className="align-items-center">
+                            <label htmlFor="SomeoneElseIsParent_dob" className="col-form-label">วัน/เดือน/ปีเกิด</label>
+                        </div>
+                        <div className="d-flex align-items-center" style={{maxWidth:"100%"}}>
+                            <Date_Picker value={ParentDateOfBirth} onChange={handlParentDateOfBirthChange} />
                         </div>
                     </div>
 
@@ -474,10 +833,10 @@ const handlewhoAreParent = (event) => {
                         {isParentForeigner && (
                             <>
                             <div className="d-flex align-items-center">
-                            <label htmlFor="parent_Nationality" className="col-form-label">สัญชาติ</label>
+                                <label htmlFor="parent_Nationality" className="col-form-label">สัญชาติ</label>
                             </div>
                             <div className="align-items-center" style={{maxWidth:"100%"}}>
-                            <input type="text" className="form-control" id="parent_Nationality" name="parent_Nationality" placeholder="กรอกสัญชาติ" />
+                                <input type="text" className="form-control" id="parent_Nationality" name="parent_Nationality" placeholder="กรอกสัญชาติ" onChange={handleParentNationalityChange}/>
                             </div>
                             </>
                         )}
@@ -516,9 +875,15 @@ const handlewhoAreParent = (event) => {
                         </div>
                         <div className="d-flex align-items-center">
                             <label htmlFor="SomeoneElseIsParent_phoneNumber" className="col-form-label">โทรศัพท์</label>
-                            </div>
+                        </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>   
                             <input type="text" className="form-control" id="SomeoneElseIsParent_phoneNumber" name="SomeoneElseIsParent_phoneNumber" placeholder="กรอกหมายเลขโทรศัพท์" />
+                        </div>
+                        <div className="d-flex align-items-center">
+                            <label htmlFor="SomeoneElseIsParentEmail" className="col-form-label">อีเมล</label>
+                        </div>
+                        <div className="align-items-center" style={{maxWidth:"100%"}}>   
+                            <input type="text" className="form-control" id="SomeoneElseIsParentEmail" name="SomeoneElseIsParentEmail" placeholder="กรอกอีเมลผู้ปกครอง"/>
                         </div>
                         <div className="d-flex align-items-center">
                             <label htmlFor="Parent_Relation" className="col-form-label">เกี่ยวข้องเป็น</label>

@@ -14,7 +14,7 @@ function NewStudent_info({
     sendFirstNameToEnroll,
     sendLastNameToEnroll,
     sendDateOfBirthToEnroll,
-    sendEducationalProofToEnroll
+    sendTranscript_typeToEnroll
     
     // sendNationalDataToEnroll,
     // sendAgeDataToEnroll
@@ -26,7 +26,7 @@ function NewStudent_info({
     const [FirstName, setFirstName] = useState('');
     const [LastName, setLastName] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
-    const [educationalProof, setEducationalProof] = useState('');
+    const [Transcript_type, setTranscript_type] = useState('');
 
     useEffect(() => {
         if (studentNID !== '' && studentNID.length === 13) {
@@ -44,16 +44,16 @@ function NewStudent_info({
         if (dateOfBirth !== '') {
             sendDateOfBirthToEnroll(dateOfBirth);
         } else {
-            const formattedDate = format(new Date(), 'yyyy-MM-dd'); // ใช้ new Date() เพื่อเรียกใช้งานวันที่ปัจจุบัน
-            setDateOfBirth(formattedDate);
+            // const formattedDate = format(new Date(), 'yyyy-MM-dd'); // ใช้ new Date() เพื่อเรียกใช้งานวันที่ปัจจุบัน
+            setDateOfBirth(new Date());
         }
     }, [dateOfBirth, sendDateOfBirthToEnroll]);
     
     useEffect(() => {
-        if (educationalProof !== '') {
-            sendEducationalProofToEnroll(educationalProof);
+        if (Transcript_type !== '') {
+            sendTranscript_typeToEnroll(Transcript_type);
         }
-    }, [educationalProof, sendEducationalProofToEnroll]);    
+    }, [Transcript_type, sendTranscript_typeToEnroll]);    
 
     useEffect(() => {
         if (FirstName !== '') {
@@ -90,11 +90,11 @@ function NewStudent_info({
         const formattedDate = format(date, 'yyyy-MM-dd');
         // เซ็ตค่าวันที่ที่แปลงรูปแบบแล้ว
         setDateOfBirth(formattedDate);
-        console.log("say hi", formattedDate);
+        console.log("say hi1", formattedDate);
     };
 
-    const handleEducationalProofChange = (event) => {
-        setEducationalProof(event.target.value); // เมื่อมีการเลือก radio input ให้เรียกฟังก์ชันนี้
+    const handleTranscript_typeChange = (event) => {
+        setTranscript_type(event.target.value); // เมื่อมีการเลือก radio input ให้เรียกฟังก์ชันนี้
     };
 
     const handleFileUpload = (event) => {
@@ -224,15 +224,15 @@ function NewStudent_info({
     };
       
     <NewStudent_info 
-    sendImageDataToEnroll={sendImageDataToEnroll} 
-    sendCopyofStudentIDCardFileToEnroll={sendCopyofStudentIDCardFileToEnroll} 
-    sendPreviousSchoolEducationalRecordsFileToEnroll={sendPreviousSchoolEducationalRecordsFileToEnroll}
-    sendstudentNIDToEnroll={sendstudentNIDToEnroll}
-    sendnameTitleToEnroll={sendnameTitleToEnroll}
-    sendFirstNameTitleToEnroll={sendFirstNameToEnroll}
-    sendLastNameToEnroll={sendLastNameToEnroll}
-    sendDateOfBirthToEnroll={sendDateOfBirthToEnroll}
-    sendEducationalProofToEnroll={sendEducationalProofToEnroll}
+        sendImageDataToEnroll={sendImageDataToEnroll} 
+        sendCopyofStudentIDCardFileToEnroll={sendCopyofStudentIDCardFileToEnroll} 
+        sendPreviousSchoolEducationalRecordsFileToEnroll={sendPreviousSchoolEducationalRecordsFileToEnroll}
+        sendstudentNIDToEnroll={sendstudentNIDToEnroll}
+        sendnameTitleToEnroll={sendnameTitleToEnroll}
+        sendFirstNameTitleToEnroll={sendFirstNameToEnroll}
+        sendLastNameToEnroll={sendLastNameToEnroll}
+        sendDateOfBirthToEnroll={sendDateOfBirthToEnroll}
+        sendTranscript_typeToEnroll={sendTranscript_typeToEnroll}
     />
 
   return (
@@ -267,7 +267,7 @@ function NewStudent_info({
             </div>
             <div className="align-items-center" style={{ marginLeft: '15px', maxWidth: "50%" }}>
                 <input id="student_picture_file_input" type="file" name="student_picture_file_input" className="form-control" onChange={handleFileChange} accept=".pdf, .jpg, .jpeg, .png" />
-                <label htmlFor="student_picture_file_input" id="fileInputLabel">Select Files</label>
+                {/* <label htmlFor="student_picture_file_input" id="fileInputLabel">Select Files</label> */}
             </div>
         </div>
 
@@ -333,7 +333,7 @@ function NewStudent_info({
                 <h2 htmlFor="DOB" className="col-form-label px-3">วัน/เดือน/ปีเกิด</h2>
             </div>
             <div className="align-items-center" style={{ marginLeft: '15px' }}>
-                <Date_Picker onChange={handleDateOfBirthChange} />
+                <Date_Picker value={dateOfBirth} onChange={handleDateOfBirthChange} />
             </div>
         </div>
         <br />
@@ -357,28 +357,28 @@ function NewStudent_info({
         <h2 htmlFor="surname" className="col-form-label mb-0 mx-3" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px', marginRight: '5px', gap: '0'}}>หลักฐานการศึกษาจากโรงเรียนเดิม</h2>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '16px', marginLeft: '15px' }}>
             <div className="form-check">
-                <input className="form-check-input" type="radio" name="selectedOption" id="option1" value="ปพ.1" onChange={handleEducationalProofChange} />
+                <input className="form-check-input" type="radio" name="selectedOption" id="option1" value="ปพ.1" onChange={handleTranscript_typeChange} />
                 <label className="form-check-label" htmlFor="option1">
                     ปพ.1
                 </label>
             </div>
 
             <div className="form-check">
-                <input className="form-check-input" type="radio" name="selectedOption" id="option2" value="ปพ.6" onChange={handleEducationalProofChange} />
+                <input className="form-check-input" type="radio" name="selectedOption" id="option2" value="ปพ.6" onChange={handleTranscript_typeChange} />
                 <label className="form-check-label" htmlFor="option2">
                     ปพ.6
                 </label>
             </div>
 
             <div className="form-check">
-                <input className="form-check-input" type="radio" name="selectedOption" id="option3" value="ปพ.7" onChange={handleEducationalProofChange} />
+                <input className="form-check-input" type="radio" name="selectedOption" id="option3" value="ปพ.7" onChange={handleTranscript_typeChange} />
                 <label className="form-check-label" htmlFor="option3">
                     ปพ.7
                 </label>
             </div>
 
             <div className="form-check">
-                <input className="form-check-input" type="radio" name="selectedOption" id="option4" value="ปพ.8" onChange={handleEducationalProofChange} />
+                <input className="form-check-input" type="radio" name="selectedOption" id="option4" value="ปพ.8" onChange={handleTranscript_typeChange} />
                 <label className="form-check-label" htmlFor="option4">
                     ปพ.8
                 </label>
