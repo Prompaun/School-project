@@ -82,11 +82,11 @@ function HouseholdInfo  ({  //------------------1------------------
     // }
   }, [SubDistrict, sendSubDistrictToEnroll]);
 
-  useEffect(() => {
+  // useEffect(() => {
     // if (HouseReg_file !== '') {
-        sendHouseReg_fileToEnroll(HouseReg_file);
+        // sendHouseReg_fileToEnroll(HouseReg_file);
     // }
-  }, [HouseReg_file, sendHouseReg_fileToEnroll]);
+  // }, [HouseReg_file, sendHouseReg_fileToEnroll]);
 
 
   //------------------3------------------
@@ -160,7 +160,14 @@ function HouseholdInfo  ({  //------------------1------------------
   const handleFileUpload = (event) => {
     event.preventDefault();
     const HouseReg_file = event.target;
-    
+
+    console.log('-----------------------', HouseReg_file.files.length);
+
+     if (HouseReg_file.files.length === 0){
+      setHouseReg_file('');
+      sendHouseReg_fileToEnroll('');
+    }
+   
     if (HouseReg_file.files && HouseReg_file.files.length > 0) {
         const file = HouseReg_file.files[0];
         const fileType = '.' + file.name.split('.').pop().toLowerCase();
@@ -177,6 +184,9 @@ function HouseholdInfo  ({  //------------------1------------------
             HouseReg_file.value = '';
         }
     }
+   
+   
+
 };
 
   const handleSubmit = (event) => {
@@ -185,21 +195,21 @@ function HouseholdInfo  ({  //------------------1------------------
     // Basic validation: Check if required fields are empty
     if (!HouseNumber || !Moo || !Province || !District || !SubDistrict || !Road || !Soi || !HouseReg_file) {
       alert('Please fill out all fields and upload a HouseReg_file.');
-      return;
+      // return;
     }
   
     // Perform form submission logic here (e.g., send data to server via API call)
     // You can also show a loading spinner during the submission process
   
     // Reset the form fields after submission
-    setHouseNumber('');
-    setMoo('');
-    setProvince('');
-    setDistrict('');
-    setSubDistrict('');
-    setRoad('');
-    setSoi('');
-    setHouseReg_file(null);
+    // setHouseNumber('');
+    // setMoo('');
+    // setProvince('');
+    // setDistrict('');
+    // setSubDistrict('');
+    // setRoad('');
+    // setSoi('');
+    // setHouseReg_file('');
   
     // Show a success message to the user
     alert('Form submitted successfully!');
@@ -364,7 +374,7 @@ function HouseholdInfo  ({  //------------------1------------------
               
             </div>
               <div className="align-items-center">
-          <input type="File" className="form-control" style={{maxWidth:"70%"}}onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
+              <input type="File" className="form-control" style={{maxWidth:"70%"}} onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
           <br />
         </div>
       
