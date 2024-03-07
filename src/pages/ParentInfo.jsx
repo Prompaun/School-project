@@ -17,10 +17,26 @@ function ParentsInfo({  //------------------1------------------
     sendFatherTelToEnroll,
 
     sendMotherEmailToEnroll,
-    sendSomeoneElseEmailToEnroll,
-
     sendisMotherRecordDataToEnroll,
+    sendMotherFirstnameToEnroll,
+    sendMotherLastnameToEnroll,
+    sendMotherDateOfBirthToEnroll,
+    sendisMotherForeignerToEnroll,
+    sendMotherNationalityToEnroll,
+    sendMotherOccupationToEnroll,
+    sendMotherOfficeToEnroll,
+    sendMotherTelToEnroll,
+
+    sendSomeoneElseEmailToEnroll,
     sendisParentRecordDataToEnroll,
+    // sendMotherFirstnameToEnroll,
+    // sendMotherLastnameToEnroll,
+    // sendMotherDateOfBirthToEnroll,
+    // sendisMotherForeignerToEnroll,
+    // sendMotherNationalityToEnroll,
+    // sendMotherOccupationToEnroll,
+    // sendMotherOfficeToEnroll,
+    // sendMotherTelToEnroll,  
     }) {
 
     const [firstName, setFirstName] = useState('');
@@ -41,7 +57,7 @@ function ParentsInfo({  //------------------1------------------
   
     const [isMotherRecordData, setIsMotherRecordData] = useState(false);
     const [MotherFirstname, setMotherFirstname] = useState('');
-    const [MotherLastname, setFMotherLastname] = useState('');
+    const [MotherLastname, setMotherLastname] = useState('');
     const [MotherDateOfBirth, setMotherDateOfBirth] = useState('');
     const [isMotherForeigner, setIsMotherForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
     const [MotherNationality, setMotherNationality] = useState(''); // State สำหรับเก็บข้อมูลสัญชาติ
@@ -63,6 +79,9 @@ function ParentsInfo({  //------------------1------------------
 
 
     const [FoundFather, setFoundFather] = useState(true);
+    const [FoundMother, setFoundMother] = useState(true);
+    const [FoundParent, setFoundParent] = useState(true);
+
     const [FatherEmail, setFatherEmail] = useState('');
     const [MotherEmail, setMotherEmail] = useState('');
     const [ParentEmail, setParentEmail] = useState('');
@@ -96,6 +115,7 @@ function ParentsInfo({  //------------------1------------------
         // console.log("MotherDateOfBirth", formattedDate);
     };
 
+    //Father data useEffect-------------------------------------------
     useEffect(() => {
         setFoundFather(checkFather_Email(FatherEmail));
         if (!isFatherRecordData){
@@ -156,6 +176,67 @@ function ParentsInfo({  //------------------1------------------
         }
     }, [FatherTel, sendFatherTelToEnroll]);
 
+    //Mother data useEffect-------------------------------------------
+    useEffect(() => {
+        setFoundMother(checkMother_Email(MotherEmail));
+        if (!isMotherRecordData){
+            sendMotherEmailToEnroll(MotherEmail);
+            sendisMotherRecordDataToEnroll(isMotherRecordData);
+        }
+    }, [MotherEmail, sendMotherEmailToEnroll]); 
+
+    useEffect(() => {
+        if (!isMotherRecordData){
+            sendMotherFirstnameToEnroll(MotherFirstname);
+        }
+    }, [MotherFirstname, sendMotherFirstnameToEnroll]);
+
+    useEffect(() => {
+        if (!isMotherRecordData){
+            sendMotherLastnameToEnroll(MotherLastname);
+        }
+    }, [MotherLastname, sendMotherLastnameToEnroll]);
+
+    useEffect(() => {
+        if (!isMotherRecordData){
+            sendMotherDateOfBirthToEnroll(MotherDateOfBirth);
+        }
+    }, [MotherDateOfBirth, sendMotherDateOfBirthToEnroll]);
+
+    useEffect(() => {
+        if (!isMotherRecordData){
+            sendisMotherForeignerToEnroll(isMotherForeigner);
+        }
+    }, [isMotherForeigner, sendisMotherForeignerToEnroll]);
+
+    useEffect(() => {
+        if (!isMotherRecordData){
+            sendMotherNationalityToEnroll(MotherNationality);
+        }
+    }, [MotherNationality, sendMotherNationalityToEnroll]);
+
+    useEffect(() => {
+        if (!isMotherRecordData){
+            sendMotherOccupationToEnroll(MotherOccupation);
+        }
+    }, [MotherOccupation, sendMotherOccupationToEnroll]);
+
+    useEffect(() => {
+        if (!isMotherRecordData){
+            sendMotherOfficeToEnroll(MotherOffice);
+        }
+    }, [MotherOffice, sendMotherOfficeToEnroll]);
+
+    useEffect(() => {
+        if (!isMotherRecordData){
+            sendMotherTelToEnroll(MotherTel);
+        }
+    }, [MotherTel, sendMotherTelToEnroll]);
+
+
+
+
+
 
     const handleFatherEmailChange = (event) => {
         setFatherEmail(event.target.value);
@@ -175,12 +256,12 @@ function ParentsInfo({  //------------------1------------------
     };
 
     useEffect(() => {
-        // if (isParentRecordData) {
+        if (isParentRecordData) {
             // if (ParentEmail !== '') {
-            // sendSomeoneElseEmailToEnroll(ParentEmail);
+            sendSomeoneElseEmailToEnroll(ParentEmail);
             // }
-            // sendisParentRecordDataToEnroll(isParentRecordData);
-        // }
+            sendisParentRecordDataToEnroll(isParentRecordData);
+        }
     }, [isParentRecordData, ParentEmail, sendisParentRecordDataToEnroll, sendSomeoneElseEmailToEnroll]);
     
     const handleParentEmailChange = (event) => {
@@ -213,13 +294,22 @@ function ParentsInfo({  //------------------1------------------
     }, [isParentRecordData, ParentDateOfBirth]);
     
     
-
+    //handle Father data change--------------------------
     const handleFatherFirstnameChange = (event) => {
         setFatherFirstname(event.target.value);
     };
 
     const handleFatherLastnameChange = (event) => {
         setFatherLastname(event.target.value);
+    };
+
+    const handleIsFatherForeigner = (event) => {
+        setIsFatherForeigner(event.target.id === 'FatherForeigner'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
+    }; 
+
+    const handleFatherNationalityChange = (event) => {
+        setFatherNationality(event.target.value);
+        // console.log("FatherNationality",FatherNationality);
     };
 
     const handleFatherOccupationChange = (event) => {
@@ -234,7 +324,63 @@ function ParentsInfo({  //------------------1------------------
         setFatherTel(event.target.value);
     }
 
+    //handle Mother data change--------------------------
+    const handleMotherFirstnameChange = (event) => {
+        setMotherFirstname(event.target.value);
+    };
 
+    const handleMotherLastnameChange = (event) => {
+        setMotherLastname(event.target.value);
+    };
+
+    const handleIsMotherForeigner = (event) => {
+        setIsMotherForeigner(event.target.id === 'MotherForeigner');
+    }; 
+
+    const handleMotherNationalityChange = (event) => {
+        setMotherNationality(event.target.value);
+    };
+
+    const handleMotherOccupationChange = (event) => {
+        setMotherOccupation(event.target.value);
+    }
+
+    const handleMotherOfficeChange = (event) => {
+        setMotherOffice(event.target.value);
+    }
+    
+    const handleMotherTelChange = (event) => {
+        setMotherTel(event.target.value);
+    }
+
+    //handle Parent data change--------------------------
+    const handleParentFirstnameChange = (event) => {
+        setMotherFirstname(event.target.value);
+    };
+
+    const handleParentLastnameChange = (event) => {
+        setParentLastname(event.target.value);
+    };
+
+    const handleIsParentForeigner = (event) => {
+        setIsParentForeigner(event.target.id === 'ParentForeigner');
+    }; 
+
+    const handleParentNationalityChange = (event) => {
+        setParentNationality(event.target.value);
+    };
+
+    const handleParentOccupationChange = (event) => {
+        setParentOccupation(event.target.value);
+    }
+
+    const handleParentOfficeChange = (event) => {
+        setParentOffice(event.target.value);
+    }
+    
+    const handleParentTelChange = (event) => {
+        setParentTel(event.target.value);
+    }
 
     // const handleIsFatherRecordData = (event) => {
     //     setIsFatherRecordData(event.target.id === 'usedToRecordFatherData'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
@@ -244,41 +390,25 @@ function ParentsInfo({  //------------------1------------------
     //     setFatherNotRecordData(event.target.id === 'notYetRecordFatherData'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
     // }; 
 
-    const handleIsMotherRecordData = (event) => {
-        setIsMotherRecordData(event.target.id === 'usedToRecordMotherData'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
-        if (isMotherRecordData){
-            setIsMotherForeigner(false);
-        }
-        else{
-            setMotherEmail('');
-        }
-    }; 
+    // const handleIsMotherRecordData = (event) => {
+    //     setIsMotherRecordData(event.target.id === 'usedToRecordMotherData'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
+    //     if (isMotherRecordData){
+    //         setIsMotherForeigner(false);
+    //     }
+    //     else{
+    //         setMotherEmail('');
+    //     }
+    // }; 
 
-    const handleIsParentRecordData = (event) => {
-        setIsParentRecordData(event.target.id === 'usedToRecordParentData'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
-        if (isParentRecordData){
-            setIsParentForeigner(false);
-        }
-        else{
-            setParentEmail('');
-        }
-    }; 
-
-
-
-    const handleIsFatherForeigner = (event) => {
-        setIsFatherForeigner(event.target.id === 'FatherForeigner'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
-    }; 
-
-    const handleIsMotherForeigner = (event) => {
-        setIsMotherForeigner(event.target.id === 'MotherForeigner');
-    }; 
-
-    const handleIsParentForeigner = (event) => {
-        setIsParentForeigner(event.target.id === 'ParentForeigner');
-    }; 
-
-
+    // const handleIsParentRecordData = (event) => {
+    //     setIsParentRecordData(event.target.id === 'usedToRecordParentData'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
+    //     if (isParentRecordData){
+    //         setIsParentForeigner(false);
+    //     }
+    //     else{
+    //         setParentEmail('');
+    //     }
+    // }; 
 
     const handlewhoAreParent = (event) => {
         setParent(event.target.id);
@@ -297,11 +427,6 @@ function ParentsInfo({  //------------------1------------------
     // }, [isFatherRecordData, FatherEmail, sendFatherNationalityToEnroll]); 
     }, [isFatherForeigner, FatherEmail]); 
 
-    const handleFatherNationalityChange = (event) => {
-        setFatherNationality(event.target.value);
-        console.log("FatherNationality",FatherNationality);
-    };
-
     useEffect(() => {
         if (isMotherForeigner) {
             if (MotherNationality !== '') {
@@ -311,10 +436,6 @@ function ParentsInfo({  //------------------1------------------
         }
     // }, [isMotherForeigner, MotherNationality, sendMotherNationalityToEnroll]); 
     }, [isMotherForeigner, MotherNationality]); 
-
-    const handleMotherNationalityChange = (event) => {
-        setMotherNationality(event.target.value);
-    };
 
     useEffect(() => {
         if (isParentForeigner) {
@@ -326,27 +447,20 @@ function ParentsInfo({  //------------------1------------------
     // }, [isParentForeigner, ParentNationality, sendParentNationalityToEnroll]);
     }, [isParentForeigner, ParentNationality]);
 
-    const handleParentNationalityChange = (event) => {
-        setParentNationality(event.target.value);
-    };
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     // Perform form submission logic here, e.g., send data to server via API call
+    //     console.log('Form submitted:', { firstName, lastName, age });
+    // };
 
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Perform form submission logic here, e.g., send data to server via API call
-        console.log('Form submitted:', { firstName, lastName, age });
-    };
-
-    const handleSelectChange = (event) => {
-        setSelectedOption(event.target.value);
-    };
+    // const handleSelectChange = (event) => {
+    //     setSelectedOption(event.target.value);
+    // };
 
     const checkFather_Email = async (email) => {
         try {
             const response = await axios.get(`http://localhost:8080/check-email?email=${email}`);
             const data = response.data;
-            // console.log("11111111111111111111");
 
             if (data.results) {
                 console.log("data.results",data.results);
@@ -362,7 +476,6 @@ function ParentsInfo({  //------------------1------------------
                 // รูปแบบวันที่ใน JavaScript โดยใช้วิธี toLocaleDateString()
                 const formattedDate = date.toLocaleDateString();
 
-
                 setFatherDateOfBirth(date);
                 // handleFatherDateOfBirthChange(date);
 
@@ -372,11 +485,9 @@ function ParentsInfo({  //------------------1------------------
                 setFatherOffice(data.results[0].Office);
                 setFatherTel(data.results[0].Tel);
 
-                // console.log("yokkk",date);
                 return true;
             } 
             else {
-
                 if (isFatherRecordData){
                     setFatherFirstname('');
                     setFatherLastname('');
@@ -388,7 +499,6 @@ function ParentsInfo({  //------------------1------------------
                 }
 
                 setIsFatherRecordData(false);
-                // console.log("isssss",isFatherRecordData);
                 return false;
             }
         } catch (error) {
@@ -396,6 +506,105 @@ function ParentsInfo({  //------------------1------------------
             alert('An error occurred while checking email.');
         }
     };
+
+    const checkMother_Email = async (email) => {
+        try {
+            const response = await axios.get(`http://localhost:8080/check-email?email=${email}`);
+            const data = response.data;
+
+            if (data.results) {
+                console.log("data.results",data.results);
+                setMotherFirstname(data.results[0].FirstName);
+                setMotherLastname(data.results[0].LastName);
+
+                // กำหนดวันที่ในรูปแบบ 'YYYY-MM-DD'
+                const dateString = data.results[0].DateOfBirth;
+
+                // แปลงวันที่ในรูปแบบ 'YYYY-MM-DD' เป็นวันที่ใน JavaScript
+                const date = new Date(dateString);
+
+                // รูปแบบวันที่ใน JavaScript โดยใช้วิธี toLocaleDateString()
+                const formattedDate = date.toLocaleDateString();
+
+                setMotherDateOfBirth(date);
+                setMotherNationality(data.results[0].Nationality);
+                setIsMotherRecordData(true);
+                setMotherOccupation(data.results[0].Occupation);
+                setMotherOffice(data.results[0].Office);
+                setMotherTel(data.results[0].Tel);
+
+                return true;
+            } 
+            else {
+                if (isMotherRecordData){
+                    setMotherFirstname('');
+                    setMotherLastname('');
+                    setMotherDateOfBirth('');
+                    setMotherNationality('');
+                    setMotherOccupation('');
+                    setMotherOffice('');
+                    setMotherTel('');
+                }
+
+                setIsMotherRecordData(false);
+                return false;
+            }
+        } catch (error) {
+            console.error('Error checking Mother email:', error);
+            alert('An error occurred while checking Mother email.');
+        }
+    };
+
+    const checkParent_Email = async (email) => {
+        try {
+            const response = await axios.get(`http://localhost:8080/check-email?email=${email}`);
+            const data = response.data;
+
+            if (data.results) {
+                console.log("data.results",data.results);
+                setFatherFirstname(data.results[0].FirstName);
+                setFatherLastname(data.results[0].LastName);
+
+                // กำหนดวันที่ในรูปแบบ 'YYYY-MM-DD'
+                const dateString = data.results[0].DateOfBirth;
+
+                // แปลงวันที่ในรูปแบบ 'YYYY-MM-DD' เป็นวันที่ใน JavaScript
+                const date = new Date(dateString);
+
+                // รูปแบบวันที่ใน JavaScript โดยใช้วิธี toLocaleDateString()
+                const formattedDate = date.toLocaleDateString();
+
+                setFatherDateOfBirth(date);
+                // handleFatherDateOfBirthChange(date);
+
+                setFatherNationality(data.results[0].Nationality);
+                setIsFatherRecordData(true);
+                setFatherOccupation(data.results[0].Occupation);
+                setFatherOffice(data.results[0].Office);
+                setFatherTel(data.results[0].Tel);
+
+                return true;
+            } 
+            else {
+                if (isFatherRecordData){
+                    setFatherFirstname('');
+                    setFatherLastname('');
+                    setFatherDateOfBirth('');
+                    setFatherNationality('');
+                    setFatherOccupation('');
+                    setFatherOffice('');
+                    setFatherTel('');
+                }
+
+                setIsFatherRecordData(false);
+                return false;
+            }
+        } catch (error) {
+            console.error('Error checking email:', error);
+            alert('An error occurred while checking email.');
+        }
+    };
+    
 
   <ParentsInfo 
     sendFatherEmailToEnroll={sendFatherEmailToEnroll} 
@@ -410,9 +619,18 @@ function ParentsInfo({  //------------------1------------------
     sendFatherTelToEnroll={sendFatherTelToEnroll}
 
     sendMotherEmailToEnroll={sendMotherEmailToEnroll} 
-    sendSomeoneElseEmailToEnroll={sendSomeoneElseEmailToEnroll}
-    
     sendisMotherRecordDataToEnroll={sendisMotherRecordDataToEnroll}
+    sendMotherFirstnameToEnroll={sendMotherFirstnameToEnroll}
+    sendMotherLastnameToEnroll={sendMotherLastnameToEnroll}
+    sendMotherDateOfBirthToEnroll={sendMotherDateOfBirthToEnroll}
+    sendisMotherForeignerToEnroll={sendisMotherForeignerToEnroll}
+    sendMotherNationalityToEnroll={sendMotherNationalityToEnroll}
+    sendMotherOccupationToEnroll={sendMotherOccupationToEnroll}
+    sendMotherOfficeToEnroll={sendMotherOfficeToEnroll}
+    sendMotherTelToEnroll={sendMotherTelToEnroll}
+
+    sendSomeoneElseEmailToEnroll={sendSomeoneElseEmailToEnroll}
+
     sendisParentRecordDataToEnroll={sendisParentRecordDataToEnroll}
     />
 
@@ -456,9 +674,9 @@ function ParentsInfo({  //------------------1------------------
                     </h2>
                     </div>
                 
-                <div className="align-items-center"style={{ marginTop: '5px',maxWidth:"35%"}}> 
-                    <input type="text" className="form-control mb-0 mx-3" id="Father_Email" name="Father_Email" value={FatherEmail} placeholder="กรอกอีเมลบิดา" onChange={handleFatherEmailChange}/>
-                </div>
+                    <div className="align-items-center"style={{ marginTop: '5px',maxWidth:"35%"}}> 
+                        <input type="text" className="form-control mb-0 mx-3" id="Father_Email" name="Father_Email" value={FatherEmail} placeholder="กรอกอีเมลบิดา" onChange={handleFatherEmailChange}/>
+                    </div>
                 </div>
             {/* </>
         ) : (
@@ -645,7 +863,7 @@ function ParentsInfo({  //------------------1------------------
                         </h2>
                     </div>
                     <div className="align-items-center"style={{ marginTop: '5px',maxWidth:"65%"}}>  
-                        <input type="text" className="form-control mb-0 mx-3" id="Mother_Email" name="Mother_Email" placeholder="กรอกอีเมลมารดา" onChange={handleMotherEmailChange} />
+                        <input type="text" className="form-control mb-0 mx-3" id="Mother_Email" name="Mother_Email" placeholder="กรอกอีเมลมารดา" value={MotherEmail} onChange={handleMotherEmailChange} />
                     </div>
                 </div>
             {/* </>
@@ -678,7 +896,7 @@ function ParentsInfo({  //------------------1------------------
                     </div>
                 </div>
                 
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px', marginTop:'5px' }}>
 
                     <h2 className="col-form-label" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
                     <div className="d-flex align-items-center"style={{ flexWrap: 'wrap'}} >
@@ -728,7 +946,7 @@ function ParentsInfo({  //------------------1------------------
                                 </div>
                             </div> */}
                     </div>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px' }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px', margintop: '5px' }}>
                         <div className="d-flex align-items-center">
                             <label htmlFor="mother_Occupation" className="col-form-label">อาชีพ</label>
                         </div>
@@ -823,14 +1041,14 @@ function ParentsInfo({  //------------------1------------------
                         {/* {isParentRecordData ? (
                     <> */}
                         <div style={{fontSize: '18px',marginTop:"10px"}}>
-                            <div className="d-flex align-items-center">
+                            <div className="d-flex align-items-center" style={{flexWrap:"wrap"}}>
                                 <label htmlFor="ParentEmail" className="col-form-label mb-0 mx-3">อีเมล</label>
                                 <h2 className="card-heading mb-0 mx-3" style={{ fontSize: '16px', color: 'blue' }}>
                                     (อีเมลที่ท่านกรอกนี้สามารถใช้ตรวจสอบข้อมูลนักเรียนของโรงเรียนซึ่งเป็นบุตรหลานของท่าน)
                                 </h2>
                             </div>
                             <div className="align-items-center"style={{ marginTop: '5px',maxWidth:"65%"}}>  
-                                <input type="text" className="form-control mb-0 mx-3" id="ParentEmail" name="ParentEmail" placeholder="กรอกอีเมลผู้ปกครอง" onChange={handleParentEmailChange}/>
+                                <input type="text" className="form-control mb-0 mx-3" id="ParentEmail" name="ParentEmail" placeholder="กรอกอีเมลผู้ปกครอง" value={ParentEmail} onChange={handleParentEmailChange}/>
                             </div>
                         </div>
                     {/* </>
@@ -905,15 +1123,15 @@ function ParentsInfo({  //------------------1------------------
                         )}
                         </div>
 
-                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px' }}>
+                        {/* <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px' }}>
                 
                             <div className="d-flex align-items-center">
                                 <label htmlFor="Parent_Occupation" className="col-form-label">วุฒิการศึกษา</label>
                             </div>
                             <div class="h-screen flex flex-col justify-left sm:flex-row">
                                 <div class="sm:w-1_3 sm:pr-3">
-                                <div class="dropdown" style={{ maxWidth: '100%' }}> {/* กำหนดความกว้างของ dropdown ที่นี่ */}
-                                    <select value={selectedOption} onChange={handleSelectChange} class="custom-select w-full"> {/* กำหนดความกว้างของตัวเลือกใน dropdown ที่นี่ */}
+                                <div class="dropdown" style={{ maxWidth: '100%' }}>
+                                    <select value={selectedOption} onChange={handleSelectChange} class="custom-select w-full">
                                         <option value="ระบุหมายเหตุ">ระบุวุฒิการศึกษา</option>
                                         <option value="เพื่อใช้ในการขอทุนการศึกษา">ปริญญาตรี</option>
                                         <option value="เพื่อใช้ในการสมัครเข้าศึกษาต่อ">ปริญญาโท</option>
@@ -922,7 +1140,7 @@ function ParentsInfo({  //------------------1------------------
                                 </div>
                             </div>
                             </div>
-                    </div>
+                        </div> */}
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px' }}>
                         <div className="d-flex align-items-center">
                             <label htmlFor="Parent_Occupation" className="col-form-label">อาชีพ</label>

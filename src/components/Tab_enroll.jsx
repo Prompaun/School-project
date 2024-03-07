@@ -73,7 +73,7 @@ function Tab_enroll({ user }) {
 
   const [isMotherRecordData, setIsMotherRecordData] = useState(false);
   const [MotherFirstname, setMotherFirstname] = useState('');
-  const [MotherLastname, setFMotherLastname] = useState('');
+  const [MotherLastname, setMotherLastname] = useState('');
   const [MotherDateOfBirth, setMotherDateOfBirth] = useState('');
   const [isMotherForeigner, setIsMotherForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
   const [MotherNationality, setMotherNationality] = useState(''); // State สำหรับเก็บข้อมูลสัญชาติ
@@ -260,6 +260,48 @@ function Tab_enroll({ user }) {
   };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
+
+const sendMotherFirstnameToEnroll = (MotherFirstname) => {
+  console.log('Received MotherFirstname:', MotherFirstname);
+  setMotherFirstname(MotherFirstname);
+};
+
+const sendMotherLastnameToEnroll = (MotherLastname) => {
+  console.log('Received MotherLastname:', MotherLastname);
+  setMotherLastname(MotherLastname);
+};
+
+const sendMotherDateOfBirthToEnroll = (MotherDateOfBirth) => {
+  console.log('Received MotherDateOfBirth:', MotherDateOfBirth);
+  setMotherDateOfBirth(MotherDateOfBirth);
+};
+
+const sendisMotherForeignerToEnroll = (IsMotherForeigner) => {
+  console.log('Received IsMotherForeigner:', IsMotherForeigner);
+  setIsMotherForeigner(IsMotherForeigner);
+};
+
+const sendMotherNationalityToEnroll = (MotherNationality) => {
+  console.log('Received MotherNationality:', MotherNationality);
+  setMotherNationality(MotherNationality);
+};
+
+const sendMotherOccupationToEnroll = (MotherOccupation) => {
+  console.log('Received MotherOccupation:', MotherOccupation);
+  setMotherOccupation(MotherOccupation);
+};
+
+const sendMotherOfficeToEnroll = (MotherOffice) => {
+  console.log('Received MotherOffice:', MotherOffice);
+  setMotherOffice(MotherOffice);
+};
+
+const sendMotherTelToEnroll = (MotherTel) => {
+  console.log('Received MotherTel:', MotherTel);
+  setMotherTel(MotherTel);
+};
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
   const navigate = useNavigate();
   const handleSubmit = async (StudentImageFile, CopyofStudentIDCardFile, PreviousSchoolEducationalRecordsFile, studentNID, nameTitle, FirstName, LastName, DateOfBirth, Transcript_type, HouseNumber, Moo, Soi, Road, Province, District, SubDistrict, HouseReg_file) => {
     // const confirmSubmit = window.confirm("ยืนยันที่จะส่งข้อมูลหรือไม่?");
@@ -774,12 +816,8 @@ function Tab_enroll({ user }) {
 
               </div>
               <div class={`tab-pane container ${activeTab === 'menu3' ? 'active' : ''}`} id="menu3">
-              <ParentsInfo 
-                sendMotherEmailToEnroll={sendMotherEmailToEnroll}
+              <ParentsInfo
                 sendSomeoneElseEmailToEnroll={sendSomeoneElseEmailToEnroll}
-                
-                sendisMotherRecordDataToEnroll={sendisMotherRecordDataToEnroll}
-                sendisParentRecordDataToEnroll={sendisParentRecordDataToEnroll}
 
                 sendFatherEmailToEnroll={sendFatherEmailToEnroll} 
                 sendisFatherRecordDataToEnroll={sendisFatherRecordDataToEnroll}
@@ -791,6 +829,17 @@ function Tab_enroll({ user }) {
                 sendFatherOccupationToEnroll={sendFatherOccupationToEnroll}
                 sendFatherOfficeToEnroll={sendFatherOfficeToEnroll}
                 sendFatherTelToEnroll={sendFatherTelToEnroll}
+
+                sendMotherEmailToEnroll={sendMotherEmailToEnroll} 
+                sendisMotherRecordDataToEnroll={sendisMotherRecordDataToEnroll}
+                sendMotherFirstnameToEnroll={sendMotherFirstnameToEnroll}
+                sendMotherLastnameToEnroll={sendMotherLastnameToEnroll}
+                sendMotherDateOfBirthToEnroll={sendMotherDateOfBirthToEnroll}
+                sendisMotherForeignerToEnroll={sendisMotherForeignerToEnroll}
+                sendMotherNationalityToEnroll={sendMotherNationalityToEnroll}
+                sendMotherOccupationToEnroll={sendMotherOccupationToEnroll}
+                sendMotherOfficeToEnroll={sendMotherOfficeToEnroll}
+                sendMotherTelToEnroll={sendMotherTelToEnroll}
                 />
 
                 <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', width: '100%' }}>
