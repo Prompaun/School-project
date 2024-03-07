@@ -91,6 +91,8 @@ function Tab_enroll({ user }) {
   const [ParentOffice, setParentOffice] = useState('');
   const [ParentTel, setParentTel] = useState('');
   const [ParentRole, setParentRole] = useState('');
+  const [whoAreParent, setwhoAreParent] = useState('');
+
 
    // ฟังก์ชันสำหรับการแปลงวันที่ให้เป็นรูปแบบ "YYYY-MM-DD"
   const formatDate = (date) => {
@@ -244,7 +246,7 @@ function Tab_enroll({ user }) {
   };
 
   const sendisParentRecordDataToEnroll= (isParentRecordData) => {
-    // console.log('Received isParentRecordData:', isParentRecordData);
+    console.log('Received isParentRecordData:', isParentRecordData);
     setIsParentRecordData(isParentRecordData);
   };
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -373,6 +375,11 @@ const sendParentTelToEnroll = (ParentTel) => {
 const sendParentRoleToEnroll = (ParentRole) => {
   console.log('Received ParentRole:', ParentRole);
   setParentRole(ParentRole);
+};
+
+const sendwhoAreParentToEnroll = (whoAreParent) => {
+  console.log('Received whoAreParent:', whoAreParent);
+  setwhoAreParent(whoAreParent);
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -757,7 +764,7 @@ const hasMotherInfo =
   MotherTel;
 
 const hasParentInfo = 
-  SomeoneElseEmail && 
+  ParentEmail && 
   ParentFirstname && 
   ParentLastname && 
   ParentDateOfBirth && 
@@ -903,7 +910,7 @@ const hasParentInfo =
           alert('กรุณากรอกเลขเบอร์โทรศัพท์ของบิดา');
         }
       }
-      }
+      
       if (!isMotherRecordData) {
         if (!MotherFirstname) {
           alert('กรุณากรอกชื่อมารดา');
@@ -1134,6 +1141,7 @@ const hasParentInfo =
                 sendParentOfficeToEnroll={sendParentOfficeToEnroll}
                 sendParentTelToEnroll={sendParentTelToEnroll}
                 sendParentRoleToEnroll={sendParentRoleToEnroll}
+                sendwhoAreParentToEnroll={sendwhoAreParentToEnroll}
                 />
 
                 <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', width: '100%' }}>
@@ -1200,6 +1208,6 @@ const hasParentInfo =
         </div>
         </div>
       );
-    // };
+    };
 
 export default Tab_enroll;

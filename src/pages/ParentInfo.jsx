@@ -37,7 +37,8 @@ function ParentsInfo({  //------------------1------------------
     sendParentOccupationToEnroll,
     sendParentOfficeToEnroll,
     sendParentTelToEnroll,
-    sendParentRoleToEnroll  
+    sendParentRoleToEnroll,
+    sendwhoAreParentToEnroll
     }) {
 
     const [firstName, setFirstName] = useState('');
@@ -87,7 +88,7 @@ function ParentsInfo({  //------------------1------------------
     const [MotherEmail, setMotherEmail] = useState('');
     const [ParentEmail, setParentEmail] = useState('');
 
-    const [whoAreParent, setParent] = useState('');
+    const [whoAreParent, setwhoAreParent] = useState('');
 
     const handleFatherDateOfBirthChange = (date) => {
         // ใช้ date-fns เพื่อแปลงวันที่ให้เป็นรูปแบบ 'วัน/เดือน/ปี'
@@ -297,6 +298,11 @@ function ParentsInfo({  //------------------1------------------
         }
     }, [ParentRole, sendParentRoleToEnroll]);
 
+    useEffect(() => {
+        // if (!isParentRecordData){
+            sendwhoAreParentToEnroll(whoAreParent);
+        // }
+    }, [whoAreParent, sendwhoAreParentToEnroll]);
 
 
 
@@ -477,10 +483,10 @@ function ParentsInfo({  //------------------1------------------
     // }; 
 
     const handlewhoAreParent = (event) => {
-        setParent(event.target.id);
-        if (event.target.id === "FatherIsParent" | event.target.id === "MotherIsParent" | event.target.id === "FatherAndMotherAreParent"){
+        setwhoAreParent(event.target.id);
+        if (event.target.id === "FatherIsParent" || event.target.id === "MotherIsParent" || event.target.id === "FatherAndMotherAreParent"){
             setIsParentRecordData(true);
-            console.log('okokokokok',isParentRecordData);
+            console.log('okokokokok',event.target.id);
         }
     };
 
@@ -706,6 +712,7 @@ function ParentsInfo({  //------------------1------------------
     sendParentOfficeToEnroll={sendParentOfficeToEnroll}
     sendParentTelToEnroll={sendParentTelToEnroll}
     sendParentRoleToEnroll={sendParentRoleToEnroll}
+    sendwhoAreParentToEnroll={sendwhoAreParentToEnroll}
     />
 
   return (
