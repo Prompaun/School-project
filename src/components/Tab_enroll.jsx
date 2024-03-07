@@ -56,6 +56,9 @@ function Tab_enroll({ user }) {
   const [FoundParent, setFoundParent] = useState(false);
   const [FoundParentData, setFoundParentData] = useState('');
   const [FatherEmail, setFatherEmail] = useState('');
+  const [FatherFirstname, setFatherFirstname] = useState('');
+
+
   const [MotherEmail, setMotherEmail] = useState('');
   const [SomeoneElseEmail, setSomeoneElseEmail] = useState('');
   const [isFatherRecordData, setIsFatherRecordData] = useState(false);
@@ -190,8 +193,11 @@ function Tab_enroll({ user }) {
     setIsParentRecordData(isParentRecordData);
   };
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-
-
+  const sendFatherFirstnameToEnroll = (FatherFirstname) => {
+    console.log('Received FatherFirstname:', FatherFirstname);
+    setFatherFirstname(FatherFirstname);
+  };
+///////////////////////////////////////////////////////////////////////////////////////////////////
   const navigate = useNavigate();
   const handleSubmit = async (StudentImageFile, CopyofStudentIDCardFile, PreviousSchoolEducationalRecordsFile, studentNID, nameTitle, FirstName, LastName, DateOfBirth, Transcript_type, HouseNumber, Moo, Soi, Road, Province, District, SubDistrict, HouseReg_file) => {
     // const confirmSubmit = window.confirm("ยืนยันที่จะส่งข้อมูลหรือไม่?");
@@ -233,7 +239,8 @@ function Tab_enroll({ user }) {
       } catch (error) {
         if (error.response && error.response.status === 409) {
           setMessage('Identification number already exists. Please try with a different one.');
-          alert('Identification number already exists. Please try with a different one.');
+          // alert('Identification number already exists. Please try with a different one.');
+//**************ปล่อยไป แต่จะไปเช็คตอนเก็บข้อมูลลงตาราง enrollment ว่าเคยสมัครปีนั้น หลักสูตรนั้นแล้วรึยัง************
         } else {
           setMessage('Was not uploaded' + error);
           console.error(error);
@@ -290,83 +297,37 @@ function Tab_enroll({ user }) {
     // เรียกใช้ฟังก์ชัน checkEmail
 
     const handleButtonClick = async () => {
+      console.log('fatherfirstname',FatherFirstname);
       const confirmSubmit = window.confirm("ยืนยันที่จะส่งข้อมูลหรือไม่?");
       setFoundParentData('');
       if (confirmSubmit) {
           try {
-              // const promises = [];
-              
-              // if (isFatherRecordData) {
-              //   if (FatherEmail !== ''){
-              //     promises.push(setFoundFather(await checkEmail(FatherEmail)));
-              //     console.log("FoundFather",FoundFather);
-                  
-              // } else {
-              //   }
-              //     setFoundFather(true);
-              // }
-      
-              // if (isMotherRecordData) {
-              //     if (MotherEmail !== ''){
-              //       promises.push(setFoundMother(await checkEmail(MotherEmail)));
-                    
-              //     }
-              // } else {
-              //     setFoundMother(true);
-              // }
-      
-              // if (isParentRecordData) {
-              //   if (SomeoneElseEmail !== ''){
-              //     promises.push(setFoundParent(await checkEmail(SomeoneElseEmail)));
-                  
-              //   }
-              // } else {
-              //     setFoundParent(true);
-              // }
-      
-              // await Promise.all(promises); // รอให้ทุกฟังก์ชันเสร็จสมบูรณ์ก่อนทำต่อไป
-
-              setFoundFather(await checkEmail(FatherEmail))
-              console.log("2222222222222",FoundFather);
-              setFoundMother(await checkEmail(MotherEmail))
-              console.log("33333333333333",FoundMother);
-              setFoundParent(await checkEmail(SomeoneElseEmail))
-              console.log("4444444444444444",FoundParent);
-              await holyhola();
-
-             
-              // ตรวจสอบว่าพบข้อมูลทั้งหมดหรือไม่
-              if (FoundFather && FoundMother && FoundParent) {
-                  await handleSubmit(
-                      StudentImageFile, 
-                      CopyofStudentIDCardFile,
-                      PreviousSchoolEducationalRecordsFile,
-                      studentNID,
-                      nameTitle,
-                      FirstName,
-                      LastName,
-                      DateOfBirth,
-                      Transcript_type,
-                      HouseNumber,
-                      Moo,
-                      Soi,
-                      Road,
-                      Province,
-                      District,
-                      SubDistrict,
-                      HouseReg_file
-                  );
-              } else {
-                if (FoundParentData !== ''){
-                  alert(FoundParentData);
-                }
-                  // setFoundParentData('');
-              }
-          } catch (error) {
-              console.error('Error handling button click:', error);
+              //ทำฟังก์ชันเก็บข้อมูล applicants_parent
+              //ทำฟังก์ชันเก็บข้อมูล enrollment ต้องกำหนดชื่อหลักสูตร
+              await handleSubmit(
+                  StudentImageFile, 
+                  CopyofStudentIDCardFile,
+                  PreviousSchoolEducationalRecordsFile,
+                  studentNID,
+                  nameTitle,
+                  FirstName,
+                  LastName,
+                  DateOfBirth,
+                  Transcript_type,
+                  HouseNumber,
+                  Moo,
+                  Soi,
+                  Road,
+                  Province,
+                  District,
+                  SubDistrict,
+                  HouseReg_file
+              );
+            } catch (error) {
+                console.error('Error handling button click:', error);
+            }
           }
-      }
-  };
+      };
 
   const holyhola = async () => {
     console.log("555555555555555555555555555555");
@@ -534,7 +495,6 @@ function Tab_enroll({ user }) {
                   sendDistrictToEnroll={sendDistrictToEnroll}
                   sendSubDistrictToEnroll={sendSubDistrictToEnroll}
                   sendHouseReg_fileToEnroll={sendHouseReg_fileToEnroll}
-                  sendFatherEmailToEnroll={sendFatherEmailToEnroll}
                 />
               
                 <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', width: '100%' }}>
@@ -562,7 +522,7 @@ function Tab_enroll({ user }) {
                 sendisFatherRecordDataToEnroll={sendisFatherRecordDataToEnroll}
                 sendisMotherRecordDataToEnroll={sendisMotherRecordDataToEnroll}
                 sendisParentRecordDataToEnroll={sendisParentRecordDataToEnroll}
-
+                sendFatherFirstnameToEnroll={sendFatherFirstnameToEnroll}
                 />
 
                 <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', width: '100%' }}>

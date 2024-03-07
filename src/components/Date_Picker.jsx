@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker, { registerLocale } from "react-datepicker";
 import th from "date-fns/locale/th"; // the locale you want
 registerLocale("th", th); // register it with the name you want
@@ -18,6 +18,7 @@ function Date_Picker({ value, onChange }) {
     let initialValue;
     if (value instanceof Date && !isNaN(value.getTime())) {
         initialValue = value; // ถ้ารูปแบบวันที่ถูกต้องแล้วให้ใช้ค่าวันที่ของ value
+        // console.log("initialValue:", value);
     } else {
         initialValue = new Date(); // ถ้ารูปแบบวันที่ไม่ถูกต้อง ให้ใช้ new Date()
     }
@@ -38,7 +39,17 @@ function Date_Picker({ value, onChange }) {
 
     
 
-    const [startDate, setStartDate] = useState(initialValue);
+    const [startDate, setStartDate] = useState(new Date());
+
+    useEffect(() => {
+        if (value !== ''){
+           setStartDate(value); 
+        }
+        else{
+            setStartDate(new Date());
+        }
+        
+    }, [value]); // เฝ้าดูการเปลี่ยนแปลงของ value และอัพเดต startDate เมื่อ value เปลี่ยน
 
     const currentYear = new Date().getFullYear();
     const years = Array.from({ length: currentYear - 1989 }, (_, index) => 1990 + index);

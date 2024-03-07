@@ -44,8 +44,8 @@ function NewStudent_info({
         if (dateOfBirth !== '') {
             sendDateOfBirthToEnroll(dateOfBirth);
         } else {
-            const formattedDate = format(new Date(), 'yyyy-MM-dd'); // ใช้ new Date() เพื่อเรียกใช้งานวันที่ปัจจุบัน
-            setDateOfBirth(formattedDate);
+            // const formattedDate = format(new Date(), 'yyyy-MM-dd'); // ใช้ new Date() เพื่อเรียกใช้งานวันที่ปัจจุบัน
+            setDateOfBirth(new Date());
         }
     }, [dateOfBirth, sendDateOfBirthToEnroll]);
     
@@ -333,7 +333,7 @@ function NewStudent_info({
                 <h2 htmlFor="DOB" className="col-form-label px-3">วัน/เดือน/ปีเกิด</h2>
             </div>
             <div className="align-items-center" style={{ marginLeft: '15px' }}>
-                <Date_Picker onChange={handleDateOfBirthChange} />
+                <Date_Picker value={dateOfBirth} onChange={handleDateOfBirthChange} />
             </div>
         </div>
         <br />
