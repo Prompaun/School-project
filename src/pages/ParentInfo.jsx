@@ -88,7 +88,7 @@ function ParentsInfo({  //------------------1------------------
     const [MotherEmail, setMotherEmail] = useState('');
     const [ParentEmail, setParentEmail] = useState('');
 
-    const [whoAreParent, setwhoAreParent] = useState('');
+    const [whoAreParent, setwhoAreParent] = useState(false);
 
     const handleFatherDateOfBirthChange = (date) => {
         // ใช้ date-fns เพื่อแปลงวันที่ให้เป็นรูปแบบ 'วัน/เดือน/ปี'

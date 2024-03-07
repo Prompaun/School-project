@@ -91,7 +91,7 @@ function Tab_enroll({ user }) {
   const [ParentOffice, setParentOffice] = useState('');
   const [ParentTel, setParentTel] = useState('');
   const [ParentRole, setParentRole] = useState('');
-  const [whoAreParent, setwhoAreParent] = useState('');
+  const [whoAreParent, setwhoAreParent] = useState(false);
 
 
    // ฟังก์ชันสำหรับการแปลงวันที่ให้เป็นรูปแบบ "YYYY-MM-DD"
