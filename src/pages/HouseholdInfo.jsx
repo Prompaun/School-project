@@ -161,7 +161,7 @@ function HouseholdInfo  ({  //------------------1------------------
     event.preventDefault();
     const HouseReg_file = event.target;
 
-    console.log('-----------------------', HouseReg_file.files.length);
+    // console.log('-----------------------', HouseReg_file.files.length);
 
      if (HouseReg_file.files.length === 0){
       setHouseReg_file('');

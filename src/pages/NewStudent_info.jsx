@@ -28,6 +28,10 @@ function NewStudent_info({
     const [dateOfBirth, setDateOfBirth] = useState('');
     const [Transcript_type, setTranscript_type] = useState('');
 
+    const [Student_picture_file, setStudent_picture_file] = useState('');
+    const [CopyofStudentIDCardFile, setCopyofStudentIDCardFile] = useState('');
+    const [PreviousSchoolEducationalRecordsFile, setPreviousSchoolEducationalRecordsFile] = useState('');
+
     useEffect(() => {
         // if (studentNID !== '' && studentNID.length === 13) {
         if (studentNID.length === 13) {
@@ -118,6 +122,11 @@ function NewStudent_info({
     const handleFileChange = (event) => {
         event.preventDefault();
         const student_picture_file = event.target;
+
+        if (student_picture_file.files.length === 0){
+            setStudent_picture_file('');
+            sendImageDataToEnroll('');
+          }
         
         if (student_picture_file.files && student_picture_file.files.length > 0) {
             const file = student_picture_file.files[0];
@@ -149,17 +158,22 @@ function NewStudent_info({
 
     const handleCopyofStudentIDCardFileChange = (event) => {
         event.preventDefault();
-        const student_picture_file = event.target;
+        const CopyofStudentIDCardFile = event.target;
+
+        if (CopyofStudentIDCardFile.files.length === 0){
+            setCopyofStudentIDCardFile('');
+            sendCopyofStudentIDCardFileToEnroll('');
+          }
         
-        if (student_picture_file.files && student_picture_file.files.length > 0) {
-            const file = student_picture_file.files[0];
+        if (CopyofStudentIDCardFile.files && CopyofStudentIDCardFile.files.length > 0) {
+            const file = CopyofStudentIDCardFile.files[0];
             const fileType = '.' + file.name.split('.').pop().toLowerCase();
             if (allowedFileTypes.includes(fileType)) {
                 let fileName = '';
-                if (student_picture_file.files.length === 1) {
+                if (CopyofStudentIDCardFile.files.length === 1) {
                     fileName = file.name;
                 } else {
-                    fileName = student_picture_file.files.length + ' files selected';
+                    fileName = CopyofStudentIDCardFile.files.length + ' files selected';
                 }
                 // แสดงชื่อไฟล์ที่ถูกเลือกใน input label
                 // const fileInputLabel = document.getElementById('fileInputLabel');
@@ -170,7 +184,7 @@ function NewStudent_info({
             } else {
                 alert('กรุณาเลือกไฟล์ที่มีนามสกุล .pdf, .jpg, .jpeg หรือ .png เท่านั้น');
                 // เคลียร์ค่า input file และ label
-                student_picture_file.value = '';
+                CopyofStudentIDCardFile.value = '';
                 // const fileInputLabel = document.getElementById('fileInputLabel');
                 // if (fileInputLabel) {
                 //     fileInputLabel.textContent = 'Select Files';
@@ -181,24 +195,29 @@ function NewStudent_info({
 
     const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
         event.preventDefault();
-        const student_picture_file = event.target;
+        const PreviousSchoolEducationalRecordsFile = event.target;
+
+        if (PreviousSchoolEducationalRecordsFile.files.length === 0){
+            setPreviousSchoolEducationalRecordsFile('');
+            sendPreviousSchoolEducationalRecordsFileToEnroll('');
+          }
         
-        if (student_picture_file.files && student_picture_file.files.length > 0) {
-            const file = student_picture_file.files[0];
+        if (PreviousSchoolEducationalRecordsFile.files && PreviousSchoolEducationalRecordsFile.files.length > 0) {
+            const file = PreviousSchoolEducationalRecordsFile.files[0];
             const fileType = '.' + file.name.split('.').pop().toLowerCase();
             if (allowedFileTypes.includes(fileType)) {
                 let fileName = '';
-                if (student_picture_file.files.length === 1) {
+                if (PreviousSchoolEducationalRecordsFile.files.length === 1) {
                     fileName = file.name;
                 } else {
-                    fileName = student_picture_file.files.length + ' files selected';
+                    fileName = PreviousSchoolEducationalRecordsFile.files.length + ' files selected';
                 }
                 sendPreviousSchoolEducationalRecordsFileToEnroll(file);
                 console.log("ploy1", file);
             } else {
                 alert('กรุณาเลือกไฟล์ที่มีนามสกุล .pdf, .jpg, .jpeg หรือ .png เท่านั้น');
                 // เคลียร์ค่า input file และ label
-                student_picture_file.value = '';
+                PreviousSchoolEducationalRecordsFile.value = '';
             }
         }
     };
