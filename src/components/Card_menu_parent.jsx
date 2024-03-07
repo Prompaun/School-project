@@ -4,7 +4,8 @@ import Checkgrade_icon from "../images/check_grade.png"
 import Request_cert from "../images/request_cert.png"
 import History_request_icon from "../images/history_request.png"
 import health_icon from "../images/health_icon.png"
-
+import enrollment_icon from "../images/enrollment_icon.png"
+import check_status_enroll from "../images/check_status_enroll.png"
 
 function Card_menu_parent() {
     const [obj, setObj] = useState([
@@ -27,7 +28,17 @@ function Card_menu_parent() {
             text: "ผลการตรวจสุขภาพของนักเรียน",
             imageUrl: health_icon, // แทนที่ด้วย URL รูปภาพจริง
             path: "/Health_result"
-          }
+          },
+          {
+            text: "สมัครเข้าเรียน",
+            imageUrl: enrollment_icon, // แทนที่ด้วย URL รูปภาพจริง
+            path: "/Open_course"
+          },
+          {
+              text: "ตรวจสอบสถานะผู้สมัคร",
+              imageUrl: check_status_enroll, // แทนที่ด้วย URL รูปภาพจริง
+              path: "/CheckEnroll_status"
+            }
       ]);
     function handleClick() {
         console.log('Link clicked!');
