@@ -245,9 +245,9 @@ function Tab_enroll({ user }) {
           formData.append('ParentEmail', ParentEmail);
 
           formData.append('HouseNumber', HouseNumber);
-          formData.append('Moo', Moo);
-          formData.append('Soi', Soi);
-          formData.append('Road', Road);
+          formData.append('Moo', Moo || '-');
+          formData.append('Soi', Soi || '-');
+          formData.append('Road', Road || '-');
           formData.append('Province', Province);
           formData.append('District', District);
           formData.append('SubDistrict', SubDistrict);
@@ -374,58 +374,90 @@ function Tab_enroll({ user }) {
 
   const handleNewstudent_infoClick = async () => {
     // handleTabChange('menu1');
-    if (!studentNID || !nameTitle ||  !FirstName||  !LastName ||  !DateOfBirth ||  !Transcript_type || StudentImageFile === '' ||  CopyofStudentIDCardFile === '' ||  PreviousSchoolEducationalRecordsFile === '') {
-      // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
+    let numMissingFields = 0;
+    if (!StudentImageFile) {
+      numMissingFields++;
+     
+    }
+    if (!studentNID) {
+      numMissingFields++;
+     
+      
+    }
+    if (!nameTitle) {
+      numMissingFields++;
+      
+    }
+    if (!FirstName) {
+      numMissingFields++;
+      
+    }
+    if (!LastName) {
+      numMissingFields++;
+     
+    }
+    if (!DateOfBirth) {
+      numMissingFields++;
+      
+    }
+    if (!Transcript_type) {
+      numMissingFields++;
+      
+    }
+    
+    if (!CopyofStudentIDCardFile) {
+      numMissingFields++;
+      
+    }
+    if (!PreviousSchoolEducationalRecordsFile) {
+      numMissingFields++;
+     
+    }
+
+    if (numMissingFields > 1) {
       alert('กรุณากรอกข้อมูลส่วนตัวนักเรียนให้ครบถ้วน');
       handleTabChange('menu1');
       return false;
-      // href="#menu2"
     }
-
-    if (studentNID && nameTitle && FirstName && LastName && DateOfBirth && Transcript_type && StudentImageFile && CopyofStudentIDCardFile && PreviousSchoolEducationalRecordsFile) {
-      // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
-      handleTabChange('menu2');
+    else{
+      if (!StudentImageFile) {   
+        alert('กรุณาเลือกไฟล์รูปภาพของนักเรียนด้วยค่ะ');
+      }
+      if (!studentNID) {    
+        alert('กรุณากรอกเลขประจำตัวประชาชนของนักเรียนด้วยค่ะ');
+        
+      }
+      if (!nameTitle) {      
+        alert('กรุณากรอกคำนำหน้าชื่อของนักเรียนด้วยค่ะ');
+        
+      }
+      if (!FirstName) {       
+        alert('กรุณากรอกชื่อของนักเรียนด้วยค่ะ');
+        
+      }
+      if (!LastName) {        
+        alert('กรุณากรอกนามสกุลของนักเรียนด้วยค่ะ');
+        
+      }
+      if (!DateOfBirth) {        
+        alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียนด้วยค่ะ');
+       
+      }
+      if (!Transcript_type) {
+        alert('กรุณากรอกประเภทของหลักฐานการศึกษาจากโรงเรียนเดิมด้วยค่ะ');
+        
+      }
       
-            // href="#menu2"
-    }
-    if (StudentImageFile === '') {
-      alert('กรุณาเลือกไฟล์รูปภาพของนักเรียนด้วยค่ะ');
-      return false;
-    }
-    if (!studentNID) {
-      alert('กรุณากรอกเลขประจำตัวประชาชนของนักเรียนด้วยค่ะ');
-      return false;
-    }
-    if (!nameTitle) {
-      alert('กรุณากรอกคำนำหน้าชื่อของนักเรียนด้วยค่ะ');
-      return false;
-    }
-    if (!FirstName) {
-      alert('กรุณากรอกชื่อของนักเรียนด้วยค่ะ');
-      return false;
-    }
-    if (!LastName) {
-      alert('กรุณากรอกนามสกุลของนักเรียนด้วยค่ะ');
-      return false;
-    }
-    if (!DateOfBirth) {
-      alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียนด้วยค่ะ');
-      return false;
-    }
-    if (!Transcript_type) {
-      alert('กรุณากรอกประเภทของหลักฐานการศึกษาจากโรงเรียนเดิมด้วยค่ะ');
-      return false;
+      if (!CopyofStudentIDCardFile) {
+        alert('กรุณาเลือกไฟล์สำเนาบัตรประชาชนของนักเรียนด้วยค่ะ');
+        
+      }
+      if (!PreviousSchoolEducationalRecordsFile) {
+        alert('กรุณาเลือกไฟล์ประกาศนียบัตรการศึกษาของโรงเรียนก่อนหน้าด้วยค่ะ');
+        
+      }
     }
     
-    if (CopyofStudentIDCardFile === '') {
-      alert('กรุณาเลือกไฟล์สำเนาบัตรประชาชนของนักเรียนด้วยค่ะ');
-      return false;
-    }
-    if (PreviousSchoolEducationalRecordsFile === '') {
-      alert('กรุณาเลือกไฟล์ประกาศนียบัตรการศึกษาของโรงเรียนก่อนหน้าด้วยค่ะ');
-      return false;
-    }
-
     if (user && user.emails[0].value) {
       setParentEmail(user.emails[0].value);
       console.log("user", user.emails[0].value);
@@ -485,7 +517,88 @@ function Tab_enroll({ user }) {
 
     return true;
   };
+  const handleParentinfoClick = async () => {
+    let numMissingFields = 0;
 
+    if (!FatherEmail) {
+      numMissingFields++;
+    }
+    if (!MotherEmail) {
+      numMissingFields++;
+    }
+    
+    if (!isFatherRecordData) {
+
+      if (!FatherFirstname) {
+        numMissingFields++;
+      }
+      console.log("dja")
+      if (!FatherLastname) {
+        numMissingFields++;
+      }
+      if (!FatherDateOfBirth) {
+        numMissingFields++;
+      }
+      if (isFatherForeigner) {
+        if (!FatherNationality) {
+          numMissingFields++;
+        }
+      }
+      else {
+        setFatherNationality("ไทย");
+      }
+      if (!FatherOccupation) {
+        numMissingFields++;
+      }
+      if (!FatherOffice) {
+        numMissingFields++;
+      }
+      if (!FatherTel) {
+        numMissingFields++;
+      }
+    }
+   
+    if (numMissingFields > 1) {
+      alert('กรุณากรอกข้อมูลผู้ปกครองให้ครบถ้วน');
+      handleTabChange('menu3');
+      return false;
+    }
+    else {
+      if (!FatherEmail) {
+        alert('กรุณากรอกอีเมลบิดา');
+      }
+      if (!MotherEmail) {
+        alert('กรุณากรอกอีเมลมารดา');
+      }
+      if (!isFatherRecordData) {
+        if (!FatherFirstname) {
+          alert('กรุณากรอกชื่อบิดา');
+        }
+        if (!FatherLastname) {
+          alert('กรุณากรอกนามสกุลบิดา');
+        }
+        if (!FatherDateOfBirth) {
+          alert('กรุณากรอกวัน/เดือน/ปีเกิดของบิดา');
+        }
+        if (isFatherForeigner) {
+          if (!FatherNationality) {
+            alert('กรุณากรอกสัญชาติของบิดา');
+          }
+        }
+        
+        if (!FatherOccupation) {
+          alert('กรุณากรอกอาชีพของบิดา');
+        }
+        if (!FatherOffice) {
+          alert('กรุณากรอกสถานที่ทำงานของบิดา');
+        }
+        if (!FatherTel) {
+          alert('กรุณากรอกเลขเบอร์โทรศัพท์ของบิดา');
+        }
+      }
+    }
+    return true;
+  };
 
     return (
       <div className="d-flex flex-column align-items-center">
@@ -555,14 +668,12 @@ function Tab_enroll({ user }) {
                 
                   <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'flex-end' }}>
                     <button type="button" onClick={() => { 
+                      if (studentNID && nameTitle && FirstName && LastName && DateOfBirth && Transcript_type && StudentImageFile && CopyofStudentIDCardFile && PreviousSchoolEducationalRecordsFile) 
+                      {
+                        handleTabChange('menu2');
+                      };
                       handleNewstudent_infoClick();
-                      // if (handleNewstudent_infoClick()) {
-                      //   handleTabChange('menu2');
-                      // }
-                      // else {
-                      //   handleTabChange('menu1');
-                      // }
-                    } } 
+                    }} 
                     
                     className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
                       ถัดไป
@@ -640,7 +751,20 @@ function Tab_enroll({ user }) {
                 <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', width: '100%' }}>
 
                   <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
-                    <button type="button" onClick={() => handleTabChange('menu2')} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
+                    <button type="button" onClick={() => {
+                      if (FatherEmail && FatherFirstname && FatherLastname && FatherDateOfBirth && FatherNationality && FatherOccupation && FatherOffice && FatherTel) {
+                        // if (FatherEmail && isFatherRecordData) {
+
+                        // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
+                        handleTabChange('menu3');
+                        
+                        // href="#menu2"
+                      };
+                       handleParentinfoClick();
+                    
+                    }} 
+                      
+                      className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px'}}>
                       ย้อนกลับ
                     </button>
                   </div>
