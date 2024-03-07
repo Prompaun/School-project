@@ -102,120 +102,120 @@ function Tab_enroll({ user }) {
   const [imageUploaded, setImageUploaded] = useState(false);
 
   const sendstudentNIDToEnroll = (studentNID) => {
-    console.log('Received studentNID:', studentNID);
+    // console.log('Received studentNID:', studentNID);
     setStudentNID(studentNID);
   };
 
   const sendnameTitleToEnroll = (nameTitle) => {
-    console.log('Received nameTitle:', nameTitle);
+    // console.log('Received nameTitle:', nameTitle);
     setnameTitle(nameTitle);
   };
 
   const sendFirstNameToEnroll = (FirstName) => {
-    console.log('Received name:', FirstName);
+    // console.log('Received name:', FirstName);
     setFirstName(FirstName);
   };
 
   const sendLastNameToEnroll = (LastName) => {
-    console.log('Received LastNamee:', LastName);
+    // console.log('Received LastNamee:', LastName);
     setLastName(LastName);
   };
 
   const sendDateOfBirthToEnroll = (dateOfBirth) => {
-    console.log('Received dateOfBirth:', dateOfBirth);
+    // console.log('Received dateOfBirth:', dateOfBirth);
     setDateOfBirth(dateOfBirth);
   };
 
   const sendTranscript_typeToEnroll = (Transcript_type) => {
-    console.log('Received Transcript_type:', Transcript_type);
+    // console.log('Received Transcript_type:', Transcript_type);
     setTranscript_type(Transcript_type);
   };
 
   const sendCopyofStudentIDCardFileToEnroll = (fileData) => {
-    console.log('Received fileData:', fileData);
+    // console.log('Received fileData:', fileData);
     setCopyofStudentIDCardFile(fileData);
   };
 
   const sendImageDataToEnroll = (fileData) => {
-    console.log('Received image data:', fileData);
+    // console.log('Received image data:', fileData);
     setStudentImageFile(fileData); // เก็บค่า imageData ลงใน state StudentImageFile
     setImageUploaded(true); // ตั้งค่า imageUploaded เมื่อได้รับรูปภาพ
   };
 
   const sendPreviousSchoolEducationalRecordsFileToEnroll = (fileData) => {
-    console.log('Received fileData:', fileData);
+    // console.log('Received fileData:', fileData);
     setPreviousSchoolEducationalRecordsFile(fileData);
   };
 
   //household Info file
   const sendHouseNumberToEnroll = (HouseNumber) => {
-    console.log('Received HouseNumber:', HouseNumber);
+    // console.log('Received HouseNumber:', HouseNumber);
     setHouseNumber(HouseNumber);
   };
 
   const sendMooToEnroll = (Moo) => {
-    console.log('Received Moo:', Moo);
+    // console.log('Received Moo:', Moo);
     setMoo(Moo);
   };
 
   const sendSoiToEnroll = (Soi) => {
-    console.log('Received Soi:', Soi);
+    // console.log('Received Soi:', Soi);
     setSoi(Soi);
   };
 
   const sendRoadToEnroll = (Road) => {
-    console.log('Received Road:', Road);
+    // console.log('Received Road:', Road);
     setRoad(Road);
   };
 
   const sendProvinceToEnroll = (Province) => {
-    console.log('Received Province:', Province);
+    // console.log('Received Province:', Province);
     setProvince(Province);
   };
 
   const sendDistrictToEnroll = (District) => {
-    console.log('Received District:', District);
+    // console.log('Received District:', District);
     setDistrict(District);
   };
 
   const sendSubDistrictToEnroll = (SubDistrict) => {
-    console.log('Received SubDistrict:', SubDistrict);
+    // console.log('Received SubDistrict:', SubDistrict);
     setSubDistrict(SubDistrict);
   };
 
   const sendHouseReg_fileToEnroll = (HouseReg_file) => {
-    console.log('Received HouseReg_file:', HouseReg_file);
+    // console.log('Received HouseReg_file:', HouseReg_file);
     setHouseReg_file(HouseReg_file);
   };
 
   //Parent Info file
   const sendFatherEmailToEnroll = (FatherEmail) => {
-    console.log('Received FatherEmail:', FatherEmail);
+    // console.log('Received FatherEmail:', FatherEmail);
     setFatherEmail(FatherEmail);
   };
 
   const sendMotherEmailToEnroll = (MotherEmail) => {
-    console.log('Received Mother_Email:', MotherEmail);
+    // console.log('Received Mother_Email:', MotherEmail);
     setMotherEmail(MotherEmail);
   };
 
   const sendSomeoneElseEmailToEnroll = (SomeoneElseEmail) => {
-    console.log('Received SomeoneElseEmail:', SomeoneElseEmail);
+    // console.log('Received SomeoneElseEmail:', SomeoneElseEmail);
     setSomeoneElseEmail(SomeoneElseEmail);
   };
 ///////////////////////////////////////////////////////////////////////////////////////////////////
   const sendisFatherRecordDataToEnroll= (isFatherRecordData) => {
-    console.log('Received isFatherRecordData:', isFatherRecordData);
+    // console.log('Received isFatherRecordData:', isFatherRecordData);
     setIsFatherRecordData(isFatherRecordData);
   };
 
   const sendisMotherRecordDataToEnroll= (isMotherRecordData) => {
-    console.log('Received isMotherRecordData:', isMotherRecordData);
+    // console.log('Received isMotherRecordData:', isMotherRecordData);
     setIsMotherRecordData(isMotherRecordData);
   };
 
   const sendisParentRecordDataToEnroll= (isParentRecordData) => {
-    console.log('Received isParentRecordData:', isParentRecordData);
+    // console.log('Received isParentRecordData:', isParentRecordData);
     setIsParentRecordData(isParentRecordData);
   };
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -223,6 +223,42 @@ function Tab_enroll({ user }) {
     console.log('Received FatherFirstname:', FatherFirstname);
     setFatherFirstname(FatherFirstname);
   };
+
+  const sendFatherLastnameToEnroll = (FatherLastname) => {
+    console.log('Received FatherLastname:', FatherLastname);
+    setFatherLastname(FatherLastname);
+  };
+
+  const sendFatherDateOfBirthToEnroll = (FatherDateOfBirth) => {
+    console.log('Received FatherDateOfBirth:', FatherDateOfBirth);
+    setFatherDateOfBirth(FatherDateOfBirth);
+  };
+
+  const sendisFatherForeignerToEnroll = (IsFatherForeigner) => {
+    console.log('Received FatherForeigner:', IsFatherForeigner);
+    setIsFatherForeigner(IsFatherForeigner);
+  };
+
+  const sendFatherNationalityToEnroll = (FatherNationality) => {
+    console.log('Received FatherNationality:', FatherNationality);
+    setFatherNationality(FatherNationality);
+  };
+
+  const sendFatherOccupationToEnroll = (FatherOccupation) => {
+    console.log('Received FatherOccupation:', FatherOccupation);
+    setFatherOccupation(FatherOccupation);
+  };
+
+  const sendFatherOfficeToEnroll = (FatherOffice) => {
+    console.log('Received FatherOffice:', FatherOffice);
+    setFatherOffice(FatherOffice);
+  };
+
+  const sendFatherTelToEnroll = (FatherTel) => {
+    console.log('Received FatherTel:', FatherTel);
+    setFatherTel(FatherTel);
+  };
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
   const navigate = useNavigate();
   const handleSubmit = async (StudentImageFile, CopyofStudentIDCardFile, PreviousSchoolEducationalRecordsFile, studentNID, nameTitle, FirstName, LastName, DateOfBirth, Transcript_type, HouseNumber, Moo, Soi, Road, Province, District, SubDistrict, HouseReg_file) => {
@@ -279,7 +315,7 @@ function Tab_enroll({ user }) {
     try {
         const response = await axios.get(`http://localhost:8080/check-email?email=${email}`);
         const data = response.data;
-        console.log("11111111111111111111");
+        // console.log("11111111111111111111");
 
         if (data.found) {
             // alert('ท่านเคยบันทึกข้อมูลของท่านแล้ว โดยใช้อีเมล' + email);
@@ -628,13 +664,22 @@ function Tab_enroll({ user }) {
               </div>
               <div class={`tab-pane container ${activeTab === 'menu3' ? 'active' : ''}`} id="menu3">
               <ParentsInfo 
-                sendFatherEmailToEnroll={sendFatherEmailToEnroll} 
                 sendMotherEmailToEnroll={sendMotherEmailToEnroll}
                 sendSomeoneElseEmailToEnroll={sendSomeoneElseEmailToEnroll}
-                sendisFatherRecordDataToEnroll={sendisFatherRecordDataToEnroll}
+                
                 sendisMotherRecordDataToEnroll={sendisMotherRecordDataToEnroll}
                 sendisParentRecordDataToEnroll={sendisParentRecordDataToEnroll}
+
+                sendFatherEmailToEnroll={sendFatherEmailToEnroll} 
+                sendisFatherRecordDataToEnroll={sendisFatherRecordDataToEnroll}
                 sendFatherFirstnameToEnroll={sendFatherFirstnameToEnroll}
+                sendFatherLastnameToEnroll={sendFatherLastnameToEnroll}
+                sendFatherDateOfBirthToEnroll={sendFatherDateOfBirthToEnroll}
+                sendisFatherForeignerToEnroll={sendisFatherForeignerToEnroll}
+                sendFatherNationalityToEnroll={sendFatherNationalityToEnroll}
+                sendFatherOccupationToEnroll={sendFatherOccupationToEnroll}
+                sendFatherOfficeToEnroll={sendFatherOfficeToEnroll}
+                sendFatherTelToEnroll={sendFatherTelToEnroll}
                 />
 
                 <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', width: '100%' }}>

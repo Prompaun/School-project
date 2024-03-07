@@ -6,12 +6,21 @@ import axios from 'axios';
 
 function ParentsInfo({  //------------------1------------------
     sendFatherEmailToEnroll,
+    sendisFatherRecordDataToEnroll,
+    sendFatherFirstnameToEnroll,
+    sendFatherLastnameToEnroll,
+    sendFatherDateOfBirthToEnroll,
+    sendisFatherForeignerToEnroll,
+    sendFatherNationalityToEnroll,
+    sendFatherOccupationToEnroll,
+    sendFatherOfficeToEnroll,
+    sendFatherTelToEnroll,
+
     sendMotherEmailToEnroll,
     sendSomeoneElseEmailToEnroll,
-    sendisFatherRecordDataToEnroll,
+
     sendisMotherRecordDataToEnroll,
     sendisParentRecordDataToEnroll,
-    sendFatherFirstnameToEnroll
     }) {
 
     const [firstName, setFirstName] = useState('');
@@ -88,6 +97,16 @@ function ParentsInfo({  //------------------1------------------
     };
 
     useEffect(() => {
+        setFoundFather(checkFather_Email(FatherEmail));
+        if (!isFatherRecordData){
+            sendFatherEmailToEnroll(FatherEmail);
+            sendisFatherRecordDataToEnroll(isFatherRecordData);
+        }
+        
+    // }, [isFatherRecordData, FatherEmail, sendisFatherRecordDataToEnroll, sendFatherEmailToEnroll]); 
+    }, [FatherEmail, sendFatherEmailToEnroll]); 
+
+    useEffect(() => {
         if (!isFatherRecordData){
             sendFatherFirstnameToEnroll(FatherFirstname);
         }
@@ -96,14 +115,47 @@ function ParentsInfo({  //------------------1------------------
     }, [FatherFirstname, sendFatherFirstnameToEnroll]);
 
     useEffect(() => {
-        setFoundFather(checkEmail(FatherEmail));
         if (!isFatherRecordData){
-            sendFatherEmailToEnroll(FatherEmail);
-            sendisFatherRecordDataToEnroll(isFatherRecordData);
+            sendFatherLastnameToEnroll(FatherLastname);
         }
-        
-    // }, [isFatherRecordData, FatherEmail, sendisFatherRecordDataToEnroll, sendFatherEmailToEnroll]); 
-    }, [FatherEmail, sendFatherEmailToEnroll]); 
+    }, [FatherLastname, sendFatherLastnameToEnroll]);
+
+    useEffect(() => {
+        if (!isFatherRecordData){
+            sendFatherDateOfBirthToEnroll(FatherDateOfBirth);
+        }
+    }, [FatherDateOfBirth, sendFatherDateOfBirthToEnroll]);
+
+    useEffect(() => {
+        if (!isFatherRecordData){
+            sendisFatherForeignerToEnroll(isFatherForeigner);
+        }
+    }, [isFatherForeigner, sendisFatherForeignerToEnroll]);
+
+    useEffect(() => {
+        if (!isFatherRecordData){
+            sendFatherNationalityToEnroll(FatherNationality);
+        }
+    }, [FatherNationality, sendFatherNationalityToEnroll]);
+
+    useEffect(() => {
+        if (!isFatherRecordData){
+            sendFatherOccupationToEnroll(FatherOccupation);
+        }
+    }, [FatherOccupation, sendFatherOccupationToEnroll]);
+
+    useEffect(() => {
+        if (!isFatherRecordData){
+            sendFatherOfficeToEnroll(FatherOffice);
+        }
+    }, [FatherOffice, sendFatherOfficeToEnroll]);
+
+    useEffect(() => {
+        if (!isFatherRecordData){
+            sendFatherTelToEnroll(FatherTel);
+        }
+    }, [FatherTel, sendFatherTelToEnroll]);
+
 
     const handleFatherEmailChange = (event) => {
         setFatherEmail(event.target.value);
@@ -290,7 +342,7 @@ function ParentsInfo({  //------------------1------------------
         setSelectedOption(event.target.value);
     };
 
-    const checkEmail = async (email) => {
+    const checkFather_Email = async (email) => {
         try {
             const response = await axios.get(`http://localhost:8080/check-email?email=${email}`);
             const data = response.data;
@@ -321,23 +373,22 @@ function ParentsInfo({  //------------------1------------------
                 setFatherTel(data.results[0].Tel);
 
                 // console.log("yokkk",date);
-
                 return true;
             } 
             else {
-                
+
+                if (isFatherRecordData){
+                    setFatherFirstname('');
+                    setFatherLastname('');
+                    setFatherDateOfBirth('');
+                    setFatherNationality('');
+                    setFatherOccupation('');
+                    setFatherOffice('');
+                    setFatherTel('');
+                }
+
                 setIsFatherRecordData(false);
-
-                // setFatherFirstname('');
-                // setFatherLastname('');
-                // setFatherDateOfBirth('');
-                // setFatherNationality('');
-                // setFatherOccupation('');
-                // setFatherOffice('');
-                // setFatherTel('');
-
-                console.log("isssss",isFatherRecordData);
-                
+                // console.log("isssss",isFatherRecordData);
                 return false;
             }
         } catch (error) {
@@ -348,12 +399,21 @@ function ParentsInfo({  //------------------1------------------
 
   <ParentsInfo 
     sendFatherEmailToEnroll={sendFatherEmailToEnroll} 
+    sendisFatherRecordDataToEnroll={sendisFatherRecordDataToEnroll}
+    sendFatherFirstnameToEnroll={sendFatherFirstnameToEnroll}
+    sendFatherLastnameToEnroll={sendFatherLastnameToEnroll}
+    sendFatherDateOfBirthToEnroll={sendFatherDateOfBirthToEnroll}
+    sendisFatherForeignerToEnroll={sendisFatherForeignerToEnroll}
+    sendFatherNationalityToEnroll={sendFatherNationalityToEnroll}
+    sendFatherOccupationToEnroll={sendFatherOccupationToEnroll}
+    sendFatherOfficeToEnroll={sendFatherOfficeToEnroll}
+    sendFatherTelToEnroll={sendFatherTelToEnroll}
+
     sendMotherEmailToEnroll={sendMotherEmailToEnroll} 
     sendSomeoneElseEmailToEnroll={sendSomeoneElseEmailToEnroll}
-    sendisFatherRecordDataToEnroll={sendisFatherRecordDataToEnroll}
+    
     sendisMotherRecordDataToEnroll={sendisMotherRecordDataToEnroll}
     sendisParentRecordDataToEnroll={sendisParentRecordDataToEnroll}
-    sendFatherFirstnameToEnroll={sendFatherFirstnameToEnroll}
     />
 
   return (
@@ -459,15 +519,15 @@ function ParentsInfo({  //------------------1------------------
 
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px' }}>
 
-                    <h2 className="col-form-label" style={{ marginTop: '10px', fontFamily: 'Kanit, sans-serif', fontSize: '18px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
+                    <h2 className="col-form-label" style={{ marginTop: '5px', fontFamily: 'Kanit, sans-serif', fontSize: '18px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
                     <div className="d-flex align-items-center"style={{ flexWrap: 'wrap'}} >
-                        <div className="form-check" style={{ marginTop: '10px',maxWidth:"100%"}}>
+                        <div className="form-check" style={{ marginTop: '5px',maxWidth:"100%"}}>
                             <input className="form-check-input" type="radio" name="Fatherforeigner?" id="FatherForeigner" value={isFatherForeigner} onChange={handleIsFatherForeigner} />
                             <label className="form-check-label custom-body"style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="FatherForeigner">
                             ใช่
                             </label>
                         </div>
-                        <div className="form-check" style={{ marginTop: '10px',maxWidth:"100%"}}>
+                        <div className="form-check" style={{ marginTop: '5px',maxWidth:"100%"}}>
                             <input className="form-check-input" type="radio" name="Fatherforeigner?" id="FatherNotForeigner" value={isFatherForeigner} onChange={handleIsFatherForeigner} />
                             <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="FatherNotForeigner">
                             ไม่
@@ -479,10 +539,10 @@ function ParentsInfo({  //------------------1------------------
                     {/* ใช้เงื่อนไขเพื่อตรวจสอบว่าถ้าเป็นคนต่างชาติให้แสดงส่วนของสัญชาติ */}
                     {isFatherForeigner && (
                         <>
-                        <div className="d-flex align-items-center" style={{ marginTop: '10px',maxWidth:"100%"}}>
+                        <div className="d-flex align-items-center" style={{ marginTop: '5px',maxWidth:"100%"}}>
                             <label htmlFor="father_Nationality" className="col-form-label">สัญชาติ</label>
                         </div>
-                        <div className="align-items-center" style={{marginTop: '10px',maxWidth:"100%"}}>
+                        <div className="align-items-center" style={{marginTop: '5px',maxWidth:"100%"}}>
                             <input type="text" className="form-control" id="father_Nationality" name="father_Nationality" placeholder="กรอกสัญชาติ" value={FatherNationality} onChange={handleFatherNationalityChange}/>
                         </div>
                         </>
@@ -511,31 +571,31 @@ function ParentsInfo({  //------------------1------------------
                 </div> */}
                 
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px' }}>
-                        <div className="d-flex align-items-center" style={{ marginTop: '10px',maxWidth:"100%"}}>
+                        <div className="d-flex align-items-center" style={{ marginTop: '5px',maxWidth:"100%"}}>
                             <label htmlFor="father_Occupation" className="col-form-label">อาชีพ</label>
                         </div>
-                        <div className="align-items-center" style={{ marginTop: '10px',maxWidth:"100%"}}>       
+                        <div className="align-items-center" style={{ marginTop: '5px',maxWidth:"100%"}}>       
                             <input type="text" className="form-control" id="father_Occupation" name="father_Occupation" value={FatherOccupation} placeholder="กรอกอาชีพ" onChange={handleFatherOccupationChange}/>
                         </div>
-                        <div className="d-flex align-items-center" style={{ marginTop: '10px',maxWidth:"100%"}}>
+                        <div className="d-flex align-items-center" style={{ marginTop: '5px',maxWidth:"100%"}}>
                             <label htmlFor="father_Workplace" className="col-form-label">สถานที่ทำงาน</label>
                         </div>
-                        <div className="align-items-center" style={{ marginTop: '10px',maxWidth:"100%"}}>   
+                        <div className="align-items-center" style={{ marginTop: '5px',maxWidth:"100%"}}>   
                             <input type="text" className="form-control" id="father_Workplace" name="father_Workplace" value={FatherOffice} placeholder="กรอกสถานที่ทำงาน" onChange={handleFatherOfficeChange}/>
                         </div>
-                        <div className="d-flex align-items-center" style={{ marginTop: '10px',maxWidth:"100%"}}>
+                        <div className="d-flex align-items-center" style={{ marginTop: '5px',maxWidth:"100%"}}>
                             <label htmlFor="father_phoneNumber" className="col-form-label">โทรศัพท์</label>
                             </div>
-                        <div className="align-items-center" style={{ marginTop: '10px',maxWidth:"100%"}}>   
+                        <div className="align-items-center" style={{ marginTop: '5px',maxWidth:"100%"}}>   
                             <input type="text" className="form-control" id="father_phoneNumber" name="father_phoneNumber" value={FatherTel} placeholder="กรอกหมายเลขโทรศัพท์" onChange={handleFatherTelChange}/>
                         </div>
-                        <div className="d-flex align-items-center" style={{ marginTop: '10px',maxWidth:"100%"}}>
+                        <div className="d-flex align-items-center" style={{ marginTop: '5px',maxWidth:"100%"}}>
                             <label htmlFor="father_Email" className="col-form-label">อีเมล</label>
                         </div>
                         {/* <div className="align-items-center" style={{maxWidth:"100%"}}>   
                             <input type="text" className="form-control" id="father_Email" name="father_Email" placeholder="กรอกอีเมล" />
                         </div> */}
-                        <div className="align-items-center"style={{ marginTop: '10px',maxWidth:"100%"}}> 
+                        <div className="align-items-center"style={{ marginTop: '5px',maxWidth:"100%"}}> 
                             <input type="text" className="form-control" id="Father_Email" name="Father_Email" value={FatherEmail} placeholder="กรอกอีเมลบิดา" onChange={handleFatherEmailChange}/>
                         </div>
                         
@@ -555,9 +615,9 @@ function ParentsInfo({  //------------------1------------------
                 </div>
             </div>
 
-            <br></br>
-            <h2 className="col-sm d-flex align-items-center" style={{marginLeft: '15px',fontSize: '18px'}}>เคยบันทึกข้อมูลมารดาแล้วหรือไม่</h2>
-            <h2 className="card-heading mb-0 mx-3" style={{ fontSize: '16px', color: 'red' ,marginTop:"5px"}}>
+            {/* <br></br> */}
+            {/* <h2 className="col-sm d-flex align-items-center" style={{marginLeft: '15px',fontSize: '18px'}}>เคยบันทึกข้อมูลมารดาแล้วหรือไม่</h2> */}
+            {/* <h2 className="card-heading mb-0 mx-3" style={{ fontSize: '16px', color: 'red' ,marginTop:"5px"}}>
                     **เลือก ใช่ กรณีเคยบันทึกข้อมูลของตนสำหรับใช้สมัครเรียนให้บุตรหลานของท่าน
                 </h2>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '16px',marginLeft: '15px' ,marginTop:"5px"}}>
@@ -573,10 +633,10 @@ function ParentsInfo({  //------------------1------------------
                     ไม่ใช่
                     </label>
                 </div>
-            </div>
+            </div> */}
 
-        {isMotherRecordData ? (
-            <>
+        {/* {isMotherRecordData ? (
+            <> */}
                 <div style={{fontSize: '18px',marginTop:"5px"}}>
                     <div className="d-flex align-items-center"style={{flexWrap:"wrap"}}>
                         <label htmlFor="Mother_Email" className="col-form-label mb-0 mx-3">อีเมล</label>
@@ -588,11 +648,13 @@ function ParentsInfo({  //------------------1------------------
                         <input type="text" className="form-control mb-0 mx-3" id="Mother_Email" name="Mother_Email" placeholder="กรอกอีเมลมารดา" onChange={handleMotherEmailChange} />
                     </div>
                 </div>
-            </>
+            {/* </>
         ) : (
-            <>
-            <br></br>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px' }}>
+            <> */}
+            {/* <br></br> */}
+            <br />
+
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px', marginLeft: '15px' }}>
 
                     <div className="d-flex align-items-center">
                         <label htmlFor="mother_surname" className="col-form-label">ชื่อ</label>
@@ -650,21 +712,21 @@ function ParentsInfo({  //------------------1------------------
 
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px' }}>
                 
-                            <div className="d-flex align-items-center">
+                            {/* <div className="d-flex align-items-center">
                                 <label htmlFor="mother_Occupation" className="col-form-label">วุฒิการศึกษา</label>
                             </div>
                             <div class="h-screen flex flex-col justify-left sm:flex-row">
                                 <div class="sm:w-1_3 sm:pr-3">
-                                <div class="dropdown" style={{ maxWidth: '100%' }}> {/* กำหนดความกว้างของ dropdown ที่นี่ */}
-                                    <select value={selectedOption} onChange={handleSelectChange} class="custom-select w-full"> {/* กำหนดความกว้างของตัวเลือกใน dropdown ที่นี่ */}
-                                        <option value="ระบุหมายเหตุ">ระบุวุฒิการศึกษา</option>
-                                        <option value="เพื่อใช้ในการขอทุนการศึกษา">ปริญญาตรี</option>
-                                        <option value="เพื่อใช้ในการสมัครเข้าศึกษาต่อ">ปริญญาโท</option>
-                                        <option value="เพื่อใช้ในการสมัครเข้าศึกษาต่อ">ปริญญาเอก</option>
-                                    </select>
+                                    <div class="dropdown" style={{ maxWidth: '100%' }}> 
+                                        <select value={selectedOption} onChange={handleSelectChange} class="custom-select w-full">
+                                            <option value="ระบุหมายเหตุ">ระบุวุฒิการศึกษา</option>
+                                            <option value="เพื่อใช้ในการขอทุนการศึกษา">ปริญญาตรี</option>
+                                            <option value="เพื่อใช้ในการสมัครเข้าศึกษาต่อ">ปริญญาโท</option>
+                                            <option value="เพื่อใช้ในการสมัครเข้าศึกษาต่อ">ปริญญาเอก</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            </div>
+                            </div> */}
                     </div>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px' }}>
                         <div className="d-flex align-items-center">
@@ -693,13 +755,13 @@ function ParentsInfo({  //------------------1------------------
                         </div>
                         
                 </div>
-            </>
-        )}
+            {/* </>
+        )} */}
 
         <br></br>
         <div className="row" style={{fontWeight: 'bold', fontSize: '20px', marginRight: '5px', gap: '0',Height: '100vh'}}>
 
-            <div className="col-sm d-flex align-items-center">
+            <div className="col-sm d-flex align-items-center" >
                 <label htmlFor="parents_data" className="col-form-label">ข้อมูลผู้ปกครอง</label>
             </div>
         </div>
@@ -734,11 +796,12 @@ function ParentsInfo({  //------------------1------------------
                     </label>
                 </div>
             
-                </div><br></br>
+                </div>
+                {/* <br></br> */}
 
                 {(whoAreParent === 'SomeoneElseIsParent') && (
                     <>
-                        <h2 className="col-sm d-flex align-items-center" style={{marginLeft: '15px',fontSize: '18px'}}>เคยบันทึกข้อมูลผู้ปกครองแล้วหรือไม่</h2>
+                        {/* <h2 className="col-sm d-flex align-items-center" style={{marginLeft: '15px',fontSize: '18px'}}>เคยบันทึกข้อมูลผู้ปกครองแล้วหรือไม่</h2>
                         <h2 className="card-heading mb-0 mx-3" style={{ fontSize: '16px', color: 'red' ,marginTop:"5px"}}>
                                 **เลือก ใช่ กรณีเคยบันทึกข้อมูลของตนสำหรับใช้สมัครเรียนให้บุตรหลานของท่าน
                             </h2>
@@ -755,11 +818,11 @@ function ParentsInfo({  //------------------1------------------
                                 ไม่ใช่
                                 </label>
                             </div>
-                        </div>
+                        </div> */}
 
-                        {isParentRecordData ? (
-                    <>
-                        <div style={{fontSize: '18px',marginTop:"5px"}}>
+                        {/* {isParentRecordData ? (
+                    <> */}
+                        <div style={{fontSize: '18px',marginTop:"10px"}}>
                             <div className="d-flex align-items-center">
                                 <label htmlFor="ParentEmail" className="col-form-label mb-0 mx-3">อีเมล</label>
                                 <h2 className="card-heading mb-0 mx-3" style={{ fontSize: '16px', color: 'blue' }}>
@@ -770,9 +833,9 @@ function ParentsInfo({  //------------------1------------------
                                 <input type="text" className="form-control mb-0 mx-3" id="ParentEmail" name="ParentEmail" placeholder="กรอกอีเมลผู้ปกครอง" onChange={handleParentEmailChange}/>
                             </div>
                         </div>
-                    </>
+                    {/* </>
                     ) : (
-                    <> 
+                    <>  */}
                     {/* //SomeoneElseIsParent */}
                     <br></br>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px',marginLeft: '15px' }}>
@@ -895,8 +958,8 @@ function ParentsInfo({  //------------------1------------------
                 </div>
             
                     </>
-                    )}
-                </>
+                //     )}
+                // </>
                 )}
                 
                 <br></br>
