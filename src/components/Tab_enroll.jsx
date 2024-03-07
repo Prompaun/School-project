@@ -24,7 +24,7 @@ function Tab_enroll({ user }) {
       setActiveTab(tabId);
   };
 
-  const [ParentEmail, setParentEmail] = useState('');
+  const [CurrentLogin_Email, setCurrentLogin_Email] = useState('');
   // console.log("user",user);
 
 
@@ -59,7 +59,7 @@ function Tab_enroll({ user }) {
 
 
   const [MotherEmail, setMotherEmail] = useState('22');
-  const [SomeoneElseEmail, setSomeoneElseEmail] = useState('');
+  const [ParentEmail, setParentEmail] = useState('');
 
   const [isFatherRecordData, setIsFatherRecordData] = useState(false);
   const [FatherFirstname, setFatherFirstname] = useState('');
@@ -90,6 +90,35 @@ function Tab_enroll({ user }) {
   const [ParentOccupation, setParentOccupation] = useState('');
   const [ParentOffice, setParentOffice] = useState('');
   const [ParentTel, setParentTel] = useState('');
+  const [ParentRole, setParentRole] = useState('');
+
+   // ฟังก์ชันสำหรับการแปลงวันที่ให้เป็นรูปแบบ "YYYY-MM-DD"
+  const formatDate = (date) => {
+      const year = date.getFullYear();
+      let month = date.getMonth() + 1;
+      month = month < 10 ? '0' + month : month;
+      let day = date.getDate();
+      day = day < 10 ? '0' + day : day;
+      // 
+      console.log(`${year}-${month}-${day}`);
+      return `${year}-${month}-${day}`;
+  };
+
+
+  const [Enroll_Date, setEnroll_Date] = useState(formatDate(new Date()));  // สร้าง state เพื่อเก็บวันที่ปัจจุบัน
+  const [Enroll_Course, setEnroll_Course] = useState("หลักสูตรทั่วไป");
+  
+ 
+  
+  // สร้างฟังก์ชันสำหรับการแปลงค่าวันที่เป็นปี
+  const getYearFromDate = (date) => {
+      return date.getFullYear();
+  };
+
+  
+  const [Enroll_Year, setEnroll_Year] = useState(getYearFromDate(new Date())); // เรียกใช้ฟังก์ชัน getYearFromDate เพื่อดึงปีจากวันที่ปัจจุบันและเก็บใน Enroll_Year
+  
+  console.log('enroll year', Enroll_Year);
 
     const receiveStudentData = (data) => {
       setStudentData(data);
@@ -199,9 +228,9 @@ function Tab_enroll({ user }) {
     setMotherEmail(MotherEmail);
   };
 
-  const sendSomeoneElseEmailToEnroll = (SomeoneElseEmail) => {
-    // console.log('Received SomeoneElseEmail:', SomeoneElseEmail);
-    setSomeoneElseEmail(SomeoneElseEmail);
+  const sendParentEmailToEnroll = (ParentEmail) => {
+    // console.log('Received ParentEmail:', ParentEmail);
+    setParentEmail(ParentEmail);
   };
 ///////////////////////////////////////////////////////////////////////////////////////////////////
   const sendisFatherRecordDataToEnroll= (isFatherRecordData) => {
@@ -340,6 +369,11 @@ const sendParentTelToEnroll = (ParentTel) => {
   console.log('Received ParentTel:', ParentTel);
   setParentTel(ParentTel);
 };
+
+const sendParentRoleToEnroll = (ParentRole) => {
+  console.log('Received ParentRole:', ParentRole);
+  setParentRole(ParentRole);
+};
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
   const navigate = useNavigate();
@@ -360,7 +394,7 @@ const sendParentTelToEnroll = (ParentTel) => {
           formData.append('LastName', LastName);
           formData.append('Student_DOB', DateOfBirth);
           formData.append('Transcript_type', Transcript_type);
-          formData.append('ParentEmail', ParentEmail);
+          formData.append('ParentEmail', CurrentLogin_Email);
 
           formData.append('HouseNumber', HouseNumber);
           formData.append('Moo', Moo || '-');
@@ -383,9 +417,8 @@ const sendParentTelToEnroll = (ParentTel) => {
         
       } catch (error) {
         if (error.response && error.response.status === 409) {
-          setMessage('Identification number already exists. Please try with a different one.');
+          // setMessage('Identification number already exists. Please try with a different one.');
           // alert('Identification number already exists. Please try with a different one.');
-//**************ปล่อยไป แต่จะไปเช็คตอนเก็บข้อมูลลงตาราง enrollment ว่าเคยสมัครปีนั้น หลักสูตรนั้นแล้วรึยัง************
         } else {
           setMessage('Was not uploaded' + error);
           console.error(error);
@@ -393,26 +426,62 @@ const sendParentTelToEnroll = (ParentTel) => {
       }
     // }
   };
-  
-  const checkEmail = async (email) => {
-    try {
-        const response = await axios.get(`http://localhost:8080/check-email?email=${email}`);
-        const data = response.data;
-        // console.log("11111111111111111111");
 
-        if (data.found) {
-            // alert('ท่านเคยบันทึกข้อมูลของท่านแล้ว โดยใช้อีเมล' + email);
-            return true;
-        } 
-          else {
-            // alert('ไม่พบอีเมล ' + email + " ในฐานข้อมูล กรุณากรอกข้อมูลของท่านด้วยค่ะ");
-            return false;
+  async function checkEnrollment(Student_NID, Enroll_Date, Enroll_Year, Enroll_Course) {
+    try {
+        const check_enrollment_response = await axios.get(`http://localhost:8080/check-student-enrollment?Student_NID=${Student_NID}&Enroll_Year=${Enroll_Year}&Enroll_Course=${Enroll_Course}`);
+        const data = check_enrollment_response.data;
+
+        if (data.length > 0) {
+            // หากมีข้อมูลในฐานข้อมูล
+            alert('ท่านเคยสมัครหลักสูตร ' + Enroll_Course + ' ในปีการศึกษา ' + Enroll_Year + ' แล้ว');
+        } else {
+            // หากไม่พบข้อมูลในฐานข้อมูล
+            try {
+                // ส่งข้อมูลไปยัง API ด้วย Axios
+                const formData = {
+                    Student_NID: Student_NID,
+                    Enroll_Date: Enroll_Date,
+                    Enroll_Year: Enroll_Year,
+                    Enroll_Course: Enroll_Course,
+                    Enroll_Status: "รอการสอบคัดเลือก"
+                };
+                // console.log("Enroll_Date",Enroll_Date);
+                const save_enrollment_response = await axios.post('http://localhost:8080/enrollment', formData);
+                console.log(save_enrollment_response.data.message); // พิมพ์ข้อความตอบกลับจาก API ใน console
+
+            } catch (error) {
+                console.error('Error adding enrollment:', error);
+            }
         }
     } catch (error) {
-        console.error('Error checking email:', error);
-        alert('An error occurred while checking email.');
+        console.error('เกิดข้อผิดพลาดในการเรียกใช้ API:', error);
+    }
+  }
+
+  const addParentEmails = async (Student_NID, first_ParentEmail, second_ParentEmail, third_ParentEmail) => {
+    try {
+        // สร้างข้อมูลที่จะส่งไปยังเซิร์ฟเวอร์
+        const requestData = {
+            Student_NID: Student_NID,
+            first_ParentEmail: first_ParentEmail,
+            second_ParentEmail: second_ParentEmail,
+            third_ParentEmail: third_ParentEmail
+        };
+
+        // เรียกใช้ API สำหรับเพิ่มอีเมล์ของผู้ปกครอง
+        const response = await axios.post('http://localhost:8080/add-parent-emails', requestData);
+
+        // หากสำเร็จ
+        console.log(response.data.message);
+        return response.data.message;
+    } catch (error) {
+        // หากเกิดข้อผิดพลาด
+        console.error('Error adding parent emails:', error);
+        throw error;
     }
 };
+
   
   // const handleButtonClick = async () => {
 
@@ -469,29 +538,25 @@ const sendParentTelToEnroll = (ParentTel) => {
                   HouseReg_file
               );
 
+              await checkEnrollment(
+                studentNID,
+                Enroll_Date,
+                Enroll_Year,
+                Enroll_Course
+              );
+
+              await addParentEmails(
+                studentNID,
+                FatherEmail,
+                MotherEmail,
+                ParentEmail
+              );
               
             } catch (error) {
                 console.error('Error handling button click:', error);
             }
           }
       };
-
-  const holyhola = async () => {
-    console.log("555555555555555555555555555555");
-    if (!FoundFather){
-      setFoundParentData(prevData => prevData + "ไม่พบข้อมูลบิดาในฐานข้อมูล ");
-    }
-
-    if (!FoundMother){
-      setFoundParentData(prevData => prevData + "ไม่พบข้อมูลมารดาในฐานข้อมูล ");
-    }
-
-    if (!FoundParent){
-      setFoundParentData(prevData => prevData + "ไม่พบข้อมูลผู้ปกครองในฐานข้อมูล");
-    }
-  }
-
-  
 
   const handleNewstudent_infoClick = async () => {
     // handleTabChange('menu1');
@@ -580,7 +645,7 @@ const sendParentTelToEnroll = (ParentTel) => {
     }
     
     if (user && user.emails[0].value) {
-      setParentEmail(user.emails[0].value);
+      setCurrentLogin_Email(user.emails[0].value);
       console.log("user", user.emails[0].value);
     } else {
       console.log('User email is not available.');
@@ -735,7 +800,7 @@ const hasParentInfo =
         numMissingFields++;
       }
     }
-    if (!SomeoneElseEmail){
+    if (!ParentEmail){
       numMissingFields++;
     }
     if (!isParentRecordData) {
@@ -832,7 +897,7 @@ const hasParentInfo =
           alert('กรุณากรอกเลขเบอร์โทรศัพท์ของมารดา');
         }
     }
-    if (!SomeoneElseEmail){
+    if (!ParentEmail){
       alert('กรุณากรอกอีเมลผู้ปกครอง');
     }
     if (!isParentRecordData) {
@@ -860,7 +925,7 @@ const hasParentInfo =
       if (!ParentTel) {
         alert('กรุณากรอกเลขเบอร์โทรศัพท์ของผู้ปกครอง');
       }
-  }
+  }}
     return true;
   };
   
@@ -1025,7 +1090,7 @@ const hasParentInfo =
                 sendMotherOfficeToEnroll={sendMotherOfficeToEnroll}
                 sendMotherTelToEnroll={sendMotherTelToEnroll}
 
-                sendSomeoneElseEmailToEnroll={sendSomeoneElseEmailToEnroll}
+                sendParentEmailToEnroll={sendParentEmailToEnroll}
                 sendisParentRecordDataToEnroll={sendisParentRecordDataToEnroll}
                 sendParentFirstnameToEnroll={sendParentFirstnameToEnroll}
                 sendParentLastnameToEnroll={sendParentLastnameToEnroll}
@@ -1035,6 +1100,7 @@ const hasParentInfo =
                 sendParentOccupationToEnroll={sendParentOccupationToEnroll}
                 sendParentOfficeToEnroll={sendParentOfficeToEnroll}
                 sendParentTelToEnroll={sendParentTelToEnroll}
+                sendParentRoleToEnroll={sendParentRoleToEnroll}
                 />
 
                 <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', width: '100%' }}>
@@ -1101,6 +1167,6 @@ const hasParentInfo =
         </div>
         </div>
       );
-    };
+    // };
 
 export default Tab_enroll;

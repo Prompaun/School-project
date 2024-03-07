@@ -27,7 +27,7 @@ function ParentsInfo({  //------------------1------------------
     sendMotherOfficeToEnroll,
     sendMotherTelToEnroll,
 
-    sendSomeoneElseEmailToEnroll,
+    sendParentEmailToEnroll,
     sendisParentRecordDataToEnroll,
     sendParentFirstnameToEnroll,
     sendParentLastnameToEnroll,
@@ -36,7 +36,8 @@ function ParentsInfo({  //------------------1------------------
     sendParentNationalityToEnroll,
     sendParentOccupationToEnroll,
     sendParentOfficeToEnroll,
-    sendParentTelToEnroll,  
+    sendParentTelToEnroll,
+    sendParentRoleToEnroll  
     }) {
 
     const [firstName, setFirstName] = useState('');
@@ -237,10 +238,10 @@ function ParentsInfo({  //------------------1------------------
     useEffect(() => {
         setFoundParent(checkParent_Email(ParentEmail));
         if (!isParentRecordData){
-            sendSomeoneElseEmailToEnroll(ParentEmail);
+            sendParentEmailToEnroll(ParentEmail);
             sendisParentRecordDataToEnroll(isParentRecordData);
         }
-    }, [ParentEmail, sendSomeoneElseEmailToEnroll]); 
+    }, [ParentEmail, sendParentEmailToEnroll]); 
 
     useEffect(() => {
         if (!isParentRecordData){
@@ -290,7 +291,11 @@ function ParentsInfo({  //------------------1------------------
         }
     }, [ParentTel, sendParentTelToEnroll]);
 
-
+    useEffect(() => {
+        if (!isParentRecordData){
+            sendParentRoleToEnroll(ParentRole);
+        }
+    }, [ParentRole, sendParentRoleToEnroll]);
 
 
 
@@ -315,11 +320,11 @@ function ParentsInfo({  //------------------1------------------
     useEffect(() => {
         if (isParentRecordData) {
             // if (ParentEmail !== '') {
-            sendSomeoneElseEmailToEnroll(ParentEmail);
+            sendParentEmailToEnroll(ParentEmail);
             // }
             sendisParentRecordDataToEnroll(isParentRecordData);
         }
-    }, [isParentRecordData, ParentEmail, sendisParentRecordDataToEnroll, sendSomeoneElseEmailToEnroll]);
+    }, [isParentRecordData, ParentEmail, sendisParentRecordDataToEnroll, sendParentEmailToEnroll]);
     
     const handleParentEmailChange = (event) => {
             setParentEmail(event.target.value);
@@ -474,7 +479,8 @@ function ParentsInfo({  //------------------1------------------
     const handlewhoAreParent = (event) => {
         setParent(event.target.id);
         if (event.target.id === "FatherIsParent" | event.target.id === "MotherIsParent" | event.target.id === "FatherAndMotherAreParent"){
-            setIsParentRecordData(false);
+            setIsParentRecordData(true);
+            console.log('okokokokok',isParentRecordData);
         }
     };
 
@@ -689,7 +695,7 @@ function ParentsInfo({  //------------------1------------------
     sendMotherOfficeToEnroll={sendMotherOfficeToEnroll}
     sendMotherTelToEnroll={sendMotherTelToEnroll}
 
-    sendSomeoneElseEmailToEnroll={sendSomeoneElseEmailToEnroll}
+    sendParentEmailToEnroll={sendParentEmailToEnroll}
     sendisParentRecordDataToEnroll={sendisParentRecordDataToEnroll}
     sendParentFirstnameToEnroll={sendParentFirstnameToEnroll}
     sendParentLastnameToEnroll={sendParentLastnameToEnroll}
@@ -699,6 +705,7 @@ function ParentsInfo({  //------------------1------------------
     sendParentOccupationToEnroll={sendParentOccupationToEnroll}
     sendParentOfficeToEnroll={sendParentOfficeToEnroll}
     sendParentTelToEnroll={sendParentTelToEnroll}
+    sendParentRoleToEnroll={sendParentRoleToEnroll}
     />
 
   return (
