@@ -58,7 +58,7 @@ function Tab_enroll({ user }) {
   const [FatherEmail, setFatherEmail] = useState('');
 
 
-  const [MotherEmail, setMotherEmail] = useState('22');
+  const [MotherEmail, setMotherEmail] = useState('');
   const [ParentEmail, setParentEmail] = useState('');
 
   const [isFatherRecordData, setIsFatherRecordData] = useState(false);
@@ -91,6 +91,8 @@ function Tab_enroll({ user }) {
   const [ParentOffice, setParentOffice] = useState('');
   const [ParentTel, setParentTel] = useState('');
   const [ParentRole, setParentRole] = useState('');
+  const [whoAreParent, setwhoAreParent] = useState('');
+
 
    // ฟังก์ชันสำหรับการแปลงวันที่ให้เป็นรูปแบบ "YYYY-MM-DD"
   const formatDate = (date) => {
@@ -244,7 +246,7 @@ function Tab_enroll({ user }) {
   };
 
   const sendisParentRecordDataToEnroll= (isParentRecordData) => {
-    // console.log('Received isParentRecordData:', isParentRecordData);
+    console.log('Received isParentRecordData:', isParentRecordData);
     setIsParentRecordData(isParentRecordData);
   };
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -374,6 +376,11 @@ const sendParentRoleToEnroll = (ParentRole) => {
   console.log('Received ParentRole:', ParentRole);
   setParentRole(ParentRole);
 };
+
+const sendwhoAreParentToEnroll = (whoAreParent) => {
+  console.log('Received whoAreParent:', whoAreParent);
+  setwhoAreParent(whoAreParent);
+};
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
   const navigate = useNavigate();
@@ -480,6 +487,39 @@ const sendParentRoleToEnroll = (ParentRole) => {
         console.error('Error adding parent emails:', error);
         throw error;
     }
+};
+
+const addParentInformation = async (parentData) => {
+  try {
+    const parentData = {
+      Avatar: "avatar.jpg",
+      Email: "parent1@example.com",
+      FirstName: "John",
+      LastName: "Doe",
+      Age: 45,
+      Nationality: "American",
+      Office: "ABC Corporation",
+      Occupation: "Engineer",
+      Role: "Parent",
+      Tel: "1234567890"
+    };
+      const response = await axios.post('http://localhost:8080/Parent_information', parentData);
+      return response.data.message;
+  } catch (error) {
+      if (error.response) {
+          // มีการตอบสนองจากเซิร์ฟเวอร์ แต่ค่าสถานะไม่เป็น 200
+          console.error('Failed to add parent information:', error.response.data.error);
+          throw new Error(error.response.data.error);
+      } else if (error.request) {
+          // ไม่มีการรับข้อมูลจากเซิร์ฟเวอร์
+          console.error('No response received from server:', error.request);
+          throw new Error('No response received from server');
+      } else {
+          // เกิดข้อผิดพลาดในการกำหนดค่าการส่งข้อมูลหรือปัญหาอื่น ๆ
+          console.error('Error adding parent information:', error.message);
+          throw error;
+      }
+  }
 };
 
   
@@ -724,7 +764,7 @@ const hasMotherInfo =
   MotherTel;
 
 const hasParentInfo = 
-ParentEmail && 
+  ParentEmail && 
   ParentFirstname && 
   ParentLastname && 
   ParentDateOfBirth && 
@@ -1102,6 +1142,7 @@ ParentEmail &&
                 sendParentOfficeToEnroll={sendParentOfficeToEnroll}
                 sendParentTelToEnroll={sendParentTelToEnroll}
                 sendParentRoleToEnroll={sendParentRoleToEnroll}
+                sendwhoAreParentToEnroll={sendwhoAreParentToEnroll}
                 />
 
                 <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', width: '100%' }}>
