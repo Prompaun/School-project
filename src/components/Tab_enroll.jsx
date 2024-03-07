@@ -736,6 +736,35 @@ const addParentInformation = async (parentData) => {
 
     return true;
   };
+  const hasFatherInfo = 
+  FatherEmail && 
+  FatherFirstname && 
+  FatherLastname && 
+  FatherDateOfBirth && 
+  FatherNationality && 
+  FatherOccupation && 
+  FatherOffice && 
+  FatherTel;
+
+const hasMotherInfo = 
+  MotherEmail && 
+  MotherFirstname && 
+  MotherLastname && 
+  MotherDateOfBirth && 
+  MotherNationality && 
+  MotherOccupation && 
+  MotherOffice && 
+  MotherTel;
+
+const hasParentInfo = 
+  SomeoneElseEmail && 
+  ParentFirstname && 
+  ParentLastname && 
+  ParentDateOfBirth && 
+  ParentNationality && 
+  ParentOccupation && 
+  ParentOffice && 
+  ParentTel;
   const handleParentinfoClick = async () => {
     let numMissingFields = 0;
 
@@ -873,6 +902,7 @@ const addParentInformation = async (parentData) => {
         if (!FatherTel) {
           alert('กรุณากรอกเลขเบอร์โทรศัพท์ของบิดา');
         }
+      }
       }
       if (!isMotherRecordData) {
         if (!MotherFirstname) {
@@ -1110,19 +1140,23 @@ const addParentInformation = async (parentData) => {
 
                   <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
                     <button type="button" onClick={() => {
-                      if (FatherEmail && FatherFirstname && FatherLastname && FatherDateOfBirth && FatherNationality && FatherOccupation && FatherOffice && FatherTel 
-                        
-                        ) {
-                        // if (FatherEmail && isFatherRecordData) {
-                          // &&
-                          // MotherEmail && MotherFirstname && MotherLastname && MotherDateOfBirth && MotherNationality && MotherOccupation && MotherOffice && MotherTel &&
-                          // ParentEmail && MotherFirstname && ParentLastname && ParentDateOfBirth && ParentNationality && ParentOccupation && ParentOffice && ParentTel
-                        // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
+                      if (FatherEmail && FatherFirstname && FatherLastname && FatherDateOfBirth && FatherNationality &&FatherOccupation && FatherOffice && FatherTel) {
+                        // All required fields have been filled out
                         handleTabChange('menu2');
-                        
-                        // href="#menu2"
                       };
+                      // if ( MotherEmail && MotherFirstname && MotherLastname && MotherDateOfBirth && MotherNationality && MotherOccupation && MotherOffice && MotherTel ) {
+
+                        
+                      //   // SomeoneElseEmail && MotherFirstname && ParentLastname && ParentDateOfBirth && ParentNationality && ParentOccupation && ParentOffice && ParentTel
+                      //   // if (FatherEmail && isFatherRecordData) {
+
+                      //   // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
+                      //   handleTabChange('menu2');
+                        
+                      //   // href="#menu2"
+                      // };
                        handleParentinfoClick();
+                       
                     
                     }} 
                       
@@ -1166,6 +1200,6 @@ const addParentInformation = async (parentData) => {
         </div>
         </div>
       );
-    };
+    // };
 
 export default Tab_enroll;
