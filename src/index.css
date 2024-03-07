@@ -494,6 +494,7 @@ body{
 
 .dropdown {
   position: relative;
+  
 }
 
 .custom-select {
@@ -503,12 +504,13 @@ body{
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: auto;
   line-height: 1.5;
-  padding: 0.5rem 1rem;
+  padding: 0rem 1rem;
   width: 100%;
   cursor: pointer;
   outline: none;
+  
 }
 
 .custom-select:focus {

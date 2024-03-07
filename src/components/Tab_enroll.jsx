@@ -350,39 +350,39 @@ function Tab_enroll({ user }) {
     // handleTabChange('menu1');
     console.log('hello world');
     if (!studentNID) {
-      alert('กรุณากรอก studentNID ด้วยค่ะ');
+      alert('กรุณากรอกเลขประจำตัวประชาชนของนักเรียนด้วยค่ะ');
       return false;
     }
     if (!nameTitle) {
-      alert('กรุณากรอก nameTitle ด้วยค่ะ');
+      alert('กรุณากรอกคำนำหน้าชื่อของนักเรียนด้วยค่ะ');
       return false;
     }
     if (!FirstName) {
-      alert('กรุณากรอก FirstName ด้วยค่ะ');
+      alert('กรุณากรอกชื่อของนักเรียนด้วยค่ะ');
       return false;
     }
     if (!LastName) {
-      alert('กรุณากรอก LastName ด้วยค่ะ');
+      alert('กรุณากรอกนามสกุลของนักเรียนด้วยค่ะ');
       return false;
     }
     if (!DateOfBirth) {
-      alert('กรุณากรอก DateOfBirth ด้วยค่ะ');
+      alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียนด้วยค่ะ');
       return false;
     }
     if (!Transcript_type) {
-      alert('กรุณากรอก Transcript_type ด้วยค่ะ');
+      alert('กรุณากรอกประเภทของหลักฐานการศึกษาจากโรงเรียนเดิมด้วยค่ะ');
       return false;
     }
     if (!StudentImageFile) {
-      alert('กรุณาเลือกไฟล์รูปภาพของนักเรียน ด้วยค่ะ');
+      alert('กรุณาเลือกไฟล์รูปภาพของนักเรียนด้วยค่ะ');
       return false;
     }
     if (!CopyofStudentIDCardFile) {
-      alert('กรุณาเลือกไฟล์สำเนาบัตรประชาชนของนักเรียน ด้วยค่ะ');
+      alert('กรุณาเลือกไฟล์สำเนาบัตรประชาชนของนักเรียนด้วยค่ะ');
       return false;
     }
     if (!PreviousSchoolEducationalRecordsFile) {
-      alert('กรุณาเลือกไฟล์ประกาศนียบัตรการศึกษาของโรงเรียนก่อนหน้า ด้วยค่ะ');
+      alert('กรุณาเลือกไฟล์ประกาศนียบัตรการศึกษาของโรงเรียนก่อนหน้าด้วยค่ะ');
       return false;
     }
 
