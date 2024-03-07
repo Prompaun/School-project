@@ -724,7 +724,7 @@ const hasMotherInfo =
   MotherTel;
 
 const hasParentInfo = 
-  SomeoneElseEmail && 
+ParentEmail && 
   ParentFirstname && 
   ParentLastname && 
   ParentDateOfBirth && 
@@ -800,11 +800,11 @@ const hasParentInfo =
         numMissingFields++;
       }
     }
-    if (!ParentEmail){
-      numMissingFields++;
-    }
+    
     if (!isParentRecordData) {
-
+      if (!ParentEmail){
+        numMissingFields++;
+      }
       if (!ParentFirstname) {
         numMissingFields++;
       }
@@ -870,7 +870,7 @@ const hasParentInfo =
           alert('กรุณากรอกเลขเบอร์โทรศัพท์ของบิดา');
         }
       }
-      }
+      
       if (!isMotherRecordData) {
         if (!MotherFirstname) {
           alert('กรุณากรอกชื่อมารดา');
@@ -897,10 +897,11 @@ const hasParentInfo =
           alert('กรุณากรอกเลขเบอร์โทรศัพท์ของมารดา');
         }
     }
-    if (!ParentEmail){
-      alert('กรุณากรอกอีเมลผู้ปกครอง');
-    }
+    
     if (!isParentRecordData) {
+      if (!ParentEmail){
+        alert('กรุณากรอกอีเมลผู้ปกครอง');
+      }
       if (!ParentFirstname) {
         alert('กรุณากรอกชื่อผู้ปกครอง');
       }
@@ -1167,6 +1168,6 @@ const hasParentInfo =
         </div>
         </div>
       );
-    // };
+    };
 
 export default Tab_enroll;
