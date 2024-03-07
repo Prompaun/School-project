@@ -90,6 +90,7 @@ function Tab_enroll({ user }) {
   const [ParentOccupation, setParentOccupation] = useState('');
   const [ParentOffice, setParentOffice] = useState('');
   const [ParentTel, setParentTel] = useState('');
+  const [ParentRole, setParentRole] = useState('');
 
     const receiveStudentData = (data) => {
       setStudentData(data);
@@ -339,6 +340,11 @@ const sendParentOfficeToEnroll = (ParentOffice) => {
 const sendParentTelToEnroll = (ParentTel) => {
   console.log('Received ParentTel:', ParentTel);
   setParentTel(ParentTel);
+};
+
+const sendParentRoleToEnroll = (ParentRole) => {
+  console.log('Received ParentRole:', ParentRole);
+  setParentRole(ParentRole);
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1005,6 +1011,7 @@ const sendParentTelToEnroll = (ParentTel) => {
                 sendParentOccupationToEnroll={sendParentOccupationToEnroll}
                 sendParentOfficeToEnroll={sendParentOfficeToEnroll}
                 sendParentTelToEnroll={sendParentTelToEnroll}
+                sendParentRoleToEnroll={sendParentRoleToEnroll}
                 />
 
                 <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', width: '100%' }}>

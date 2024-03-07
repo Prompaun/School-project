@@ -36,7 +36,8 @@ function ParentsInfo({  //------------------1------------------
     sendParentNationalityToEnroll,
     sendParentOccupationToEnroll,
     sendParentOfficeToEnroll,
-    sendParentTelToEnroll,  
+    sendParentTelToEnroll,
+    sendParentRoleToEnroll  
     }) {
 
     const [firstName, setFirstName] = useState('');
@@ -290,7 +291,11 @@ function ParentsInfo({  //------------------1------------------
         }
     }, [ParentTel, sendParentTelToEnroll]);
 
-
+    useEffect(() => {
+        if (!isParentRecordData){
+            sendParentRoleToEnroll(ParentRole);
+        }
+    }, [ParentRole, sendParentRoleToEnroll]);
 
 
 
@@ -699,6 +704,7 @@ function ParentsInfo({  //------------------1------------------
     sendParentOccupationToEnroll={sendParentOccupationToEnroll}
     sendParentOfficeToEnroll={sendParentOfficeToEnroll}
     sendParentTelToEnroll={sendParentTelToEnroll}
+    sendParentRoleToEnroll={sendParentRoleToEnroll}
     />
 
   return (
