@@ -56,14 +56,40 @@ function Tab_enroll({ user }) {
   const [FoundParent, setFoundParent] = useState(false);
   const [FoundParentData, setFoundParentData] = useState('');
   const [FatherEmail, setFatherEmail] = useState('');
-  const [FatherFirstname, setFatherFirstname] = useState('');
 
 
   const [MotherEmail, setMotherEmail] = useState('');
   const [SomeoneElseEmail, setSomeoneElseEmail] = useState('');
+
   const [isFatherRecordData, setIsFatherRecordData] = useState(false);
+  const [FatherFirstname, setFatherFirstname] = useState('');
+  const [FatherLastname, setFatherLastname] = useState('');
+  const [FatherDateOfBirth, setFatherDateOfBirth] = useState('');
+  const [isFatherForeigner, setIsFatherForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
+  const [FatherNationality, setFatherNationality] = useState(''); // State สำหรับเก็บข้อมูลสัญชาติ
+  const [FatherOccupation, setFatherOccupation] = useState('');
+  const [FatherOffice, setFatherOffice] = useState('');
+  const [FatherTel, setFatherTel] = useState('');
+
   const [isMotherRecordData, setIsMotherRecordData] = useState(false);
+  const [MotherFirstname, setMotherFirstname] = useState('');
+  const [MotherLastname, setFMotherLastname] = useState('');
+  const [MotherDateOfBirth, setMotherDateOfBirth] = useState('');
+  const [isMotherForeigner, setIsMotherForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
+  const [MotherNationality, setMotherNationality] = useState(''); // State สำหรับเก็บข้อมูลสัญชาติ
+  const [MotherOccupation, setMotherOccupation] = useState('');
+  const [MotherOffice, setMotherOffice] = useState('');
+  const [MotherTel, setMotherTel] = useState('');
+
   const [isParentRecordData, setIsParentRecordData] = useState(false);
+  const [ParentFirstname, setParentFirstname] = useState('');
+  const [ParentLastname, setParentLastname] = useState('');
+  const [ParentDateOfBirth, setParentDateOfBirth] = useState('');
+  const [isParentForeigner, setIsParentForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
+  const [ParentNationality, setParentNationality] = useState(''); // State สำหรับเก็บข้อมูลสัญชาติ
+  const [ParentOccupation, setParentOccupation] = useState('');
+  const [ParentOffice, setParentOffice] = useState('');
+  const [ParentTel, setParentTel] = useState('');
 
     const receiveStudentData = (data) => {
       setStudentData(data);
@@ -467,11 +493,11 @@ function Tab_enroll({ user }) {
                   />
               </div>
 
-              {imageUploaded ? (
+              {/* {imageUploaded ? (
                   <p>ไฟล์รูปถูกส่งมาแล้ว</p>
               ) : (
                   <p>โปรดเลือกไฟล์รูปเพื่ออัพโหลด</p>
-              )}
+              )} */}
 
 
                 

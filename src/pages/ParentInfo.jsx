@@ -16,11 +16,10 @@ function ParentsInfo({  //------------------1------------------
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [MotherDateOfBirth, setMotherDateOfBirth] = useState('');
-    const [ParentDateOfBirth, setParentDateOfBirth] = useState('');
     // const [age, setAge] = useState(''); 
     const [selectedOption, setSelectedOption] = useState('ระบุหมายเหตุ');
 
+    const [isFatherRecordData, setIsFatherRecordData] = useState(false);
     const [FatherFirstname, setFatherFirstname] = useState('');
     const [FatherLastname, setFatherLastname] = useState('');
     const [FatherDateOfBirth, setFatherDateOfBirth] = useState('');
@@ -29,14 +28,25 @@ function ParentsInfo({  //------------------1------------------
     const [FatherOccupation, setFatherOccupation] = useState('');
     const [FatherOffice, setFatherOffice] = useState('');
     const [FatherTel, setFatherTel] = useState('');
-
     const [FatherRole, setFatherRole] = useState('');
-
+  
+    const [isMotherRecordData, setIsMotherRecordData] = useState(false);
+    const [MotherFirstname, setMotherFirstname] = useState('');
+    const [MotherLastname, setFMotherLastname] = useState('');
+    const [MotherDateOfBirth, setMotherDateOfBirth] = useState('');
+    const [isMotherForeigner, setIsMotherForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
+    const [MotherNationality, setMotherNationality] = useState(''); // State สำหรับเก็บข้อมูลสัญชาติ
     const [MotherOccupation, setMotherOccupation] = useState('');
     const [MotherOffice, setMotherOffice] = useState('');
     const [MotherTel, setMotherTel] = useState('');
     const [MotherRole, setMotherRole] = useState('');
-
+  
+    const [isParentRecordData, setIsParentRecordData] = useState(false);
+    const [ParentFirstname, setParentFirstname] = useState('');
+    const [ParentLastname, setParentLastname] = useState('');
+    const [ParentDateOfBirth, setParentDateOfBirth] = useState('');
+    const [isParentForeigner, setIsParentForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
+    const [ParentNationality, setParentNationality] = useState(''); // State สำหรับเก็บข้อมูลสัญชาติ
     const [ParentOccupation, setParentOccupation] = useState('');
     const [ParentOffice, setParentOffice] = useState('');
     const [ParentTel, setParentTel] = useState('');
@@ -48,16 +58,6 @@ function ParentsInfo({  //------------------1------------------
     const [MotherEmail, setMotherEmail] = useState('');
     const [ParentEmail, setParentEmail] = useState('');
 
-    const [isFatherRecordData, setIsFatherRecordData] = useState(false);
-    const [FatherNotRecordData, setFatherNotRecordData] = useState(false);
-    const [isMotherRecordData, setIsMotherRecordData] = useState(false);
-    const [isParentRecordData, setIsParentRecordData] = useState(false);
-
-    const [MotherNationality, setMotherNationality] = useState('');
-    const [ParentNationality, setParentNationality] = useState('');
-    
-    const [isMotherForeigner, setIsMotherForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
-    const [isParentForeigner, setIsParentForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
     const [whoAreParent, setParent] = useState('');
 
     const handleFatherDateOfBirthChange = (date) => {

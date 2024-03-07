@@ -304,19 +304,20 @@ function HouseholdInfo  ({  //------------------1------------------
               <span style={{flexWrap: 'wrap' }}>จังหวัด :</span>
               </div>
               <div class="h-screen flex flex-col justify-left sm:flex-row">
-                 <div class="sm:w-1_3 sm:pr-3">
-                    <div class="dropdown"style={{maxWidth:"100%"}} >
-                  <select value={Province} onChange={handleProvinceChange} class="custom-select w-full">
-                    <option value="">กรุณาเลือกจังหวัด</option>
-                    {Provinces.map((Province) => (
-                      <option key={Province} value={Province}>
-                        {Province}
-                      </option>
-                    ))}
-                  </select>
-                  </div>
-              </div>
-          </div>
+                {/* <div class="sm:w-1_3 sm:pr-3"> */}
+                    <div class="dropdown" style={{ maxWidth: "100%" }}>
+                        <select value={Province} onChange={handleProvinceChange} class="custom-select">
+                            <option value="">กรุณาเลือกจังหวัด</option>
+                            {Provinces.map((Province) => (
+                                <option key={Province} value={Province}>
+                                    {Province}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                {/* </div> */}
+            </div>
+
     
           <div className="d-flex align-items-center">
             
