@@ -483,8 +483,8 @@ function ParentsInfo({  //------------------1------------------
     // }; 
 
     const handlewhoAreParent = (event) => {
-        // setwhoAreParent(event.target.id);
-        setwhoAreParent(true);
+        setwhoAreParent(event.target.id);
+        // setwhoAreParent(true);
         if (event.target.id === "FatherIsParent" || event.target.id === "MotherIsParent" || event.target.id === "FatherAndMotherAreParent"){
             setIsParentRecordData(true);
             console.log('okokokokok',event.target.id);
