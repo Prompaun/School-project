@@ -91,7 +91,7 @@ function Tab_enroll({ user }) {
   const [ParentOffice, setParentOffice] = useState('');
   const [ParentTel, setParentTel] = useState('');
   const [ParentRole, setParentRole] = useState('');
-  const [whoAreParent, setwhoAreParent] = useState('');
+  const [whoAreParent, setwhoAreParent] = useState(false);
 
 
    // ฟังก์ชันสำหรับการแปลงวันที่ให้เป็นรูปแบบ "YYYY-MM-DD"
@@ -236,7 +236,7 @@ function Tab_enroll({ user }) {
   };
 ///////////////////////////////////////////////////////////////////////////////////////////////////
   const sendisFatherRecordDataToEnroll= (isFatherRecordData) => {
-    // console.log('Received isFatherRecordData:', isFatherRecordData);
+    console.log('Received isFatherRecordData:', isFatherRecordData);
     setIsFatherRecordData(isFatherRecordData);
   };
 
@@ -478,49 +478,50 @@ const sendwhoAreParentToEnroll = (whoAreParent) => {
 
         // เรียกใช้ API สำหรับเพิ่มอีเมล์ของผู้ปกครอง
         const response = await axios.post('http://localhost:8080/add-parent-emails', requestData);
-
+        
         // หากสำเร็จ
         console.log(response.data.message);
         return response.data.message;
     } catch (error) {
         // หากเกิดข้อผิดพลาด
         console.error('Error adding parent emails:', error);
-        throw error;
+        // throw error;
     }
 };
 
-const addParentInformation = async (parentData) => {
-  try {
-    const parentData = {
-      Avatar: "avatar.jpg",
-      Email: "parent1@example.com",
-      FirstName: "John",
-      LastName: "Doe",
-      Age: 45,
-      Nationality: "American",
-      Office: "ABC Corporation",
-      Occupation: "Engineer",
-      Role: "Parent",
-      Tel: "1234567890"
-    };
-      const response = await axios.post('http://localhost:8080/Parent_information', parentData);
-      return response.data.message;
-  } catch (error) {
-      if (error.response) {
-          // มีการตอบสนองจากเซิร์ฟเวอร์ แต่ค่าสถานะไม่เป็น 200
-          console.error('Failed to add parent information:', error.response.data.error);
-          throw new Error(error.response.data.error);
-      } else if (error.request) {
-          // ไม่มีการรับข้อมูลจากเซิร์ฟเวอร์
-          console.error('No response received from server:', error.request);
-          throw new Error('No response received from server');
-      } else {
-          // เกิดข้อผิดพลาดในการกำหนดค่าการส่งข้อมูลหรือปัญหาอื่น ๆ
-          console.error('Error adding parent information:', error.message);
-          throw error;
-      }
-  }
-};
+  const addParentInformation = async (Avatar, Email, FirstName, LastName, DateOfBirth, Nationality, Office, Occupation, Role, Tel) => {
+    try {
+      const parentData = [{
+        Avatar: Avatar,
+        Email: Email,
+        FirstName: FirstName,
+        LastName: LastName,
+        DateOfBirth: DateOfBirth,
+        Nationality: Nationality,
+        Office: Office,
+        Occupation: Occupation,
+        Role: Role,
+        Tel: Tel
+      }];
+        const response = await axios.post('http://localhost:8080/Parent_information', parentData);
+        console.log(response.data.message);
+        return response.data.message;
+    } catch (error) {
+        if (error.response) {
+            // มีการตอบสนองจากเซิร์ฟเวอร์ แต่ค่าสถานะไม่เป็น 200
+            console.error('Failed to add parent information:', error.response.data.error);
+            throw new Error(error.response.data.error);
+        } else if (error.request) {
+            // ไม่มีการรับข้อมูลจากเซิร์ฟเวอร์
+            console.error('No response received from server:', error.request);
+            throw new Error('No response received from server');
+        } else {
+            // เกิดข้อผิดพลาดในการกำหนดค่าการส่งข้อมูลหรือปัญหาอื่น ๆ
+            console.error('Error adding parent information:', error.message);
+            throw error;
+        }
+    }
+  };
 
   
   // const handleButtonClick = async () => {
@@ -558,32 +559,32 @@ const addParentInformation = async (parentData) => {
           try {
               //ทำฟังก์ชันเก็บข้อมูล applicants_parent
               //ทำฟังก์ชันเก็บข้อมูล enrollment ต้องกำหนดชื่อหลักสูตร
-              await handleSubmit(
-                  StudentImageFile, 
-                  CopyofStudentIDCardFile,
-                  PreviousSchoolEducationalRecordsFile,
-                  studentNID,
-                  nameTitle,
-                  FirstName,
-                  LastName,
-                  DateOfBirth,
-                  Transcript_type,
-                  HouseNumber,
-                  Moo,
-                  Soi,
-                  Road,
-                  Province,
-                  District,
-                  SubDistrict,
-                  HouseReg_file
-              );
+              // await handleSubmit(
+              //     StudentImageFile, 
+              //     CopyofStudentIDCardFile,
+              //     PreviousSchoolEducationalRecordsFile,
+              //     studentNID,
+              //     nameTitle,
+              //     FirstName,
+              //     LastName,
+              //     DateOfBirth,
+              //     Transcript_type,
+              //     HouseNumber,
+              //     Moo,
+              //     Soi,
+              //     Road,
+              //     Province,
+              //     District,
+              //     SubDistrict,
+              //     HouseReg_file
+              // );
 
-              await checkEnrollment(
-                studentNID,
-                Enroll_Date,
-                Enroll_Year,
-                Enroll_Course
-              );
+              // await checkEnrollment(
+              //   studentNID,
+              //   Enroll_Date,
+              //   Enroll_Year,
+              //   Enroll_Course
+              // );
 
               await addParentEmails(
                 studentNID,
@@ -591,6 +592,21 @@ const addParentInformation = async (parentData) => {
                 MotherEmail,
                 ParentEmail
               );
+
+              if (!isFatherRecordData){
+                await addParentInformation(
+                  '',
+                  FatherEmail,
+                  FatherFirstname,
+                  FatherLastname,
+                  FatherDateOfBirth,
+                  FatherNationality,
+                  FatherOffice,
+                  FatherOccupation,
+                  "บิดา",
+                  FatherTel
+                );
+              }
               
             } catch (error) {
                 console.error('Error handling button click:', error);

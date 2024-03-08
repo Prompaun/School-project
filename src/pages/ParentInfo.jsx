@@ -88,7 +88,7 @@ function ParentsInfo({  //------------------1------------------
     const [MotherEmail, setMotherEmail] = useState('');
     const [ParentEmail, setParentEmail] = useState('');
 
-    const [whoAreParent, setwhoAreParent] = useState('');
+    const [whoAreParent, setwhoAreParent] = useState(false);
 
     const handleFatherDateOfBirthChange = (date) => {
         // ใช้ date-fns เพื่อแปลงวันที่ให้เป็นรูปแบบ 'วัน/เดือน/ปี'
@@ -483,8 +483,8 @@ function ParentsInfo({  //------------------1------------------
     // }; 
 
     const handlewhoAreParent = (event) => {
-        // setwhoAreParent(event.target.id);
-        setwhoAreParent(true);
+        setwhoAreParent(event.target.id);
+        // setwhoAreParent(true);
         if (event.target.id === "FatherIsParent" || event.target.id === "MotherIsParent" || event.target.id === "FatherAndMotherAreParent"){
             setIsParentRecordData(true);
             console.log('okokokokok',event.target.id);
