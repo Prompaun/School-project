@@ -22,7 +22,7 @@ function Card_menu_parent() {
         {
           text: "ระบบตรวจสอบผลการเรียน",
           imageUrl: Checkgrade_icon, // แทนที่ด้วย URL รูปภาพจริง
-          path: "/Checkgrade"
+          path: "/Checkgrade_info"
         },
         {
             text: "ระบบยื่นคำร้องขอใบรับรอง",
