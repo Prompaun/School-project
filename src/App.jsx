@@ -46,6 +46,7 @@ import Navbar from './components/Navbar';
 import Register_info from './pages/Register_info';
 // import GoogleDriveFileUploader from './pages/GoogleDriveFileUploader';
 import Tab_enroll from './components/Tab_enroll';
+import Checkgrade_info from './pages/Checkgrade_info';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -186,6 +187,8 @@ function App() {
         <Route path="/CheckEnroll_status" element={<CheckEnroll_status/>} />
         
         <Route path="/Student_menu" element={<Student_menu />} />
+        <Route path="/Checkgrade_info" element={<Checkgrade_info />} />
+
         <Route path="/Parent_menu" element={<Parent_menu />} />
         <Route path="/Checkgrade" element={<Checkgrade/>} />
         <Route path="/Request_cert" element={<Request_cert/>} />

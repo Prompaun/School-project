@@ -677,6 +677,106 @@ const sendwhoAreParentToEnroll = (whoAreParent) => {
           }
       };
 
+  // const handleNewstudent_infoClick = async () => {
+  //   // handleTabChange('menu1');
+  //   let numMissingFields = 0;
+  //   if (!StudentImageFile) {
+  //     numMissingFields++;
+     
+  //   }
+  //   if (!studentNID) {
+  //     numMissingFields++;
+     
+      
+  //   }
+  //   if (!nameTitle) {
+  //     numMissingFields++;
+      
+  //   }
+  //   if (!FirstName) {
+  //     numMissingFields++;
+      
+  //   }
+  //   if (!LastName) {
+  //     numMissingFields++;
+     
+  //   }
+  //   if (!DateOfBirth) {
+  //     numMissingFields++;
+      
+  //   }
+  //   if (!Transcript_type) {
+  //     numMissingFields++;
+      
+  //   }
+    
+  //   if (!CopyofStudentIDCardFile) {
+  //     numMissingFields++;
+      
+  //   }
+  //   if (!PreviousSchoolEducationalRecordsFile) {
+  //     numMissingFields++;
+     
+  //   }
+
+  //   if (numMissingFields > 1) {
+  //     alert('กรุณากรอกข้อมูลส่วนตัวนักเรียนให้ครบถ้วน');
+  //     handleTabChange('menu1');
+  //     return false;
+  //   }
+  //   else{
+  //     if (!StudentImageFile) {   
+  //       alert('กรุณาเลือกไฟล์รูปภาพของนักเรียนด้วยค่ะ');
+  //     }
+  //     if (!studentNID) {    
+  //       alert('กรุณากรอกเลขประจำตัวประชาชนของนักเรียนด้วยค่ะ');
+        
+  //     }
+  //     if (!nameTitle) {      
+  //       alert('กรุณากรอกคำนำหน้าชื่อของนักเรียนด้วยค่ะ');
+        
+  //     }
+  //     if (!FirstName) {       
+  //       alert('กรุณากรอกชื่อของนักเรียนด้วยค่ะ');
+        
+  //     }
+  //     if (!LastName) {        
+  //       alert('กรุณากรอกนามสกุลของนักเรียนด้วยค่ะ');
+        
+  //     }
+  //     if (!DateOfBirth) {        
+  //       alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียนด้วยค่ะ');
+       
+  //     }
+  //     if (!Transcript_type) {
+  //       alert('กรุณากรอกประเภทของหลักฐานการศึกษาจากโรงเรียนเดิมด้วยค่ะ');
+        
+  //     }
+      
+  //     if (!CopyofStudentIDCardFile) {
+  //       alert('กรุณาเลือกไฟล์สำเนาบัตรประชาชนของนักเรียนด้วยค่ะ');
+        
+  //     }
+  //     if (!PreviousSchoolEducationalRecordsFile) {
+  //       alert('กรุณาเลือกไฟล์ประกาศนียบัตรการศึกษาของโรงเรียนก่อนหน้าด้วยค่ะ');
+        
+  //     }
+  //   }
+    
+  //   if (user && user.emails[0].value) {
+  //     setCurrentLogin_Email(user.emails[0].value);
+  //     console.log("user", user.emails[0].value);
+  //   } else {
+  //     console.log('User email is not available.');
+  //   }
+    
+  //   // กรณีที่ผ่านเงื่อนไขทั้งหมด
+  //   return true;
+
+      
+
+  // };
+
   const handleNewstudent_infoClick = async () => {
     // handleTabChange('menu1');
     let numMissingFields = 0;
@@ -725,7 +825,8 @@ const sendwhoAreParentToEnroll = (whoAreParent) => {
       return false;
     }
     else{
-      if (!StudentImageFile) {   
+      if (!StudentImageFile) {
+        
         alert('กรุณาเลือกไฟล์รูปภาพของนักเรียนด้วยค่ะ');
       }
       if (!studentNID) {    
@@ -851,13 +952,90 @@ const hasParentInfo =
   ParentOccupation && 
   ParentOffice && 
   ParentTel;
-  const handleParentinfoClick = async () => {
+  
+  const handleMotherinfoClick = async () => {
+    let numMissingFields = 0;
+
+    if (!MotherEmail) {
+      numMissingFields++;
+    }
+    
+    if (!isMotherRecordData) {
+
+      if (!MotherFirstname) {
+        numMissingFields++;
+      }
+      if (!MotherLastname) {
+        numMissingFields++;
+      }
+      if (!MotherDateOfBirth) {
+        numMissingFields++;
+      }
+      if (isMotherForeigner) {
+        if (!MotherNationality) {
+          numMissingFields++;
+        }
+      }
+      else {
+        setFatherNationality("ไทย");
+      }
+      if (!MotherOccupation) {
+        numMissingFields++;
+      }
+      if (!MotherOffice) {
+        numMissingFields++;
+      }
+      if (!MotherTel) {
+        numMissingFields++;
+      }
+    }
+    
+    if (numMissingFields > 1) {
+      alert('กรุณากรอกข้อมูลผู้ปกครองให้ครบถ้วน');
+      handleTabChange('menu3');
+      return false;
+    }
+    else {
+      
+      if (!MotherEmail) {
+        alert('กรุณากรอกอีเมลมารดา');
+      }
+      
+      if (!isMotherRecordData) {
+        if (!MotherFirstname) {
+          alert('กรุณากรอกชื่อมารดา');
+        }
+        if (!MotherLastname) {
+          alert('กรุณากรอกนามสกุลมารดา');
+        }
+        if (!MotherDateOfBirth) {
+          alert('กรุณากรอกวัน/เดือน/ปีเกิดของมารดา');
+        }
+        if (isMotherForeigner) {
+          if (!MotherNationality) {
+            alert('กรุณากรอกสัญชาติของมารดา');
+          }
+        }
+        
+        if (!MotherOccupation) {
+          alert('กรุณากรอกอาชีพของมารดา');
+        }
+        if (!MotherOffice) {
+          alert('กรุณากรอกสถานที่ทำงานของมารดา');
+        }
+        if (!MotherTel) {
+          alert('กรุณากรอกเลขเบอร์โทรศัพท์ของมารดา');
+        }
+    }
+    
+  }
+    return true;
+  };
+
+  const handleFatherinfoClick = async () => {
     let numMissingFields = 0;
 
     if (!FatherEmail) {
-      numMissingFields++;
-    }
-    if (!MotherEmail) {
       numMissingFields++;
     }
     
@@ -890,35 +1068,48 @@ const hasParentInfo =
         numMissingFields++;
       }
     }
-    if (!isMotherRecordData) {
-
-      if (!MotherFirstname) {
-        numMissingFields++;
+    if (numMissingFields > 1) {
+      alert('กรุณากรอกข้อมูลผู้ปกครองให้ครบถ้วน');
+      handleTabChange('menu3');
+      return false;
+    }
+    else {
+      if (!FatherEmail) {
+        alert('กรุณากรอกอีเมลบิดา');
       }
-      if (!MotherLastname) {
-        numMissingFields++;
-      }
-      if (!MotherDateOfBirth) {
-        numMissingFields++;
-      }
-      if (isMotherForeigner) {
-        if (!MotherNationality) {
-          numMissingFields++;
+      if (!isFatherRecordData) {
+        if (!FatherFirstname) {
+          alert('กรุณากรอกชื่อบิดา');
+        }
+        if (!FatherLastname) {
+          alert('กรุณากรอกนามสกุลบิดา');
+        }
+        if (!FatherDateOfBirth) {
+          alert('กรุณากรอกวัน/เดือน/ปีเกิดของบิดา');
+        }
+        if (isFatherForeigner) {
+          if (!FatherNationality) {
+            alert('กรุณากรอกสัญชาติของบิดา');
+          }
+        }
+        
+        if (!FatherOccupation) {
+          alert('กรุณากรอกอาชีพของบิดา');
+        }
+        if (!FatherOffice) {
+          alert('กรุณากรอกสถานที่ทำงานของบิดา');
+        }
+        if (!FatherTel) {
+          alert('กรุณากรอกเลขเบอร์โทรศัพท์ของบิดา');
         }
       }
-      else {
-        setFatherNationality("ไทย");
-      }
-      if (!MotherOccupation) {
-        numMissingFields++;
-      }
-      if (!MotherOffice) {
-        numMissingFields++;
-      }
-      if (!MotherTel) {
-        numMissingFields++;
-      }
-    }
+  }
+    return true;
+  };
+
+  const handleParentinfoClick = async () => {
+    let numMissingFields = 0;
+
     
     if (!isParentRecordData) {
       if (!ParentEmail){
@@ -956,100 +1147,41 @@ const hasParentInfo =
       handleTabChange('menu3');
       return false;
     }
-    else {
-      if (!FatherEmail) {
-        alert('กรุณากรอกอีเมลบิดา');
+    else
+    {
+
+    if (!isParentRecordData) {
+      if (!ParentEmail){
+        alert('กรุณากรอกอีเมลผู้ปกครอง');
       }
-      if (!MotherEmail) {
-        alert('กรุณากรอกอีเมลมารดา');
+      if (!ParentFirstname) {
+        alert('กรุณากรอกชื่อผู้ปกครอง');
       }
-      if (!isFatherRecordData) {
-        if (!FatherFirstname) {
-          alert('กรุณากรอกชื่อบิดา');
-        }
-        if (!FatherLastname) {
-          alert('กรุณากรอกนามสกุลบิดา');
-        }
-        if (!FatherDateOfBirth) {
-          alert('กรุณากรอกวัน/เดือน/ปีเกิดของบิดา');
-        }
-        if (isFatherForeigner) {
-          if (!FatherNationality) {
-            alert('กรุณากรอกสัญชาติของบิดา');
-          }
-        }
-        
-        if (!FatherOccupation) {
-          alert('กรุณากรอกอาชีพของบิดา');
-        }
-        if (!FatherOffice) {
-          alert('กรุณากรอกสถานที่ทำงานของบิดา');
-        }
-        if (!FatherTel) {
-          alert('กรุณากรอกเลขเบอร์โทรศัพท์ของบิดา');
+      if (!ParentLastname) {
+        alert('กรุณากรอกนามสกุลผู้ปกครอง');
+      }
+      if (!ParentDateOfBirth) {
+        alert('กรุณากรอกวัน/เดือน/ปีเกิดของผู้ปกครอง');
+      }
+      if (isParentForeigner) {
+        if (!ParentNationality) {
+          alert('กรุณากรอกสัญชาติของผู้ปกครอง');
         }
       }
       
-      if (!isMotherRecordData) {
-        if (!MotherFirstname) {
-          alert('กรุณากรอกชื่อมารดา');
-        }
-        if (!MotherLastname) {
-          alert('กรุณากรอกนามสกุลมารดา');
-        }
-        if (!MotherDateOfBirth) {
-          alert('กรุณากรอกวัน/เดือน/ปีเกิดของมารดา');
-        }
-        if (isMotherForeigner) {
-          if (!MotherNationality) {
-            alert('กรุณากรอกสัญชาติของมารดา');
-          }
-        }
-        
-        if (!MotherOccupation) {
-          alert('กรุณากรอกอาชีพของมารดา');
-        }
-        if (!MotherOffice) {
-          alert('กรุณากรอกสถานที่ทำงานของมารดา');
-        }
-        if (!MotherTel) {
-          alert('กรุณากรอกเลขเบอร์โทรศัพท์ของมารดา');
-        }
-    }
-    // if (!whoAreParent){
-      if (!isParentRecordData) {
-        if (!ParentEmail){
-          alert('กรุณากรอกอีเมลผู้ปกครอง');
-        }
-        if (!ParentFirstname) {
-          alert('กรุณากรอกชื่อผู้ปกครอง');
-        }
-        if (!ParentLastname) {
-          alert('กรุณากรอกนามสกุลผู้ปกครอง');
-        }
-        if (!ParentDateOfBirth) {
-          alert('กรุณากรอกวัน/เดือน/ปีเกิดของผู้ปกครอง');
-        }
-        if (isParentForeigner) {
-          if (!ParentNationality) {
-            alert('กรุณากรอกสัญชาติของผู้ปกครอง');
-          }
-        }
-        
-        if (!ParentOccupation) {
-          alert('กรุณากรอกอาชีพของผู้ปกครอง');
-        }
-        if (!ParentOffice) {
-          alert('กรุณากรอกสถานที่ทำงานของผู้ปกครอง');
-        }
-        if (!ParentTel) {
-          alert('กรุณากรอกเลขเบอร์โทรศัพท์ของผู้ปกครอง');
-        }
-    }}
-  // }
+      if (!ParentOccupation) {
+        alert('กรุณากรอกอาชีพของผู้ปกครอง');
+      }
+      if (!ParentOffice) {
+        alert('กรุณากรอกสถานที่ทำงานของผู้ปกครอง');
+      }
+      if (!ParentTel) {
+        alert('กรุณากรอกเลขเบอร์โทรศัพท์ของผู้ปกครอง');
+      }
+  }}
     return true;
   };
-  
+
     return (
       <div className="d-flex flex-column align-items-center">
         <div class="card" style={{width: '60vw', height: 'auto'}}>
@@ -1233,18 +1365,20 @@ const hasParentInfo =
                         // All required fields have been filled out
                         handleTabChange('menu2');
                       };
-                      // if ( MotherEmail && MotherFirstname && MotherLastname && MotherDateOfBirth && MotherNationality && MotherOccupation && MotherOffice && MotherTel ) {
+                      if ( MotherEmail && MotherFirstname && MotherLastname && MotherDateOfBirth && MotherNationality && MotherOccupation && MotherOffice && MotherTel ) {
 
-                        
-                      //   // SomeoneElseEmail && MotherFirstname && ParentLastname && ParentDateOfBirth && ParentNationality && ParentOccupation && ParentOffice && ParentTel
-                      //   // if (FatherEmail && isFatherRecordData) {
+                        handleTabChange('menu2');
+                      
+                      };
+                      if ( ParentEmail && ParentFirstname && ParentLastname && ParentDateOfBirth && ParentNationality && ParentOccupation && ParentOffice && ParentTel ) {
 
-                      //   // ทำงานเมื่อผ่านเงื่อนไขทุกอย่าง
-                      //   handleTabChange('menu2');
-                        
-                      //   // href="#menu2"
-                      // };
-                       handleParentinfoClick();
+                
+                        handleTabChange('menu2');
+      
+                      };
+                      handleFatherinfoClick();
+                      handleMotherinfoClick();
+                      handleParentinfoClick();
                        
                     
                     }} 

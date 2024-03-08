@@ -168,7 +168,7 @@ const google = () => {
                            
                                     <Link to='/Register' style={linkStyle}>ลืมรหัสผ่าน</Link>
                                
-                                    <Link to="Parent_menu">
+                                    <Link to="/Parent_menu">
                                         <button type="submit" className="btn btn-primary float-end" style={{fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>Log in</button>
                                     </Link>
                                <br />

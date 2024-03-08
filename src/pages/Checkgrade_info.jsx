@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link} from 'react-router-dom'
 import Header from '../components/Header';
 
-const Checkgrade = () => {
+const Checkgrade_info = () => {
   const handleGoBack = () => {
     window.history.back();
   };
@@ -36,6 +36,12 @@ const Checkgrade = () => {
     // เช่น ส่งข้อมูลไปยังเซิร์ฟเวอร์หรือทำการตรวจสอบข้อมูล
   };
 
+  const [StudentData, setStudentData] = useState(
+    {
+        StudentID : ["12345","56789"]
+    }
+  );
+  const {StudentID } = StudentData;
   const [Yeardata, setYearData] = useState(
     {
       Year : ["2565","2564","2563"],
@@ -54,43 +60,35 @@ const Checkgrade = () => {
     
     );
 
-  // const [selectedYear, setSelectedYear] = useState("");
-  // const [selectedSemester, setSelectedSemester] = useState("");
-  // const [chapters, setChapters] = useState([]);
-
-  // const handleYearChange = (event) => {
-  //   const selectedYearValue = event.target.value;
-  //   setSelectedYear(selectedYearValue);
-  //   setSelectedSemester("");
-  //   // if (selectedYearValue) {
-  //   //   const semesters = subjectObject[selectedYearValue];
-  //   //   setChapters(semesters);
-  //   // } else {
-  //   //   setChapters([]); // เมื่อไม่ได้เลือกปีการศึกษาให้ล้าง chapters
-  //   // }
-  // };
-  
-  // const handleSemesterChange = (event) => {
-  //   const selectedSemesterValue = event.target.value;
-  //   setSelectedSemester(selectedSemesterValue);
-  // };
+  const [selectedStudent, setSelectedStudent] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedSemester, setSelectedSemester] = useState("");
   const [tableHeader, setTableHeader] = useState("");
+ 
+  const handleStudentChange = (event) => {
+    const selectedStudentValue = event.target.value;
+    setSelectedStudent(selectedStudentValue);
+  };
   
   const handleYearChange = (event) => {
     const selectedYearValue = event.target.value;
     setSelectedYear(selectedYearValue);
-    setSelectedSemester(""); // Reset the semester when changing the year
-    // Filter data based on the selected year
-    
+    setSelectedSemester("");
+    // if (selectedYearValue) {
+    //   const semesters = subjectObject[selectedYearValue];
+    //   setChapters(semesters);
+    // } else {
+    //   setChapters([]); // เมื่อไม่ได้เลือกปีการศึกษาให้ล้าง chapters
+    // }
   };
   
   const handleSemesterChange = (event) => {
-    setSelectedSemester(event.target.value);
+    const selectedSemesterValue = event.target.value;
+    setSelectedSemester(selectedSemesterValue);
   };
-  
+
   useEffect(() => {
+    
     if (selectedYear && selectedSemester) {
       setTableHeader(`ปีการศึกษา ${selectedYear} ภาคการศึกษาที่ ${selectedSemester}`);
     }
@@ -99,17 +97,36 @@ const Checkgrade = () => {
     }
   }, [selectedYear, selectedSemester]);
 
+
   return (
     <>
       
 
-      <Header header="ระบบจัดการสารสนเทศ" subhead="บริการสำหรับนักเรียน" />
+      <Header header="ระบบจัดการสารสนเทศ" subhead="บริการสำหรับผู้ปกครอง" />
       <br />
       <div className="d-flex flex-column"style={{fontFamily: 'Kanit, sans-serif',height:"100vh"}}>
       <div className="container d-flex flex-column align-items-center justify-content-center" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
         <h2>ระบบตรวจสอบผลการเรียน</h2><br />
       </div>
 
+      <div className="container d-flex align-items-center justify-content-center"style={{ flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px'}}>
+            <div className="d-flex align-items-center">
+              <span style={{marginRight:"10px"}}>เลือกข้อมูลนักเรียน :</span>
+            </div>
+            <div className="dropdown" style={{ maxWidth: '100%' }}>
+              <select value={selectedStudent} onChange={handleStudentChange} className="custom-select">
+                <option value="">เลือกข้อมูล</option>
+                {StudentID.map((Student) => (
+                  <option key={Student} value={Student}>
+                    {Student}
+                  </option>
+                ))}
+              </select>
+            </div>
+        </div>
+
+      </div>
       <div className="container d-flex align-items-center justify-content-center"style={{ flexWrap: 'wrap' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px'}}>
             <div className="d-flex align-items-center">
@@ -131,8 +148,6 @@ const Checkgrade = () => {
           <div className="d-flex align-items-center">
             <span style={{marginRight:"10px"}}>ภาคเรียนที่ :</span>
           </div>
-          
-
           <div className="dropdown" style={{ maxWidth: '100%' }}>
                 <select value={selectedSemester} onChange={handleSemesterChange} className="custom-select">
                   <option value="">เลือกภาคเรียน</option>
@@ -156,7 +171,7 @@ const Checkgrade = () => {
 
         <thead>          
           <tr>
-            <th colSpan="9" style={{ textAlign: 'center' }}>{tableHeader}</th>
+          <th colSpan="9" style={{ textAlign: 'center' }}>{tableHeader}</th>
           </tr>
 
           <tr>
@@ -180,7 +195,7 @@ const Checkgrade = () => {
         </thead>
 
         <tbody>
-      {subjectObject.map((subject) => (
+        {subjectObject.map((subject) => (
         <tr key={subject.id} style={{ height: '50px' }}>
           <td >{subject.id}</td>
           <td >{subject.name}</td>
@@ -207,4 +222,4 @@ const Checkgrade = () => {
   );
 }
 
-export default Checkgrade
+export default Checkgrade_info
