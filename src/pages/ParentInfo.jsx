@@ -149,9 +149,9 @@ function ParentsInfo({  //------------------1------------------
     }, [FatherDateOfBirth, sendFatherDateOfBirthToEnroll]);
 
     useEffect(() => {
-        if (!isFatherRecordData){
+        // if (!isFatherRecordData){
             sendisFatherForeignerToEnroll(isFatherForeigner);
-        }
+        // }
     }, [isFatherForeigner, sendisFatherForeignerToEnroll]);
 
     useEffect(() => {
@@ -206,9 +206,9 @@ function ParentsInfo({  //------------------1------------------
     }, [MotherDateOfBirth, sendMotherDateOfBirthToEnroll]);
 
     useEffect(() => {
-        if (!isMotherRecordData){
+        // if (!isMotherRecordData){
             sendisMotherForeignerToEnroll(isMotherForeigner);
-        }
+        // }
     }, [isMotherForeigner, sendisMotherForeignerToEnroll]);
 
     useEffect(() => {
@@ -263,9 +263,9 @@ function ParentsInfo({  //------------------1------------------
     }, [ParentDateOfBirth, sendParentDateOfBirthToEnroll]);
 
     useEffect(() => {
-        if (!isParentRecordData){
+        // if (!isParentRecordData){
             sendisParentForeignerToEnroll(isParentForeigner);
-        }
+        // }
     }, [isParentForeigner, sendisParentForeignerToEnroll]);
 
     useEffect(() => {
@@ -496,28 +496,28 @@ function ParentsInfo({  //------------------1------------------
             if (FatherNationality !== '') {
                 // sendFatherNationalityToEnroll(FatherNationality);
             }
-            // sendisFatherRecordDataToEnroll(isFatherForeigner);
+            sendisFatherRecordDataToEnroll(isFatherForeigner);
         }
     // }, [isFatherRecordData, FatherEmail, sendFatherNationalityToEnroll]); 
     }, [isFatherForeigner, FatherEmail]); 
 
     useEffect(() => {
-        if (isMotherForeigner) {
-            if (MotherNationality !== '') {
+        // if (isMotherForeigner) {
+        //     if (MotherNationality !== '') {
                 // sendMotherNationalityToEnroll(MotherNationality);
-            }
-            // sendisMotherForeignerToEnroll(isMotherForeigner);
-        }
+            // }
+            sendisMotherForeignerToEnroll(isMotherForeigner);
+        // }
     // }, [isMotherForeigner, MotherNationality, sendMotherNationalityToEnroll]); 
     }, [isMotherForeigner, MotherNationality]); 
 
     useEffect(() => {
-        if (isParentForeigner) {
-            if (ParentNationality !== '') {
+        // if (isParentForeigner) {
+        //     if (ParentNationality !== '') {
                 // sendParentNationalityToEnroll(ParentNationality);
-            }
-            // sendisParentForeignerToEnroll(isParentForeigner);
-        }
+            // }
+            sendisParentForeignerToEnroll(isParentForeigner);
+        // }
     // }, [isParentForeigner, ParentNationality, sendParentNationalityToEnroll]);
     }, [isParentForeigner, ParentNationality]);
 
@@ -546,6 +546,7 @@ function ParentsInfo({  //------------------1------------------
 
                 // แปลงวันที่ในรูปแบบ 'YYYY-MM-DD' เป็นวันที่ใน JavaScript
                 const date = new Date(dateString);
+                
 
                 // รูปแบบวันที่ใน JavaScript โดยใช้วิธี toLocaleDateString()
                 const formattedDate = date.toLocaleDateString();
@@ -565,7 +566,7 @@ function ParentsInfo({  //------------------1------------------
                 if (isFatherRecordData){
                     setFatherFirstname('');
                     setFatherLastname('');
-                    setFatherDateOfBirth('');
+                    setFatherDateOfBirth(new Date());
                     setFatherNationality('');
                     setFatherOccupation('');
                     setFatherOffice('');
