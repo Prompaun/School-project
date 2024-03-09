@@ -67,7 +67,9 @@ body{
   width: 1000px; /* กำหนดความกว้างของการ์ด (ความกว้างแนวนอน) */
   height: auto; /* ปรับความสูงอัตโนมัติเพื่อให้เนื้อหาภายในมีขนาดเหมาะสม */
 }
-
+.hidden {
+  display: none;
+}
 .card-footer {
   text-align: Right; /* จัดปุ่มให้อยู่ตรงกลางของ footer */
   padding: 10px; /* ระยะห่างของ footer */
