@@ -60,7 +60,7 @@ const handleFileChange = (event) => {
     const student_picture_file = event.target;
 
     // if (student_picture_file.files.length === 0){
-        // setStudent_picture_file('');
+    //     setStudent_picture_file('');
         // sendImageDataToEnroll('');
     //   }
     
@@ -68,11 +68,13 @@ const handleFileChange = (event) => {
         const file = student_picture_file.files[0];
         const fileType = '.' + file.name.split('.').pop().toLowerCase();
         if (allowedFileTypes.includes(fileType)) {
-            setStudent_picture_file(event);
+            
 
             let fileName = '';
             if (student_picture_file.files.length === 1) {
+                setStudent_picture_file(event.target.files[0]);
                 fileName = file.name;
+                console.log("file.name", file.name);
             } else {
                 fileName = student_picture_file.files.length + ' files selected';
             }
@@ -85,7 +87,9 @@ const handleFileChange = (event) => {
         } else {
             alert('กรุณาเลือกไฟล์ที่มีนามสกุล .pdf, .jpg, .jpeg หรือ .png เท่านั้น');
             // เคลียร์ค่า input file และ label
-            student_picture_file.value = '';
+            event.target.value = '';
+            // setStudent_picture_file('');
+            // student_picture_file.value = '';
             const fileInputLabel = document.getElementById('fileInputLabel');
             if (fileInputLabel) {
                 fileInputLabel.textContent = 'Select Files';
@@ -660,6 +664,8 @@ const handleSubmit = async (event) => {
             // hide personal info
 
             const handlePersonalNextClick = () => {
+                
+                console.log("file.name", Student_picture_file);
                 if (checkInputStudent()) {
                    
                     setStudent_info(false);
@@ -670,6 +676,7 @@ const handleSubmit = async (event) => {
             // hide household
             
             const handleHouseholdBackClick = () => {
+                console.log("file.name", Student_picture_file);
                 if (checkInputHousehold()) {
                    
                     setStudent_info(true);
@@ -712,7 +719,7 @@ const handleSubmit = async (event) => {
           const CopyofStudentIDCard = document.getElementById('CopyofStudentIDCard');
 
         
-          if (student_picture_file_input.value === "") {
+          if (student_picture_file_input === "") {
             alert('กรุณาเลือกไฟล์รูปภาพของนักเรียน');
             student_picture_file_input.focus();
             
@@ -724,10 +731,10 @@ const handleSubmit = async (event) => {
         //     setTimeout(() => student_nid_input.focus(), 100);
         //     return false;
         //   }
-        if (!maleRadio.checked && !femaleRadio.checked) {
-            alert('กรุณาเลือกคำนำหน้าชื่อของนักเรียน');
-            return false;
-        }
+        // if (!maleRadio.checked && !femaleRadio.checked) {
+        //     alert('กรุณาเลือกคำนำหน้าชื่อของนักเรียน');
+        //     return false;
+        // }
         //   if (surname.value === "") {
         //     alert('กรุณากรอกชื่อของนักเรียน');
         //     surname.scrollIntoView({ behavior: 'smooth' });
@@ -740,12 +747,12 @@ const handleSubmit = async (event) => {
         //     setTimeout(() => LastName.focus(), 100);
         //     return false;
         //   }
-          if (!DOB) {
-            alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
-            // DOB.scrollIntoView({ behavior: 'smooth' });
-            // setTimeout(() => DOB.focus(), 100);
-            return false;
-          }
+        //   if (!DOB) {
+        //     alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
+        //     // DOB.scrollIntoView({ behavior: 'smooth' });
+        //     // setTimeout(() => DOB.focus(), 100);
+        //     return false;
+        //   }
         //  if (CopyofStudentIDCard.value === "") {
         //     alert('กรุณาเลือกไฟล์สำเนาสูติบัตรของนักเรียน');
         //     CopyofStudentIDCard.scrollIntoView({ behavior: 'smooth' });
@@ -758,17 +765,17 @@ const handleSubmit = async (event) => {
         const option3 = document.getElementById('option3');
         const option4 = document.getElementById('option4');
 
-        if (!option1.checked && !option2.checked && !option3.checked && !option4.checked) {
-            alert('กรุณาเลือกประเภทของหลักฐานการศึกษาจากโรงเรียนเดิม');
-            return false;
-        }
-        const PreviousSchoolEducationalRecordsFile = document.getElementById('PreviousSchoolEducationalRecordsFile');
-        if (PreviousSchoolEducationalRecordsFile.value === "") {
-            alert('กรุณาเลือกไฟล์ประกาศนียบัตรการศึกษาจากโรงเรียนเดิม');
-            PreviousSchoolEducationalRecordsFile.scrollIntoView({ behavior: 'smooth' });
-            setTimeout(() => PreviousSchoolEducationalRecordsFile.focus(), 100);
-            return false;
-          }
+        // if (!option1.checked && !option2.checked && !option3.checked && !option4.checked) {
+        //     alert('กรุณาเลือกประเภทของหลักฐานการศึกษาจากโรงเรียนเดิม');
+        //     return false;
+        // }
+        // const PreviousSchoolEducationalRecordsFile = document.getElementById('PreviousSchoolEducationalRecordsFile');
+        // if (PreviousSchoolEducationalRecordsFile.value === "") {
+        //     alert('กรุณาเลือกไฟล์ประกาศนียบัตรการศึกษาจากโรงเรียนเดิม');
+        //     PreviousSchoolEducationalRecordsFile.scrollIntoView({ behavior: 'smooth' });
+        //     setTimeout(() => PreviousSchoolEducationalRecordsFile.focus(), 100);
+        //     return false;
+        //   }
 
           return true;
         }
@@ -779,18 +786,18 @@ const handleSubmit = async (event) => {
             const Province = document.getElementById('Province');
             
   
-            if (HouseNumber_input.value === "") {
-              alert('กรุณากรอกบ้านเลขที่ด้วยค่ะ');
-              HouseNumber_input.focus();
+            // if (HouseNumber_input.value === "") {
+            //   alert('กรุณากรอกบ้านเลขที่ด้วยค่ะ');
+            //   HouseNumber_input.focus();
               
-              return false;
-            }
-            if (Province.value === "") {
-              alert('กรุณากรอกจังหวัดของที่อยู่ตามทะเบียนบ้านด้วยค่ะ');
-              Province.focus();
+            //   return false;
+            // }
+            // if (Province.value === "") {
+            //   alert('กรุณากรอกจังหวัดของที่อยู่ตามทะเบียนบ้านด้วยค่ะ');
+            //   Province.focus();
   
-              return false;
-            }
+            //   return false;
+            // }
             
             return true;
           }
@@ -854,13 +861,16 @@ return (
                 type="file"
                 name="student_picture_file_input"
                 className="form-control"
-                value={Student_picture_file ? Student_picture_file.name : ''}
+                // value={Student_picture_file ? Student_picture_file.name : ''}
+                // value={Student_picture_file.name || ''}
+                // value={Student_picture_file}
+                // value={Student_picture_file.name}
                 onChange={handleFileChange}
                 accept=".pdf, .jpg, .jpeg, .png"
-               required
+                required
               
                 />
-                {/* <label htmlFor="student_picture_file_input" id="fileInputLabel">Select Files</label> */}
+                <span style={{ display: 'block' }}>{Student_picture_file && <span>{Student_picture_file.name}</span>}</span>
             </div>
         </div>
 
