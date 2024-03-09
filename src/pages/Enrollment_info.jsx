@@ -1,4 +1,4 @@
-import React,{useState,useRef } from 'react'
+import React,{useState,useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 // import Tab_enroll from '../components/Tab_enroll';
@@ -740,12 +740,12 @@ const handleSubmit = async (event) => {
         //     setTimeout(() => LastName.focus(), 100);
         //     return false;
         //   }
-          if (!DOB) {
-            alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
-            // DOB.scrollIntoView({ behavior: 'smooth' });
-            // setTimeout(() => DOB.focus(), 100);
-            return false;
-          }
+        //   if (!DOB) {
+        //     alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
+        //     // DOB.scrollIntoView({ behavior: 'smooth' });
+        //     DOB.focus();
+        //     return false;
+        //   }
         //  if (CopyofStudentIDCard.value === "") {
         //     alert('กรุณาเลือกไฟล์สำเนาสูติบัตรของนักเรียน');
         //     CopyofStudentIDCard.scrollIntoView({ behavior: 'smooth' });
@@ -780,52 +780,369 @@ const handleSubmit = async (event) => {
             const District = document.getElementById('District');
             const SubDistrict = document.getElementById('SubDistrict');
   
-            if (HouseNumber_input.value === "") {
-              alert('กรุณากรอกบ้านเลขที่');
-              HouseNumber_input.scrollIntoView({ behavior: 'smooth' });
-            setTimeout(() => HouseNumber_input.focus(), 100);
+            // if (HouseNumber_input.value === "") {
+            //   alert('กรุณากรอกบ้านเลขที่');
+            //   HouseNumber_input.scrollIntoView({ behavior: 'smooth' });
+            // setTimeout(() => HouseNumber_input.focus(), 100);
               
-              return false;
-            }
-            if (Province.value === "") {
-              alert('กรุณากรอกจังหวัดของที่อยู่ตามทะเบียนบ้าน');
-              Province.scrollIntoView({ behavior: 'smooth' });
-                setTimeout(() => Province.focus(), 100);
+            //   return false;
+            // }
+            // if (Province.value === "") {
+            //   alert('กรุณากรอกจังหวัดของที่อยู่ตามทะเบียนบ้าน');
+            //   Province.scrollIntoView({ behavior: 'smooth' });
+            //     setTimeout(() => Province.focus(), 100);
   
-              return false;
-            }
-            if (District.value === "") {
-                alert('กรุณากรอกเขต/อำเภอของที่อยู่ตามทะเบียนบ้าน');
-                District.scrollIntoView({ behavior: 'smooth' });
-                  setTimeout(() => District.focus(), 100);
+            //   return false;
+            // }
+            // if (District.value === "") {
+            //     alert('กรุณากรอกเขต/อำเภอของที่อยู่ตามทะเบียนบ้าน');
+            //     District.scrollIntoView({ behavior: 'smooth' });
+            //       setTimeout(() => District.focus(), 100);
     
-                return false;
-              }
-              if (SubDistrict.value === "") {
-                alert('กรุณากรอกแขวง/ตำบลของที่อยู่ตามทะเบียนบ้าน');
-                SubDistrict.scrollIntoView({ behavior: 'smooth' });
-                  setTimeout(() => SubDistrict.focus(), 100);
+            //     return false;
+            //   }
+            //   if (SubDistrict.value === "") {
+            //     alert('กรุณากรอกแขวง/ตำบลของที่อยู่ตามทะเบียนบ้าน');
+            //     SubDistrict.scrollIntoView({ behavior: 'smooth' });
+            //       setTimeout(() => SubDistrict.focus(), 100);
     
-                return false;
-              }
+            //     return false;
+            //   }
+            //   const HouseReg_file = document.getElementById('HouseReg_file');
+            //   if (HouseReg_file.value === "") {
+            //     alert('กรุณาอัพโหลดไฟล์สำเนาทะเบียนบ้าน');
+            //     HouseReg_file.scrollIntoView({ behavior: 'smooth' });
+            //       setTimeout(() => HouseReg_file.focus(), 100);
+    
+            //     return false;
+            //   }
 
             return true;
           }
           const checkInputParent = () => {
             const Father_Email = document.getElementById('Father_Email');
-          
-            
   
-            if (Father_Email.value === "") {
-              alert('กรุณากรอกอีเมลบิดา');
-                Father_Email.scrollIntoView({ behavior: 'smooth' });
-                setTimeout(() => Father_Email.focus(), 100);
-              return false;
-            }
+            // if (Father_Email.value === "") {
+            //   alert('กรุณากรอกอีเมลบิดา');
+            //     Father_Email.scrollIntoView({ behavior: 'smooth' });
+            //     setTimeout(() => Father_Email.focus(), 100);
+            //   return false;
+            // }
             
+            // if (!isFatherRecordData) {
+            //     const isFatherDataValid = checkFatherRecordData();
+            //     if (!isFatherDataValid) {
+            //         return false;
+            //     }
+                
+            // }
+            // const Mother_Email = document.getElementById('Mother_Email');
+            // if (Mother_Email.value === "") {
+            //   alert('กรุณากรอกอีเมลมารดา');
+            //   Mother_Email.scrollIntoView({ behavior: 'smooth' });
+            //     setTimeout(() => Mother_Email.focus(), 100);
+            //   return false;
+            // }
+            // if (!isMotherRecordData) {
+            //     const isMotherDataValid = checkMotherRecordData();
+            //     if (!isMotherDataValid) {
+            //         return false;
+            //     }
+                
+            // }
+
+            const FatherIsParent = document.getElementById('FatherIsParent');
+            const MotherIsParent = document.getElementById('MotherIsParent');
+            const FatherAndMotherAreParent = document.getElementById('FatherAndMotherAreParent');
+            const SomeoneElseIsParent = document.getElementById('SomeoneElseIsParent');
+
+            if (!FatherIsParent.checked && !MotherIsParent.checked && !FatherAndMotherAreParent.checked && !SomeoneElseIsParent.checked ) {
+                alert('กรุณาเลือกข้อมูลผู้ปกครอง');
+                return false;
+            }
+            if (SomeoneElseIsParent.checked) {
+                const checkParentRecordDataValid = checkParentRecordData();
+                if (!checkParentRecordDataValid) {
+                    return false;
+                }
+            }
             
             return true;
           }
+
+        // ----------------------check father---------------------------------------------
+          const checkFatherRecordData = () => {
+            
+            // const father_Firstname = document.getElementById('father_Firstname');
+            // if (father_Firstname.value === "") {
+            //     alert('กรุณากรอกชื่อบิดา');
+            //     father_Firstname.scrollIntoView({ behavior: 'smooth' });
+            //     setTimeout(() => father_Firstname.focus(), 100);
+            //     return false;
+            // }
+            // const father_lastname = document.getElementById('father_lastname');
+
+            // if (father_lastname.value === "") {
+            //     alert('กรุณากรอกนามสกุลบิดา');
+            //     father_lastname.scrollIntoView({ behavior: 'smooth' });
+            //     setTimeout(() => father_lastname.focus(), 100);
+            //     return false;
+            // }
+            // const father_DOB = FatherDateOfBirth;
+
+            // if (!father_DOB) {
+            //     alert('กรุณากรอกวัน/เดือน/ปีเกิดของบิดา');
+            //     return false;
+            // } 
+            const FatherForeigner = document.getElementById('FatherForeigner');
+            const FatherNotForeigner = document.getElementById('FatherNotForeigner');
+
+            if (!FatherForeigner.checked && !FatherNotForeigner.checked) {
+                alert('กรุณาเลือกสัญชาติของบิดา');
+                return false;
+            }
+            if (FatherForeigner.checked) {
+                const isFatherForeignerValid = checkFatherForeigner();
+                if (!isFatherForeignerValid) {
+                    return false;
+                }
+            }
+            // const father_Occupation = document.getElementById('father_Occupation');
+            // if (father_Occupation.value === "") {
+            //     alert('กรุณากรอกอาชีพของบิดา');
+            //     father_Occupation.scrollIntoView({ behavior: 'smooth' });
+            //     setTimeout(() => father_Occupation.focus(), 100);
+            //     return false;
+            // }
+            // const father_Workplace = document.getElementById('father_Workplace');
+            // if (father_Workplace.value === "") {
+            //     alert('กรุณากรอกสถานที่ทำงานของบิดา');
+            //     father_Workplace.scrollIntoView({ behavior: 'smooth' });
+            //     setTimeout(() => father_Workplace.focus(), 100);
+            //     return false;
+            // }
+            
+            const father_phoneNumber = document.getElementById('father_phoneNumber');
+            if (father_phoneNumber.value === "") {
+                alert('กรุณากรอกเลขเบอร์โทรศัพท์ของบิดา');
+                father_phoneNumber.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => father_phoneNumber.focus(), 100);
+                return false;
+            }
+
+            return true;
+          }
+        
+        
+        useEffect(() => {
+            const FatherNotForeigner = document.getElementById('FatherNotForeigner');
+            if (FatherNotForeigner) {
+                setFatherNationality("");
+            }
+       
+        }, [isFatherForeigner]); 
+
+
+          const checkFatherForeigner = () => {
+            const father_Nationality = document.getElementById('father_Nationality');
+            if (father_Nationality.value ==="") {
+                alert('กรุณากรอกสัญชาติของบิดา');
+                father_Nationality.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => father_Nationality.focus(), 100);
+                return false;
+            }
+            
+            return true;
+          }
+
+        // ---------------------------------check mother--------------------------------------
+        const checkMotherRecordData = () => {
+            
+            const mother_Firstname = document.getElementById('mother_Firstname');
+            if (mother_Firstname.value === "") {
+                alert('กรุณากรอกชื่อมารดา');
+                mother_Firstname.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => mother_Firstname.focus(), 100);
+                return false;
+            }
+            const mother_lastname = document.getElementById('mother_lastname');
+
+            if (mother_lastname.value === "") {
+                alert('กรุณากรอกนามสกุลมารดา');
+                mother_lastname.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => mother_lastname.focus(), 100);
+                return false;
+            }
+            const Mother_DOB = MotherDateOfBirth;
+
+            if (!Mother_DOB) {
+                alert('กรุณากรอกวัน/เดือน/ปีเกิดของมารดา');
+                return false;
+            } 
+            const MotherForeigner = document.getElementById('MotherForeigner');
+            const MotherNotForeigner = document.getElementById('MotherNotForeigner');
+
+            if (!MotherForeigner.checked && !MotherNotForeigner.checked) {
+                alert('กรุณาเลือกสัญชาติของมารดา');
+                return false;
+            }
+            if (MotherForeigner.checked) {
+                const isMotherForeignerValid = checkMotherForeigner();
+                if (!isMotherForeignerValid) {
+                    return false;
+                }
+            }
+            const mother_Occupation = document.getElementById('mother_Occupation');
+            if (mother_Occupation.value === "") {
+                alert('กรุณากรอกอาชีพของบิดา');
+                mother_Occupation.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => mother_Occupation.focus(), 100);
+                return false;
+            }
+            const mother_Workplace = document.getElementById('mother_Workplace');
+            if (mother_Workplace.value === "") {
+                alert('กรุณากรอกสถานที่ทำงานของบิดา');
+                mother_Workplace.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => mother_Workplace.focus(), 100);
+                return false;
+            }
+            
+            const mother_phoneNumber = document.getElementById('mother_phoneNumber');
+            if (mother_phoneNumber.value === "") {
+                alert('กรุณากรอกเลขเบอร์โทรศัพท์ของบิดา');
+                mother_phoneNumber.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => mother_phoneNumber.focus(), 100);
+                return false;
+            }
+
+            return true;
+          }
+        
+        
+        useEffect(() => {
+            const MotherNotForeigner = document.getElementById('MotherNotForeigner');
+            if (MotherNotForeigner) {
+                setMotherNationality("");
+            }
+       
+        }, [isMotherForeigner]); 
+
+
+          const checkMotherForeigner = () => {
+            const mother_Nationality = document.getElementById("mother_Nationality");
+            if (mother_Nationality.value ==="") {
+                alert('กรุณากรอกสัญชาติของมารดา');
+                mother_Nationality.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => mother_Nationality.focus(), 100);
+                return false;
+            }
+            
+            return true;
+          }
+        
+
+        // ---------------------------------check parent--------------------------------------
+        const checkParentRecordData = () => {
+            
+            const ParentEmail = document.getElementById('ParentEmail');
+            if (ParentEmail.value === "") {
+                alert('กรุณากรอกอีเมลผู้ปกครอง');
+                ParentEmail.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => ParentEmail.focus(), 100);
+                return false;
+            }
+            const SomeoneElseIsParent_surname = document.getElementById('SomeoneElseIsParent_surname');
+
+            if (SomeoneElseIsParent_surname.value === "") {
+                alert('กรุณากรอกชื่อผู้ปกครอง');
+                SomeoneElseIsParent_surname.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => SomeoneElseIsParent_surname.focus(), 100);
+                return false;
+            }
+            const SomeoneElseIsParent_lastname = document.getElementById('SomeoneElseIsParent_lastname');
+
+            if (SomeoneElseIsParent_lastname.value === "") {
+                alert('กรุณากรอกนามสกุลผู้ปกครอง');
+                SomeoneElseIsParent_lastname.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => SomeoneElseIsParent_lastname.focus(), 100);
+                return false;
+            }
+
+            const Parent_DOB = ParentDateOfBirth;
+
+            if (!Parent_DOB) {
+                alert('กรุณากรอกวัน/เดือน/ปีเกิดของผู้ปกครอง');
+                return false;
+            } 
+            const ParentForeigner = document.getElementById('ParentForeigner');
+            const ParentNotForeigner = document.getElementById('ParentNotForeigner');
+
+            if (!ParentForeigner.checked && !ParentNotForeigner.checked) {
+                alert('กรุณาเลือกสัญชาติของผู้ปกครอง');
+                return false;
+            }
+            if (ParentForeigner.checked) {
+                const isParentForeignerValid = checkParentForeigner();
+                if (!isParentForeignerValid) {
+                    return false;
+                }
+            }
+            const Parent_Occupation = document.getElementById('Parent_Occupation');
+            if (Parent_Occupation.value === "") {
+                alert('กรุณากรอกอาชีพของผู้ปกครอง');
+                Parent_Occupation.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => Parent_Occupation.focus(), 100);
+                return false;
+            }
+            const Parent_Workplace = document.getElementById('Parent_Workplace');
+            if (Parent_Workplace.value === "") {
+                alert('กรุณากรอกสถานที่ทำงานของผู้ปกครอง');
+                Parent_Workplace.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => Parent_Workplace.focus(), 100);
+                return false;
+            }
+            
+            const SomeoneElseIsParent_phoneNumber = document.getElementById('SomeoneElseIsParent_phoneNumber');
+            if (SomeoneElseIsParent_phoneNumber.value === "") {
+                alert('กรุณากรอกเลขเบอร์โทรศัพท์ของผู้ปกครอง');
+                SomeoneElseIsParent_phoneNumber.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => SomeoneElseIsParent_phoneNumber.focus(), 100);
+                return false;
+            }
+            const Parent_Relation = document.getElementById('Parent_Relation');
+            if (Parent_Relation.value === "") {
+                alert('กรุณากรอกความเกี่ยวข้องกับผู้สมัคร');
+                Parent_Relation.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => Parent_Relation.focus(), 100);
+                return false;
+            }
+
+            return true;
+          }
+        
+        
+        useEffect(() => {
+            const ParentNotForeigner = document.getElementById('ParentNotForeigner');
+            if (ParentNotForeigner) {
+                setParentNationality("");
+            }
+       
+        }, [isParentForeigner]); 
+
+
+          const checkParentForeigner = () => {
+            const parent_Nationality = document.getElementById("parent_Nationality");
+            if (parent_Nationality.value ==="") {
+                alert('กรุณากรอกสัญชาติของผู้ปกครอง');
+                parent_Nationality.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => parent_Nationality.focus(), 100);
+                return false;
+            }
+            
+            return true;
+          }
+
+
         const [Student_info, setStudent_info] = useState(true); 
         const [Household, setHousehold] = useState(false); 
         const [Parent_info, setParent_info] = useState(false); 
@@ -1167,7 +1484,7 @@ return (
               
             </div>
               <div className="align-items-center">
-              <input type="File" className="form-control" style={{maxWidth:"70%"}} onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
+              <input id="HouseReg_file"type="File" className="form-control" style={{maxWidth:"70%"}} onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
           <br />
         </div>
       
@@ -1406,10 +1723,10 @@ return (
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '18px', marginLeft: '15px' }}>
 
                     <div className="d-flex align-items-center">
-                        <label htmlFor="mother_surname" className="col-form-label">ชื่อ</label>
+                        <label htmlFor="mother_Firstname" className="col-form-label">ชื่อ</label>
                     </div>
                     <div className="align-items-center" style={{maxWidth:"100%"}}>
-                        <input type="text" className="form-control" id="mother_surname" name="mother_surname" placeholder="กรอกชื่อ" value={MotherFirstname} onChange={handleMotherFirstnameChange} />
+                        <input type="text" className="form-control" id="mother_Firstname" name="mother_Firstname" placeholder="กรอกชื่อ" value={MotherFirstname} onChange={handleMotherFirstnameChange} />
                         </div>
                     <div className="align-items-center">
                         <label htmlFor="mother_lastname" className="col-form-label">นามสกุล</label>
