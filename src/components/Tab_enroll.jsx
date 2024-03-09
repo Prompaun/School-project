@@ -94,17 +94,36 @@ function Tab_enroll({ user }) {
   const [whoAreParent, setwhoAreParent] = useState(false);
 
 
-   // ฟังก์ชันสำหรับการแปลงวันที่ให้เป็นรูปแบบ "YYYY-MM-DD"
+  //  ฟังก์ชันสำหรับการแปลงวันที่ให้เป็นรูปแบบ "YYYY-MM-DD"
   const formatDate = (date) => {
-      const year = date.getFullYear();
+      if (date !== ''){
+        const year = date.getFullYear();
       let month = date.getMonth() + 1;
       month = month < 10 ? '0' + month : month;
       let day = date.getDate();
       day = day < 10 ? '0' + day : day;
       // 
-      console.log(`${year}-${month}-${day}`);
+      // console.log(`${year}-${month}-${day}`);
       return `${year}-${month}-${day}`;
+      }
+      else{
+        return new Date();
+      }
+      
   };
+
+//   const formatDate = (date) => {
+//     if (!date || typeof date !== 'object' || !date.getFullYear) {
+//         console.error('Invalid date object:', date);
+//         return ''; // หรือเปลี่ยนเป็นค่าที่ถูกต้องตามสถานการณ์
+//     }
+//     const year = date.getFullYear();
+//     let month = date.getMonth() + 1;
+//     month = month < 10 ? '0' + month : month;
+//     let day = date.getDate();
+//     day = day < 10 ? '0' + day : day;
+//     return `${year}-${month}-${day}`;
+// };
 
 
   const [Enroll_Date, setEnroll_Date] = useState(formatDate(new Date()));  // สร้าง state เพื่อเก็บวันที่ปัจจุบัน
@@ -120,7 +139,7 @@ function Tab_enroll({ user }) {
   
   const [Enroll_Year, setEnroll_Year] = useState(getYearFromDate(new Date())); // เรียกใช้ฟังก์ชัน getYearFromDate เพื่อดึงปีจากวันที่ปัจจุบันและเก็บใน Enroll_Year
   
-  console.log('enroll year', Enroll_Year);
+  // console.log('enroll year', Enroll_Year);
 
     const receiveStudentData = (data) => {
       setStudentData(data);
@@ -236,7 +255,7 @@ function Tab_enroll({ user }) {
   };
 ///////////////////////////////////////////////////////////////////////////////////////////////////
   const sendisFatherRecordDataToEnroll= (isFatherRecordData) => {
-    console.log('Received isFatherRecordData:', isFatherRecordData);
+    // console.log('Received isFatherRecordData:', isFatherRecordData);
     setIsFatherRecordData(isFatherRecordData);
   };
 
@@ -251,104 +270,105 @@ function Tab_enroll({ user }) {
   };
 ///////////////////////////////////////////////////////////////////////////////////////////////////
   const sendFatherFirstnameToEnroll = (FatherFirstname) => {
-    console.log('Received FatherFirstname:', FatherFirstname);
+    // console.log('Received FatherFirstname:', FatherFirstname);
     setFatherFirstname(FatherFirstname);
   };
 
   const sendFatherLastnameToEnroll = (FatherLastname) => {
-    console.log('Received FatherLastname:', FatherLastname);
+    // console.log('Received FatherLastname:', FatherLastname);
     setFatherLastname(FatherLastname);
   };
 
   const sendFatherDateOfBirthToEnroll = (FatherDateOfBirth) => {
-    console.log('Received FatherDateOfBirth:', FatherDateOfBirth);
+    // console.log('Received FatherDateOfBirth:', FatherDateOfBirth);
     setFatherDateOfBirth(FatherDateOfBirth);
   };
 
   const sendisFatherForeignerToEnroll = (IsFatherForeigner) => {
-    console.log('Received FatherForeigner:', IsFatherForeigner);
+    console.log('Received isFatherForeigner:', IsFatherForeigner);
     setIsFatherForeigner(IsFatherForeigner);
   };
 
   const sendFatherNationalityToEnroll = (FatherNationality) => {
-    console.log('Received FatherNationality:', FatherNationality);
+    // console.log('Received FatherNationality:', FatherNationality);
     setFatherNationality(FatherNationality);
   };
 
   const sendFatherOccupationToEnroll = (FatherOccupation) => {
-    console.log('Received FatherOccupation:', FatherOccupation);
+    // console.log('Received FatherOccupation:', FatherOccupation);
     setFatherOccupation(FatherOccupation);
   };
 
   const sendFatherOfficeToEnroll = (FatherOffice) => {
-    console.log('Received FatherOffice:', FatherOffice);
+    // console.log('Received FatherOffice:', FatherOffice);
     setFatherOffice(FatherOffice);
   };
 
   const sendFatherTelToEnroll = (FatherTel) => {
-    console.log('Received FatherTel:', FatherTel);
+    // console.log('Received FatherTel:', FatherTel);
     setFatherTel(FatherTel);
   };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 const sendMotherFirstnameToEnroll = (MotherFirstname) => {
-  console.log('Received MotherFirstname:', MotherFirstname);
+  // console.log('Received MotherFirstname:', MotherFirstname);ฝ
   setMotherFirstname(MotherFirstname);
 };
 
 const sendMotherLastnameToEnroll = (MotherLastname) => {
-  console.log('Received MotherLastname:', MotherLastname);
+  // console.log('Received MotherLastname:', MotherLastname);
   setMotherLastname(MotherLastname);
 };
 
 const sendMotherDateOfBirthToEnroll = (MotherDateOfBirth) => {
-  console.log('Received MotherDateOfBirth:', MotherDateOfBirth);
+  // console.log('Received MotherDateOfBirth:', MotherDateOfBirth);
   setMotherDateOfBirth(MotherDateOfBirth);
 };
 
 const sendisMotherForeignerToEnroll = (IsMotherForeigner) => {
   console.log('Received IsMotherForeigner:', IsMotherForeigner);
+  
   setIsMotherForeigner(IsMotherForeigner);
 };
 
 const sendMotherNationalityToEnroll = (MotherNationality) => {
-  console.log('Received MotherNationality:', MotherNationality);
+  // console.log('Received MotherNationality:', MotherNationality);
   setMotherNationality(MotherNationality);
 };
 
 const sendMotherOccupationToEnroll = (MotherOccupation) => {
-  console.log('Received MotherOccupation:', MotherOccupation);
+  // console.log('Received MotherOccupation:', MotherOccupation);
   setMotherOccupation(MotherOccupation);
 };
 
 const sendMotherOfficeToEnroll = (MotherOffice) => {
-  console.log('Received MotherOffice:', MotherOffice);
+  // console.log('Received MotherOffice:', MotherOffice);
   setMotherOffice(MotherOffice);
 };
 
 const sendMotherTelToEnroll = (MotherTel) => {
-  console.log('Received MotherTel:', MotherTel);
+  // console.log('Received MotherTel:', MotherTel);
   setMotherTel(MotherTel);
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 const sendParentFirstnameToEnroll = (ParentFirstname) => {
-  console.log('Received ParentFirstname:', ParentFirstname);
+  // console.log('Received ParentFirstname:', ParentFirstname);
   setParentFirstname(ParentFirstname);
 };
 
 const sendParentLastnameToEnroll = (ParentLastname) => {
-  console.log('Received ParentLastname:', ParentLastname);
+  // console.log('Received ParentLastname:', ParentLastname);
   setParentLastname(ParentLastname);
 };
 
 const sendParentDateOfBirthToEnroll = (ParentDateOfBirth) => {
-  console.log('Received ParentDateOfBirth:', ParentDateOfBirth);
+  // console.log('Received ParentDateOfBirth:', ParentDateOfBirth);
   setParentDateOfBirth(ParentDateOfBirth);
 };
 
 const sendisParentForeignerToEnroll = (IsParentForeigner) => {
-  console.log('Received IsParentForeigner:', IsParentForeigner);
+  // console.log('Received IsParentForeigner:', IsParentForeigner);
   setIsParentForeigner(IsParentForeigner);
 };
 
@@ -358,27 +378,27 @@ const sendParentNationalityToEnroll = (ParentNationality) => {
 };
 
 const sendParentOccupationToEnroll = (ParentOccupation) => {
-  console.log('Received ParentOccupation:', ParentOccupation);
+  // console.log('Received ParentOccupation:', ParentOccupation);
   setParentOccupation(ParentOccupation);
 };
 
 const sendParentOfficeToEnroll = (ParentOffice) => {
-  console.log('Received ParentOffice:', ParentOffice);
+  // console.log('Received ParentOffice:', ParentOffice);
   setParentOffice(ParentOffice);
 };
 
 const sendParentTelToEnroll = (ParentTel) => {
-  console.log('Received ParentTel:', ParentTel);
+  // console.log('Received ParentTel:', ParentTel);
   setParentTel(ParentTel);
 };
 
 const sendParentRoleToEnroll = (ParentRole) => {
-  console.log('Received ParentRole:', ParentRole);
+  // console.log('Received ParentRole:', ParentRole);
   setParentRole(ParentRole);
 };
 
 const sendwhoAreParentToEnroll = (whoAreParent) => {
-  console.log('Received whoAreParent:', whoAreParent);
+  // console.log('Received whoAreParent:', whoAreParent);
   setwhoAreParent(whoAreParent);
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -510,15 +530,15 @@ const sendwhoAreParentToEnroll = (whoAreParent) => {
         if (error.response) {
             // มีการตอบสนองจากเซิร์ฟเวอร์ แต่ค่าสถานะไม่เป็น 200
             console.error('Failed to add parent information:', error.response.data.error);
-            throw new Error(error.response.data.error);
+            // throw new Error(error.response.data.error);
         } else if (error.request) {
             // ไม่มีการรับข้อมูลจากเซิร์ฟเวอร์
             console.error('No response received from server:', error.request);
-            throw new Error('No response received from server');
+            // throw new Error('No response received from server');
         } else {
             // เกิดข้อผิดพลาดในการกำหนดค่าการส่งข้อมูลหรือปัญหาอื่น ๆ
             console.error('Error adding parent information:', error.message);
-            throw error;
+            // throw error;
         }
     }
   };
@@ -555,36 +575,41 @@ const sendwhoAreParentToEnroll = (whoAreParent) => {
       console.log('fatherfirstname',FatherFirstname);
       const confirmSubmit = window.confirm("ยืนยันที่จะส่งข้อมูลหรือไม่?");
       setFoundParentData('');
+      
+      // if (!isParentForeigner){
+      //   setParentNationality("ไทย");
+      //   console.log('Received setParentNationality:', ParentNationality);
+      // }
       if (confirmSubmit) {
           try {
               //ทำฟังก์ชันเก็บข้อมูล applicants_parent
               //ทำฟังก์ชันเก็บข้อมูล enrollment ต้องกำหนดชื่อหลักสูตร
-              // await handleSubmit(
-              //     StudentImageFile, 
-              //     CopyofStudentIDCardFile,
-              //     PreviousSchoolEducationalRecordsFile,
-              //     studentNID,
-              //     nameTitle,
-              //     FirstName,
-              //     LastName,
-              //     DateOfBirth,
-              //     Transcript_type,
-              //     HouseNumber,
-              //     Moo,
-              //     Soi,
-              //     Road,
-              //     Province,
-              //     District,
-              //     SubDistrict,
-              //     HouseReg_file
-              // );
+              await handleSubmit(
+                  StudentImageFile, 
+                  CopyofStudentIDCardFile,
+                  PreviousSchoolEducationalRecordsFile,
+                  studentNID,
+                  nameTitle,
+                  FirstName,
+                  LastName,
+                  DateOfBirth,
+                  Transcript_type,
+                  HouseNumber,
+                  Moo,
+                  Soi,
+                  Road,
+                  Province,
+                  District,
+                  SubDistrict,
+                  HouseReg_file
+              );
 
-              // await checkEnrollment(
-              //   studentNID,
-              //   Enroll_Date,
-              //   Enroll_Year,
-              //   Enroll_Course
-              // );
+              await checkEnrollment(
+                studentNID,
+                Enroll_Date,
+                Enroll_Year,
+                Enroll_Course
+              );
 
               await addParentEmails(
                 studentNID,
@@ -592,19 +617,57 @@ const sendwhoAreParentToEnroll = (whoAreParent) => {
                 MotherEmail,
                 ParentEmail
               );
-
+              
               if (!isFatherRecordData){
+                
+                const Father_Nationality = !isFatherForeigner ? "ไทย" : FatherNationality;
                 await addParentInformation(
                   '',
                   FatherEmail,
                   FatherFirstname,
                   FatherLastname,
-                  FatherDateOfBirth,
-                  FatherNationality,
+                  formatDate(FatherDateOfBirth),
+                  // "",
+                  Father_Nationality,
                   FatherOffice,
                   FatherOccupation,
                   "บิดา",
                   FatherTel
+                );
+              }
+
+              if (!isMotherRecordData){
+                const Mother_Nationality = !isMotherForeigner ? "ไทย" : MotherNationality;
+                await addParentInformation(
+                  '',
+                  MotherEmail,
+                  MotherFirstname,
+                  MotherLastname,
+                  formatDate(MotherDateOfBirth),
+                  // "",
+                  Mother_Nationality,
+                  MotherOffice,
+                  MotherOccupation,
+                  "มารดา",
+                  MotherTel
+                );
+              }
+
+              if (whoAreParent === "SomeoneElseIsParent" && !isParentRecordData){
+                const Parent_Nationality = !isParentForeigner ? "ไทย" : ParentNationality;
+                // console.log('Received setFatherNationality  ไทย:', FatherNationality);
+                await addParentInformation(
+                  '',
+                  ParentEmail,
+                  ParentFirstname,
+                  ParentLastname,
+                  formatDate(ParentDateOfBirth),
+                  // "",
+                  Parent_Nationality,
+                  ParentOffice,
+                  ParentOccupation,
+                  ParentRole,
+                  ParentTel
                 );
               }
               
