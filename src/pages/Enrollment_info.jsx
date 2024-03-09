@@ -69,12 +69,11 @@ const handleFileChange = (event) => {
         const fileType = '.' + file.name.split('.').pop().toLowerCase();
         if (allowedFileTypes.includes(fileType)) {
             
-
             let fileName = '';
             if (student_picture_file.files.length === 1) {
                 setStudent_picture_file(event.target.files[0]);
                 fileName = file.name;
-                console.log("file.name", file.name);
+                // console.log("file.name", file.name);
             } else {
                 fileName = student_picture_file.files.length + ' files selected';
             }
@@ -113,6 +112,7 @@ const handleCopyofStudentIDCardFileChange = (event) => {
         if (allowedFileTypes.includes(fileType)) {
             let fileName = '';
             if (CopyofStudentIDCardFile.files.length === 1) {
+                setCopyofStudentIDCardFile(event.target.files[0]);
                 fileName = file.name;
             } else {
                 fileName = CopyofStudentIDCardFile.files.length + ' files selected';
@@ -150,6 +150,7 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
         if (allowedFileTypes.includes(fileType)) {
             let fileName = '';
             if (PreviousSchoolEducationalRecordsFile.files.length === 1) {
+                setPreviousSchoolEducationalRecordsFile(event.target.files[0]);
                 fileName = file.name;
             } else {
                 fileName = PreviousSchoolEducationalRecordsFile.files.length + ' files selected';
@@ -283,6 +284,7 @@ const handleSubmit = async (event) => {
             if (allowedFileTypes.includes(fileType)) {
                 let fileName = '';
                 if (HouseReg_file.files.length === 1) {
+                    setHouseReg_file(event.target.files[0])
                     fileName = file.name;
                 } else {
                     fileName = HouseReg_file.files.length + ' files selected';
@@ -323,12 +325,7 @@ const handleSubmit = async (event) => {
       //   // Show a success message to the user
       //   alert('Form submitted successfully!');
       // };
-    
-      const [activeTab, setActiveTab] = useState('menu1');
-    
-      const handleTabChange = (tabId) => {
-        setActiveTab(tabId);
-      };    
+        
 
 
       // ------------------------------------------------------------------------------
@@ -705,11 +702,17 @@ const handleSubmit = async (event) => {
                 }
                 
               };
-
+        
+        
         // ------------------------------------------------------------------------------------
 
         const checkInputStudent = () => {
           const student_picture_file_input = document.getElementById('student_picture_file_input');
+          const student_picture_file = document.getElementById('student_picture_file');
+
+        //   const student_picture_file_inputfiles = student_picture_file.files;
+
+
           const student_nid_input = document.getElementById('student_nid_input');
           const maleRadio = document.getElementById('male');
           const femaleRadio = document.getElementById('female');
@@ -717,14 +720,16 @@ const handleSubmit = async (event) => {
           const LastName = document.getElementById('LastName');
           const DOB = dateOfBirth;
           const CopyofStudentIDCard = document.getElementById('CopyofStudentIDCard');
+          const CopyofStudentIDCard_input = document.getElementById('CopyofStudentIDCard_input');
 
-        
-          if (student_picture_file_input === "") {
-            alert('กรุณาเลือกไฟล์รูปภาพของนักเรียน');
-            student_picture_file_input.focus();
+
+       
+        //   if (student_picture_file.title ==="") {
+        //     alert('กรุณาเลือกไฟล์รูปภาพของนักเรียน');
+        //     student_picture_file_input.focus();
             
-            return false;
-          }
+        //     return false;
+        //   }
         //   if (student_nid_input.value === "") {
         //     alert('กรุณากรอกเลขประจำตัวประชาชนของนักเรียน');
         //     student_nid_input.scrollIntoView({ behavior: 'smooth' });
@@ -757,18 +762,21 @@ const handleSubmit = async (event) => {
         //     // setTimeout(() => DOB.focus(), 100);
         //     return false;
         //   }
-        //   if (!DOB) {
-        //     alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
-        //     // DOB.scrollIntoView({ behavior: 'smooth' });
-        //     DOB.focus();
-        //     return false;
-        //   }
-        //  if (CopyofStudentIDCard.value === "") {
+        
+        //  if (CopyofStudentIDCard_input.title === "") {
         //     alert('กรุณาเลือกไฟล์สำเนาสูติบัตรของนักเรียน');
-        //     CopyofStudentIDCard.scrollIntoView({ behavior: 'smooth' });
-        //     setTimeout(() => CopyofStudentIDCard.focus(), 100);
+        //     CopyofStudentIDCard.focus();
         //     return false;
         //   }
+
+        //   const PreviousSchoolEducationalRecordsFile = document.getElementById('PreviousSchoolEducationalRecordsFile');
+        //   const PreviousSchoolEducationalRecordsFile_input = document.getElementById('PreviousSchoolEducationalRecordsFile_input');
+        //   if (PreviousSchoolEducationalRecordsFile_input.title === "") {
+        //     alert('กรุณาเลือกไฟล์หลักฐานการศึกษาจากโรงเรียนเดิม');
+        //     PreviousSchoolEducationalRecordsFile.focus();
+        //     return false;
+        //   }
+       
 
         const option1 = document.getElementById('option1');
         const option2 = document.getElementById('option2');
@@ -825,14 +833,13 @@ const handleSubmit = async (event) => {
     
             //     return false;
             //   }
-            //   const HouseReg_file = document.getElementById('HouseReg_file');
-            //   if (HouseReg_file.value === "") {
-            //     alert('กรุณาอัพโหลดไฟล์สำเนาทะเบียนบ้าน');
-            //     HouseReg_file.scrollIntoView({ behavior: 'smooth' });
-            //       setTimeout(() => HouseReg_file.focus(), 100);
-    
-            //     return false;
-            //   }
+            // const HouseReg_file = document.getElementById('HouseReg_file');
+            // const HouseReg_file_input = document.getElementById('HouseReg_file_input');
+            // if (HouseReg_file_input.title === "") {
+            //   alert('กรุณาเลือกไฟล์สำเนาทะเบียนบ้าน');
+            //   HouseReg_file.focus();
+            //   return false;
+            // }
 
             return true;
           }
@@ -1163,13 +1170,11 @@ const handleSubmit = async (event) => {
         const [Student_info, setStudent_info] = useState(true); 
         const [Household, setHousehold] = useState(false); 
         const [Parent_info, setParent_info] = useState(false); 
-
+        
 
 return (
         <>
-      
-       
-      
+   
       <Header header="ระบบรับสมัครนักเรียนแบบออนไลน์" subhead="กรอกข้อมูลการสมัคร"/>
       
       <div className="mt-5 d-flex flex-column align-items-center"style={{ height: '100vh'}}>
@@ -1199,22 +1204,24 @@ return (
             <div className="align-items-center">
                 <label htmlFor="student_picture_file_label" id="student_picture_file_label" className="col-form-label px-3">รูปนักเรียน</label>
             </div>
-            <div className="align-items-center" style={{ marginLeft: '15px', maxWidth: "50%" }}>
-            <input
-                id="student_picture_file_input"
-                type="file"
-                name="student_picture_file_input"
-                className="form-control"
-                // value={Student_picture_file ? Student_picture_file.name : ''}
-                // value={Student_picture_file.name || ''}
-                // value={Student_picture_file}
-                // value={Student_picture_file.name}
-                onChange={handleFileChange}
-                accept=".pdf, .jpg, .jpeg, .png"
-                required
-              
+            
+            <div style={{ marginLeft: '15px', maxWidth: "100%",display: 'flex'}}>
+            
+                <input
+                    id="student_picture_file_input"
+                    type="file"
+                    name="student_picture_file_input"
+                    className="form-control"
+                    onChange={handleFileChange}
+                    accept=".pdf, .jpg, .jpeg, .png"
+                    required
                 />
-                <span style={{ display: 'block' }}>{Student_picture_file && <span>{Student_picture_file.name}</span>}</span>
+               
+               <label className="input-group-text" id="student_picture_file" title={Student_picture_file && Student_picture_file.name}>
+                    {Student_picture_file ? (<span>{Student_picture_file.name}</span>
+
+                    ) : ( <span>filename</span>)}
+                </label>
             </div>
         </div>
 
@@ -1252,7 +1259,7 @@ return (
                 </label>
             </div>
             <div className="form-check">
-                <input className="form-check-input" type="radio" name="gender" id="female" value="เด็กหญิง"  onChange={handlenameTitleChange} />
+                <input className="form-check-input" type="radio" name="gender" id="female" value="เด็กหญิง"  onChange={handlenameTitleChange}/>
                 <label className="form-check-label custom-body" style={{ fontSize: '16px', flexWrap: "wrap" }} htmlFor="female">
                     เด็กหญิง
                 </label>
@@ -1292,8 +1299,25 @@ return (
             <div className="align-items-center">
                 <label htmlFor="CopyofStudentIDCard" className="col-form-label px-3">สำเนาสูติบัตร (ของนักเรียน)</label>
             </div>
-            <div className="align-items-center"style={{ marginLeft: '15px',maxWidth:"50%"}}>    
+            {/* <div className="align-items-center"style={{ marginLeft: '15px',maxWidth:"50%"}}>    
                 <input id = "CopyofStudentIDCard"type="file" className="form-control" onChange={handleCopyofStudentIDCardFileChange} accept=".pdf, .jpg, .jpeg, .png" />
+            </div> */}
+            <div style={{ marginLeft: '15px', maxWidth: "100%",display: 'flex' }}>
+           
+                <input
+                    id="CopyofStudentIDCard"
+                    type="file"
+                    name="CopyofStudentIDCard"
+                    className="form-control"
+                    onChange={handleCopyofStudentIDCardFileChange}
+                    accept=".pdf, .jpg, .jpeg, .png"
+                    required
+                />
+              <label className="input-group-text" id="CopyofStudentIDCard_input" title={CopyofStudentIDCardFile && CopyofStudentIDCardFile.name}>
+                    {CopyofStudentIDCardFile ? (<span>{CopyofStudentIDCardFile.name}</span>
+
+                    ) : ( <span>filename</span>)}
+                </label>
             </div>
         </div>
         <br />
@@ -1336,11 +1360,16 @@ return (
         </div>
 
         <br></br> 
-        <div className="align-items-center" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px', marginLeft: '15px',maxWidth:"50%"}}>
+        <div style={{ marginLeft: '15px', maxWidth: "100%",display: 'flex' }}>
                 <input id = "PreviousSchoolEducationalRecordsFile"type="file" className="form-control px-3" onChange={handlePreviousSchoolEducationalRecordsFileChange} accept=".pdf, .jpg, .jpeg, .png" />
+                <label className="input-group-text" id="PreviousSchoolEducationalRecordsFile_input" title={PreviousSchoolEducationalRecordsFile && PreviousSchoolEducationalRecordsFile.name}>
+                    {PreviousSchoolEducationalRecordsFile ? (<span>{PreviousSchoolEducationalRecordsFile.name}</span>
+
+                    ) : ( <span>filename</span>)}
+                </label>
         </div>
 
-        
+        <br />
         <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'flex-end' }}>
 
                 <button id="next-button" type="button" onClick={handlePersonalNextClick} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px' }}>
@@ -1503,12 +1532,22 @@ return (
           <label className="col-form-label">อัพโหลดไฟล์สำเนาทะเบียนบ้าน :</label>
               
             </div>
-              <div className="align-items-center">
-              <input id="HouseReg_file"type="File" className="form-control" style={{maxWidth:"70%"}} onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
+              
+              
+              <div style={{ maxWidth: "100%",display: 'flex' }}>
+                <input id = "HouseReg_file"type="file" className="form-control px-3" onChange={handleFileUpload} accept=".pdf, .jpg, .jpeg, .png" />
+                <label className="input-group-text" id="HouseReg_file_input" title={HouseReg_file && HouseReg_file.name}>
+                    {HouseReg_file ? (<span>{HouseReg_file.name}</span>
+
+                    ) : ( <span>filename</span>)}
+                </label>
+   
           <br />
         </div>
       
       </div>
+      <br />
+
       <div style={{ display: 'flex', flexWrap: "wrap", justifyContent: 'space-between', width: '100%' }}>
 
                   <div style={{ display: 'flex',justifyContent: 'flex-start' }}>
