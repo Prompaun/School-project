@@ -43,10 +43,10 @@ const handleLastNameChange = (event) => {
 
 const handleDateOfBirthChange = (date) => {
     // ใช้ date-fns เพื่อแปลงวันที่ให้เป็นรูปแบบ 'ปี-เดือน-วัน'
-    const formattedDate = format(date, 'yyyy-MM-dd');
+    // const formattedDate = format(date, 'yyyy-MM-dd');
     // เซ็ตค่าวันที่ที่แปลงรูปแบบแล้ว
     setDateOfBirth(date);
-    console.log("say hi1", formattedDate);
+    // console.log("say hi1", formattedDate);
 };
 
 const handleTranscript_typeChange = (event) => {
@@ -59,10 +59,10 @@ const handleFileChange = (event) => {
     event.preventDefault();
     const student_picture_file = event.target;
 
-    if (student_picture_file.files.length === 0){
-        setStudent_picture_file('');
-        sendImageDataToEnroll('');
-      }
+    // if (student_picture_file.files.length === 0){
+        // setStudent_picture_file('');
+        // sendImageDataToEnroll('');
+    //   }
     
     if (student_picture_file.files && student_picture_file.files.length > 0) {
         const file = student_picture_file.files[0];
@@ -81,7 +81,7 @@ const handleFileChange = (event) => {
             if (fileInputLabel) {
                 fileInputLabel.textContent = fileName;
             }
-            sendImageDataToEnroll(file);
+            // sendImageDataToEnroll(file);
         } else {
             alert('กรุณาเลือกไฟล์ที่มีนามสกุล .pdf, .jpg, .jpeg หรือ .png เท่านั้น');
             // เคลียร์ค่า input file และ label
@@ -100,7 +100,7 @@ const handleCopyofStudentIDCardFileChange = (event) => {
 
     if (CopyofStudentIDCardFile.files.length === 0){
         setCopyofStudentIDCardFile('');
-        sendCopyofStudentIDCardFileToEnroll('');
+        // sendCopyofStudentIDCardFileToEnroll('');
       }
     
     if (CopyofStudentIDCardFile.files && CopyofStudentIDCardFile.files.length > 0) {
@@ -118,7 +118,7 @@ const handleCopyofStudentIDCardFileChange = (event) => {
             // if (fileInputLabel) {
             //     fileInputLabel.textContent = fileName;
             // }
-            sendCopyofStudentIDCardFileToEnroll(file);
+            // sendCopyofStudentIDCardFileToEnroll(file);
         } else {
             alert('กรุณาเลือกไฟล์ที่มีนามสกุล .pdf, .jpg, .jpeg หรือ .png เท่านั้น');
             // เคลียร์ค่า input file และ label
@@ -137,7 +137,7 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
 
     if (PreviousSchoolEducationalRecordsFile.files.length === 0){
         setPreviousSchoolEducationalRecordsFile('');
-        sendPreviousSchoolEducationalRecordsFileToEnroll('');
+        // sendPreviousSchoolEducationalRecordsFileToEnroll('');
       }
     
     if (PreviousSchoolEducationalRecordsFile.files && PreviousSchoolEducationalRecordsFile.files.length > 0) {
@@ -150,7 +150,7 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
             } else {
                 fileName = PreviousSchoolEducationalRecordsFile.files.length + ' files selected';
             }
-            sendPreviousSchoolEducationalRecordsFileToEnroll(file);
+            // sendPreviousSchoolEducationalRecordsFileToEnroll(file);
             console.log("ploy1", file);
         } else {
             alert('กรุณาเลือกไฟล์ที่มีนามสกุล .pdf, .jpg, .jpeg หรือ .png เท่านั้น');
@@ -740,12 +740,12 @@ const handleSubmit = async (event) => {
         //     setTimeout(() => LastName.focus(), 100);
         //     return false;
         //   }
-        //   if (!DOB) {
-        //     alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
-        //     DOB.scrollIntoView({ behavior: 'smooth' });
-        //     setTimeout(() => DOB.focus(), 100);
-        //     return false;
-        //   }
+          if (!DOB) {
+            alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
+            // DOB.scrollIntoView({ behavior: 'smooth' });
+            // setTimeout(() => DOB.focus(), 100);
+            return false;
+          }
         //  if (CopyofStudentIDCard.value === "") {
         //     alert('กรุณาเลือกไฟล์สำเนาสูติบัตรของนักเรียน');
         //     CopyofStudentIDCard.scrollIntoView({ behavior: 'smooth' });

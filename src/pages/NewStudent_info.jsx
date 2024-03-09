@@ -125,6 +125,7 @@ function NewStudent_info({
 
         if (student_picture_file.files.length === 0){
             setStudent_picture_file('');
+            // student_picture_file.value = ''
             sendImageDataToEnroll('');
           }
         
@@ -132,6 +133,7 @@ function NewStudent_info({
             const file = student_picture_file.files[0];
             const fileType = '.' + file.name.split('.').pop().toLowerCase();
             if (allowedFileTypes.includes(fileType)) {
+                setStudent_picture_file(event);
                 let fileName = '';
                 if (student_picture_file.files.length === 1) {
                     fileName = file.name;
@@ -146,6 +148,7 @@ function NewStudent_info({
                 sendImageDataToEnroll(file);
             } else {
                 alert('กรุณาเลือกไฟล์ที่มีนามสกุล .pdf, .jpg, .jpeg หรือ .png เท่านั้น');
+                console.log("student_picture_file.value",student_picture_file.value);
                 // เคลียร์ค่า input file และ label
                 student_picture_file.value = '';
                 const fileInputLabel = document.getElementById('fileInputLabel');
@@ -286,7 +289,15 @@ function NewStudent_info({
                 <label htmlFor="student_picture_file_label" id="student_picture_file_label" className="col-form-label px-3">รูปนักเรียน</label>
             </div>
             <div className="align-items-center" style={{ marginLeft: '15px', maxWidth: "50%" }}>
-                <input id="student_picture_file_input" type="file" name="student_picture_file_input" className="form-control" onChange={handleFileChange} accept=".pdf, .jpg, .jpeg, .png" />
+                <input
+                    id="student_picture_file_input"
+                    type="file"
+                    name="student_picture_file_input"
+                    className="form-control"
+                    // value={Student_picture_file}
+                    value={Student_picture_file ? Student_picture_file.name : ''}
+                    onChange={handleFileChange}
+                    accept=".pdf, .jpg, .jpeg, .png" />
                 {/* <label htmlFor="student_picture_file_input" id="fileInputLabel">Select Files</label> */}
             </div>
         </div>
