@@ -860,35 +860,6 @@ const sendwhoAreParentToEnroll = (whoAreParent) => {
 
     return true;
   };
-  const hasFatherInfo = 
-  FatherEmail && 
-  FatherFirstname && 
-  FatherLastname && 
-  FatherDateOfBirth && 
-  FatherNationality && 
-  FatherOccupation && 
-  FatherOffice && 
-  FatherTel;
-
-const hasMotherInfo = 
-  MotherEmail && 
-  MotherFirstname && 
-  MotherLastname && 
-  MotherDateOfBirth && 
-  MotherNationality && 
-  MotherOccupation && 
-  MotherOffice && 
-  MotherTel;
-
-const hasParentInfo = 
-  ParentEmail && 
-  ParentFirstname && 
-  ParentLastname && 
-  ParentDateOfBirth && 
-  ParentNationality && 
-  ParentOccupation && 
-  ParentOffice && 
-  ParentTel;
   
   const handleMotherinfoClick = async () => {
     let numMissingFields = 0;

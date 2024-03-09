@@ -254,7 +254,8 @@ function NewStudent_info({
         sendDateOfBirthToEnroll={sendDateOfBirthToEnroll}
         sendTranscript_typeToEnroll={sendTranscript_typeToEnroll}
     />
-
+    
+    
   return (
     <>
 
@@ -286,7 +287,15 @@ function NewStudent_info({
                 <label htmlFor="student_picture_file_label" id="student_picture_file_label" className="col-form-label px-3">รูปนักเรียน</label>
             </div>
             <div className="align-items-center" style={{ marginLeft: '15px', maxWidth: "50%" }}>
-                <input id="student_picture_file_input" type="file" name="student_picture_file_input" className="form-control" onChange={handleFileChange} accept=".pdf, .jpg, .jpeg, .png" />
+            <input
+                id="student_picture_file_input"
+                type="file"
+                name="student_picture_file_input"
+                className="form-control"
+                onChange={handleFileChange}
+                accept=".pdf, .jpg, .jpeg, .png"
+               required
+                />
                 {/* <label htmlFor="student_picture_file_input" id="fileInputLabel">Select Files</label> */}
             </div>
         </div>
