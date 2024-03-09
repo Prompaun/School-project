@@ -712,22 +712,22 @@ const handleSubmit = async (event) => {
           const CopyofStudentIDCard = document.getElementById('CopyofStudentIDCard');
 
         
-          if (student_picture_file_input.value === "") {
-            alert('กรุณาเลือกไฟล์รูปภาพของนักเรียน');
-            student_picture_file_input.focus();
+        //   if (student_picture_file_input.value === "") {
+        //     alert('กรุณาเลือกไฟล์รูปภาพของนักเรียน');
+        //     student_picture_file_input.focus();
             
-            return false;
-          }
+        //     return false;
+        //   }
         //   if (student_nid_input.value === "") {
         //     alert('กรุณากรอกเลขประจำตัวประชาชนของนักเรียน');
         //     student_nid_input.scrollIntoView({ behavior: 'smooth' });
         //     setTimeout(() => student_nid_input.focus(), 100);
         //     return false;
         //   }
-        if (!maleRadio.checked && !femaleRadio.checked) {
-            alert('กรุณาเลือกคำนำหน้าชื่อของนักเรียน');
-            return false;
-        }
+        // if (!maleRadio.checked && !femaleRadio.checked) {
+        //     alert('กรุณาเลือกคำนำหน้าชื่อของนักเรียน');
+        //     return false;
+        // }
         //   if (surname.value === "") {
         //     alert('กรุณากรอกชื่อของนักเรียน');
         //     surname.scrollIntoView({ behavior: 'smooth' });
@@ -740,12 +740,12 @@ const handleSubmit = async (event) => {
         //     setTimeout(() => LastName.focus(), 100);
         //     return false;
         //   }
-        //   if (!DOB) {
-        //     alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
-        //     DOB.scrollIntoView({ behavior: 'smooth' });
-        //     setTimeout(() => DOB.focus(), 100);
-        //     return false;
-        //   }
+          if (!DOB) {
+            alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
+            // DOB.scrollIntoView({ behavior: 'smooth' });
+            // setTimeout(() => DOB.focus(), 100);
+            return false;
+          }
         //  if (CopyofStudentIDCard.value === "") {
         //     alert('กรุณาเลือกไฟล์สำเนาสูติบัตรของนักเรียน');
         //     CopyofStudentIDCard.scrollIntoView({ behavior: 'smooth' });
@@ -758,17 +758,17 @@ const handleSubmit = async (event) => {
         const option3 = document.getElementById('option3');
         const option4 = document.getElementById('option4');
 
-        if (!option1.checked && !option2.checked && !option3.checked && !option4.checked) {
-            alert('กรุณาเลือกประเภทของหลักฐานการศึกษาจากโรงเรียนเดิม');
-            return false;
-        }
-        const PreviousSchoolEducationalRecordsFile = document.getElementById('PreviousSchoolEducationalRecordsFile');
-        if (PreviousSchoolEducationalRecordsFile.value === "") {
-            alert('กรุณาเลือกไฟล์ประกาศนียบัตรการศึกษาจากโรงเรียนเดิม');
-            PreviousSchoolEducationalRecordsFile.scrollIntoView({ behavior: 'smooth' });
-            setTimeout(() => PreviousSchoolEducationalRecordsFile.focus(), 100);
-            return false;
-          }
+        // if (!option1.checked && !option2.checked && !option3.checked && !option4.checked) {
+        //     alert('กรุณาเลือกประเภทของหลักฐานการศึกษาจากโรงเรียนเดิม');
+        //     return false;
+        // }
+        // const PreviousSchoolEducationalRecordsFile = document.getElementById('PreviousSchoolEducationalRecordsFile');
+        // if (PreviousSchoolEducationalRecordsFile.value === "") {
+        //     alert('กรุณาเลือกไฟล์ประกาศนียบัตรการศึกษาจากโรงเรียนเดิม');
+        //     PreviousSchoolEducationalRecordsFile.scrollIntoView({ behavior: 'smooth' });
+        //     setTimeout(() => PreviousSchoolEducationalRecordsFile.focus(), 100);
+        //     return false;
+        //   }
 
           return true;
         }
@@ -777,21 +777,38 @@ const handleSubmit = async (event) => {
         const checkInputHousehold = () => {
             const HouseNumber_input = document.getElementById('HouseNumber_input');
             const Province = document.getElementById('Province');
-            
+            const District = document.getElementById('District');
+            const SubDistrict = document.getElementById('SubDistrict');
   
             if (HouseNumber_input.value === "") {
-              alert('กรุณากรอกบ้านเลขที่ด้วยค่ะ');
-              HouseNumber_input.focus();
+              alert('กรุณากรอกบ้านเลขที่');
+              HouseNumber_input.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => HouseNumber_input.focus(), 100);
               
               return false;
             }
             if (Province.value === "") {
-              alert('กรุณากรอกจังหวัดของที่อยู่ตามทะเบียนบ้านด้วยค่ะ');
-              Province.focus();
+              alert('กรุณากรอกจังหวัดของที่อยู่ตามทะเบียนบ้าน');
+              Province.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => Province.focus(), 100);
   
               return false;
             }
-            
+            if (District.value === "") {
+                alert('กรุณากรอกเขต/อำเภอของที่อยู่ตามทะเบียนบ้าน');
+                District.scrollIntoView({ behavior: 'smooth' });
+                  setTimeout(() => District.focus(), 100);
+    
+                return false;
+              }
+              if (SubDistrict.value === "") {
+                alert('กรุณากรอกแขวง/ตำบลของที่อยู่ตามทะเบียนบ้าน');
+                SubDistrict.scrollIntoView({ behavior: 'smooth' });
+                  setTimeout(() => SubDistrict.focus(), 100);
+    
+                return false;
+              }
+
             return true;
           }
           const checkInputParent = () => {
@@ -1092,7 +1109,7 @@ return (
               <div class="h-screen flex flex-col justify-left sm:flex-row">
                 {/* <div class="sm:w-1_3 sm:pr-3"> */}
                     <div class="dropdown" style={{ maxWidth: "100%" }}>
-                        <select value={Province} onChange={handleProvinceChange} class="custom-select" id="Province">
+                        <select value={Province} onChange={handleProvinceChange} class="custom-select w-full" id="Province">
                             <option value="">กรุณาเลือกจังหวัด</option>
                             {Provinces.map((Province) => (
                                 <option key={Province} value={Province}>
@@ -1112,7 +1129,7 @@ return (
               <div class="h-screen flex flex-col justify-left sm:flex-row">
                  <div class="sm:w-1_3 sm:pr-3">
                     <div class="dropdown"style={{maxWidth:"100%"}} >
-                      <select value={District} onChange={handleDistrictChange} class="custom-select w-full">
+                      <select value={District} onChange={handleDistrictChange} class="custom-select w-full" id ="District">
                         <option value="">กรุณาเลือกเขต/อำเภอ</option>
                         {DistrictOptions[Province] && DistrictOptions[Province].map((District) => (
                           <option key={District} value={District}>
@@ -1131,7 +1148,7 @@ return (
               <div class="h-screen flex flex-col justify-left sm:flex-row">
                  <div class="sm:w-1_3 sm:pr-3">
                     <div class="dropdown"style={{maxWidth:"100%"}} >
-                        <select value={SubDistrict} onChange={handleSubDistrictChange} class="custom-select w-full">
+                        <select value={SubDistrict} onChange={handleSubDistrictChange} class="custom-select w-full" id="SubDistrict" >
                           <option value="">กรุณาเลือกแขวง/ตำบล</option>
                           {SubDistrictOptions[District] && SubDistrictOptions[District].map((SubDistrict) => (
                             <option key={SubDistrict} value={SubDistrict}>
