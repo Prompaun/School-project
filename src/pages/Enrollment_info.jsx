@@ -18,7 +18,7 @@ function Enrollment_info({user}) {
     const [nameTitle, setnameTitle] = useState('');
     const [FirstName, setFirstName] = useState('');
     const [LastName, setLastName] = useState('');
-    const [DateOfBirth, setDateOfBirth] = useState('');
+    const [Student_DateOfBirth, setStudent_DateOfBirth] = useState('');
     const [Transcript_type, setTranscript_type] = useState('');
 
     const [Student_picture_file, setStudent_picture_file] = useState('');
@@ -95,7 +95,7 @@ const handleDateOfBirthChange = (date) => {
     // ใช้ date-fns เพื่อแปลงวันที่ให้เป็นรูปแบบ 'ปี-เดือน-วัน'
     // const formattedDate = format(date, 'yyyy-MM-dd');
     // เซ็ตค่าวันที่ที่แปลงรูปแบบแล้ว
-    setDateOfBirth(date);
+    setStudent_DateOfBirth(date);
     // console.log("say hi1", formattedDate);
 };
 
@@ -151,10 +151,10 @@ const handleCopyofStudentIDCardFileChange = (event) => {
     event.preventDefault();
     const CopyofStudentIDCardFile = event.target;
 
-    if (CopyofStudentIDCardFile.files.length === 0){
-        setCopyofStudentIDCardFile('');
+    // if (CopyofStudentIDCardFile.files.length === 0){
+    //     setCopyofStudentIDCardFile('');
         // sendCopyofStudentIDCardFileToEnroll('');
-      }
+    //   }
     
     if (CopyofStudentIDCardFile.files && CopyofStudentIDCardFile.files.length > 0) {
         const file = CopyofStudentIDCardFile.files[0];
@@ -738,7 +738,7 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
           const femaleRadio = document.getElementById('female');
           const surname = document.getElementById('surname');
           const LastName = document.getElementById('LastName');
-          const DOB = DateOfBirth;
+          const DOB = Student_DateOfBirth;
           const CopyofStudentIDCard = document.getElementById('CopyofStudentIDCard');
           const CopyofStudentIDCard_input = document.getElementById('CopyofStudentIDCard_input');
 
@@ -788,7 +788,7 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
             DOB.focus();
             return false;
           }
-         if (CopyofStudentIDCard.value === "") {
+         if (CopyofStudentIDCard_input.title === "") {
             alert('กรุณาเลือกไฟล์สำเนาสูติบัตรของนักเรียน');
             CopyofStudentIDCard.scrollIntoView({ behavior: 'smooth' });
             setTimeout(() => CopyofStudentIDCard.focus(), 100);
@@ -1269,9 +1269,10 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
         const [Parent_info, setParent_info] = useState(false); 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         const navigate = useNavigate();
-  const handleSubmit = async (Student_picture_file, CopyofStudentIDCardFile, PreviousSchoolEducationalRecordsFile, studentNID, nameTitle, FirstName, LastName, DateOfBirth, Transcript_type, HouseNumber, Moo, Soi, Road, Province, District, SubDistrict, HouseReg_file) => {
+  const handleSubmit = async (Student_picture_file, CopyofStudentIDCardFile, PreviousSchoolEducationalRecordsFile, studentNID, nameTitle, FirstName, LastName, Student_DateOfBirth, Transcript_type, HouseNumber, Moo, Soi, Road, Province, District, SubDistrict, HouseReg_file) => {
     // const confirmSubmit = window.confirm("ยืนยันที่จะส่งข้อมูลหรือไม่?");
     // if (confirmSubmit) {
+        console.log("Student_DateOfBirth",Student_DateOfBirth);
       try {
           // แสดงกล่องข้อความยืนยันและตรวจสอบผลลัพธ์
           const formData = new FormData();
@@ -1284,7 +1285,7 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
           formData.append('NameTitle', nameTitle);
           formData.append('FirstName', FirstName);
           formData.append('LastName', LastName);
-          formData.append('Student_DOB', DateOfBirth);
+          formData.append('Student_DOB', Student_DateOfBirth);
           formData.append('Transcript_type', Transcript_type);
           formData.append('ParentEmail', CurrentLogin_Email);
 
@@ -1424,7 +1425,7 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
         } else {
             console.log('User photo URL is not available.');
         }
-
+        console.log("formatDate(Student_DateOfBirth)",formatDate(Student_DateOfBirth))
         if (checkInputParent()) {
             const confirmSubmit = window.confirm("ยืนยันที่จะส่งข้อมูลหรือไม่?");
         
@@ -1438,7 +1439,7 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
                         nameTitle,
                         FirstName,
                         LastName,
-                        DateOfBirth,
+                        formatDate(Student_DateOfBirth),
                         Transcript_type,
                         HouseNumber,
                         Moo,
@@ -1645,7 +1646,7 @@ return (
                 <h2 htmlFor="DOB" className="col-form-label px-3">วัน/เดือน/ปีเกิด</h2>
             </div>
             <div className="align-items-center" style={{ marginLeft: '15px' }}>
-                <Date_Picker id="DOB_student"value={DateOfBirth} onChange={handleDateOfBirthChange} />
+                <Date_Picker id="DOB_student"value={Student_DateOfBirth} onChange={handleDateOfBirthChange} />
             </div>
         </div>
         <br />
