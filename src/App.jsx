@@ -184,7 +184,7 @@ function App() {
         <Route path="/Tab_enroll" element={<Tab_enroll user={user} />} />
 
         <Route path="/Open_course" element={<Open_course />} />
-        <Route path="/Enrollment_info" element={<Enrollment_info />} />
+        <Route path="/Enrollment_info" element={<Enrollment_info user={user} />} />
         <Route path="/CheckEnroll_status" element={<CheckEnroll_status/>} />
         
         <Route path="/Student_menu" element={<Student_menu />} />
