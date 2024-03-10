@@ -54,7 +54,6 @@ const handleTranscript_typeChange = (event) => {
 };
 
 
-
 const handleFileChange = (event) => {
     event.preventDefault();
     const student_picture_file = event.target;
@@ -725,50 +724,50 @@ const handleSubmit = async (event) => {
             
             return false;
           }
-        //   if (student_nid_input.value === "") {
-        //     alert('กรุณากรอกเลขประจำตัวประชาชนของนักเรียน');
-        //     student_nid_input.scrollIntoView({ behavior: 'smooth' });
-        //     setTimeout(() => student_nid_input.focus(), 100);
-        //     return false;
-        //   }
-        // if (!maleRadio.checked && !femaleRadio.checked) {
-        //     alert('กรุณาเลือกคำนำหน้าชื่อของนักเรียน');
-        //     return false;
-        // }
-        // if (!maleRadio.checked && !femaleRadio.checked) {
-        //     alert('กรุณาเลือกคำนำหน้าชื่อของนักเรียน');
-        //     return false;
-        // }
-        //   if (surname.value === "") {
-        //     alert('กรุณากรอกชื่อของนักเรียน');
-        //     surname.scrollIntoView({ behavior: 'smooth' });
-        //     setTimeout(() => surname.focus(), 100);
-        //     return false;
-        //   }
-        // if (LastName.value === "") {
-        //     alert('กรุณากรอกนามสกุลของนักเรียน');
-        //     LastName.scrollIntoView({ behavior: 'smooth' });
-        //     setTimeout(() => LastName.focus(), 100);
-        //     return false;
-        //   }
-        //   if (!DOB) {
-        //     alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
-        //     // DOB.scrollIntoView({ behavior: 'smooth' });
-        //     // setTimeout(() => DOB.focus(), 100);
-        //     return false;
-        //   }
-        //   if (!DOB) {
-        //     alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
-        //     // DOB.scrollIntoView({ behavior: 'smooth' });
-        //     DOB.focus();
-        //     return false;
-        //   }
-        //  if (CopyofStudentIDCard.value === "") {
-        //     alert('กรุณาเลือกไฟล์สำเนาสูติบัตรของนักเรียน');
-        //     CopyofStudentIDCard.scrollIntoView({ behavior: 'smooth' });
-        //     setTimeout(() => CopyofStudentIDCard.focus(), 100);
-        //     return false;
-        //   }
+          if (student_nid_input.value === "") {
+            alert('กรุณากรอกเลขประจำตัวประชาชนของนักเรียน');
+            student_nid_input.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => student_nid_input.focus(), 100);
+            return false;
+          }
+        if (!maleRadio.checked && !femaleRadio.checked) {
+            alert('กรุณาเลือกคำนำหน้าชื่อของนักเรียน');
+            return false;
+        }
+        if (!maleRadio.checked && !femaleRadio.checked) {
+            alert('กรุณาเลือกคำนำหน้าชื่อของนักเรียน');
+            return false;
+        }
+          if (surname.value === "") {
+            alert('กรุณากรอกชื่อของนักเรียน');
+            surname.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => surname.focus(), 100);
+            return false;
+          }
+        if (LastName.value === "") {
+            alert('กรุณากรอกนามสกุลของนักเรียน');
+            LastName.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => LastName.focus(), 100);
+            return false;
+          }
+          if (!DOB) {
+            alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
+            // DOB.scrollIntoView({ behavior: 'smooth' });
+            // setTimeout(() => DOB.focus(), 100);
+            return false;
+          }
+          if (!DOB) {
+            alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
+            // DOB.scrollIntoView({ behavior: 'smooth' });
+            DOB.focus();
+            return false;
+          }
+         if (CopyofStudentIDCard.value === "") {
+            alert('กรุณาเลือกไฟล์สำเนาสูติบัตรของนักเรียน');
+            CopyofStudentIDCard.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => CopyofStudentIDCard.focus(), 100);
+            return false;
+          }
 
         const option1 = document.getElementById('option1');
         const option2 = document.getElementById('option2');

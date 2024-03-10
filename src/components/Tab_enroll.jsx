@@ -864,9 +864,25 @@ const sendwhoAreParentToEnroll = (whoAreParent) => {
       }
     }
     
-    if (user && user.emails[0].value) {
+    // if (user && user.emails[0].value) {
+    //   setCurrentLogin_Email(user.emails[0].value);
+    //   console.log("user", user.emails[0].value);
+    // } else {
+    //   console.log('User email is not available.');
+    // }
+    // ตรวจสอบว่ามีอ็อบเจกต์ user และมีอีเมลในอ็อบเจกต์ user หรือไม่
+    if (user && user.emails && user.emails.length > 0) {
+      // กำหนดค่า currentLogin_Email ด้วยค่าอีเมลที่ได้จากอ็อบเจกต์ user
       setCurrentLogin_Email(user.emails[0].value);
       console.log("user", user.emails[0].value);
+
+      // ตรวจสอบว่าอ็อบเจกต์ user มีค่า id หรือไม่
+      if (user.id) {
+          // พิมพ์ค่า id ของอ็อบเจกต์ user ที่ได้จาก API ของ Google OAuth
+          console.log("User ID:", user.id);
+      } else {
+          console.log('User ID is not available.');
+      }
     } else {
       console.log('User email is not available.');
     }

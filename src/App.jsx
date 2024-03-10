@@ -135,6 +135,7 @@ function App() {
           // console.log("res.credentials",resObject.credentials);
           setUser(resObject.user); // ตั้งค่าข้อมูลผู้ใช้ในตัวแปร user
           // console.log(resObject.user.emails[0].value);
+          console.log("User ID:", user.id);
         })        
         .catch((err) => {
           console.log(err);
