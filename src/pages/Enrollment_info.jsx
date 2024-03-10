@@ -750,50 +750,50 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
             
             return false;
           }
-        //   if (student_nid_input.value === "") {
-        //     alert('กรุณากรอกเลขประจำตัวประชาชนของนักเรียน');
-        //     student_nid_input.scrollIntoView({ behavior: 'smooth' });
-        //     setTimeout(() => student_nid_input.focus(), 100);
-        //     return false;
-        //   }
-        // if (!maleRadio.checked && !femaleRadio.checked) {
-        //     alert('กรุณาเลือกคำนำหน้าชื่อของนักเรียน');
-        //     return false;
-        // }
-        // if (!maleRadio.checked && !femaleRadio.checked) {
-        //     alert('กรุณาเลือกคำนำหน้าชื่อของนักเรียน');
-        //     return false;
-        // }
-        //   if (surname.value === "") {
-        //     alert('กรุณากรอกชื่อของนักเรียน');
-        //     surname.scrollIntoView({ behavior: 'smooth' });
-        //     setTimeout(() => surname.focus(), 100);
-        //     return false;
-        //   }
-        // if (LastName.value === "") {
-        //     alert('กรุณากรอกนามสกุลของนักเรียน');
-        //     LastName.scrollIntoView({ behavior: 'smooth' });
-        //     setTimeout(() => LastName.focus(), 100);
-        //     return false;
-        //   }
-        //   if (!DOB) {
-        //     alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
-        //     // DOB.scrollIntoView({ behavior: 'smooth' });
-        //     // setTimeout(() => DOB.focus(), 100);
-        //     return false;
-        //   }
-        //   if (!DOB) {
-        //     alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
-        //     // DOB.scrollIntoView({ behavior: 'smooth' });
-        //     DOB.focus();
-        //     return false;
-        //   }
-        //  if (CopyofStudentIDCard.value === "") {
-        //     alert('กรุณาเลือกไฟล์สำเนาสูติบัตรของนักเรียน');
-        //     CopyofStudentIDCard.scrollIntoView({ behavior: 'smooth' });
-        //     setTimeout(() => CopyofStudentIDCard.focus(), 100);
-        //     return false;
-        //   }
+          if (student_nid_input.value === "") {
+            alert('กรุณากรอกเลขประจำตัวประชาชนของนักเรียน');
+            student_nid_input.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => student_nid_input.focus(), 100);
+            return false;
+          }
+        if (!maleRadio.checked && !femaleRadio.checked) {
+            alert('กรุณาเลือกคำนำหน้าชื่อของนักเรียน');
+            return false;
+        }
+        if (!maleRadio.checked && !femaleRadio.checked) {
+            alert('กรุณาเลือกคำนำหน้าชื่อของนักเรียน');
+            return false;
+        }
+          if (surname.value === "") {
+            alert('กรุณากรอกชื่อของนักเรียน');
+            surname.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => surname.focus(), 100);
+            return false;
+          }
+        if (LastName.value === "") {
+            alert('กรุณากรอกนามสกุลของนักเรียน');
+            LastName.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => LastName.focus(), 100);
+            return false;
+          }
+          if (!DOB) {
+            alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
+            // DOB.scrollIntoView({ behavior: 'smooth' });
+            // setTimeout(() => DOB.focus(), 100);
+            return false;
+          }
+          if (!DOB) {
+            alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
+            // DOB.scrollIntoView({ behavior: 'smooth' });
+            DOB.focus();
+            return false;
+          }
+         if (CopyofStudentIDCard.value === "") {
+            alert('กรุณาเลือกไฟล์สำเนาสูติบัตรของนักเรียน');
+            CopyofStudentIDCard.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => CopyofStudentIDCard.focus(), 100);
+            return false;
+          }
 
         const option1 = document.getElementById('option1');
         const option2 = document.getElementById('option2');
@@ -889,7 +889,7 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
                 // console.log(ParentEmail.value, "p");
 
                 console.log("ค่าของตัวแปรทั้ง 3 ตัวแปรไม่เท่ากัน");
-                return true;
+                // return true;
                
             } 
             if (Father_Email.value === Mother_Email.value) {
@@ -912,10 +912,10 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
                 
             }
 
-            // if (FatherEmail===MotherEmail) {
-            //     alert('ไม่สามารถใช้อีเมลซ้ำได้');
-            //     return false;
-            // }
+            if (FatherEmail===MotherEmail) {
+                alert('ไม่สามารถใช้อีเมลซ้ำได้');
+                return false;
+            }
             if (!isMotherRecordData) {
                 const isMotherDataValid = checkMotherRecordData();
                 if (!isMotherDataValid) {
@@ -1143,7 +1143,7 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
                 console.log(ParentEmail.value, "p");
 
                 console.log("ค่าของตัวแปรทั้ง 3 ตัวแปรไม่เท่ากัน");
-                return true;
+                // return true;
                
             } 
             if (Father_Email.value === Mother_Email.value || Father_Email.value === ParentEmail.value|| Mother_Email.value === ParentEmail.value) {
