@@ -65,10 +65,23 @@ function Enrollment_info({user}) {
    //  ฟังก์ชันสำหรับการแปลงวันที่ให้เป็นรูปแบบ "YYYY-MM-DD"
   
 
-  const handleStudentNIDChange = (event) => {
-    setStudentNID(event.target.value);
-};
+//   const handleStudentNIDChange = (event) => {
+//     setStudentNID(event.target.value);
+// };
 
+const handleStudentNIDChange = (event) => {
+    const inputValue = event.target.value;
+    const idValue = inputValue.replace(/[^0-9]/g, "");
+    if (idValue.length > 13) {
+        alert("กรุณากรอกเลขประจำตัวประชาชน 13 หลัก");
+      return;
+    }
+    if (inputValue !== idValue) {
+        alert("กรุณากรอกเฉพาะตัวเลขเท่านั้น");
+      event.target.value = idValue;
+    }
+    setStudentNID(idValue);
+  };
 const handlenameTitleChange = (event) => {
     setnameTitle(event.target.value); 
     // console.log(nameTitle,"kkkk")
@@ -444,7 +457,17 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
       }
       
       const handleFatherTelChange = (event) => {
-          setFatherTel(event.target.value);
+        const inputValue = event.target.value;
+        const idValue = inputValue.replace(/[^0-9]/g, "");
+        if (idValue.length > 10) {
+            alert("กรุณากรอกหมายเลขโทรศัพท์ 10 หลัก");
+        return;
+        }
+        if (inputValue !== idValue) {
+            alert("กรุณากรอกเฉพาะตัวเลขเท่านั้น");
+        event.target.value = idValue;
+        }
+        setFatherTel(idValue);
       }
   
       //handle Mother data change--------------------------
@@ -473,7 +496,17 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
       }
       
       const handleMotherTelChange = (event) => {
-          setMotherTel(event.target.value);
+        const inputValue = event.target.value;
+        const idValue = inputValue.replace(/[^0-9]/g, "");
+        if (idValue.length > 10) {
+            alert("กรุณากรอกหมายเลขโทรศัพท์ 10 หลัก");
+        return;
+        }
+        if (inputValue !== idValue) {
+            alert("กรุณากรอกเฉพาะตัวเลขเท่านั้น");
+        event.target.value = idValue;
+        }
+          setMotherTel(idValue);
       }
   
       //handle Parent data change--------------------------
@@ -502,7 +535,17 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
       }
       
       const handleParentTelChange = (event) => {
-          setParentTel(event.target.value);
+        const inputValue = event.target.value;
+        const idValue = inputValue.replace(/[^0-9]/g, "");
+        if (idValue.length > 10) {
+            alert("กรุณากรอกหมายเลขโทรศัพท์ 10 หลัก");
+        return;
+        }
+        if (inputValue !== idValue) {
+            alert("กรุณากรอกเฉพาะตัวเลขเท่านั้น");
+        event.target.value = idValue;
+        }
+          setParentTel(idValue);
       }
   
       const handleParentRoleChange = (event) => {
@@ -756,6 +799,12 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
             setTimeout(() => student_nid_input.focus(), 100);
             return false;
           }
+          if (student_nid_input.value.length < 13) {
+            alert('กรุณากรอกเลขประจำตัวประชาชน 13 หลัก');
+            student_nid_input.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => student_nid_input.focus(), 100);
+            return false;
+          }
         if (!maleRadio.checked && !femaleRadio.checked) {
             alert('กรุณาเลือกคำนำหน้าชื่อของนักเรียน');
             return false;
@@ -871,6 +920,20 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
                 setTimeout(() => Father_Email.focus(), 100);
               return false;
             }
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailRegex.test(Father_Email.value)) {
+                alert('รูปแบบอีเมลไม่ถูกต้อง');
+                Father_Email.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => Father_Email.focus(), 100);
+                return false;
+            }
+            if (!isFatherRecordData) {
+                const isFatherDataValid = checkFatherRecordData();
+                if (!isFatherDataValid) {
+                    return false;
+                }
+                
+            }
             const Mother_Email = document.getElementById('Mother_Email');
             if (Mother_Email.value === "") {
               alert('กรุณากรอกอีเมลมารดา');
@@ -878,8 +941,12 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
                 setTimeout(() => Mother_Email.focus(), 100);
               return false;
             }
-
-            const ParentEmail = document.getElementById('ParentEmail');
+            if (!emailRegex.test(Mother_Email.value)) {
+                alert('รูปแบบอีเมลไม่ถูกต้อง');
+                Mother_Email.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => Mother_Email.focus(), 100);
+                return false;
+            }
             
             if (Father_Email.value !== Mother_Email.value) {
                 // ค่าของตัวแปรทั้ง 3 ตัวแปรไม่เท่ากัน
@@ -904,13 +971,7 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
                
             } 
             
-            if (!isFatherRecordData) {
-                const isFatherDataValid = checkFatherRecordData();
-                if (!isFatherDataValid) {
-                    return false;
-                }
-                
-            }
+            
 
             if (FatherEmail===MotherEmail) {
                 alert('ไม่สามารถใช้อีเมลซ้ำได้');
@@ -1011,6 +1072,12 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
                 setTimeout(() => father_phoneNumber.focus(), 100);
                 return false;
             }
+            if (father_phoneNumber.value.length < 10) {
+                alert('กรุณากรอกหมายเลขโทรศัพท์ 10 หลัก');
+                father_phoneNumber.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => father_phoneNumber.focus(), 100);
+                return false;
+              }
 
             return true;
           }
@@ -1076,14 +1143,14 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
             }
             const mother_Occupation = document.getElementById('mother_Occupation');
             if (mother_Occupation.value === "") {
-                alert('กรุณากรอกอาชีพของบิดา');
+                alert('กรุณากรอกอาชีพของมารดา');
                 mother_Occupation.scrollIntoView({ behavior: 'smooth' });
                 setTimeout(() => mother_Occupation.focus(), 100);
                 return false;
             }
             const mother_Workplace = document.getElementById('mother_Workplace');
             if (mother_Workplace.value === "") {
-                alert('กรุณากรอกสถานที่ทำงานของบิดา');
+                alert('กรุณากรอกสถานที่ทำงานของมารดา');
                 mother_Workplace.scrollIntoView({ behavior: 'smooth' });
                 setTimeout(() => mother_Workplace.focus(), 100);
                 return false;
@@ -1091,11 +1158,17 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
             
             const mother_phoneNumber = document.getElementById('mother_phoneNumber');
             if (mother_phoneNumber.value === "") {
-                alert('กรุณากรอกเลขเบอร์โทรศัพท์ของบิดา');
+                alert('กรุณากรอกเลขเบอร์โทรศัพท์ของมารดา');
                 mother_phoneNumber.scrollIntoView({ behavior: 'smooth' });
                 setTimeout(() => mother_phoneNumber.focus(), 100);
                 return false;
             }
+            if (mother_phoneNumber.value.length < 10) {
+                alert('กรุณากรอกหมายเลขโทรศัพท์ 10 หลัก');
+                mother_phoneNumber.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => mother_phoneNumber.focus(), 100);
+                return false;
+              }
 
             return true;
           }
@@ -1131,6 +1204,13 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
             const ParentEmail = document.getElementById('ParentEmail');
             if (ParentEmail.value === "") {
                 alert('กรุณากรอกอีเมลผู้ปกครอง');
+                ParentEmail.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => ParentEmail.focus(), 100);
+                return false;
+            }
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailRegex.test(ParentEmail.value)) {
+                alert('รูปแบบอีเมลไม่ถูกต้อง');
                 ParentEmail.scrollIntoView({ behavior: 'smooth' });
                 setTimeout(() => ParentEmail.focus(), 100);
                 return false;
@@ -1215,6 +1295,12 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
                 setTimeout(() => SomeoneElseIsParent_phoneNumber.focus(), 100);
                 return false;
             }
+            if (SomeoneElseIsParent_phoneNumber.value.length < 10) {
+                alert('กรุณากรอกหมายเลขโทรศัพท์ 10 หลัก');
+                SomeoneElseIsParent_phoneNumber.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => SomeoneElseIsParent_phoneNumber.focus(), 100);
+                return false;
+              }
             const Parent_Relation = document.getElementById('Parent_Relation');
             if (Parent_Relation.value === "") {
                 alert('กรุณากรอกความเกี่ยวข้องกับผู้สมัคร');
@@ -1628,7 +1714,7 @@ return (
             </div>
 
             <div className="align-items-center" style={{ maxWidth: "100%" }}>
-                <input type="text" className="form-control" id="surname" name="surname" placeholder="กรอกชื่อ" value={FirstName} onChange={handleFirstNameChange} />
+                <input type="text" className="form-control" id="surname" name="surname" placeholder="กรอกชื่อ" value={FirstName} onChange={handleFirstNameChange} required/>
             </div>
 
             <div className="d-flex align-items-center">
@@ -1636,7 +1722,7 @@ return (
             </div>
 
             <div className="align-items-center" style={{ maxWidth: "100%" }}>
-                <input type="text" className="form-control" id="LastName" name="LastName" placeholder="กรอกนามสกุล" value={LastName} onChange={handleLastNameChange} />
+                <input type="text" className="form-control" id="LastName" name="LastName" placeholder="กรอกนามสกุล" value={LastName} onChange={handleLastNameChange} required/>
             </div>
         </div>
         <br></br>
@@ -1717,7 +1803,7 @@ return (
 
         <br></br> 
         <div style={{ marginLeft: '15px', maxWidth: "100%",display: 'flex' }}>
-                <input id = "PreviousSchoolEducationalRecordsFile"type="file" className="form-control px-3" onChange={handlePreviousSchoolEducationalRecordsFileChange} accept=".pdf, .jpg, .jpeg, .png" />
+                <input id = "PreviousSchoolEducationalRecordsFile"type="file" className="form-control px-3" onChange={handlePreviousSchoolEducationalRecordsFileChange} accept=".pdf, .jpg, .jpeg, .png" required />
                 <label className="input-group-text" id="PreviousSchoolEducationalRecordsFile_input" title={PreviousSchoolEducationalRecordsFile && PreviousSchoolEducationalRecordsFile.name}>
                     {PreviousSchoolEducationalRecordsFile ? (<span>{PreviousSchoolEducationalRecordsFile.name}</span>
 
@@ -1970,7 +2056,7 @@ return (
                     </div>
                 
                     <div className="align-items-center"style={{ marginTop: '5px',maxWidth:"65%"}}> 
-                        <input type="text" className="form-control mb-0 mx-3" id="Father_Email" name="Father_Email" value={FatherEmail} placeholder="กรอกอีเมลบิดา" onChange={handleFatherEmailChange}/>
+                        <input type="text" className="form-control mb-0 mx-3" id="Father_Email" name="Father_Email" value={FatherEmail} placeholder="กรอกอีเมลบิดา" onChange={handleFatherEmailChange}required/>
                     </div>
                 </div>
             {/* </>
@@ -1994,7 +2080,7 @@ return (
                             value={FatherFirstname} 
                             onChange={handleFatherFirstnameChange} 
                             readOnly={isFatherRecordData} // กำหนด prop readOnly ตามค่าของ isFatherRecordData
-                            // required
+                            required
                         />
                     </div>
 
@@ -2011,7 +2097,7 @@ return (
                             placeholder="กรอกนามสกุล"
                             value={FatherLastname}
                             onChange={handleFatherLastnameChange}
-                            readOnly={isFatherRecordData}/>
+                            readOnly={isFatherRecordData} required/>
                     </div>
 
                     <div className="align-items-center">
@@ -2058,7 +2144,7 @@ return (
                             <label htmlFor="father_Nationality" className="col-form-label">สัญชาติ</label>
                         </div>
                         <div className="align-items-center" style={{marginTop: '5px',maxWidth:"100%"}}>
-                            <input type="text" className="form-control" id="father_Nationality" name="father_Nationality" placeholder="กรอกสัญชาติ" value={FatherNationality} onChange={handleFatherNationalityChange}/>
+                            <input type="text" className="form-control" id="father_Nationality" name="father_Nationality" placeholder="กรอกสัญชาติ" value={FatherNationality} onChange={handleFatherNationalityChange} required/>
                         </div>
                         </>
                     )}
@@ -2070,19 +2156,19 @@ return (
                             <label htmlFor="father_Occupation" className="col-form-label">อาชีพ</label>
                         </div>
                         <div className="align-items-center" style={{ marginTop: '5px',maxWidth:"100%"}}>       
-                            <input type="text" className="form-control" id="father_Occupation" name="father_Occupation" value={FatherOccupation} placeholder="กรอกอาชีพ" onChange={handleFatherOccupationChange}/>
+                            <input type="text" className="form-control" id="father_Occupation" name="father_Occupation" value={FatherOccupation} placeholder="กรอกอาชีพ" onChange={handleFatherOccupationChange} required/>
                         </div>
                         <div className="d-flex align-items-center" style={{ marginTop: '5px',maxWidth:"100%"}}>
                             <label htmlFor="father_Workplace" className="col-form-label">สถานที่ทำงาน</label>
                         </div>
                         <div className="align-items-center" style={{ marginTop: '5px',maxWidth:"100%"}}>   
-                            <input type="text" className="form-control" id="father_Workplace" name="father_Workplace" value={FatherOffice} placeholder="กรอกสถานที่ทำงาน" onChange={handleFatherOfficeChange}/>
+                            <input type="text" className="form-control" id="father_Workplace" name="father_Workplace" value={FatherOffice} placeholder="กรอกสถานที่ทำงาน" onChange={handleFatherOfficeChange}required/>
                         </div>
                         <div className="d-flex align-items-center" style={{ marginTop: '5px',maxWidth:"100%"}}>
                             <label htmlFor="father_phoneNumber" className="col-form-label">โทรศัพท์</label>
                             </div>
                         <div className="align-items-center" style={{ marginTop: '5px',maxWidth:"100%"}}>   
-                            <input type="text" className="form-control" id="father_phoneNumber" name="father_phoneNumber" value={FatherTel} placeholder="กรอกหมายเลขโทรศัพท์" onChange={handleFatherTelChange}/>
+                            <input type="text" className="form-control" id="father_phoneNumber" name="father_phoneNumber" value={FatherTel} placeholder="กรอกหมายเลขโทรศัพท์" onChange={handleFatherTelChange}required/>
                         </div>
                         
                         
@@ -2132,7 +2218,7 @@ return (
                         </h2>
                     </div>
                     <div className="align-items-center"style={{ marginTop: '5px',maxWidth:"65%"}}>  
-                        <input type="text" className="form-control mb-0 mx-3" id="Mother_Email" name="Mother_Email" placeholder="กรอกอีเมลมารดา" value={MotherEmail} onChange={handleMotherEmailChange} />
+                        <input type="text" className="form-control mb-0 mx-3" id="Mother_Email" name="Mother_Email" placeholder="กรอกอีเมลมารดา" value={MotherEmail} onChange={handleMotherEmailChange} required/>
                     </div>
                 </div>
             {/* </>
@@ -2147,13 +2233,13 @@ return (
                         <label htmlFor="mother_Firstname" className="col-form-label">ชื่อ</label>
                     </div>
                     <div className="align-items-center" style={{maxWidth:"100%"}}>
-                        <input type="text" className="form-control" id="mother_Firstname" name="mother_Firstname" placeholder="กรอกชื่อ" value={MotherFirstname} onChange={handleMotherFirstnameChange} />
+                        <input type="text" className="form-control" id="mother_Firstname" name="mother_Firstname" placeholder="กรอกชื่อ" value={MotherFirstname} onChange={handleMotherFirstnameChange} required/>
                         </div>
                     <div className="align-items-center">
                         <label htmlFor="mother_lastname" className="col-form-label">นามสกุล</label>
                         </div>
                     <div className="align-items-center" style={{maxWidth:"100%"}}>
-                        <input type="text" className="form-control" id="mother_lastname" name="mother_lastname" placeholder="กรอกนามสกุล"value={MotherLastname} onChange={handleMotherLastnameChange}  />
+                        <input type="text" className="form-control" id="mother_lastname" name="mother_lastname" placeholder="กรอกนามสกุล"value={MotherLastname} onChange={handleMotherLastnameChange} required />
                         </div>
                     <div className="align-items-center">
                         <label htmlFor="mother_dob" className="col-form-label">วัน/เดือน/ปีเกิด</label>
@@ -2191,7 +2277,7 @@ return (
                         <label htmlFor="mother_Nationality" className="col-form-label">สัญชาติ</label>
                         </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>
-                        <input type="text" className="form-control" id="mother_Nationality" name="mother_Nationality" placeholder="กรอกสัญชาติ"value={MotherNationality} onChange={handleMotherNationalityChange}/>
+                        <input type="text" className="form-control" id="mother_Nationality" name="mother_Nationality" placeholder="กรอกสัญชาติ"value={MotherNationality} onChange={handleMotherNationalityChange} required/>
                         </div>
                         </>
                     )}
@@ -2220,19 +2306,19 @@ return (
                             <label htmlFor="mother_Occupation" className="col-form-label">อาชีพ</label>
                         </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>       
-                            <input type="text" className="form-control" id="mother_Occupation" name="mother_Occupation" placeholder="กรอกอาชีพ"value={MotherOccupation} onChange={handleMotherOccupationChange} />
+                            <input type="text" className="form-control" id="mother_Occupation" name="mother_Occupation" placeholder="กรอกอาชีพ"value={MotherOccupation} onChange={handleMotherOccupationChange} required/>
                         </div>
                         <div className="d-flex align-items-center">
                             <label htmlFor="mother_Workplace" className="col-form-label">สถานที่ทำงาน</label>
                         </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>   
-                            <input type="text" className="form-control" id="mother_Workplace" name="mother_Workplace" placeholder="กรอกสถานที่ทำงาน"value={MotherOffice} onChange={handleMotherOfficeChange} />
+                            <input type="text" className="form-control" id="mother_Workplace" name="mother_Workplace" placeholder="กรอกสถานที่ทำงาน"value={MotherOffice} onChange={handleMotherOfficeChange} required/>
                         </div>
                         <div className="d-flex align-items-center">
                             <label htmlFor="mother_phoneNumber" className="col-form-label">โทรศัพท์</label>
                             </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>   
-                            <input type="text" className="form-control" id="mother_phoneNumber" name="mother_phoneNumber" placeholder="กรอกหมายเลขโทรศัพท์"value={MotherTel} onChange={handleMotherTelChange} />
+                            <input type="text" className="form-control" id="mother_phoneNumber" name="mother_phoneNumber" placeholder="กรอกหมายเลขโทรศัพท์"value={MotherTel} onChange={handleMotherTelChange}required />
                         </div>
                      
                         
@@ -2312,7 +2398,7 @@ return (
                                 </h2>
                             </div>
                             <div className="align-items-center"style={{ marginTop: '5px',maxWidth:"65%"}}>  
-                                <input type="text" className="form-control mb-0 mx-3" id="ParentEmail" name="ParentEmail" placeholder="กรอกอีเมลผู้ปกครอง" value={ParentEmail} onChange={handleParentEmailChange}/>
+                                <input type="text" className="form-control mb-0 mx-3" id="ParentEmail" name="ParentEmail" placeholder="กรอกอีเมลผู้ปกครอง" value={ParentEmail} onChange={handleParentEmailChange}required/>
                             </div>
                         </div>
                     {/* </>
@@ -2327,7 +2413,7 @@ return (
                         </div>
                         
                         <div className="align-items-center" style={{maxWidth:"100%"}}>
-                            <input type="text" className="form-control" id="SomeoneElseIsParent_surname" name="SomeoneElseIsParent_surname" placeholder="กรอกชื่อ" value={ParentFirstname} onChange={handleParentFirstnameChange}/>
+                            <input type="text" className="form-control" id="SomeoneElseIsParent_surname" name="SomeoneElseIsParent_surname" placeholder="กรอกชื่อ" value={ParentFirstname} onChange={handleParentFirstnameChange}required/>
                         </div>
 
                         <div className="align-items-center">
@@ -2335,7 +2421,7 @@ return (
                         </div>
 
                         <div className="align-items-center" style={{maxWidth:"100%"}}>
-                            <input type="text" className="form-control" id="SomeoneElseIsParent_lastname" name="SomeoneElseIsParent_lastname" placeholder="กรอกนามสกุล" value={ParentLastname} onChange={handleParentLastnameChange}/>
+                            <input type="text" className="form-control" id="SomeoneElseIsParent_lastname" name="SomeoneElseIsParent_lastname" placeholder="กรอกนามสกุล" value={ParentLastname} onChange={handleParentLastnameChange}required/>
                         </div>
 
                         {/* <div className="align-items-center">
@@ -2381,7 +2467,7 @@ return (
                                 <label htmlFor="parent_Nationality" className="col-form-label">สัญชาติ</label>
                             </div>
                             <div className="align-items-center" style={{maxWidth:"100%"}}>
-                                <input type="text" className="form-control" id="parent_Nationality" name="parent_Nationality" placeholder="กรอกสัญชาติ"value={ParentNationality} onChange={handleParentNationalityChange}/>
+                                <input type="text" className="form-control" id="parent_Nationality" name="parent_Nationality" placeholder="กรอกสัญชาติ"value={ParentNationality} onChange={handleParentNationalityChange}required/>
                             </div>
                             </>
                         )}
@@ -2393,19 +2479,19 @@ return (
                             <label htmlFor="Parent_Occupation" className="col-form-label">อาชีพ</label>
                         </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>       
-                            <input type="text" className="form-control" id="Parent_Occupation" name="Parent_Occupation" placeholder="กรอกอาชีพ" value={ParentOccupation} onChange={handleParentOccupationChange}/>
+                            <input type="text" className="form-control" id="Parent_Occupation" name="Parent_Occupation" placeholder="กรอกอาชีพ" value={ParentOccupation} onChange={handleParentOccupationChange}required/>
                         </div>
                         <div className="d-flex align-items-center">
                             <label htmlFor="Parent_Workplace" className="col-form-label">สถานที่ทำงาน</label>
                         </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>   
-                            <input type="text" className="form-control" id="Parent_Workplace" name="Parent_Workplace" placeholder="กรอกสถานที่ทำงาน" value={ParentOffice} onChange={handleParentOfficeChange}/>
+                            <input type="text" className="form-control" id="Parent_Workplace" name="Parent_Workplace" placeholder="กรอกสถานที่ทำงาน" value={ParentOffice} onChange={handleParentOfficeChange}required/>
                         </div>
                         <div className="d-flex align-items-center">
                             <label htmlFor="SomeoneElseIsParent_phoneNumber" className="col-form-label">โทรศัพท์</label>
                         </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>   
-                            <input type="text" className="form-control" id="SomeoneElseIsParent_phoneNumber" name="SomeoneElseIsParent_phoneNumber" placeholder="กรอกหมายเลขโทรศัพท์" value={ParentTel} onChange={handleParentTelChange} />
+                            <input type="text" className="form-control" id="SomeoneElseIsParent_phoneNumber" name="SomeoneElseIsParent_phoneNumber" placeholder="กรอกหมายเลขโทรศัพท์" value={ParentTel} onChange={handleParentTelChange} required/>
                         </div>
                         {/* <div className="d-flex align-items-center">
                         {/* <div className="d-flex align-items-center">
@@ -2419,7 +2505,7 @@ return (
                             <label htmlFor="Parent_Relation" className="col-form-label">เกี่ยวข้องเป็น</label>
                         </div>
                         <div className="align-items-center" style={{maxWidth:"100%"}}>   
-                            <input type="text" className="form-control" id="Parent_Relation" name="Parent_Relation" placeholder="กรอกความเกี่ยวข้องกับผู้สมัคร" value={ParentRole} onChange={handleParentRoleChange}/>
+                            <input type="text" className="form-control" id="Parent_Relation" name="Parent_Relation" placeholder="กรอกความเกี่ยวข้องกับผู้สมัคร" value={ParentRole} onChange={handleParentRoleChange}required/>
                         </div>
                         
                     </div>
