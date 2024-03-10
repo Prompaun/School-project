@@ -30,6 +30,27 @@ const History_request = () => {
     // เช่น ส่งข้อมูลไปยังเซิร์ฟเวอร์หรือทำการตรวจสอบข้อมูล
   };
 
+  const [StudentData, setStudentData] = useState([
+    {
+      StudentID: "12345",
+      nameTitle: "เด็กหญิง",
+      Firstname: "น้ำใส",
+      Lastname: "ใจดี"
+    },
+    {
+      StudentID: "5678",
+      nameTitle: "เด็กชาย",
+      Firstname: "น้ำหนึ่ง",
+      Lastname: "ใจดี"
+    }
+  ]);
+
+  const [selectedStudent, setSelectedStudent] = useState("");
+  const handleStudentChange = (event) => {
+    const selectedStudentValue = event.target.value;
+    setSelectedStudent(selectedStudentValue);
+  };
+  
   const [data, setData] = useState([
     {
       DateRequest: '1/10/2566',
@@ -53,6 +74,7 @@ const History_request = () => {
       RequestStatus: 'กำลังดำเนินการ'
     },
   ]);
+
   const [selectedOption, setSelectedOption] = useState('เลือกสถานะคำร้องขอใบรับรอง');
   
 
@@ -85,22 +107,38 @@ const History_request = () => {
       <div className="container flex-column align-items-center">
         <div className="mb-3"><br />
           <h2 className="align-items-center justify-content-center"style={{fontWeight:"bolder",fontSize:"25px"}}>สถานะคำร้องขอใบรับรอง</h2>
-          <br />
-          <div className="d-flex"style={{ flexWrap: 'wrap', margin: 'auto', fontSize: '18px' }}>
+          <div className="d-flex"style={{ flexWrap: 'wrap'}} >
+          <div className="d-flex"style={{ flexWrap: 'wrap', fontSize: '18px' ,padding: "10px"}}>
+          <div className="d-flex align-items-center">
+              <span style={{fontWeight:"bolder",marginRight:"10px"}}>เลือกข้อมูลนักเรียน :</span>
+            </div>
+            <div className="dropdown" style={{ maxWidth: '100%' }}>
+              <select value={selectedStudent} onChange={handleStudentChange} className="custom-select">
+                <option value="">เลือกข้อมูล</option>
+                {StudentData.map((Student) => (
+                  <option key={Student} value={Student}>
+                    {Student.StudentID} : {Student.nameTitle}{Student.Firstname} {Student.Lastname}
+                  </option>
+                ))}
+              </select>
+            </div>
+            </div>
+        
+          <div className="d-flex"style={{ flexWrap: 'wrap', fontSize: '18px' ,padding: "10px"}}>
               <div>
-                  <span style={{fontWeight:"bolder",fontSize:"20px",marginRight:"10px"}}>เลือกสถานะ</span>
+                  <span style={{fontWeight:"bolder",marginRight:"10px"}}>เลือกสถานะ : </span>
                 </div>
           <div className="dropdown" style={{ maxWidth: '100%'}}>
-          <select value={selectedOption} onChange={handleSelectChange}className="custom-select w-full">
-            <option value="เลือกสถานะคำร้องขอใบรับรอง">เลือกสถานะคำร้องขอใบรับรอง</option>
-            <option value="รอดำเนินการ">รอดำเนินการ</option>
-            <option value="ดำเนินการเสร็จสิ้น">ดำเนินการเสร็จสิ้น</option>
-            <option value="กำลังดำเนินการ">กำลังดำเนินการ</option>
-          </select>
-          </div>
+              <select value={selectedOption} onChange={handleSelectChange}className="custom-select w-full">
+                <option value="เลือกสถานะคำร้องขอใบรับรอง">เลือกสถานะคำร้องขอใบรับรอง</option>
+                <option value="รอดำเนินการ">รอดำเนินการ</option>
+                <option value="ดำเนินการเสร็จสิ้น">ดำเนินการเสร็จสิ้น</option>
+                <option value="กำลังดำเนินการ">กำลังดำเนินการ</option>
+              </select>
+              </div>
           </div>
         </div>
-
+        </div>
         
         {/* <div className="d-flex justify-content-center" style={{ height: 'auto', overflowY: 'auto' }}>
           <table className="table-bordered" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'center',fontFamily: 'Kanit, sans-serif' }}>
