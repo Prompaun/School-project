@@ -5,8 +5,13 @@ import Header from '../components/Header';
 import Date_Picker from '../components/Date_Picker';
 import axios from 'axios';
 import 'react-datepicker/dist/react-datepicker.css';
+// import Popup from "@simondmc/popup-js"
+import { Button, Modal,Spinner } from 'react-bootstrap';
+
 
 function Enrollment_info({user}) {
+const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
   const fontStyle = {
     fontFamily: 'Kanit, sans-serif',
     textDecoration: 'none'
@@ -47,13 +52,6 @@ function Enrollment_info({user}) {
     const [Enroll_Date, setEnroll_Date] = useState(formatDate(new Date()));  // สร้าง state เพื่อเก็บวันที่ปัจจุบัน
     const [Enroll_Course, setEnroll_Course] = useState("หลักสูตรทั่วไป");
     
-    const myPopup = new Popup({
-        id: "my-popup",
-        title: "My First Popup",
-        content: `
-            An example popup.
-            Supports multiple lines.`,
-    });
     
     // สร้างฟังก์ชันสำหรับการแปลงค่าวันที่เป็นปี
     const getYearFromDate = (date) => {
@@ -725,7 +723,7 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
 
             const handlePersonalNextClick = () => {
                 
-                console.log("file.name", Student_picture_file);
+                // console.log("file.name", Student_picture_file);
                 if (checkInputStudent()) {
                    
                     setStudent_info(false);
@@ -742,6 +740,8 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
                     setStudent_info(true);
                     setHousehold(false);
                 }
+                // setStudent_info(true);
+                // setHousehold(false);
                 
               };
 
@@ -1392,7 +1392,8 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
           });
     
           setMessage('Successfully uploaded to drive');
-          navigate("/NewUser_menu");
+          
+          
         
       } catch (error) {
         if (error.response && error.response.status === 409) {
@@ -1496,6 +1497,7 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
   };
 
     const handleButtonClick = async () => {
+        setShowLoadingModal(true);
         if (user && user.emails[0].value) {
             setCurrentLogin_Email(user.emails[0].value);
             console.log("user", user.emails[0].value);
@@ -1603,20 +1605,69 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
                         ParentTel
                       );
                     }
-                    
+                    setLoading(false)
+                    navigate("/NewUser_menu");
+
                   } catch (error) {
                       console.error('Error handling button click:', error);
                   }
                 }
 
             }
-                     
-                       
+            setShowLoadingModal(false);
+            setShowSuccessModal(true);      
         };
-      
+
+        const [showLoadingModal, setShowLoadingModal] = useState(false);
+        const [showSuccessModal, setShowSuccessModal] = useState(false);
+        
+
+       
 return (
         <>
-   
+        {/* {loading && (<div>loading...</div>)} */}
+        {showLoadingModal && (
+                <Modal
+                    show={showLoadingModal}
+                    onHide={() => setShowLoadingModal(false)}
+                    backdrop="static"
+                    keyboard={false}
+                    centered
+                    size="sm"
+                    style={{ fontFamily: 'Kanit, sans-serif' }}
+                >
+                    <Modal.Body>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <Spinner animation="border" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                    </div>
+                    </Modal.Body>
+                </Modal>
+                )}
+
+                {showSuccessModal && (
+                <Modal
+                    show={showSuccessModal}
+                    onHide={() => setShowSuccessModal(false)}
+                    backdrop="static"
+                    keyboard={false}
+                    size="sm"
+                    centered
+                    style={{ fontFamily: 'Kanit, sans-serif' }}
+                >
+                <Modal.Body className="text-center p-lg-4">
+                    <h4 className="text-success mt-3" style={{ fontSize: '30px'}}>
+                        Complete!
+                    </h4>
+                    <p className="mt-3"style={{ fontSize: '22px' }}>ระบบได้รับข้อมูลการสมัครของท่านแล้ว</p>
+                    <Link to= "/NewUser_menu">
+                    <Button variant="sm"style={{ fontSize: '20px' }} className="btn-success" onClick={() => setShowSuccessModal(false)}>
+                    Ok
+                    </Button></Link>
+                </Modal.Body>
+                </Modal>
+                )}
       <Header header="ระบบรับสมัครนักเรียนแบบออนไลน์" subhead="กรอกข้อมูลการสมัคร"/>
       
       <div className="mt-5 d-flex flex-column align-items-center"style={{ height: '100vh'}}>
@@ -2532,10 +2583,16 @@ return (
                 {/* {message === "Successfully uploaded to drive" ? ( */}
                   {/* <Link to="/NewUser_menu" > */}
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                      <button type="button" onClick={handleButtonClick} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px' }}>
+                      <button type="button" onClick={handleButtonClick} className="btn btn-primary" 
+                      data-bs-toggle="modal" 
+                      data-bs-target="#staticBackdrop"
+                      style={{ ...fontStyle, color: 'white', fontSize: '16px' }}>
                         ส่งข้อมูล
                       </button>
+                      
                     </div>
+
+                    
                   {/* </Link> */}
                 {/* ) : ( */}
                   {/* <div style={{ display: 'flex', justifyContent: 'flex-end' }}> */}
