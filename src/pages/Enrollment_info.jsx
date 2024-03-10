@@ -1,11 +1,13 @@
 import React,{useState,useRef, useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 // import Tab_enroll from '../components/Tab_enroll';
 import Date_Picker from '../components/Date_Picker';
-
+import axios from 'axios';
 import 'react-datepicker/dist/react-datepicker.css';
-function Enrollment_info() {
+
+
+function Enrollment_info({user}) {
   const fontStyle = {
     fontFamily: 'Kanit, sans-serif',
     textDecoration: 'none'
@@ -17,21 +19,63 @@ function Enrollment_info() {
     const [nameTitle, setnameTitle] = useState('');
     const [FirstName, setFirstName] = useState('');
     const [LastName, setLastName] = useState('');
-    const [dateOfBirth, setDateOfBirth] = useState('');
+    const [DateOfBirth, setDateOfBirth] = useState('');
     const [Transcript_type, setTranscript_type] = useState('');
 
     const [Student_picture_file, setStudent_picture_file] = useState('');
     const [CopyofStudentIDCardFile, setCopyofStudentIDCardFile] = useState('');
     const [PreviousSchoolEducationalRecordsFile, setPreviousSchoolEducationalRecordsFile] = useState('');
+
+    const [CurrentLogin_Email, setCurrentLogin_Email] = useState('');
+    
+    const formatDate = (date) => {
+        if (date !== ''){
+          const year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        month = month < 10 ? '0' + month : month;
+        let day = date.getDate();
+        day = day < 10 ? '0' + day : day;
+        // 
+        // console.log(`${year}-${month}-${day}`);
+        return `${year}-${month}-${day}`;
+        }
+        else{
+          return new Date();
+        }
+        
+    };
+    const [Enroll_Date, setEnroll_Date] = useState(formatDate(new Date()));  // สร้าง state เพื่อเก็บวันที่ปัจจุบัน
+    const [Enroll_Course, setEnroll_Course] = useState("หลักสูตรทั่วไป");
+    
+   
+    
+    // สร้างฟังก์ชันสำหรับการแปลงค่าวันที่เป็นปี
+    const getYearFromDate = (date) => {
+        return date.getFullYear();
+    };
+  
+    
+    const [Enroll_Year, setEnroll_Year] = useState(getYearFromDate(new Date())); // เรียกใช้ฟังก์ชัน getYearFromDate เพื่อดึงปีจากวันที่ปัจจุบันและเก็บใน Enroll_Year
+   //  ฟังก์ชันสำหรับการแปลงวันที่ให้เป็นรูปแบบ "YYYY-MM-DD"
+  
+
   const handleStudentNIDChange = (event) => {
     setStudentNID(event.target.value);
 };
 
 const handlenameTitleChange = (event) => {
     setnameTitle(event.target.value); 
-    console.log(nameTitle)
+    // console.log(nameTitle,"kkkk")
     // sendnameTitleToEnroll(nameTitle)s
 };
+useEffect(() => {
+   
+    if (nameTitle) {
+        setnameTitle(nameTitle); 
+        console.log(nameTitle,"llll")
+    }
+
+    }, [nameTitle]);
 
 const handleFirstNameChange = (event) => {
     setFirstName(event.target.value);
@@ -53,7 +97,14 @@ const handleTranscript_typeChange = (event) => {
     setTranscript_type(event.target.value); // เมื่อมีการเลือก radio input ให้เรียกฟังก์ชันนี้
 };
 
+useEffect(() => {
+   
+    if (Transcript_type) {
+        setTranscript_type(Transcript_type); 
+        console.log(Transcript_type,"llll")
+    }
 
+    }, [Transcript_type]);
 
 const handleFileChange = (event) => {
     event.preventDefault();
@@ -165,26 +216,7 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
     }
 };
 
-const handleSubmit = async (event) => {
-    event.preventDefault();
-    const formElem = event.target;
-    
-    try {
-        const formData = new FormData(formElem);
-        console.log("yoky", formData);
-        await axios.post('http://localhost:5000/upload', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        });
-        setMessage('Successfully uploaded to drive');
-        document.getElementById("myButton").style.backgroundColor = "green";
-        document.getElementById('fileInputLabel').textContent = "Select Files";
-    } catch (error) {
-        setMessage('Was not uploaded' + error);
-        console.error(error);
-    }
-};
+
       {/* -------------------------------------------------------------------------------------*/} 
 
 
@@ -275,7 +307,7 @@ const handleSubmit = async (event) => {
     
          if (HouseReg_file.files.length === 0){
           setHouseReg_file('');
-          sendHouseReg_fileToEnroll('');
+        //   sendHouseReg_fileToEnroll('');
         }
        
         if (HouseReg_file.files && HouseReg_file.files.length > 0) {
@@ -289,7 +321,7 @@ const handleSubmit = async (event) => {
                 } else {
                     fileName = HouseReg_file.files.length + ' files selected';
                 }
-                sendHouseReg_fileToEnroll(file);
+                // sendHouseReg_fileToEnroll(file);
             } else {
                 alert('กรุณาเลือกไฟล์ที่มีนามสกุล .pdf, .jpg, .jpeg หรือ .png เท่านั้น');
                 HouseReg_file.value = '';
@@ -300,33 +332,7 @@ const handleSubmit = async (event) => {
     
     };
     
-      // const handleSubmit = (event) => {
-      //   event.preventDefault();
-        
-      //   // Basic validation: Check if required fields are empty
-      //   if (!HouseNumber || !Moo || !Province || !District || !SubDistrict || !Road || !Soi || !HouseReg_file) {
-      //     alert('Please fill out all fields and upload a HouseReg_file.');
-      //     // return;
-      //   }
       
-      //   // Perform form submission logic here (e.g., send data to server via API call)
-      //   // You can also show a loading spinner during the submission process
-      
-      //   // Reset the form fields after submission
-      //   // setHouseNumber('');
-      //   // setMoo('');
-      //   // setProvince('');
-      //   // setDistrict('');
-      //   // setSubDistrict('');
-      //   // setRoad('');
-      //   // setSoi('');
-      //   // setHouseReg_file('');
-      
-      //   // Show a success message to the user
-      //   alert('Form submitted successfully!');
-      // };
-        
-
 
       // ------------------------------------------------------------------------------
 
@@ -362,11 +368,6 @@ const handleSubmit = async (event) => {
       const [ParentOffice, setParentOffice] = useState('');
       const [ParentTel, setParentTel] = useState('');
       const [ParentRole, setParentRole] = useState('');
-  
-  
-      const [FoundFather, setFoundFather] = useState(true);
-      const [FoundMother, setFoundMother] = useState(true);
-      const [FoundParent, setFoundParent] = useState(true);
   
       const [FatherEmail, setFatherEmail] = useState('');
       const [MotherEmail, setMotherEmail] = useState('');
@@ -411,6 +412,10 @@ const handleSubmit = async (event) => {
     const handleParentEmailChange = (event) => {
             setParentEmail(event.target.value);
         };
+
+    
+
+
         const handleFatherFirstnameChange = (event) => {
           setFatherFirstname(event.target.value);
       };
@@ -420,9 +425,12 @@ const handleSubmit = async (event) => {
       };
   
       const handleIsFatherForeigner = (event) => {
+          
           setIsFatherForeigner(event.target.id === 'FatherForeigner'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
-      }; 
-  
+          
+        }; 
+    
+
       const handleFatherNationalityChange = (event) => {
           setFatherNationality(event.target.value);
           // console.log("FatherNationality",FatherNationality);
@@ -510,6 +518,18 @@ const handleSubmit = async (event) => {
               console.log('okokokokok',event.target.id);
           }
       };
+
+    useEffect(() => {
+        checkFather_Email(FatherEmail);
+    }, [FatherEmail]); 
+    useEffect(() => {
+        checkMother_Email(MotherEmail);
+    }, [MotherEmail]); 
+    useEffect(() => {
+        checkParent_Email(ParentEmail);
+    }, [ParentEmail]); 
+
+
       const checkFather_Email = async (email) => {
         try {
             const response = await axios.get(`http://localhost:8080/check-email?email=${email}`);
@@ -634,6 +654,7 @@ const handleSubmit = async (event) => {
                 setParentOccupation(data.results[0].Occupation);
                 setParentOffice(data.results[0].Office);
                 setParentTel(data.results[0].Tel);
+                setParentRole(data.results[0].Role);
 
                 return true;
             } 
@@ -658,7 +679,7 @@ const handleSubmit = async (event) => {
     };
     
             
-            // hide personal info
+            // hide personal info /////////////////////////////////////////////////////////////////////////////////////////////
 
             const handlePersonalNextClick = () => {
                 
@@ -718,64 +739,56 @@ const handleSubmit = async (event) => {
           const femaleRadio = document.getElementById('female');
           const surname = document.getElementById('surname');
           const LastName = document.getElementById('LastName');
-          const DOB = dateOfBirth;
+          const DOB = DateOfBirth;
           const CopyofStudentIDCard = document.getElementById('CopyofStudentIDCard');
           const CopyofStudentIDCard_input = document.getElementById('CopyofStudentIDCard_input');
 
 
        
-        //   if (student_picture_file.title ==="") {
-        //     alert('กรุณาเลือกไฟล์รูปภาพของนักเรียน');
-        //     student_picture_file_input.focus();
+          if (student_picture_file.title ==="") {
+            alert('กรุณาเลือกไฟล์รูปภาพของนักเรียน');
+            student_picture_file_input.focus();
             
-        //     return false;
-        //   }
-        //   if (student_nid_input.value === "") {
-        //     alert('กรุณากรอกเลขประจำตัวประชาชนของนักเรียน');
-        //     student_nid_input.scrollIntoView({ behavior: 'smooth' });
-        //     setTimeout(() => student_nid_input.focus(), 100);
-        //     return false;
-        //   }
-        // if (!maleRadio.checked && !femaleRadio.checked) {
-        //     alert('กรุณาเลือกคำนำหน้าชื่อของนักเรียน');
-        //     return false;
-        // }
-        // if (!maleRadio.checked && !femaleRadio.checked) {
-        //     alert('กรุณาเลือกคำนำหน้าชื่อของนักเรียน');
-        //     return false;
-        // }
-        //   if (surname.value === "") {
-        //     alert('กรุณากรอกชื่อของนักเรียน');
-        //     surname.scrollIntoView({ behavior: 'smooth' });
-        //     setTimeout(() => surname.focus(), 100);
-        //     return false;
-        //   }
-        // if (LastName.value === "") {
-        //     alert('กรุณากรอกนามสกุลของนักเรียน');
-        //     LastName.scrollIntoView({ behavior: 'smooth' });
-        //     setTimeout(() => LastName.focus(), 100);
-        //     return false;
-        //   }
-        //   if (!DOB) {
-        //     alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
-        //     // DOB.scrollIntoView({ behavior: 'smooth' });
-        //     // setTimeout(() => DOB.focus(), 100);
-        //     return false;
-        //   }
+            return false;
+          }
+          if (student_nid_input.value === "") {
+            alert('กรุณากรอกเลขประจำตัวประชาชนของนักเรียน');
+            student_nid_input.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => student_nid_input.focus(), 100);
+            return false;
+          }
+        if (!maleRadio.checked && !femaleRadio.checked) {
+            alert('กรุณาเลือกคำนำหน้าชื่อของนักเรียน');
+            return false;
+        }
+        if (!maleRadio.checked && !femaleRadio.checked) {
+            alert('กรุณาเลือกคำนำหน้าชื่อของนักเรียน');
+            return false;
+        }
+          if (surname.value === "") {
+            alert('กรุณากรอกชื่อของนักเรียน');
+            surname.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => surname.focus(), 100);
+            return false;
+          }
+        if (LastName.value === "") {
+            alert('กรุณากรอกนามสกุลของนักเรียน');
+            LastName.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => LastName.focus(), 100);
+            return false;
+          }
+          if (!DOB) {
+            alert('กรุณากรอก วัน/เดือน/ปีเกิด ของนักเรียน');
+            // DOB.scrollIntoView({ behavior: 'smooth' });
+            // setTimeout(() => DOB.focus(), 100);
+            return false;
+          }
         
-        //  if (CopyofStudentIDCard_input.title === "") {
-        //     alert('กรุณาเลือกไฟล์สำเนาสูติบัตรของนักเรียน');
-        //     CopyofStudentIDCard.focus();
-        //     return false;
-        //   }
-
-        //   const PreviousSchoolEducationalRecordsFile = document.getElementById('PreviousSchoolEducationalRecordsFile');
-        //   const PreviousSchoolEducationalRecordsFile_input = document.getElementById('PreviousSchoolEducationalRecordsFile_input');
-        //   if (PreviousSchoolEducationalRecordsFile_input.title === "") {
-        //     alert('กรุณาเลือกไฟล์หลักฐานการศึกษาจากโรงเรียนเดิม');
-        //     PreviousSchoolEducationalRecordsFile.focus();
-        //     return false;
-        //   }
+         if (CopyofStudentIDCard_input.title === "") {
+            alert('กรุณาเลือกไฟล์สำเนาสูติบัตรของนักเรียน');
+            CopyofStudentIDCard.focus();
+            return false;
+          }
        
 
         const option1 = document.getElementById('option1');
@@ -783,17 +796,19 @@ const handleSubmit = async (event) => {
         const option3 = document.getElementById('option3');
         const option4 = document.getElementById('option4');
 
-        // if (!option1.checked && !option2.checked && !option3.checked && !option4.checked) {
-        //     alert('กรุณาเลือกประเภทของหลักฐานการศึกษาจากโรงเรียนเดิม');
-        //     return false;
-        // }
-        // const PreviousSchoolEducationalRecordsFile = document.getElementById('PreviousSchoolEducationalRecordsFile');
-        // if (PreviousSchoolEducationalRecordsFile.value === "") {
-        //     alert('กรุณาเลือกไฟล์ประกาศนียบัตรการศึกษาจากโรงเรียนเดิม');
-        //     PreviousSchoolEducationalRecordsFile.scrollIntoView({ behavior: 'smooth' });
-        //     setTimeout(() => PreviousSchoolEducationalRecordsFile.focus(), 100);
-        //     return false;
-        //   }
+        if (!option1.checked && !option2.checked && !option3.checked && !option4.checked) {
+            alert('กรุณาเลือกประเภทของหลักฐานการศึกษาจากโรงเรียนเดิม');
+            return false;
+        }
+        
+
+           const PreviousSchoolEducationalRecordsFile = document.getElementById('PreviousSchoolEducationalRecordsFile');
+          const PreviousSchoolEducationalRecordsFile_input = document.getElementById('PreviousSchoolEducationalRecordsFile_input');
+          if (PreviousSchoolEducationalRecordsFile_input.title === "") {
+            alert('กรุณาเลือกไฟล์หลักฐานการศึกษาจากโรงเรียนเดิม');
+            PreviousSchoolEducationalRecordsFile.focus();
+            return false;
+          }
 
           return true;
         }
@@ -805,75 +820,105 @@ const handleSubmit = async (event) => {
             const District = document.getElementById('District');
             const SubDistrict = document.getElementById('SubDistrict');
   
-            // if (HouseNumber_input.value === "") {
-            //   alert('กรุณากรอกบ้านเลขที่');
-            //   HouseNumber_input.scrollIntoView({ behavior: 'smooth' });
-            // setTimeout(() => HouseNumber_input.focus(), 100);
+            if (HouseNumber_input.value === "") {
+              alert('กรุณากรอกบ้านเลขที่');
+              HouseNumber_input.scrollIntoView({ behavior: 'smooth' });
+            setTimeout(() => HouseNumber_input.focus(), 100);
               
-            //   return false;
-            // }
-            // if (Province.value === "") {
-            //   alert('กรุณากรอกจังหวัดของที่อยู่ตามทะเบียนบ้าน');
-            //   Province.scrollIntoView({ behavior: 'smooth' });
-            //     setTimeout(() => Province.focus(), 100);
+              return false;
+            }
+            if (Province.value === "") {
+              alert('กรุณากรอกจังหวัดของที่อยู่ตามทะเบียนบ้าน');
+              Province.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => Province.focus(), 100);
   
-            //   return false;
-            // }
-            // if (District.value === "") {
-            //     alert('กรุณากรอกเขต/อำเภอของที่อยู่ตามทะเบียนบ้าน');
-            //     District.scrollIntoView({ behavior: 'smooth' });
-            //       setTimeout(() => District.focus(), 100);
+              return false;
+            }
+            if (District.value === "") {
+                alert('กรุณากรอกเขต/อำเภอของที่อยู่ตามทะเบียนบ้าน');
+                District.scrollIntoView({ behavior: 'smooth' });
+                  setTimeout(() => District.focus(), 100);
     
-            //     return false;
-            //   }
-            //   if (SubDistrict.value === "") {
-            //     alert('กรุณากรอกแขวง/ตำบลของที่อยู่ตามทะเบียนบ้าน');
-            //     SubDistrict.scrollIntoView({ behavior: 'smooth' });
-            //       setTimeout(() => SubDistrict.focus(), 100);
+                return false;
+              }
+              if (SubDistrict.value === "") {
+                alert('กรุณากรอกแขวง/ตำบลของที่อยู่ตามทะเบียนบ้าน');
+                SubDistrict.scrollIntoView({ behavior: 'smooth' });
+                  setTimeout(() => SubDistrict.focus(), 100);
     
-            //     return false;
-            //   }
-            // const HouseReg_file = document.getElementById('HouseReg_file');
-            // const HouseReg_file_input = document.getElementById('HouseReg_file_input');
-            // if (HouseReg_file_input.title === "") {
-            //   alert('กรุณาเลือกไฟล์สำเนาทะเบียนบ้าน');
-            //   HouseReg_file.focus();
-            //   return false;
-            // }
+                return false;
+              }
+            const HouseReg_file = document.getElementById('HouseReg_file');
+            const HouseReg_file_input = document.getElementById('HouseReg_file_input');
+            if (HouseReg_file_input.title === "") {
+              alert('กรุณาเลือกไฟล์สำเนาทะเบียนบ้าน');
+              HouseReg_file.focus();
+              return false;
+            }
 
             return true;
           }
           const checkInputParent = () => {
             const Father_Email = document.getElementById('Father_Email');
   
-            // if (Father_Email.value === "") {
-            //   alert('กรุณากรอกอีเมลบิดา');
-            //     Father_Email.scrollIntoView({ behavior: 'smooth' });
-            //     setTimeout(() => Father_Email.focus(), 100);
-            //   return false;
-            // }
+            if (Father_Email.value === "") {
+              alert('กรุณากรอกอีเมลบิดา');
+                Father_Email.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => Father_Email.focus(), 100);
+              return false;
+            }
+            const Mother_Email = document.getElementById('Mother_Email');
+            if (Mother_Email.value === "") {
+              alert('กรุณากรอกอีเมลมารดา');
+              Mother_Email.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => Mother_Email.focus(), 100);
+              return false;
+            }
+
+            const ParentEmail = document.getElementById('ParentEmail');
             
-            // if (!isFatherRecordData) {
-            //     const isFatherDataValid = checkFatherRecordData();
-            //     if (!isFatherDataValid) {
-            //         return false;
-            //     }
+            if (Father_Email.value !== Mother_Email.value) {
+                // ค่าของตัวแปรทั้ง 3 ตัวแปรไม่เท่ากัน
+                console.log(Father_Email.value ,"d");
+                console.log(Mother_Email.value,"m");
+
+                // console.log(ParentEmail.value, "p");
+
+                console.log("ค่าของตัวแปรทั้ง 3 ตัวแปรไม่เท่ากัน");
+                return true;
+               
+            } 
+            if (Father_Email.value === Mother_Email.value) {
+                // ค่าของตัวแปรทั้ง 3 ตัวแปรไม่เท่ากัน
+                console.log(Father_Email.value ,"d");
+                console.log(Mother_Email.value,"m");
+
+                // console.log(ParentEmail.value, "p");
+                console.log("มีอย่างน้อย 2 ตัวแปรที่มีค่าเท่ากัน หรือทั้ง 3 ตัวแปรมีค่าเท่ากัน");
+                alert('ไม่สามารถใช้อีเมลซ้ำได้');
+                return false;
+               
+            } 
+            
+            if (!isFatherRecordData) {
+                const isFatherDataValid = checkFatherRecordData();
+                if (!isFatherDataValid) {
+                    return false;
+                }
                 
+            }
+
+            // if (FatherEmail===MotherEmail) {
+            //     alert('ไม่สามารถใช้อีเมลซ้ำได้');
+            //     return false;
             // }
-            // const Mother_Email = document.getElementById('Mother_Email');
-            // if (Mother_Email.value === "") {
-            //   alert('กรุณากรอกอีเมลมารดา');
-            //   Mother_Email.scrollIntoView({ behavior: 'smooth' });
-            //     setTimeout(() => Mother_Email.focus(), 100);
-            //   return false;
-            // }
-            // if (!isMotherRecordData) {
-            //     const isMotherDataValid = checkMotherRecordData();
-            //     if (!isMotherDataValid) {
-            //         return false;
-            //     }
+            if (!isMotherRecordData) {
+                const isMotherDataValid = checkMotherRecordData();
+                if (!isMotherDataValid) {
+                    return false;
+                }
                 
-            // }
+            }
 
             const FatherIsParent = document.getElementById('FatherIsParent');
             const MotherIsParent = document.getElementById('MotherIsParent');
@@ -890,34 +935,43 @@ const handleSubmit = async (event) => {
                     return false;
                 }
             }
+
+            
+            // else {
+
+            //     // มีอย่างน้อย 2 ตัวแปรที่มีค่าเท่ากัน หรือทั้ง 3 ตัวแปรมีค่าเท่ากัน
+            //     console.log("มีอย่างน้อย 2 ตัวแปรที่มีค่าเท่ากัน หรือทั้ง 3 ตัวแปรมีค่าเท่ากัน");
+            //     alert('ไม่สามารถใช้อีเมลซ้ำได้');
+            //     return false;
+            // }
             
             return true;
-          }
+          };
 
         // ----------------------check father---------------------------------------------
           const checkFatherRecordData = () => {
             
-            // const father_Firstname = document.getElementById('father_Firstname');
-            // if (father_Firstname.value === "") {
-            //     alert('กรุณากรอกชื่อบิดา');
-            //     father_Firstname.scrollIntoView({ behavior: 'smooth' });
-            //     setTimeout(() => father_Firstname.focus(), 100);
-            //     return false;
-            // }
-            // const father_lastname = document.getElementById('father_lastname');
+            const father_Firstname = document.getElementById('father_Firstname');
+            if (father_Firstname.value === "") {
+                alert('กรุณากรอกชื่อบิดา');
+                father_Firstname.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => father_Firstname.focus(), 100);
+                return false;
+            }
+            const father_lastname = document.getElementById('father_lastname');
 
-            // if (father_lastname.value === "") {
-            //     alert('กรุณากรอกนามสกุลบิดา');
-            //     father_lastname.scrollIntoView({ behavior: 'smooth' });
-            //     setTimeout(() => father_lastname.focus(), 100);
-            //     return false;
-            // }
-            // const father_DOB = FatherDateOfBirth;
+            if (father_lastname.value === "") {
+                alert('กรุณากรอกนามสกุลบิดา');
+                father_lastname.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => father_lastname.focus(), 100);
+                return false;
+            }
+            const father_DOB = FatherDateOfBirth;
 
-            // if (!father_DOB) {
-            //     alert('กรุณากรอกวัน/เดือน/ปีเกิดของบิดา');
-            //     return false;
-            // } 
+            if (!father_DOB) {
+                alert('กรุณากรอกวัน/เดือน/ปีเกิดของบิดา');
+                return false;
+            } 
             const FatherForeigner = document.getElementById('FatherForeigner');
             const FatherNotForeigner = document.getElementById('FatherNotForeigner');
 
@@ -931,20 +985,20 @@ const handleSubmit = async (event) => {
                     return false;
                 }
             }
-            // const father_Occupation = document.getElementById('father_Occupation');
-            // if (father_Occupation.value === "") {
-            //     alert('กรุณากรอกอาชีพของบิดา');
-            //     father_Occupation.scrollIntoView({ behavior: 'smooth' });
-            //     setTimeout(() => father_Occupation.focus(), 100);
-            //     return false;
-            // }
-            // const father_Workplace = document.getElementById('father_Workplace');
-            // if (father_Workplace.value === "") {
-            //     alert('กรุณากรอกสถานที่ทำงานของบิดา');
-            //     father_Workplace.scrollIntoView({ behavior: 'smooth' });
-            //     setTimeout(() => father_Workplace.focus(), 100);
-            //     return false;
-            // }
+            const father_Occupation = document.getElementById('father_Occupation');
+            if (father_Occupation.value === "") {
+                alert('กรุณากรอกอาชีพของบิดา');
+                father_Occupation.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => father_Occupation.focus(), 100);
+                return false;
+            }
+            const father_Workplace = document.getElementById('father_Workplace');
+            if (father_Workplace.value === "") {
+                alert('กรุณากรอกสถานที่ทำงานของบิดา');
+                father_Workplace.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => father_Workplace.focus(), 100);
+                return false;
+            }
             
             const father_phoneNumber = document.getElementById('father_phoneNumber');
             if (father_phoneNumber.value === "") {
@@ -1067,7 +1121,9 @@ const handleSubmit = async (event) => {
 
         // ---------------------------------check parent--------------------------------------
         const checkParentRecordData = () => {
-            
+            const Father_Email = document.getElementById('Father_Email');
+            const Mother_Email = document.getElementById('Mother_Email');
+
             const ParentEmail = document.getElementById('ParentEmail');
             if (ParentEmail.value === "") {
                 alert('กรุณากรอกอีเมลผู้ปกครอง');
@@ -1075,6 +1131,28 @@ const handleSubmit = async (event) => {
                 setTimeout(() => ParentEmail.focus(), 100);
                 return false;
             }
+            if (Father_Email.value !== Mother_Email.value && Father_Email.value !== ParentEmail.value && Mother_Email.value !== ParentEmail.value) {
+                // ค่าของตัวแปรทั้ง 3 ตัวแปรไม่เท่ากัน
+                console.log(Father_Email.value ,"d");
+                console.log(Mother_Email.value,"m");
+
+                console.log(ParentEmail.value, "p");
+
+                console.log("ค่าของตัวแปรทั้ง 3 ตัวแปรไม่เท่ากัน");
+                return true;
+               
+            } 
+            if (Father_Email.value === Mother_Email.value || Father_Email.value === ParentEmail.value|| Mother_Email.value === ParentEmail.value) {
+                // ค่าของตัวแปรทั้ง 3 ตัวแปรไม่เท่ากัน
+                console.log(Father_Email.value ,"d");
+                console.log(Mother_Email.value,"m");
+
+                console.log(ParentEmail.value, "p");
+                console.log("มีอย่างน้อย 2 ตัวแปรที่มีค่าเท่ากัน หรือทั้ง 3 ตัวแปรมีค่าเท่ากัน");
+                alert('ไม่สามารถใช้อีเมลซ้ำได้');
+                return false;
+               
+            } 
             const SomeoneElseIsParent_surname = document.getElementById('SomeoneElseIsParent_surname');
 
             if (SomeoneElseIsParent_surname.value === "") {
@@ -1165,13 +1243,283 @@ const handleSubmit = async (event) => {
             
             return true;
           }
-
+          useEffect(() => {
+            const SomeoneElseIsParent = document.getElementById('SomeoneElseIsParent');
+            if (SomeoneElseIsParent) {
+                setParentEmail("");
+                setParentFirstname("");
+                setParentLastname("");
+                setParentDateOfBirth(new Date());
+                setIsParentForeigner("");
+                setParentNationality("");
+                setParentOccupation("");
+                setParentOffice("");
+                setParentTel("");
+                setParentRole("");
+            }
+       
+        }, [whoAreParent]); 
 
         const [Student_info, setStudent_info] = useState(true); 
         const [Household, setHousehold] = useState(false); 
         const [Parent_info, setParent_info] = useState(false); 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        const navigate = useNavigate();
+  const handleSubmit = async (Student_picture_file, CopyofStudentIDCardFile, PreviousSchoolEducationalRecordsFile, studentNID, nameTitle, FirstName, LastName, DateOfBirth, Transcript_type, HouseNumber, Moo, Soi, Road, Province, District, SubDistrict, HouseReg_file) => {
+    // const confirmSubmit = window.confirm("ยืนยันที่จะส่งข้อมูลหรือไม่?");
+    // if (confirmSubmit) {
+      try {
+          // แสดงกล่องข้อความยืนยันและตรวจสอบผลลัพธ์
+          const formData = new FormData();
+          formData.append('file', Student_picture_file);
+          formData.append('file', CopyofStudentIDCardFile);
+          formData.append('file', PreviousSchoolEducationalRecordsFile);
+          
+          // เพิ่มข้อมูลของนักเรียนเข้าไปใน formData
+          formData.append('Student_NID', studentNID);
+          formData.append('NameTitle', nameTitle);
+          formData.append('FirstName', FirstName);
+          formData.append('LastName', LastName);
+          formData.append('Student_DOB', DateOfBirth);
+          formData.append('Transcript_type', Transcript_type);
+          formData.append('ParentEmail', CurrentLogin_Email);
+
+          formData.append('HouseNumber', HouseNumber);
+          formData.append('Moo', Moo || '-');
+          formData.append('Soi', Soi || '-');
+          formData.append('Road', Road || '-');
+          formData.append('Province', Province);
+          formData.append('District', District);
+          formData.append('SubDistrict', SubDistrict);
+          formData.append('file', HouseReg_file);
+    
+
+          await axios.post('http://localhost:8080/upload', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          });
+    
+          setMessage('Successfully uploaded to drive');
+          navigate("/NewUser_menu");
+        
+      } catch (error) {
+        if (error.response && error.response.status === 409) {
+          // setMessage('Identification number already exists. Please try with a different one.');
+          // alert('Identification number already exists. Please try with a different one.');
+        } else {
+          setMessage('Was not uploaded' + error);
+          console.error(error);
+        }
+      }
+    // }
+  };
+
+  async function checkEnrollment(Student_NID, Enroll_Date, Enroll_Year, Enroll_Course) {
+    try {
+        const check_enrollment_response = await axios.get(`http://localhost:8080/check-student-enrollment?Student_NID=${Student_NID}&Enroll_Year=${Enroll_Year}&Enroll_Course=${Enroll_Course}`);
+        const data = check_enrollment_response.data;
+
+        if (data.length > 0) {
+            // หากมีข้อมูลในฐานข้อมูล
+            alert('ท่านเคยสมัครหลักสูตร ' + Enroll_Course + ' ในปีการศึกษา ' + Enroll_Year + ' แล้ว');
+        } else {
+            // หากไม่พบข้อมูลในฐานข้อมูล
+            try {
+                // ส่งข้อมูลไปยัง API ด้วย Axios
+                const formData = {
+                    Student_NID: Student_NID,
+                    Enroll_Date: Enroll_Date,
+                    Enroll_Year: Enroll_Year,
+                    Enroll_Course: Enroll_Course,
+                    Enroll_Status: "รอการสอบคัดเลือก"
+                };
+                // console.log("Enroll_Date",Enroll_Date);
+                const save_enrollment_response = await axios.post('http://localhost:8080/enrollment', formData);
+                console.log(save_enrollment_response.data.message); // พิมพ์ข้อความตอบกลับจาก API ใน console
+
+            } catch (error) {
+                console.error('Error adding enrollment:', error);
+            }
+        }
+    } catch (error) {
+        console.error('เกิดข้อผิดพลาดในการเรียกใช้ API:', error);
+    }
+  }
+
+  const addParentEmails = async (Student_NID, first_ParentEmail, second_ParentEmail, third_ParentEmail) => {
+    try {
+        // สร้างข้อมูลที่จะส่งไปยังเซิร์ฟเวอร์
+        const requestData = {
+            Student_NID: Student_NID,
+            first_ParentEmail: first_ParentEmail,
+            second_ParentEmail: second_ParentEmail,
+            third_ParentEmail: third_ParentEmail
+        };
+
+        // เรียกใช้ API สำหรับเพิ่มอีเมล์ของผู้ปกครอง
+        const response = await axios.post('http://localhost:8080/add-parent-emails', requestData);
+        
+        // หากสำเร็จ
+        console.log(response.data.message);
+        return response.data.message;
+    } catch (error) {
+        // หากเกิดข้อผิดพลาด
+        console.error('Error adding parent emails:', error);
+        // throw error;
+    }
+};
+
+  const addParentInformation = async (Avatar, Email, FirstName, LastName, DateOfBirth, Nationality, Office, Occupation, Role, Tel) => {
+    try {
+      const parentData = [{
+        Avatar: Avatar,
+        Email: Email,
+        FirstName: FirstName,
+        LastName: LastName,
+        DateOfBirth: DateOfBirth,
+        Nationality: Nationality,
+        Office: Office,
+        Occupation: Occupation,
+        Role: Role,
+        Tel: Tel
+      }];
+        const response = await axios.post('http://localhost:8080/Parent_information', parentData);
+        console.log(response.data.message);
+        return response.data.message;
+    } catch (error) {
+        if (error.response) {
+            // มีการตอบสนองจากเซิร์ฟเวอร์ แต่ค่าสถานะไม่เป็น 200
+            console.error('Failed to add parent information:', error.response.data.error);
+            // throw new Error(error.response.data.error);
+        } else if (error.request) {
+            // ไม่มีการรับข้อมูลจากเซิร์ฟเวอร์
+            console.error('No response received from server:', error.request);
+            // throw new Error('No response received from server');
+        } else {
+            // เกิดข้อผิดพลาดในการกำหนดค่าการส่งข้อมูลหรือปัญหาอื่น ๆ
+            console.error('Error adding parent information:', error.message);
+            // throw error;
+        }
+    }
+  };
+
+
+        const handleButtonClick = async () => {
+             
         
 
+        if (user && user.emails[0].value) {
+            setCurrentLogin_Email(user.emails[0].value);
+            console.log("user", user.emails[0].value);
+            } else {
+            console.log('User email is not available.');
+            } 
+
+        if (checkInputParent()) {
+            const confirmSubmit = window.confirm("ยืนยันที่จะส่งข้อมูลหรือไม่?");
+        
+            if (confirmSubmit) {
+                try {
+                    //ทำฟังก์ชันเก็บข้อมูล applicants_parent
+                    //ทำฟังก์ชันเก็บข้อมูล enrollment ต้องกำหนดชื่อหลักสูตร
+                    await handleSubmit(
+                        Student_picture_file, 
+                        CopyofStudentIDCardFile,
+                        PreviousSchoolEducationalRecordsFile,
+                        studentNID,
+                        nameTitle,
+                        FirstName,
+                        LastName,
+                        DateOfBirth,
+                        Transcript_type,
+                        HouseNumber,
+                        Moo,
+                        Soi,
+                        Road,
+                        Province,
+                        District,
+                        SubDistrict,
+                        HouseReg_file
+                    );
+      
+                    await checkEnrollment(
+                      studentNID,
+                      Enroll_Date,
+                      Enroll_Year,
+                      Enroll_Course
+                    );
+      
+                    await addParentEmails(
+                      studentNID,
+                      FatherEmail,
+                      MotherEmail,
+                      ParentEmail
+                    );
+                    
+                    if (!isFatherRecordData){
+                      
+                      const Father_Nationality = !isFatherForeigner ? "ไทย" : FatherNationality;
+                      await addParentInformation(
+                        '',
+                        FatherEmail,
+                        FatherFirstname,
+                        FatherLastname,
+                        formatDate(FatherDateOfBirth),
+                        // "",
+                        Father_Nationality,
+                        FatherOffice,
+                        FatherOccupation,
+                        "บิดา",
+                        FatherTel
+                      );
+                    }
+      
+                    if (!isMotherRecordData){
+                      const Mother_Nationality = !isMotherForeigner ? "ไทย" : MotherNationality;
+                      await addParentInformation(
+                        '',
+                        MotherEmail,
+                        MotherFirstname,
+                        MotherLastname,
+                        formatDate(MotherDateOfBirth),
+                        // "",
+                        Mother_Nationality,
+                        MotherOffice,
+                        MotherOccupation,
+                        "มารดา",
+                        MotherTel
+                      );
+                    }
+      
+                    if (whoAreParent === "SomeoneElseIsParent" && !isParentRecordData){
+                      const Parent_Nationality = !isParentForeigner ? "ไทย" : ParentNationality;
+                      // console.log('Received setFatherNationality  ไทย:', FatherNationality);
+                      await addParentInformation(
+                        '',
+                        ParentEmail,
+                        ParentFirstname,
+                        ParentLastname,
+                        formatDate(ParentDateOfBirth),
+                        // "",
+                        Parent_Nationality,
+                        ParentOffice,
+                        ParentOccupation,
+                        ParentRole,
+                        ParentTel
+                      );
+                    }
+                    
+                  } catch (error) {
+                      console.error('Error handling button click:', error);
+                  }
+                }
+
+            }
+                     
+                       
+        };
+      
 return (
         <>
    
@@ -1217,7 +1565,7 @@ return (
                     required
                 />
                
-               <label className="input-group-text" id="student_picture_file" title={Student_picture_file && Student_picture_file.name}>
+               <label className="input-group-text" id="student_picture_file" value ={Student_picture_file && Student_picture_file.name} title={Student_picture_file && Student_picture_file.name}>
                     {Student_picture_file ? (<span>{Student_picture_file.name}</span>
 
                     ) : ( <span>filename</span>)}
@@ -1252,14 +1600,14 @@ return (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '16px', marginLeft: '15px' }}>
             <h2 className="card-heading" style={{ fontSize: '18px' }}>คำนำหน้า</h2>
             <div className="form-check">
-                <input className="form-check-input" type="radio" name="gender" id="male" value="เด็กชาย" onChange={handlenameTitleChange} />
+                <input className="form-check-input" type="radio" name="gender" id="male" value="เด็กชาย" checked={nameTitle === 'เด็กชาย'}onChange={handlenameTitleChange} />
                 
                 <label className="form-check-label custom-body" style={{ fontSize: '16px', flexWrap: "wrap" }} htmlFor="male">
                     เด็กชาย
                 </label>
             </div>
             <div className="form-check">
-                <input className="form-check-input" type="radio" name="gender" id="female" value="เด็กหญิง"  onChange={handlenameTitleChange}/>
+                <input className="form-check-input" type="radio" name="gender" id="female" value="เด็กหญิง" checked={nameTitle === 'เด็กหญิง'} onChange={handlenameTitleChange}/>
                 <label className="form-check-label custom-body" style={{ fontSize: '16px', flexWrap: "wrap" }} htmlFor="female">
                     เด็กหญิง
                 </label>
@@ -1290,7 +1638,7 @@ return (
                 <h2 htmlFor="DOB" className="col-form-label px-3">วัน/เดือน/ปีเกิด</h2>
             </div>
             <div className="align-items-center" style={{ marginLeft: '15px' }}>
-                <Date_Picker id="DOB_student"value={dateOfBirth} onChange={handleDateOfBirthChange} />
+                <Date_Picker id="DOB_student"value={DateOfBirth} onChange={handleDateOfBirthChange} />
             </div>
         </div>
         <br />
@@ -1331,28 +1679,28 @@ return (
         <h2 htmlFor="surname" className="col-form-label mb-0 mx-3" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px', marginRight: '5px', gap: '0'}}>หลักฐานการศึกษาจากโรงเรียนเดิม</h2>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '16px', marginLeft: '15px' }}>
             <div className="form-check">
-                <input className="form-check-input" type="radio" name="selectedOption" id="option1" value="ปพ.1" onChange={handleTranscript_typeChange} />
+                <input className="form-check-input" type="radio" name="selectedOption" id="option1" value="ปพ.1" checked={Transcript_type === 'ปพ.1'}onChange={handleTranscript_typeChange} />
                 <label className="form-check-label" htmlFor="option1">
                     ปพ.1
                 </label>
             </div>
 
             <div className="form-check">
-                <input className="form-check-input" type="radio" name="selectedOption" id="option2" value="ปพ.6" onChange={handleTranscript_typeChange} />
+                <input className="form-check-input" type="radio" name="selectedOption" id="option2" value="ปพ.6" checked={Transcript_type === 'ปพ.6'} onChange={handleTranscript_typeChange} />
                 <label className="form-check-label" htmlFor="option2">
                     ปพ.6
                 </label>
             </div>
 
             <div className="form-check">
-                <input className="form-check-input" type="radio" name="selectedOption" id="option3" value="ปพ.7" onChange={handleTranscript_typeChange} />
+                <input className="form-check-input" type="radio" name="selectedOption" id="option3" value="ปพ.7" checked={Transcript_type === 'ปพ.7'}onChange={handleTranscript_typeChange} />
                 <label className="form-check-label" htmlFor="option3">
                     ปพ.7
                 </label>
             </div>
 
             <div className="form-check">
-                <input className="form-check-input" type="radio" name="selectedOption" id="option4" value="ปพ.8" onChange={handleTranscript_typeChange} />
+                <input className="form-check-input" type="radio" name="selectedOption" id="option4" value="ปพ.8" checked={Transcript_type === 'ปพ.8'}onChange={handleTranscript_typeChange} />
                 <label className="form-check-label" htmlFor="option4">
                     ปพ.8
                 </label>
@@ -1674,14 +2022,20 @@ return (
 
                     <h2 className="col-form-label" style={{ marginTop: '5px', fontFamily: 'Kanit, sans-serif', fontSize: '18px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
                     <div className="d-flex align-items-center"style={{ flexWrap: 'wrap'}} >
+                        {/* <div className="form-check" style={{ marginTop: '5px',maxWidth:"100%"}}>
+                            <input className="form-check-input" type="radio" name="Fatherforeigner?" id="FatherForeigner" value={isFatherForeigner}onChange={handleIsFatherForeigner} />
+                            <label className="form-check-label custom-body"style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="FatherForeigner">
+                            ใช่
+                            </label>
+                        </div> */}
                         <div className="form-check" style={{ marginTop: '5px',maxWidth:"100%"}}>
-                            <input className="form-check-input" type="radio" name="Fatherforeigner?" id="FatherForeigner" value={isFatherForeigner} onChange={handleIsFatherForeigner} />
+                            <input className="form-check-input" type="radio" name="Fatherforeigner?" id="FatherForeigner" value={true} checked={isFatherForeigner} onChange={handleIsFatherForeigner} />
                             <label className="form-check-label custom-body"style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="FatherForeigner">
                             ใช่
                             </label>
                         </div>
                         <div className="form-check" style={{ marginTop: '5px',maxWidth:"100%"}}>
-                            <input className="form-check-input" type="radio" name="Fatherforeigner?" id="FatherNotForeigner" value={isFatherForeigner} onChange={handleIsFatherForeigner} />
+                            <input className="form-check-input" type="radio" name="Fatherforeigner?" id="FatherNotForeigner" value={false} checked={!isFatherForeigner} onChange={handleIsFatherForeigner} />
                             <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="FatherNotForeigner">
                             ไม่
                             </label>
@@ -1769,7 +2123,7 @@ return (
                             (อีเมลที่ท่านกรอกนี้สามารถใช้ตรวจสอบข้อมูลนักเรียนของโรงเรียนซึ่งเป็นบุตรหลานของท่าน)
                         </h2>
                     </div>
-                    <div className="align-items-center"style={{ marginTop: '5px',maxWidth:"35%"}}>  
+                    <div className="align-items-center"style={{ marginTop: '5px',maxWidth:"65%"}}>  
                         <input type="text" className="form-control mb-0 mx-3" id="Mother_Email" name="Mother_Email" placeholder="กรอกอีเมลมารดา" value={MotherEmail} onChange={handleMotherEmailChange} />
                     </div>
                 </div>
@@ -1808,13 +2162,13 @@ return (
                     <h2 className="col-form-label" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
                     <div className="d-flex align-items-center"style={{ flexWrap: 'wrap'}} >
                         <div className="form-check">
-                            <input className="form-check-input" type="radio" name="Motherforeigner?" id="MotherForeigner" value={isMotherForeigner} onChange={handleIsMotherForeigner} />
+                            <input className="form-check-input" type="radio" name="Motherforeigner?" id="MotherForeigner" value={true} checked={isMotherForeigner} onChange={handleIsMotherForeigner} />
                             <label className="form-check-label custom-body"style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="MotherForeigner">
                             ใช่
                             </label>
                         </div>
                         <div className="form-check">
-                            <input className="form-check-input" type="radio" name="Motherforeigner?" id="MotherNotForeigner" value={isMotherForeigner} onChange={handleIsMotherForeigner} />
+                            <input className="form-check-input" type="radio" name="Motherforeigner?" id="MotherNotForeigner" value={false} checked={!isMotherForeigner} onChange={handleIsMotherForeigner} />
                             <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="MotherNotForeigner">
                             ไม่
                             </label>
@@ -1891,26 +2245,26 @@ return (
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '16px',marginLeft: '15px' ,marginTop:"5px"}}>
                 
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" name="whoAreParent?" id="FatherIsParent" onChange={handlewhoAreParent} />
+                    <input className="form-check-input" type="radio" name="whoAreParent?" id="FatherIsParent"  checked={whoAreParent=== "FatherIsParent"} onChange={handlewhoAreParent} />
                     <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="FatherIsParent">
                     บิดา
                     </label>
                 </div>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" name="whoAreParent?" id="MotherIsParent" onChange={handlewhoAreParent} />
+                    <input className="form-check-input" type="radio" name="whoAreParent?" id="MotherIsParent" checked={whoAreParent=== "MotherIsParent"}onChange={handlewhoAreParent} />
                     <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="MotherIsParent">
                     มารดา
                     </label>
                 </div>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" name="whoAreParent?" id="FatherAndMotherAreParent" onChange={handlewhoAreParent} />
+                    <input className="form-check-input" type="radio" name="whoAreParent?" id="FatherAndMotherAreParent" checked={whoAreParent=== "FatherAndMotherAreParent"}onChange={handlewhoAreParent} />
                    
                     <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px', flexWrap: "wrap" }} htmlFor="FatherAndMotherAreParent">
                     บิดาและมารดา
                     </label>
                 </div>
                 <div className="form-check">
-                    <input className="form-check-input" type="radio" name="whoAreParent?" id="SomeoneElseIsParent" onChange={handlewhoAreParent} />
+                    <input className="form-check-input" type="radio" name="whoAreParent?" id="SomeoneElseIsParent" checked={whoAreParent=== "SomeoneElseIsParent"}onChange={handlewhoAreParent} />
                     <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="SomeoneElseIsParent">
                     อื่นๆ
                     </label>
@@ -1998,13 +2352,13 @@ return (
                         <h2 className="col-form-label" style={{ fontFamily: 'Kanit, sans-serif', fontSize: '18px'}}>เป็นคนต่างชาติใช่หรือไม่</h2>
                         <div className="d-flex align-items-center"style={{ flexWrap: 'wrap'}}>
                             <div className="form-check">
-                                <input className="form-check-input" type="radio" name="Parentforeigner?" id="ParentForeigner" value={isParentForeigner} onChange={handleIsParentForeigner} />
+                                <input className="form-check-input" type="radio" name="Parentforeigner?" id="ParentForeigner" value={true} checked={isParentForeigner} onChange={handleIsParentForeigner} />
                                 <label className="form-check-label custom-body"style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="ParentForeigner">
                                 ใช่
                                 </label>
                             </div>
                             <div className="form-check">
-                                <input className="form-check-input" type="radio" name="Parentforeigner?" id="ParentNotForeigner" value={isParentForeigner}onChange={handleIsParentForeigner} />
+                                <input className="form-check-input" type="radio" name="Parentforeigner?" id="ParentNotForeigner" value={false} checked={!isParentForeigner}onChange={handleIsParentForeigner} />
                                 <label className="form-check-label custom-body" style={{ fontSize: '16px',marginRight: '10px' }} htmlFor="ParentNotForeigner">
                                 ไม่
                                 </label>
@@ -2084,7 +2438,7 @@ return (
                 {/* {message === "Successfully uploaded to drive" ? ( */}
                   {/* <Link to="/NewUser_menu" > */}
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                      <button type="button" className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px' }}>
+                      <button type="button" onClick={handleButtonClick} className="btn btn-primary" style={{ ...fontStyle, color: 'white', fontSize: '16px' }}>
                         ส่งข้อมูล
                       </button>
                     </div>
