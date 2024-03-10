@@ -113,11 +113,11 @@ const History_request = () => {
               <span style={{fontWeight:"bolder",marginRight:"10px"}}>เลือกข้อมูลนักเรียน :</span>
             </div>
             <div className="dropdown" style={{ maxWidth: '100%' }}>
-              <select value={selectedStudent} onChange={handleStudentChange} className="custom-select">
+            <select value={selectedStudent} onChange={handleStudentChange} className="custom-select">
                 <option value="">เลือกข้อมูล</option>
-                {StudentData.map((Student) => (
-                  <option key={Student} value={Student}>
-                    {Student.StudentID} : {Student.nameTitle}{Student.Firstname} {Student.Lastname}
+                {StudentData.map((student, index) => (
+                  <option key={index}>
+                    {student.StudentID} : {student.nameTitle} {student.Firstname} {student.Lastname}
                   </option>
                 ))}
               </select>

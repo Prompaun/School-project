@@ -6,36 +6,7 @@ const Checkgrade_info = () => {
   const handleGoBack = () => {
     window.history.back();
   };
-
-  // const history = useHistory();
-  const linkStyle = {
-    color: 'gray',
-    textDecoration: 'none'
-  };
-
-  // เพิ่ม state สำหรับเก็บข้อมูลจากฟอร์ม
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-  });
-
-  // รับค่า input จากฟอร์มและอัปเดต state ตามชื่อ input
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  // สร้างฟังก์ชันสำหรับการ submit ฟอร์ม
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // ทำสิ่งที่คุณต้องการเมื่อกด submit ฟอร์ม
-    console.log('Submit Form', formData);
-    // เช่น ส่งข้อมูลไปยังเซิร์ฟเวอร์หรือทำการตรวจสอบข้อมูล
-  };
-
+  
   const [StudentData, setStudentData] = useState([
     {
       StudentID: "12345",
@@ -124,11 +95,11 @@ const Checkgrade_info = () => {
               <span style={{marginRight:"10px"}}>เลือกข้อมูลนักเรียน :</span>
             </div>
             <div className="dropdown" style={{ maxWidth: '100%' }}>
-              <select value={selectedStudent} onChange={handleStudentChange} className="custom-select">
+            <select value={selectedStudent} onChange={handleStudentChange} className="custom-select">
                 <option value="">เลือกข้อมูล</option>
-                {StudentData.map((Student) => (
-                  <option key={Student} value={Student}>
-                    {Student.StudentID} : {Student.nameTitle}{Student.Firstname} {Student.Lastname}
+                {StudentData.map((student, index) => (
+                  <option key={index}>
+                    {student.StudentID} : {student.nameTitle} {student.Firstname} {student.Lastname}
                   </option>
                 ))}
               </select>

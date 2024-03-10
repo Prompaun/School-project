@@ -31,7 +31,7 @@ function Parent_menu() {
         </nav> */}
         
       <Header header="ระบบจัดการสารสนเทศ" subhead="บริการสำหรับผู้ปกครอง"/>
-      <br></br>
+      
       <div className="container mt-5">
         <div className="d-flex align-items-center justify-content-center">
           <h2 className="ms-3 mb-0">บริการข้อมูลสำหรับผู้ปกครอง</h2>
