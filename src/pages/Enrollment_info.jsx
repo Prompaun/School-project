@@ -6,7 +6,6 @@ import Date_Picker from '../components/Date_Picker';
 import axios from 'axios';
 import 'react-datepicker/dist/react-datepicker.css';
 
-
 function Enrollment_info({user}) {
   const fontStyle = {
     fontFamily: 'Kanit, sans-serif',
@@ -48,7 +47,13 @@ function Enrollment_info({user}) {
     const [Enroll_Date, setEnroll_Date] = useState(formatDate(new Date()));  // สร้าง state เพื่อเก็บวันที่ปัจจุบัน
     const [Enroll_Course, setEnroll_Course] = useState("หลักสูตรทั่วไป");
     
-   
+    const myPopup = new Popup({
+        id: "my-popup",
+        title: "My First Popup",
+        content: `
+            An example popup.
+            Supports multiple lines.`,
+    });
     
     // สร้างฟังก์ชันสำหรับการแปลงค่าวันที่เป็นปี
     const getYearFromDate = (date) => {

@@ -6,42 +6,22 @@ const Checkgrade_info = () => {
   const handleGoBack = () => {
     window.history.back();
   };
-
-  // const history = useHistory();
-  const linkStyle = {
-    color: 'gray',
-    textDecoration: 'none'
-  };
-
-  // เพิ่ม state สำหรับเก็บข้อมูลจากฟอร์ม
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-  });
-
-  // รับค่า input จากฟอร์มและอัปเดต state ตามชื่อ input
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  // สร้างฟังก์ชันสำหรับการ submit ฟอร์ม
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // ทำสิ่งที่คุณต้องการเมื่อกด submit ฟอร์ม
-    console.log('Submit Form', formData);
-    // เช่น ส่งข้อมูลไปยังเซิร์ฟเวอร์หรือทำการตรวจสอบข้อมูล
-  };
-
-  const [StudentData, setStudentData] = useState(
+  
+  const [StudentData, setStudentData] = useState([
     {
-        StudentID : ["12345","56789"]
+      StudentID: "12345",
+      nameTitle: "เด็กหญิง",
+      Firstname: "น้ำใส",
+      Lastname: "ใจดี"
+    },
+    {
+      StudentID: "5678",
+      nameTitle: "เด็กชาย",
+      Firstname: "น้ำหนึ่ง",
+      Lastname: "ใจดี"
     }
-  );
-  const {StudentID } = StudentData;
+  ]);
+
   const [Yeardata, setYearData] = useState(
     {
       Year : ["2565","2564","2563"],
@@ -105,8 +85,8 @@ const Checkgrade_info = () => {
       <Header header="ระบบจัดการสารสนเทศ" subhead="บริการสำหรับผู้ปกครอง" />
       <br />
       <div className="d-flex flex-column"style={{fontFamily: 'Kanit, sans-serif',height:"100vh"}}>
-      <div className="container d-flex flex-column align-items-center justify-content-center" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-        <h2>ระบบตรวจสอบผลการเรียน</h2><br />
+      <div className="container d-flex flex-column align-items-center justify-content-center" style={{ marginLeft: 'auto', marginRight: 'auto',fontWeight:"bold" }}>
+        <h2>ระบบตรวจสอบผลการเรียน</h2>
       </div>
 
       <div className="container d-flex align-items-center justify-content-center"style={{ flexWrap: 'wrap' }}>
@@ -115,11 +95,11 @@ const Checkgrade_info = () => {
               <span style={{marginRight:"10px"}}>เลือกข้อมูลนักเรียน :</span>
             </div>
             <div className="dropdown" style={{ maxWidth: '100%' }}>
-              <select value={selectedStudent} onChange={handleStudentChange} className="custom-select">
+            <select value={selectedStudent} onChange={handleStudentChange} className="custom-select">
                 <option value="">เลือกข้อมูล</option>
-                {StudentID.map((Student) => (
-                  <option key={Student} value={Student}>
-                    {Student}
+                {StudentData.map((student, index) => (
+                  <option key={index}>
+                    {student.StudentID} : {student.nameTitle} {student.Firstname} {student.Lastname}
                   </option>
                 ))}
               </select>
