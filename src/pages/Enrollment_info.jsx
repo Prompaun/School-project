@@ -27,6 +27,7 @@ function Enrollment_info({user}) {
     const [PreviousSchoolEducationalRecordsFile, setPreviousSchoolEducationalRecordsFile] = useState('');
 
     const [CurrentLogin_Email, setCurrentLogin_Email] = useState('');
+    const [CurrentPhotoURL, setCurrentPhotoURL] = useState('');
     
     const formatDate = (date) => {
         if (date !== ''){
@@ -1402,11 +1403,7 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
     }
   };
 
-
-        const handleButtonClick = async () => {
-             
-        
-
+    const handleButtonClick = async () => {
         if (user && user.emails[0].value) {
             setCurrentLogin_Email(user.emails[0].value);
             console.log("user", user.emails[0].value);
@@ -1414,13 +1411,20 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
             console.log('User email is not available.');
             } 
 
+        // ตรวจสอบว่ามีอ็อบเจกต์ user และมีรูปภาพในอ็อบเจกต์ user หรือไม่
+        if (user && user.photos && user.photos.length > 0) {
+            // กำหนดค่า currentPhotoURL ด้วยลิงก์ของรูปภาพที่ได้จากอ็อบเจกต์ user
+            setCurrentPhotoURL(user.photos[0].value);
+            console.log("user photo URL:", user.photos[0].value);
+        } else {
+            console.log('User photo URL is not available.');
+        }
+
         if (checkInputParent()) {
             const confirmSubmit = window.confirm("ยืนยันที่จะส่งข้อมูลหรือไม่?");
         
             if (confirmSubmit) {
                 try {
-                    //ทำฟังก์ชันเก็บข้อมูล applicants_parent
-                    //ทำฟังก์ชันเก็บข้อมูล enrollment ต้องกำหนดชื่อหลักสูตร
                     await handleSubmit(
                         Student_picture_file, 
                         CopyofStudentIDCardFile,
@@ -1459,7 +1463,7 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
                       
                       const Father_Nationality = !isFatherForeigner ? "ไทย" : FatherNationality;
                       await addParentInformation(
-                        '',
+                        "",
                         FatherEmail,
                         FatherFirstname,
                         FatherLastname,

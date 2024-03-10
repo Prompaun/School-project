@@ -115,31 +115,47 @@ const router = createBrowserRouter(
 function App() {
   
   const [user, setUser] = useState(null);
+
+  async function addParentLogin(avatar, email, token) {
+    try {
+        const response = await axios.post('http://localhost:8080/add-parent-login', {
+            Avatar: avatar,
+            Email: email,
+            Token: token
+        });
+
+        console.log(response.data); // แสดงผลลัพธ์ที่ได้รับจากเซิร์ฟเวอร์
+    } catch (error) {
+        console.error('เคยบันทึกข้อมูลแล้ว');
+    }
+  }
+
   // const user = false;
   useEffect(() => {
-    const getUser = () => {
-      fetch("http://localhost:5000/auth/login/success", {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => {
-          if (response.status === 200) return response.json();
-          throw new Error("authentication has been failed!");
-        })
-        .then((resObject) => {
-          console.log(resObject); // ตรวจสอบข้อมูลที่ได้รับกลับมาจาก API endpoint
-          // console.log("res.credentials",resObject.credentials);
-          setUser(resObject.user); // ตั้งค่าข้อมูลผู้ใช้ในตัวแปร user
-          // console.log(resObject.user.emails[0].value);
-          console.log("User ID:", user.id);
-        })        
-        .catch((err) => {
-          console.log(err);
+    const getUser = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/auth/login/success", {
+          withCredentials: true,
         });
+        if (response.status === 200) {
+          const resObject = response.data;
+          console.log(resObject); // ตรวจสอบข้อมูลที่ได้รับกลับมาจาก API endpoint
+          setUser(resObject.user); // ตั้งค่าข้อมูลผู้ใช้ในตัวแปร user
+          console.log("User ID:", resObject.user.id);
+          console.log("User Avatar:", resObject.user.photos[0].value);
+  
+          // เรียกใช้ฟังก์ชัน addParentLogin ด้วยข้อมูลผู้ใช้
+          await addParentLogin(
+            resObject.user.photos[0].value,
+            resObject.user.emails[0].value,
+            resObject.user.id
+          );
+        } else {
+          throw new Error("authentication has been failed!");
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
     getUser();
   }, []);
