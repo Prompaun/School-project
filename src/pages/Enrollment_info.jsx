@@ -1499,7 +1499,7 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
   };
 
     const handleButtonClick = async () => {
-        setShowLoadingModal(true);
+        
         if (user && user.emails[0].value) {
             setCurrentLogin_Email(user.emails[0].value);
             console.log("user", user.emails[0].value);
@@ -1518,8 +1518,9 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
         console.log("formatDate(Student_DateOfBirth)",formatDate(Student_DateOfBirth))
         if (checkInputParent()) {
             const confirmSubmit = window.confirm("ยืนยันที่จะส่งข้อมูลหรือไม่?");
-        
+            setShowLoadingModal(true);
             if (confirmSubmit) {
+                
                 try {
                     await handleSubmit(
                         Student_picture_file, 
@@ -1607,17 +1608,18 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
                         ParentTel
                       );
                     }
-                    setLoading(false)
-                    navigate("/NewUser_menu");
+                    // setLoading(false)
+                    // navigate("/NewUser_menu");
 
                   } catch (error) {
                       console.error('Error handling button click:', error);
                   }
                 }
-
+                setShowLoadingModal(false);
+                setShowSuccessModal(true);
             }
-            setShowLoadingModal(false);
-            setShowSuccessModal(true);      
+            // setShowLoadingModal(false);
+            // setShowSuccessModal(true);      
         };
 
         const [showLoadingModal, setShowLoadingModal] = useState(false);

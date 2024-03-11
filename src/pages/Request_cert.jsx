@@ -29,11 +29,12 @@ function Request_cert() {
 
 /////////////////////////////////////////////////////Button/////////////////////////////////////////////////////////////////////
       const handleSubmitform = async () => {
+        // setShowLoadingModal(true);
         // if(checkInputForm()) {
 
         //     alert("Yeah");
         // }
-        // setShowLoadingModal(true);
+        // setShowLoadingModal(false);
         setShowSuccessModal(true);
 
         // return true;
