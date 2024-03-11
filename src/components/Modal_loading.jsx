@@ -1,34 +1,27 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
-
 import { Button, Modal,Spinner } from 'react-bootstrap';
 
-function Modal_loading({show,setShow,link}) {
+function Modal_loading({show,setShow}) {
 
     const handleClose = () => {
         setShow(false);
       };
   return (
     <Modal
-            show={show}
-            onHide={handleClose}
-            backdrop="static"
-            keyboard={false}
-            size="sm"
-            centered
-            style={{ fontFamily: 'Kanit, sans-serif' }}
-        >
-        <Modal.Body className="text-center p-lg-4">
-            <h4 className="text-success mt-3" style={{ fontSize: '30px'}}>
-                Complete!
-            </h4>
-            <p className="mt-3"style={{ fontSize: '22px' }}>ระบบได้รับข้อมูลการสมัครของท่านแล้ว</p>
-            <Link to= {link}>
-            <Button variant="sm"style={{ fontSize: '20px' }} className="btn-success" onClick={() => setShowSuccessModal(false)}>
-            Ok
-            </Button></Link>
-        </Modal.Body>
-        </Modal>
+      show={show}
+      onHide={handleClose}
+      backdrop="static"
+      keyboard={false}
+      centered
+      size="sm"
+      style={{ fontFamily: 'Kanit, sans-serif' }}
+    >
+      <Modal.Body>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Spinner animation="border" role="status" />
+        </div>
+      </Modal.Body>
+    </Modal>
   )
 }
 
