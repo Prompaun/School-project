@@ -11,7 +11,7 @@ const Checkgrade_info = () => {
   // ฟังก์ชันสำหรับเรียกใช้ API เพื่อดึงข้อมูล Student_ID จาก email ของผู้ปกครอง
   async function getStudentIdByParentEmail(email) {
     try {
-        const response = await axios.get('http://localhost:8080/get-student-id-by-parent-email', {
+        const response = await axios.get('http://localhost:8080/get-student-id-grade-by-parent-email', {
             params: {
                 email: email
             }
@@ -106,7 +106,7 @@ const Checkgrade_info = () => {
   //   }
   // ]);getStudentIdByParentEmail('john.doe@example.com')
   const [StudentData, setStudentData] = useState([]);
-  const [selectedStudent, setSelectedStudent] = useState("gsf");
+  const [selectedStudent, setSelectedStudent] = useState("");
   const [selectedStudent_ID, setSelectedStudent_ID] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
   const [Semesters, setSemesters] = useState([]);
@@ -121,11 +121,14 @@ useEffect(() => {
         try {
               const studentDataArray = await getStudentIdByParentEmail('john.doe@example.com');
               const formattedStudentData = studentDataArray.map(student => ({
+                  ...student,
+                  key: student.Student_ID, // ใช้ Student_ID เป็น key
                   StudentID: student.Student_ID,
                   nameTitle: student.NameTitle,
                   Firstname: student.FirstName,
                   Lastname: student.LastName
               }));
+              // console.log('formattedStudentData:', formattedStudentData);
               setStudentData(formattedStudentData);
 
               // หา Student_ID ค่าแรกที่พบ
@@ -197,8 +200,8 @@ useEffect(() => {
           // แยกค่า StudentID โดยใช้ split เพื่อแยกสตริงด้วยช่องว่างและเลือกค่าตัวแรก
           const selectedStudent_ID = selectedStudent.split(' ')[0];
           setSelectedStudent_ID(selectedStudent_ID);
-          setSelectedYear('');
-          setSelectedSemester('');
+          // setSelectedYear('');
+          // setSelectedSemester('');
 
           console.log("selectedStudent_ID:", selectedStudent_ID); // พิมพ์ค่า StudentID ที่ได้
 
