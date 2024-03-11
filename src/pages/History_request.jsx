@@ -60,6 +60,20 @@ async function getAllRequestInfo(email, Student_ID) {
   }
 }
 
+async function getRequestInfoByPareantEmail(email) {
+  try {
+      const response = await axios.get('http://localhost:8080/get-request-by-parent-email', {
+          params: {
+              Parent_Email: email
+          }
+      });
+      return response.data;
+  } catch (error) {
+      console.error('Error fetching student ID by parent email:', error);
+      throw error;
+  }
+}
+
 
   // รับค่า input จากฟอร์มและอัปเดต state ตามชื่อ input
   const handleInputChange = (event) => {
@@ -166,7 +180,8 @@ async function getAllRequestInfo(email, Student_ID) {
           if (studentDataArray.length > 0) {
             const firstStudentId = studentDataArray[0].Student_ID;
 
-            const AllRequestInfo = await getAllRequestInfo('john.doe@example.com', firstStudentId);
+            // const AllRequestInfo = await getRequestInfoByPareantEmail('john.doe@example.com', firstStudentId);
+            const AllRequestInfo = await getRequestInfoByPareantEmail('john.doe@example.com');
             const formattedAllRequestInfo = AllRequestInfo.map(request => ({
                 DateRequest: new Date(request.Request_Date).toLocaleDateString(), // กำหนดรูปแบบวันที่ตามที่ต้องการ
                 NoRequest: request.Request_No,
