@@ -7,6 +7,8 @@ import axios from 'axios';
 import 'react-datepicker/dist/react-datepicker.css';
 // import Popup from "@simondmc/popup-js"
 import { Button, Modal,Spinner } from 'react-bootstrap';
+import Modal_loading from '../components/Modal_loading';
+import Modal_success from '../components/Modal_success';
 
 
 function Enrollment_info({user}) {
@@ -1626,48 +1628,17 @@ const handlePreviousSchoolEducationalRecordsFileChange = (event) => {
 return (
         <>
         {/* {loading && (<div>loading...</div>)} */}
-        {showLoadingModal && (
-                <Modal
-                    show={showLoadingModal}
-                    onHide={() => setShowLoadingModal(false)}
-                    backdrop="static"
-                    keyboard={false}
-                    centered
-                    size="sm"
-                    style={{ fontFamily: 'Kanit, sans-serif' }}
-                >
-                    <Modal.Body>
-                    <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <Spinner animation="border" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                        </Spinner>
-                    </div>
-                    </Modal.Body>
-                </Modal>
-                )}
-
-                {showSuccessModal && (
-                <Modal
-                    show={showSuccessModal}
-                    onHide={() => setShowSuccessModal(false)}
-                    backdrop="static"
-                    keyboard={false}
-                    size="sm"
-                    centered
-                    style={{ fontFamily: 'Kanit, sans-serif' }}
-                >
-                <Modal.Body className="text-center p-lg-4">
-                    <h4 className="text-success mt-3" style={{ fontSize: '30px'}}>
-                        Complete!
-                    </h4>
-                    <p className="mt-3"style={{ fontSize: '22px' }}>ระบบได้รับข้อมูลการสมัครของท่านแล้ว</p>
-                    <Link to= "/NewUser_menu">
-                    <Button variant="sm"style={{ fontSize: '20px' }} className="btn-success" onClick={() => setShowSuccessModal(false)}>
-                    Ok
-                    </Button></Link>
-                </Modal.Body>
-                </Modal>
-                )}
+    {showLoadingModal && (
+          <Modal_loading show={showLoadingModal} setShow={setShowLoadingModal} />
+    )}
+    {showSuccessModal && (
+          <Modal_success 
+          show={showSuccessModal} 
+          setShow={setShowSuccessModal} 
+          link="/Parent_menu" 
+          text="ระบบได้รับข้อมูลการสมัครของท่านแล้ว"
+          />
+        )}
       <Header header="ระบบรับสมัครนักเรียนแบบออนไลน์" subhead="กรอกข้อมูลการสมัคร"/>
       
       <div className="mt-5 d-flex flex-column align-items-center"style={{ height: '100vh'}}>
@@ -2578,14 +2549,8 @@ return (
               </div>
 
               <div>
-                {/* {message && <p>{message}</p>} //แสดงข้อความแจ้งเตือนในกรณีที่มีข้อผิดพลาด */}
-
-                {/* {message === "Successfully uploaded to drive" ? ( */}
-                  {/* <Link to="/NewUser_menu" > */}
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                       <button type="button" onClick={handleButtonClick} className="btn btn-primary" 
-                      data-bs-toggle="modal" 
-                      data-bs-target="#staticBackdrop"
                       style={{ ...fontStyle, color: 'white', fontSize: '16px' }}>
                         ส่งข้อมูล
                       </button>
@@ -2593,21 +2558,7 @@ return (
                     </div>
 
                     
-                  {/* </Link> */}
-                {/* ) : ( */}
-                  {/* <div style={{ display: 'flex', justifyContent: 'flex-end' }}> */}
-                    {/* <button
-                      type="button"
-                      onClick={handleButtonClick}
-                      className="btn btn-primary"
-                      style={{ ...fontStyle, color: 'white', fontSize: '16px' }}
-                    >
-                      ส่งข้อมูล
-                    </button>
-                  </div>
-                )} */}
-
-                {/* </div> */}
+                
               </div>
               </div>
     </div> )}

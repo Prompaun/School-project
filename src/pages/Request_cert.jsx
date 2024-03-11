@@ -1,6 +1,10 @@
 import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
+import { Button, Modal,Spinner } from 'react-bootstrap';
+import Modal_loading from '../components/Modal_loading';
+import Modal_success from '../components/Modal_success';
+
 
 function Request_cert() {
 
@@ -25,11 +29,14 @@ function Request_cert() {
 
 /////////////////////////////////////////////////////Button/////////////////////////////////////////////////////////////////////
       const handleSubmitform = async () => {
-        if(checkInputForm()) {
+        // if(checkInputForm()) {
 
-            alert("Yeah");
-        }
-        return true;
+        //     alert("Yeah");
+        // }
+        // setShowLoadingModal(true);
+        setShowSuccessModal(true);
+
+        // return true;
       };
 
       ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -212,9 +219,23 @@ function Request_cert() {
         
       }, [CheckRequestTranscript]);
 
+      const [showLoadingModal, setShowLoadingModal] = useState(false);
+      const [showSuccessModal, setShowSuccessModal] = useState(false);
+
       return (
         <>
-       
+      {showLoadingModal && (
+          <Modal_loading show={showLoadingModal} setShow={setShowLoadingModal} />
+        )}
+      {showSuccessModal && (
+          <Modal_success 
+          show={showSuccessModal} 
+          setShow={setShowSuccessModal} 
+          link="/Parent_menu" 
+          text="ระบบได้รับคำร้องของท่านแล้ว"
+          />
+        )}
+
       <Header header="ระบบยื่นคำร้องขอใบรับรอง" subhead=""/>
       
       <div className="d-flex flex-column align-items-center"style={{ height: '100vh',fontFamily: 'Kanit, sans-serif'}}>
@@ -318,7 +339,9 @@ function Request_cert() {
                 </div>
                     {/* <Link to="/Request_cert">  */}
                     {/* /Parent_menu */}
-                        <button type="submit" onClick={handleSubmitform}class="btn btn-primary float-end" style={{ textAlign: 'right'}}><span>Submit</span></button>
+                    <button type="submit" onClick={handleSubmitform} class="btn btn-primary float-end" style={{ textAlign: 'right' }}>
+                      <span>Submit</span>
+                    </button>
                     {/* </Link> */}
             </div>
         </div>
