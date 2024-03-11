@@ -303,7 +303,7 @@ useEffect(() => {
         {Data.length === 0 ? (
        <div style={{ display: 'flex', flexWrap: 'wrap', margin: '10px', fontSize: '18px' }}>
         <div className="container mt-5 d-flex flex-column align-items-center">
-          <span className="ms-3 mb-0" style={{ color: 'gray' }}>ไม่พบข้อมูลผู้สมัคร</span>
+          <span className="ms-3 mb-0" style={{ color: 'gray' }}>ไม่พบข้อมูลการขอใบรับรอง</span>
         </div>
       </div>
      
