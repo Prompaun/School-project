@@ -47,6 +47,7 @@ import Register_info from './pages/Register_info';
 // import GoogleDriveFileUploader from './pages/GoogleDriveFileUploader';
 import Tab_enroll from './components/Tab_enroll';
 import Checkgrade_info from './pages/Checkgrade_info';
+import Enrollment_info_EP from './pages/Enrollment_info_EP';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -201,6 +202,8 @@ function App() {
 
         <Route path="/Open_course" element={<Open_course />} />
         <Route path="/Enrollment_info" element={<Enrollment_info user={user} />} />
+        <Route path="/Enrollment_info_EP" element={<Enrollment_info_EP user={user} />} />
+
         <Route path="/CheckEnroll_status" element={<CheckEnroll_status/>} />
         
         <Route path="/Student_menu" element={<Student_menu />} />
