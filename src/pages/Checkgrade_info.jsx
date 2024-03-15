@@ -211,6 +211,7 @@ useEffect(() => {
             Semester: [] // ประกาศค่าซีเมสเตอร์ที่ต้องการเป็นอาเรย์
           };
           setYearData(formattedData); // เซ็ตข้อมูลลงใน YearData state
+          setSelectedYear("");
         }
       } catch (error) {
         console.error('Error fetching years:', error);
