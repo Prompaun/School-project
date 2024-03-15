@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import { Button, Modal,Spinner } from 'react-bootstrap';
 import Modal_loading from '../components/Modal_loading';
 import Modal_success from '../components/Modal_success';
-
+import axios from 'axios';
 
 function Request_cert() {
 
@@ -12,30 +12,144 @@ function Request_cert() {
         color: 'gray',
         textDecoration: 'none'
       };
-      const [StudentData, setStudentData] = useState([
-        {
-          StudentID: "12345",
-          nameTitle: "เด็กหญิง",
-          Firstname: "น้ำใส",
-          Lastname: "ใจดี"
-        },
-        {
-          StudentID: "5678",
-          nameTitle: "เด็กชาย",
-          Firstname: "น้ำหนึ่ง",
-          Lastname: "ใจดี"
+      // const [StudentData, setStudentData] = useState([
+      //   {
+      //     StudentID: "12345",
+      //     nameTitle: "เด็กหญิง",
+      //     Firstname: "น้ำใส",
+      //     Lastname: "ใจดี"
+      //   },
+      //   {
+      //     StudentID: "5678",
+      //     nameTitle: "เด็กชาย",
+      //     Firstname: "น้ำหนึ่ง",
+      //     Lastname: "ใจดี"
+      //   }
+      // ]); 
+
+      const formatDate = (date) => {
+        if (date !== ''){
+          const year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        month = month < 10 ? '0' + month : month;
+        let day = date.getDate();
+        day = day < 10 ? '0' + day : day;
+        // 
+        // console.log(`${year}-${month}-${day}`);
+        return `${year}-${month}-${day}`;
         }
-      ]); 
+        else{
+          return new Date();
+        }
+        
+    };
+
+      async function getStudentIdByParentEmail(email) {
+        try {
+            const response = await axios.get('http://localhost:8080/get-student-id-grade-by-parent-email', {
+                params: {
+                    email: email
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching student ID by parent email:', error);
+            throw error;
+        }
+    }
+
+    const [StudentData, setStudentData] = useState([]);
+    const [selectedStudent_ID, setSelectedStudent_ID] = useState("");
+    const [Student_picture_file,setStudent_picture_file] = useState("");
+
+    useEffect(() => {
+      const fetchData = async () => {
+          try {
+                const studentDataArray = await getStudentIdByParentEmail('john.doe@example.com');
+                const formattedStudentData = studentDataArray.map(student => ({
+                    ...student,
+                    key: student.Student_ID, // ใช้ Student_ID เป็น key
+                    StudentID: student.Student_ID,
+                    nameTitle: student.NameTitle,
+                    Firstname: student.FirstName,
+                    Lastname: student.LastName
+                }));
+                // console.log('formattedStudentData:', formattedStudentData);
+                setStudentData(formattedStudentData);
+          } catch (error) {
+              console.error('Error fetching data:', error);
+          }
+      };
+  
+      fetchData();
+  }, []);
 
 /////////////////////////////////////////////////////Button/////////////////////////////////////////////////////////////////////
       const handleSubmitform = async () => {
         // setShowLoadingModal(true);
-        // if(checkInputForm()) {
+        if(checkInputForm()) {
+          setShowLoadingModal(true);
+          if (selectedStudent !== ''){
+            // แยกค่า StudentID โดยใช้ split เพื่อแยกสตริงด้วยช่องว่างและเลือกค่าตัวแรก
+            const selectedStudent_ID = selectedStudent.split(' ')[0];
+            setSelectedStudent_ID(selectedStudent_ID);
+            console.log("selectedStudent_ID:", selectedStudent_ID); // พิมพ์ค่า StudentID ที่ได้
+            console.log("Student_picture_file:", Student_picture_file);
 
-        //     alert("Yeah");
-        // }
-        // setShowLoadingModal(false);
-        setShowSuccessModal(true);
+            console.log("Student_ID",selectedStudent_ID);
+            console.log("Request_Date",formatDate(new Date()));
+            console.log("Requested_Copies",AmountRequestStudent);
+            console.log("Request_detail",selectedOption);
+
+
+            if(CheckRequestStudent){
+              const formData = new FormData();
+              formData.append('Student_ID', selectedStudent_ID);
+              formData.append('Parent_Email', 'john.doe@example.com');
+              formData.append('Request_Date', formatDate(new Date()));
+              
+              // เพิ่มข้อมูลของนักเรียนเข้าไปใน formData
+              formData.append('Request_type', 'ปพ.7');
+              formData.append('Requested_Copies', AmountRequestStudent);
+              formData.append('Request_detail', selectedOption);
+              formData.append('file', Student_picture_file);
+              formData.append('Request_status', 'รอดำเนินการ');
+
+              await axios.post('http://localhost:8080/upload-student-img-request', formData, {
+                headers: {
+                  'Content-Type': 'multipart/form-data'
+                }
+              });
+            }
+
+            if(CheckRequestTranscript){
+              const formData = new FormData();
+              formData.append('Student_ID', selectedStudent_ID);
+              formData.append('Parent_Email', 'john.doe@example.com');
+              formData.append('Request_Date', formatDate(new Date()));
+              
+              // เพิ่มข้อมูลของนักเรียนเข้าไปใน formData
+              formData.append('Request_type', 'ปพ.1');
+              formData.append('Requested_Copies', AmountRequestTranscript);
+              formData.append('Request_detail', selectedOption);
+              formData.append('file', Student_picture_file);
+              formData.append('Request_status', 'รอดำเนินการ');
+
+              await axios.post('http://localhost:8080/upload-student-img-request', formData, {
+                headers: {
+                  'Content-Type': 'multipart/form-data'
+                }
+              });
+            }
+            // alert("Yeah");
+    
+
+            
+          }
+          setShowLoadingModal(false);
+            setShowSuccessModal(true);
+        }
+        
 
         // return true;
       };
@@ -78,7 +192,7 @@ function Request_cert() {
       };
 
       useEffect(() => {
-        
+        console.log("CheckRequestStudent",CheckRequestStudent);
         if (!CheckRequestStudent.checked){
             setAmountRequestStudent('');
         }
@@ -86,7 +200,7 @@ function Request_cert() {
       }, [CheckRequestStudent]);
       
       useEffect(() => {
-        
+        console.log("CheckRequestTranscript",CheckRequestTranscript);
         if (!CheckRequestTranscript.checked){
             setAmountRequestTranscript('');
         }
@@ -99,29 +213,31 @@ function Request_cert() {
     const handleSelectChange = (event) => {
       setSelectedOption(event.target.value);
     };
-    const [student_picture_file,setStudent_picture_file] = useState("");
+    // const [Student_picture_file,setStudent_picture_file] = useState("");
     const allowedFileTypes = ['.pdf', '.jpg', '.jpeg', '.png'];
     const handleFileChange = (event) => {
         event.preventDefault();
-        const student_picture_file = event.target;
+        const Student_picture_file = event.target;
     
-        // if (student_picture_file.files.length === 0){
+        // if (Student_picture_file.files.length === 0){
         //     setStudent_picture_file('');
             // sendImageDataToEnroll('');
         //   }
         
-        if (student_picture_file.files && student_picture_file.files.length > 0) {
-            const file = student_picture_file.files[0];
+        if (Student_picture_file.files && Student_picture_file.files.length > 0) {
+            const file = Student_picture_file.files[0];
             const fileType = '.' + file.name.split('.').pop().toLowerCase();
             if (allowedFileTypes.includes(fileType)) {
                 
                 let fileName = '';
-                if (student_picture_file.files.length === 1) {
+                if (Student_picture_file.files.length === 1) {
                     setStudent_picture_file(event.target.files[0]);
+                    
+                    console.log("Student_picture_file",event.target.files[0]);
                     fileName = file.name;
                     // console.log("file.name", file.name);
                 } else {
-                    fileName = student_picture_file.files.length + ' files selected';
+                    fileName = Student_picture_file.files.length + ' files selected';
                 }
                 // แสดงชื่อไฟล์ที่ถูกเลือกใน input label
                 const fileInputLabel = document.getElementById('fileInputLabel');
@@ -134,7 +250,7 @@ function Request_cert() {
                 // เคลียร์ค่า input file และ label
                 event.target.value = '';
                 // setStudent_picture_file('');
-                // student_picture_file.value = '';
+                // Student_picture_file.value = '';
                 const fileInputLabel = document.getElementById('fileInputLabel');
                 if (fileInputLabel) {
                     fileInputLabel.textContent = 'Select Files';
