@@ -102,15 +102,20 @@ function Request_cert() {
             console.log("Request_detail",selectedOption);
 
 
-            if(CheckRequestStudent){
+            // if(CheckRequestStudent){
               const formData = new FormData();
+              formData.append('CheckRequestStudent', CheckRequestStudent.checked);
+              formData.append('CheckRequestTranscript', CheckRequestTranscript.checked);
+
               formData.append('Student_ID', selectedStudent_ID);
               formData.append('Parent_Email', 'john.doe@example.com');
               formData.append('Request_Date', formatDate(new Date()));
               
               // เพิ่มข้อมูลของนักเรียนเข้าไปใน formData
-              formData.append('Request_type', 'ปพ.7');
-              formData.append('Requested_Copies', AmountRequestStudent);
+              // formData.append('Request_type', 'ปพ.7');
+              formData.append('AmountRequestStudent', AmountRequestStudent);
+              formData.append('AmountRequestTranscript', AmountRequestTranscript);
+
               formData.append('Request_detail', selectedOption);
               formData.append('file', Student_picture_file);
               formData.append('Request_status', 'รอดำเนินการ');
@@ -120,27 +125,27 @@ function Request_cert() {
                   'Content-Type': 'multipart/form-data'
                 }
               });
-            }
+            // }
 
-            if(CheckRequestTranscript){
-              const formData = new FormData();
-              formData.append('Student_ID', selectedStudent_ID);
-              formData.append('Parent_Email', 'john.doe@example.com');
-              formData.append('Request_Date', formatDate(new Date()));
+            // if(CheckRequestTranscript){
+            //   const formData = new FormData();
+            //   formData.append('Student_ID', selectedStudent_ID);
+            //   formData.append('Parent_Email', 'john.doe@example.com');
+            //   formData.append('Request_Date', formatDate(new Date()));
               
-              // เพิ่มข้อมูลของนักเรียนเข้าไปใน formData
-              formData.append('Request_type', 'ปพ.1');
-              formData.append('Requested_Copies', AmountRequestTranscript);
-              formData.append('Request_detail', selectedOption);
-              formData.append('file', Student_picture_file);
-              formData.append('Request_status', 'รอดำเนินการ');
+            //   // เพิ่มข้อมูลของนักเรียนเข้าไปใน formData
+            //   formData.append('Request_type', 'ปพ.1');
+            //   formData.append('Requested_Copies', AmountRequestTranscript);
+            //   formData.append('Request_detail', selectedOption);
+            //   formData.append('file', Student_picture_file);
+            //   formData.append('Request_status', 'รอดำเนินการ');
 
-              await axios.post('http://localhost:8080/upload-student-img-request', formData, {
-                headers: {
-                  'Content-Type': 'multipart/form-data'
-                }
-              });
-            }
+            //   await axios.post('http://localhost:8080/upload-student-img-request', formData, {
+            //     headers: {
+            //       'Content-Type': 'multipart/form-data'
+            //     }
+            //   });
+            // }
             // alert("Yeah");
     
 

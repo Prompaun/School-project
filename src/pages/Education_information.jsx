@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import school_logo from "../images/IMG_5416.png";
 import printer_icon from "../images/printer_icon.png";
@@ -18,62 +18,42 @@ const Education_information = () => {
         textDecoration: 'none'
       };
 
-    const [formData, setFormData] = useState({
-        username: '',
-        password: '',
-    });
-
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
-
-    const [data, setData] = useState([
+      const [Yeardata, setYearData] = useState(
         {
-          year: 'ปีการศึกษา 2566 ภาคการศึกษาที่ 1',
-          subjects: [
-            { id: '001', name: 'วิชา A', score: 85, credits:'0.5', between_full:'80', final_full:'20', between_get:'79', final_get:'20', totalScore:'99', grade: 'A', result: 'ดีเด่น' },
-            { id: '002', name: 'วิชา B', score: 92, credits:'1', between_full:'70', final_full:'30', between_get:'56', final_get:'24',  totalScore:'80', grade: 'A', result: 'ดีมาก' },
-            { id: '003', name: 'วิชา C', score: 78, credits:'1', between_full:'70', final_full:'30', between_get:'53', final_get:'20', totalScore:'73', grade: 'B', result: 'ดี' },
-            // เพิ่มข้อมูลผลการเรียนตามต้องการ
-          ],
-        },
-      ]);
-    
-      const [subjectObject, setSubjectObject] = useState({
-        "2560": [
-          "เทอม1",
-          "เทอม2"
-        ],
-        "2561": [
-          "เทอม1",
-          "เทอม2"
-        ],
-        "2562": [
-          "เทอม1",
-          "เทอม2"
-        ],
-        "2563": [
-          "เทอม1",
-          "เทอม2"
-        ],
-        "2564": [
-          "เทอม1",
-          "เทอม2"
-        ],
-        "2565": [
-          "เทอม1",
-          "เทอม2"
+          Year : ["2565","2564","2563"],
+          Semester : ["1","2"]
+        }
+             
+      );
+
+      const [StudentData,setStudentData] = useState(
+        [
+            {
+                StudentID : "6301012630095",
+                NameTitle : "เด็กหญิง",
+                Surname : "รักดี",
+                Lastname : "น้ำใจงาม"
+              }
         ]
-      });
+
+      );
+      const { Year,Semester } = Yeardata;
+      
+      const [subjectObject, setSubjectObject] = useState(
+        [
+          { id: '001', name: 'วิชา A', score: 85, credits:'0.5', between_full:'80', final_full:'20', between_get:'79', final_get:'20', totalScore:'99', grade: 'A', result: 'ดีเด่น' },
+          { id: '002', name: 'วิชา B', score: 92, credits:'1', between_full:'70', final_full:'30', between_get:'56', final_get:'24',  totalScore:'80', grade: 'A', result: 'ดีมาก' },
+          { id: '003', name: 'วิชา C', score: 78, credits:'1', between_full:'70', final_full:'30', between_get:'53', final_get:'20', totalScore:'73', grade: 'B', result: 'ดี' },
+        ]
+        
+        );
     
-      const [selectedYear, setSelectedYear] = useState("");
-      const [selectedSemester, setSelectedSemester] = useState("");
-      const [chapters, setChapters] = useState([]);
-      const handleYearChange = (event) => {
+        const [selectedYear, setSelectedYear] = useState("");
+    
+    const [selectedSemester, setSelectedSemester] = useState("");
+    const [tableHeader, setTableHeader] = useState("");
+
+    const handleYearChange = (event) => {
         const selectedYearValue = event.target.value;
         setSelectedYear(selectedYearValue);
         setSelectedSemester("");
@@ -89,6 +69,16 @@ const Education_information = () => {
         const selectedSemesterValue = event.target.value;
         setSelectedSemester(selectedSemesterValue);
       };
+      
+      useEffect(() => {
+        if (selectedYear && selectedSemester) {
+          setTableHeader(`ปีการศึกษา ${selectedYear} ภาคการศึกษาที่ ${selectedSemester}`);
+        }
+        else {
+          setTableHeader(`ปีการศึกษา ${Year[0]} ภาคการศึกษาที่ ${Semester[0]}`);
+        }
+      }, [selectedYear, selectedSemester]);
+
     return (
         <>
             
@@ -106,7 +96,7 @@ const Education_information = () => {
                         
                         <div className="d-flex align-items-center">
                             <Link to="/Filter_student_information">
-                                <button type="submit" class="btn btn-primary" style={{ ...fontStyle, color: 'white', textAlign: 'center',padding:"10px"}}><span>ค้นหาข้อมูลใหม่</span></button>
+                                <button type="submit" className="btn btn-primary" style={{ ...fontStyle, color: 'white', textAlign: 'center',padding:"10px"}}><span>ค้นหาข้อมูลใหม่</span></button>
                             </Link>
                         </div>
                         </div>
@@ -146,7 +136,7 @@ const Education_information = () => {
                                                     className="form-control"
                                                     id="Student_ID"
                                                     name="Student_ID"
-                                                    value="13333"
+                                                    value={StudentData[0].StudentID}
                                                     readOnly
                                                     style={{ backgroundColor: '#DCDCDC', color: 'black'}} 
                                                     />            
@@ -155,53 +145,22 @@ const Education_information = () => {
                                             </div>                                  
                                         <div style={{ fontSize: '18px'}}> 
                                                 <div className="align-items-center">
-                                                    <label htmlFor="title" className="col-form-label"style={{ fontWeight:"bold"}}>ชื่อ-นามสกุล</label>
+                                                    <label htmlFor="fullname" className="col-form-label"style={{ fontWeight:"bold"}}>ชื่อ-นามสกุล</label>
                                                     </div> 
                                                 <div className="align-items-center"style={{width:"auto"}}> 
                                                     <input 
                                                         type="text" 
                                                         className="form-control"
-                                                        id="title" 
-                                                        name="title" 
-                                                        value="เด็กหญิงนทณรรณ ดีใจ" 
+                                                        id="fullname" 
+                                                        name="fullname" 
+                                                        value={`${StudentData[0].NameTitle}${StudentData[0].Surname} ${StudentData[0].Lastname}`}
                                                         readOnly 
                                                         style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                                                         // style={{ backgroundColor: '#DCDCDC', color: 'black', borderColor: '#808080' }}
                                                     />
                                                 </div>
                                                 </div>
-                                            {/* <div style={{ fontSize: '18px'}}>    
-                                                <div className=" align-items-center">
-                                                    <label htmlFor="surname" className="col-form-label"style={{ fontWeight:"bold"}}>ชื่อ</label>
-                                                    </div> 
-                                                <div className=" align-items-center"style={{maxWidth:"100%"}}> 
-                                                    <input
-                                                        type="text"
-                                                        className="form-control"
-                                                        id="surname"
-                                                        name="surname"
-                                                        value="ดวง"
-                                                        readOnly
-                                                        style={{ backgroundColor: '#DCDCDC', color: 'black'}}
-                                                    />
-                                                </div>           
-                                                </div>
-                                                <div style={{ fontSize: '18px'}}> 
-                                                <div className="align-items-center">
-                                                    <label htmlFor="lastname" className="col-form-label"style={{ fontWeight:"bold"}}>นามสกุล</label>
-                                                    </div> 
-                                                <div className="align-items-center"style={{maxWidth:"100%"}}> 
-                                                    <input
-                                                        type="text"
-                                                        className="form-control"
-                                                        id="lastname"
-                                                        name="lastname"
-                                                        value="จันทร์"
-                                                        readOnly
-                                                        style={{ backgroundColor: '#DCDCDC', color: 'black'}}
-                                                        />
-                                                </div>
-                                            </div> */}
+                                            
                                         </div>
                                             <br />
                                             <div className="d-flex align-items-center"style={{ flexWrap: 'wrap', fontFamily: 'Kanit, sans-serif' }}>
@@ -209,10 +168,10 @@ const Education_information = () => {
                                                     <div className="d-flex align-items-center">
                                                     <span style={{marginRight:"5px",fontWeight:"bold"}}>ปีการศึกษา :</span>
                                                     </div>
-                                                    <div className="dropdown" style={{ maxWidth: '100%' ,padding:"5px"}}>
+                                                    <div className="dropdown" style={{ maxWidth: '100%',padding:"5px" }}>
                                                     <select value={selectedYear} onChange={handleYearChange} className="custom-select">
                                                         <option value="">เลือกปีการศึกษา</option>
-                                                        {Object.keys(subjectObject).map((year) => (
+                                                        {Year.map((year) => (
                                                         <option key={year} value={year}>
                                                             {year}
                                                         </option>
@@ -228,11 +187,11 @@ const Education_information = () => {
                                                 <div className="dropdown" style={{ maxWidth: '100%' ,padding:"5px"}}>
                                                     <select value={selectedSemester} onChange={handleSemesterChange} className="custom-select">
                                                     <option value="">เลือกภาคเรียน</option>
-                                                    {chapters.map((semester) => (
-                                                        <option key={semester} value={semester}>
-                                                        {semester}
-                                                        </option>
-                                                    ))}
+                                                    {Semester.map((semesterData) => (
+                                                            <option key={semesterData} value={semesterData}>
+                                                            {semesterData}
+                                                            </option>
+                                                        ))}
                                                     </select>
                                                 </div>
                                                 </div>
@@ -278,7 +237,7 @@ const Education_information = () => {
 
                                     <thead>          
                                     <tr>
-                                        <th colSpan="9" style={{ textAlign: 'center' }}>{data[0].year}</th>
+                                        <th colSpan="9" style={{ textAlign: 'center' }}>{tableHeader}</th>
                                     </tr>
 
                                     <tr>
@@ -302,7 +261,7 @@ const Education_information = () => {
                                     </thead>
 
                                     <tbody>
-                                {data[0].subjects.map((subject) => (
+                                {subjectObject.map((subject) => (
                                     <tr key={subject.id} style={{ height: '50px' }}>
                                     <td >{subject.id}</td>
                                     <td >{subject.name}</td>
@@ -313,7 +272,7 @@ const Education_information = () => {
                                     <td >{subject.final_get}</td>
                                     <td >{subject.totalScore}</td>
                                     <td >{subject.grade}</td>
-                                    </tr>
+                                  </tr>
                                 ))}
                                 </tbody>
 
@@ -326,7 +285,7 @@ const Education_information = () => {
                                 
                                 <br />
                                 <Link to="/Student_List_Information">
-                                    <button type="submit" class="btn btn-primary float-end" style={{ ...fontStyle, fontSize: '16px', textAlign: 'right'}}><span>ย้อนกลับ</span></button>
+                                    <button type="submit" className="btn btn-primary float-end" style={{ ...fontStyle, fontSize: '16px', textAlign: 'right'}}><span>ย้อนกลับ</span></button>
                                 </Link>
                                 </div>
                             </div>

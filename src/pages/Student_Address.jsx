@@ -2,42 +2,26 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Parent_Information() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [age, setAge] = useState('');
-  const [selectedOption, setSelectedOption] = useState('ระบุหมายเหตุ');
-  const [nationality, setNationality] = useState(''); // State สำหรับเก็บข้อมูลสัญชาติ
-  const [isFatherForeigner, setIsFatherForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
-  const [isMotherForeigner, setIsMotherForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
-  const [whoAreParent, setParent] = useState('');
-
-  const handleIsFatherForeigner = (event) => {
-    setIsFatherForeigner(event.target.id === 'FatherForeigner'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
-  }; 
-
-  const handleIsMotherForeigner = (event) => {
-    setIsMotherForeigner(event.target.id === 'MotherForeigner');
-  }; 
-
-    const handlewhoAreParent = (event) => {
-        setParent(event.target.id);
-    };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Perform form submission logic here, e.g., send data to server via API call
-    console.log('Form submitted:', { firstName, lastName, age });
-  };
-
-  const handleSelectChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
+  
 
   const fontStyle = {
     fontFamily: 'Kanit, sans-serif',
     textDecoration: 'none'
   };
-
+  const [HouseholdData,setStudentData] = useState(
+    [
+        {
+          Address_Number : "11/1",
+          Village : "5",
+          Alley : "อ่อนนุช 11",
+          Road : "สุขุมวิท",
+          Province : "กรุงเทพมหานคร",
+          District : "ประเวศ",
+          Subdistrict : "สวนหลวง", 
+          HouseReg_file : "" //link drive gg
+        }
+    ]
+  );
   return (
     <div style={{
         display: 'flex',
@@ -56,7 +40,7 @@ function Parent_Information() {
                     className="form-control"
                     id="Address_Number" 
                     name="Address_Number" 
-                    value="11/1" 
+                    value={HouseholdData[0].Address_Number} 
                     readOnly 
                     style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                 />
@@ -73,7 +57,7 @@ function Parent_Information() {
                     className="form-control"
                     id="Village"
                     name="Village"
-                    value="5"
+                    value={HouseholdData[0].Village} 
                     readOnly
                     style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                 />
@@ -90,7 +74,7 @@ function Parent_Information() {
                     className="form-control"
                     id="Alley"
                     name="Alley"
-                    value="อ่อนนุช 11"
+                    value={HouseholdData[0].Alley} 
                     readOnly
                     style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                     />
@@ -107,7 +91,7 @@ function Parent_Information() {
                     className="form-control"
                     id="Road"
                     name="Road"
-                    value="สุขุมวิท"
+                    value={HouseholdData[0].Road} 
                     readOnly
                     style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                 />
@@ -128,7 +112,7 @@ function Parent_Information() {
                     className="form-control"
                     id="Province" 
                     name="Province" 
-                    value="กรุงเทพมหานครฯ" 
+                    value={HouseholdData[0].Province}  
                     readOnly 
                     style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                 />
@@ -146,7 +130,7 @@ function Parent_Information() {
                     className="form-control"
                     id="District"
                     name="District"
-                    value="ประเวศ"
+                    value={HouseholdData[0].District}
                     readOnly
                     style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                 />
@@ -163,7 +147,7 @@ function Parent_Information() {
                   className="form-control"
                   id="Subdistrict" 
                   name="Subdistrict" 
-                  value="สวนหลวง" 
+                  value={HouseholdData[0].Subdistrict} 
                   readOnly 
                   style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                   // style={{ backgroundColor: '#DCDCDC', color: 'black', borderColor: '#808080' }}
@@ -191,6 +175,7 @@ function Parent_Information() {
                     height: 'auto',  // กำหนดความสูง
                     // fontSize:"18px"
                     }}
+                    onClick={() => window.open(HouseholdData[0].HouseReg_file)}
                 >
                     <span>file</span>
                 </button>

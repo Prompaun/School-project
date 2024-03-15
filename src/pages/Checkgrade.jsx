@@ -13,12 +13,8 @@ const Checkgrade = () => {
     textDecoration: 'none'
   };
 
-  // เพิ่ม state สำหรับเก็บข้อมูลจากฟอร์ม
-  const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-  });
-
+  
+  
   // รับค่า input จากฟอร์มและอัปเดต state ตามชื่อ input
   const handleInputChange = (event) => {
     const { name, value } = event.target;

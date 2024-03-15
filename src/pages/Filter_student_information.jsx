@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate} from 'react-router-dom';
 // import Sidebar from '../components/Sidebar';
 import logoImage from '../images/IMG_5416.png';
 import Header from '../components/Header';
@@ -12,11 +12,6 @@ function Filter_student_information() {
         fontSize: '16px',
       };
 
-    const [selectedOption, setSelectedOption] = useState('ระบุหมายเหตุ');
-    const handleSelectChange = (event) => {
-    setSelectedOption(event.target.value);
-    };
-
     
 
     const handleSelectYearChange = (event) => {
@@ -24,7 +19,7 @@ function Filter_student_information() {
     };
     
     const yearsList = ["2566", "2565", "2564", "2563", "2562", "2561", "2560"];
-    const [selectedYear, setSelectedYear] = useState();
+    const [selectedYear, setSelectedYear] = useState("");
     // const options = [
     //     { value: 'ระบุหมายเหตุ', label: 'ปีการศึกษา' },
     //     { value: 'เพื่อใช้ในการขอทุนการศึกษา', label: 'ปริญญาตรี' },
@@ -36,6 +31,50 @@ function Filter_student_information() {
         fontFamily: 'Kanit, sans-serif',
         textDecoration: 'none'
       };
+
+    const handleStudentIDChange = (event) => {
+        const inputValue = event.target.value;
+        const idValue = inputValue.replace(/[^0-9]/g, "");
+        if (inputValue !== idValue) {
+            alert("กรุณากรอกเฉพาะตัวเลขเท่านั้น");
+        event.target.value = idValue;
+        }
+    
+        setStudentID(idValue);
+      };
+    const [StudentID,setStudentID]=useState("");
+    
+    const CheckInputData = () => {
+        
+        const YearSelect = document.getElementById('YearSelect');
+        const student_id = document.getElementById('student_id');
+
+        console.log("selectedYear",YearSelect.value);
+        console.log("StudentID",student_id.value);
+        if (YearSelect.value===""&& student_id.value==="") {
+            // console.log("selectedYear",selectedYear);
+            // console.log("StudentID",StudentID);
+
+            alert("กรุณากรอกข้อมูลที่ต้องการค้นหา");
+            // YearSelect.focus();
+            // student_id.scrollIntoView({ behavior: 'smooth' });
+            // setTimeout(() => student_id.focus(), 100);
+            return  false;
+        }
+
+        return true;
+    }
+
+
+    const navigate = useNavigate();
+    const handleButtonSearchData = (event) => {
+        if (CheckInputData()) {
+            navigate("/Student_List_Information");
+        }
+
+        return true;
+      };
+
 
     return (
         <>
@@ -77,9 +116,9 @@ function Filter_student_information() {
                     </div>
                     <div className="align-items-center">
                     <div className="dropdown" style={{ maxWidth: '100%'}}>
-                             <select value={selectedYear} onChange={handleSelectYearChange} className="custom-select">     
+                             <select value={selectedYear} onChange={handleSelectYearChange} className="custom-select" id="YearSelect">     
                        
-                                <option value="เลือกปีการศึกษา">เลือกปีการศึกษา</option>
+                                <option value="">เลือกปีการศึกษา</option>
                                 {yearsList.map((year) => (
                                     <option key={year} value={year}>
                                     ปีการศึกษา {year}
@@ -103,11 +142,18 @@ function Filter_student_information() {
                         <h2 className="card-heading" style={{ fontSize: '18px',padding:"10px",fontWeight: 'bold'}}>เลขประจำตัวนักเรียน</h2>
                     </div>
                     <div className=" align-items-center">   
-                        <input type="text" className="form-control" id="student_id" name="student_id" placeholder="กรอกเลขประจำตัวนักเรียน"style={{maxWidth: '100%'}} />
+                        <input type="text" className="form-control" 
+                        id="student_id" 
+                        name="student_id" 
+                        placeholder="กรอกเลขประจำตัวนักเรียน"
+                        style={{maxWidth: '100%'}} 
+                        value={StudentID}
+                        onChange={handleStudentIDChange}
+                        />
                     </div>
                     </div>
                
-                <div style={{ display: 'flex', flexWrap: 'wrap'}}>
+                {/* <div style={{ display: 'flex', flexWrap: 'wrap'}}>
                     <div className="d-flex align-items-center">
                         <h2 className="card-heading" style={{ fontSize: '18px',padding:"10px",fontWeight: 'bold'}}>ชื่อ</h2>
                     </div>
@@ -122,12 +168,12 @@ function Filter_student_information() {
                         <input type="text" className="form-control" id="lastname" name="lastname" placeholder="กรอกนามสกุล" />
                     </div>
                     
-                </div>
+                </div> */}
                 <br />
                
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
 
-                    <Link to="/Student_List_Information">
+                    {/* <Link to="/Student_List_Information"> */}
                     <button 
                         type="submit" 
                         className="btn btn-primary custom-font" 
@@ -142,10 +188,11 @@ function Filter_student_information() {
                         width:"100%"
 
                         }}
+                        onClick={handleButtonSearchData}
                     >
                         <span>ค้นหาข้อมูล</span>
                     </button>
-                    </Link>
+                    {/* </Link> */}
 
                    
                 </div>
