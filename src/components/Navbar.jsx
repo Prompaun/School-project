@@ -39,11 +39,17 @@ const Navbar = ({user}) => {
       <div className="container">
         <Link className="navbar-brand" to="/">
           {/* Logo and School Name */}
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div className="container d-flex flex-column align-items-center justify-content-center"style={{ flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap'}}>
+          <div className="d-flex align-items-center">
             <img src={logoImage} alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
-
-            <h5 style={{ textAlign: 'right', marginLeft: '10px',display: 'flex', flexWrap: 'wrap', whiteSpace: "nowrap", marginBottom: '0'}}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
+            </div>
+            <div style={{flexWrap: 'wrap'}}>
+            <h5 style={{marginBottom: '0',flexWrap: 'wrap'}}>โรงเรียนฤทธิยะวรรณาลัย (ประถม)</h5>
+            </div>
           </div>
+          </div>
+
         </Link>
         <div className="nav navbar-nav navbar-right" stlye={{display: "flex"}}>
         {user ? (

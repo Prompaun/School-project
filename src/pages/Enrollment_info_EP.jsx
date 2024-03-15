@@ -11,8 +11,8 @@ import Modal_loading from '../components/Modal_loading';
 import Modal_success from '../components/Modal_success';
 
 
-function Enrollment_info({user}) {
-const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+function Enrollment_info_EP({user}) {
+
 
   const fontStyle = {
     fontFamily: 'Kanit, sans-serif',
@@ -1641,7 +1641,7 @@ return (
           text="ระบบได้รับข้อมูลการสมัครของท่านแล้ว"
           />
         )}
-      <Header header="ระบบรับสมัครนักเรียนแบบออนไลน์" subhead="กรอกข้อมูลการสมัครหลักสูตรทั่วไป"/>
+      <Header header="ระบบรับสมัครนักเรียนแบบออนไลน์" subhead="กรอกข้อมูลการสมัครหลักสูตร English Program (EP)"/>
       
       <div className="mt-5 d-flex flex-column align-items-center"style={{ height: '100vh'}}>
           {/* <Tab_enroll /> */}
@@ -2578,4 +2578,4 @@ return (
       ) 
 }
 
-export default Enrollment_info
+export default Enrollment_info_EP

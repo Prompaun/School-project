@@ -2,41 +2,26 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Student_Information() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [age, setAge] = useState('');
-  const [selectedOption, setSelectedOption] = useState('ระบุหมายเหตุ');
-  const [nationality, setNationality] = useState(''); // State สำหรับเก็บข้อมูลสัญชาติ
-  const [isFatherForeigner, setIsFatherForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
-  const [isMotherForeigner, setIsMotherForeigner] = useState(false); // State สำหรับเก็บข้อมูลว่าเป็นคนต่างชาติหรือไม่
-  const [whoAreParent, setParent] = useState('');
-
-  const handleIsFatherForeigner = (event) => {
-    setIsFatherForeigner(event.target.id === 'FatherForeigner'); // ถ้าเลือก 'ใช่' ให้เป็น true, ถ้า 'ไม่' ให้เป็น false
-  }; 
-
-  const handleIsMotherForeigner = (event) => {
-    setIsMotherForeigner(event.target.id === 'MotherForeigner');
-  }; 
-
-    const handlewhoAreParent = (event) => {
-        setParent(event.target.id);
-    };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Perform form submission logic here, e.g., send data to server via API call
-    console.log('Form submitted:', { firstName, lastName, age });
-  };
-
-  const handleSelectChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
 
   const fontStyle = {
     fontFamily: 'Kanit, sans-serif',
     textDecoration: 'none'
   };
+  const [StudentData,setStudentData] = useState(
+    [
+        {
+            National_ID_Number : "1-0000-00000-11-1",
+            Student_ID : "13333",
+            NameTitle : "เด็กหญิง",
+            Surname : "ดวง",
+            LastName : "จันทร์",
+            DateOfBirth : "01/05/2559",
+            CopyofStudentIDCardFile : "", //link drive gg
+            TranscriptType : "ปพ.1",
+            PreviousSchoolEducationalRecordsFile : "" //link drive gg
+        }
+    ]
+  );
 
   return (
     <div style={{
@@ -62,7 +47,7 @@ function Student_Information() {
                     className="form-control"
                     id="National_ID_Number" 
                     name="National_ID_Number" 
-                    value="1-0000-00000-11-1" 
+                    value={StudentData[0].National_ID_Number}
                     readOnly 
                     style={{ backgroundColor: '#DCDCDC', color: 'black' }} 
                 />
@@ -79,7 +64,7 @@ function Student_Information() {
                     className="form-control"
                     id="Student_ID"
                     name="Student_ID"
-                    value="13333"
+                    value={StudentData[0].Student_ID}
                     readOnly
                     style={{ backgroundColor: '#DCDCDC', color: 'black'}} 
                     />            
@@ -98,7 +83,7 @@ function Student_Information() {
                     className="form-control"
                     id="title" 
                     name="title" 
-                    value="เด็กหญิง" 
+                    value={StudentData[0].NameTitle} 
                     readOnly 
                     style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                     // style={{ backgroundColor: '#DCDCDC', color: 'black', borderColor: '#808080' }}
@@ -115,7 +100,7 @@ function Student_Information() {
                     className="form-control"
                     id="surname"
                     name="surname"
-                    value="ดวง"
+                    value={StudentData[0].Surname}
                     readOnly
                     style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                 />
@@ -131,7 +116,7 @@ function Student_Information() {
                     className="form-control"
                     id="lastname"
                     name="lastname"
-                    value="จันทร์"
+                    value={StudentData[0].LastName}
                     readOnly
                     style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                     />
@@ -148,7 +133,7 @@ function Student_Information() {
                     className="form-control"
                     id="Date_of_Birth"
                     name="Date_of_Birth"
-                    value="01/05/2559"
+                    value={StudentData[0].DateOfBirth}
                     readOnly
                     style={{ backgroundColor: '#DCDCDC', color: 'black'}} 
                     />            
@@ -175,6 +160,7 @@ function Student_Information() {
                         width: 'auto', // กำหนดความกว้าง
                         height: 'auto'  // กำหนดความสูง
                         }}
+                        onClick={() => window.open(StudentData[0].CopyofStudentIDCardFile )}
                     >
                         <span>file</span>
                 </button>
@@ -203,7 +189,7 @@ function Student_Information() {
                     className="form-control"
                     id="Education_Document"
                     name="Education_Document"
-                    value="ปพ.1"
+                    value={StudentData[0].TranscriptType}
                     readOnly
                     style={{
                         backgroundColor: '#DCDCDC',
@@ -229,6 +215,8 @@ function Student_Information() {
                         width: 'auto', // กำหนดความกว้าง
                         height: 'auto'  // กำหนดความสูง
                         }}
+                        // onClick={StudentData[0].PreviousSchoolEducationalRecordsFile}
+                        onClick={() => window.open(StudentData[0].PreviousSchoolEducationalRecordsFile )}
                     >
                         <span>file</span>
                 </button>
