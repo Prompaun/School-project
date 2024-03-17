@@ -20,11 +20,11 @@ function Card_menu_personnel() {
           imageUrl: student_icon, // แทนที่ด้วย URL รูปภาพจริง
           path: "/Subject_Score_Record"
         },
-        {
-          text: "ระบบจัดการข้อมูลสุขภาพ",
-          imageUrl: health_icon, // แทนที่ด้วย URL รูปภาพจริง
-          path: "/Manage_health_data"
-        },
+        // {
+        //   text: "ระบบจัดการข้อมูลสุขภาพ",
+        //   imageUrl: health_icon, // แทนที่ด้วย URL รูปภาพจริง
+        //   path: "/Manage_health_data"
+        // },
         {
           text: "ระบบจัดการออกใบรับรอง",
           imageUrl: Request_cert, // แทนที่ด้วย URL รูปภาพจริง

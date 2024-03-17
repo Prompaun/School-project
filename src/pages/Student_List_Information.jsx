@@ -85,22 +85,22 @@ const Student_List_Information = () => {
                                         <div className="table-responsive">
                                         <table className="table table-bordered table-striped table-hover" style={{ borderCollapse: 'collapse', textAlign: 'center',fontFamily: 'Kanit, sans-serif' }}>
                                             <thead>
-                                                <tr>
-                                                    <th rowSpan="2" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>เลขประจำตัวนักเรียน</th>
-                                                    <th rowSpan="2" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ชื่อ-สกุล</th>
-                                                    <th colSpan="2" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ข้อมูลส่วนบุคคล</th>
-                                                    <th colSpan="2" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ข้อมูลการศึกษา</th>
-                                                    <th colSpan="2" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ข้อมูลสุขภาพ</th>
+                                                <tr style={{ backgroundColor: '#FFFFFF', fontWeight: 'bolder',fontSize:"18px"}}>
+                                                    <th rowSpan="2" >เลขประจำตัวนักเรียน</th>
+                                                    <th rowSpan="2" >ชื่อ-สกุล</th>
+                                                    <th colSpan="1" >ข้อมูลส่วนบุคคล</th>
+                                                    <th colSpan="1" >ข้อมูลการศึกษา</th>
+                                                    <th colSpan="1" >ข้อมูลสุขภาพ</th>
                                                 </tr>
 
-                                                <tr>
+                                                {/* <tr>
                                                     <th colSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ดูข้อมูลส่วนบุคคล</th>
                                                     <th colSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>พิมพ์ข้อมูล</th>
                                                     <th colSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ดูข้อมูลการศึกษา</th>
                                                     <th colSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>พิมพ์ข้อมูล</th>
                                                     <th colSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>ดูข้อมูลสุขภาพ</th>
                                                     <th colSpan="1" style={{ backgroundColor: '#FFFFFF', fontWeight: 'normal' }}>พิมพ์ข้อมูล</th>
-                                                </tr>
+                                                </tr> */}
                                             </thead>
 
                                             <tbody>
@@ -126,7 +126,7 @@ const Student_List_Information = () => {
                                                         </span>
                                                         </Link>
                                                     </td>
-                                                    <td style={{ backgroundColor: "#FFFFFF" }}>
+                                                    {/* <td style={{ backgroundColor: "#FFFFFF" }}>
                                                         <i
                                                         className="fs-5 bi-printer"
                                                         style={{
@@ -141,7 +141,7 @@ const Student_List_Information = () => {
                                                             printWindow.print();
                                                         }}
                                                         ></i>
-                                                    </td>
+                                                    </td> */}
 
                                                     <td style={{ backgroundColor: "#FFFFFF" }}>
                                                         <Link to="/Education_information" className="d-flex justify-content-center" style={{ textDecoration: 'none' }}>
@@ -157,7 +157,7 @@ const Student_List_Information = () => {
                                                         <span style={{ ...fontStyle, color: "black", fontSize: "16px" }}>ดูข้อมูลการศึกษา</span>
                                                         </Link>
                                                     </td>
-                                                    <td style={{ backgroundColor: "#FFFFFF" }}>
+                                                    {/* <td style={{ backgroundColor: "#FFFFFF" }}>
                                                         <i
                                                         className="fs-5 bi-printer"
                                                         style={{
@@ -172,7 +172,7 @@ const Student_List_Information = () => {
                                                             printWindow.print();
                                                         }}
                                                         ></i>
-                                                    </td>
+                                                    </td> */}
 
                                                     <td style={{ backgroundColor: "#FFFFFF" }}>
                                                         <Link to="/Health_info" className="d-flex justify-content-center" style={{ textDecoration: 'none' }}>
@@ -188,7 +188,7 @@ const Student_List_Information = () => {
                                                         <span style={{ ...fontStyle, color: "black", fontSize: "16px" }}>ดูข้อมูลสุขภาพ</span>
                                                         </Link>
                                                     </td>
-                                                    <td style={{ backgroundColor: "#FFFFFF" }}>
+                                                    {/* <td style={{ backgroundColor: "#FFFFFF" }}>
                                                         <i
                                                         className="fs-5 bi-printer"
                                                         style={{
@@ -203,7 +203,7 @@ const Student_List_Information = () => {
                                                             printWindow.print();
                                                         }}
                                                         ></i>
-                                                    </td>
+                                                    </td> */}
                                                     </tr>
                                                 ))}
                                                 </tbody>
@@ -213,10 +213,10 @@ const Student_List_Information = () => {
                                     
                                     </div>
                                 
-                                <br />
+                                {/* <br />
                                 <Link to="/Filter_student_information">
                                     <button type="submit" className="btn btn-primary float-end" style={{ ...fontStyle, color: 'white', fontSize: '16px', textAlign: 'right'}}><span>ย้อนกลับ</span></button>
-                                </Link>
+                                </Link> */}
                                 </div>
                             </div>
                         </div>
