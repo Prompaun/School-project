@@ -158,7 +158,7 @@ async function getRequestInfoByPareantEmail(email) {
   useEffect(() => {
     // ตั้งค่าค่าเริ่มต้นของ dropdown เมื่อหน้าจอถูก refresh
     setselectedStatus('เลือกสถานะคำร้องขอใบรับรอง');
-  }, []); // ใช้ [] เพื่อให้ useEffect ทำงานเพียงครั้งเดียวหลังจากการ render แรก
+  }, [selectedStudent]); // ใช้ [] เพื่อให้ useEffect ทำงานเพียงครั้งเดียวหลังจากการ render แรก
 
   useEffect(() => {
     const fetchData = async () => {
@@ -199,6 +199,12 @@ async function getRequestInfoByPareantEmail(email) {
 
     fetchData();
 }, []);
+
+// useEffect(() => {
+  
+
+//   fetchData(); // เรียกใช้ฟังก์ชัน fetchData เมื่อ component ถูกโหลด
+// }, [selectedStudent]);
 
 useEffect(() => {
   const fetchData = async () => {
@@ -266,7 +272,7 @@ useEffect(() => {
           <div className="dropdown" style={{ maxWidth: '100%'}}>
               <select value={selectedStatus} onChange={handleSelectChange}className="custom-select w-full">
                 <option value="เลือกสถานะคำร้องขอใบรับรอง">เลือกสถานะคำร้องขอใบรับรอง</option>
-                <option value="รอดำเนินการ">รอดำเนินการ</option>
+                {/* <option value="รอดำเนินการ">รอดำเนินการ</option> */}
                 <option value="ดำเนินการเสร็จสิ้น">ดำเนินการเสร็จสิ้น</option>
                 <option value="กำลังดำเนินการ">กำลังดำเนินการ</option>
               </select>
