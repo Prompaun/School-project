@@ -1,13 +1,34 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation  } from 'react-router-dom';
 import school_logo from "../images/IMG_5416.png";
 import printer_icon from "../images/printer_icon.png";
 import search_icon from "../images/search_icon.png";
 import Sidebar from '../components/Sidebar';
 // import Navbar from '../components/Navbar'
 import Header from '../components/Header';
+import axios from 'axios';
 
 const Student_List_Information = () => {
+    const location = useLocation();
+    const selectedYear = location.state.selectedYear;
+    const StudentID = location.state.StudentID;
+
+    console.log("yourData",location.state.selectedYear);
+    console.log("yourData",location.state.StudentID);
+
+    async function getPersonnelStudentInfo(Student_ID) {
+        try {
+            const response = await axios.get('http://localhost:8080/personnel-get-student-info', {
+                params: {
+                    Student_ID: Student_ID
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.log('Error fetching StudentInfo From Classroom:', error);
+            throw error;
+        }
+    }
 
     const linkStyle = {
         color: 'gray',
@@ -33,18 +54,35 @@ const Student_List_Information = () => {
     };
 
     
-    
-    const [data, setData] = useState([
-    {
-        year: 'ปีการศึกษา 2566 ภาคการศึกษาที่ 1',
-        subjects: [
-        { student_id: '6301012630095', first_name: 'เด็กหญิงนทณรรณ', last_name: 'ฝันดี'},
-        { student_id: '6301012630133', first_name: 'เด็กหญิงพรหมพร', last_name: 'จุ๊บจิ๊บ'},
-        { student_id: '6301012610000', first_name: 'เด็กหญิงตั้งใจเรียน', last_name: 'เรียนดี'},
-        // เพิ่มข้อมูลผลการเรียนตามต้องการ
-        ],
-    },
-    ]);
+    const [Data, setData] = useState([]);
+    // const [Data, setData] = useState([
+    //     {
+    //         year: 'ปีการศึกษา 2566 ภาคการศึกษาที่ 1',
+    //         subjects: [
+    //         { Student_ID: '6301012630095', NameTitle: 'เด็กหญิง', FirstName: 'นทณรรณ', LastName: 'ฝันดี'},
+    //         { Student_ID: '6301012630133', NameTitle: 'เด็กหญิง', FirstName: 'พรหมพร', LastName: 'จุ๊บจิ๊บ'},
+    //         { Student_ID: '6301012610000', NameTitle: 'เด็กหญิง', FirstName: 'ตั้งใจเรียน', LastName: 'เรียนดี'},
+    //         // เพิ่มข้อมูลผลการเรียนตามต้องการ
+    //         ],
+    //     },
+    // ]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+              const StudentInfo = await getPersonnelStudentInfo(StudentID);
+              console.log("StudentInfo",StudentInfo);
+            //   setData({subjects: [StudentInfo]});
+              setData([{
+                subjects: [StudentInfo]}
+              ]);
+              
+            } catch (error) {
+              console.log('Error fetching StudentInfo:', error);
+            }
+          }
+        fetchData();
+      }, []);
 
     return (
         <>
@@ -104,11 +142,11 @@ const Student_List_Information = () => {
                                             </thead>
 
                                             <tbody>
-                                                {data[0].subjects.map((subject,index) => (
+                                                {Data[0]?.subjects.map((subject,index) => (
                                                     <tr key={index} style={{ height: "50px" }}>
-                                                    <td >{subject.student_id}</td>
-                                                    <td >
-                                                        {subject.first_name} {subject.last_name}
+                                                    <td style={{ backgroundColor: "#FFFFFF" }}>{subject.Student_ID}</td>
+                                                    <td style={{ backgroundColor: "#FFFFFF" }}>
+                                                        {subject.NameTitle}{subject.FirstName} {subject.LastName}
                                                     </td>
                                                     <td >
                                                         <Link to="/Student_info" style={{ ...fontStyle }}>
