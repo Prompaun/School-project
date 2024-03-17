@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link ,useNavigate} from 'react-router-dom';
 // import Sidebar from '../components/Sidebar';
 import logoImage from '../images/IMG_5416.png';
@@ -75,7 +75,34 @@ function Filter_student_information() {
         return true;
       };
 
+    const handleCheckChange = (event) => {
+        setSearchData(event.target.value); 
+        // console.log(nameTitle,"kkkk")
+        // sendnameTitleToEnroll(nameTitle)s
+    };
+    
+    
+    const [SearchData,setSearchData] =useState("");
+    
+    const [ShowYearCheck,setShowYearCheck] = useState(false);
+    useEffect(() => {
+       
+        if (SearchData==="ปีการศึกษา") {
+            setShowYearCheck(true); 
+            setShowIDCheck(false); 
+            setStudentID("");
+        }
+        if (SearchData==="เลขประจำตัวนักเรียน") {
+            setShowIDCheck(true); 
+            setShowYearCheck(false); 
+            setSelectedYear("");
+        }
+        }, [SearchData]);
 
+    const [ShowIDCheck,setShowIDCheck] = useState(false);
+   
+    
+    
     return (
         <>
 
@@ -107,31 +134,37 @@ function Filter_student_information() {
                 
                
                 <div className="d-flex align-items-center">
-                    <h2 className="card-heading" style={{ fontSize: '16px', color: '#808080',padding:"10px" }}>ค้นหารายชื่อจากปีการศึกษา</h2>
+                    <h2 className="card-heading" style={{ fontSize: '16px', color: '#808080'}}>ค้นหารายชื่อจากปีการศึกษา</h2>
                 </div>
 
                 <div style={{ display: 'flex', flexWrap: 'wrap', fontSize: '18px'}}>
+                <div className="align-items-center" style={{ display: 'flex', alignItems: 'center', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>  
+                    <input className="form-check-input" type="radio" name="YearCheck" id="YearCheck" value="ปีการศึกษา" checked={SearchData === 'ปีการศึกษา'} onChange={handleCheckChange} />
+                    </div>
                     <div className="d-flex align-items-center">
-                        <h2 className="card-heading" style={{ fontSize: '18px',fontWeight: 'bold',padding:"10px"}}>ปีการศึกษา</h2>
+                    <label className="card-heading" style={{ fontSize: '18px', fontWeight: 'bold', padding: '10px' }}>
+                        ปีการศึกษา
+                    </label>
                     </div>
-                    <div className="align-items-center">
-                    <div className="dropdown" style={{ maxWidth: '100%'}}>
-                             <select value={selectedYear} onChange={handleSelectYearChange} className="custom-select" id="YearSelect">     
-                       
-                                <option value="">เลือกปีการศึกษา</option>
-                                {yearsList.map((year) => (
-                                    <option key={year} value={year}>
-                                    ปีการศึกษา {year}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-
-                    </div>
+                    
+                    {ShowYearCheck && (
+                   <div className="align-items-center" >
+                   <div className="dropdown" style={{ maxWidth: '100%' ,marginTop:"0.5rem" }}>
+                     <select value={selectedYear} onChange={handleSelectYearChange} className="custom-select" id="YearSelect">
+                       <option value="">เลือกปีการศึกษา</option>
+                       {yearsList.map((year) => (
+                         <option key={year} value={year}>
+                           ปีการศึกษา {year}
+                         </option>
+                       ))}
+                     </select>
+                   </div>
+                 </div>
+                    )}
                 </div>
-               
+               <br />
                 <div className="d-flex align-items-center">
-                    <h2 className="card-heading" style={{ fontSize: '16px', color: '#808080',padding:"10px" }}>ค้นหาข้อมูลรายบุคคล</h2>
+                    <h2 className="card-heading" style={{ fontSize: '16px', color: '#808080'}}>ค้นหาข้อมูลรายบุคคล</h2>
                 </div>
 
                 
@@ -139,9 +172,15 @@ function Filter_student_information() {
                 <div className="align-items-center" style={{ display: 'flex', alignItems: 'center', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>           
                     {/* <div className=" d-flex align-items-center"> */}
                     {/* col-sm-5 */}
-                        <h2 className="card-heading" style={{ fontSize: '18px',padding:"10px",fontWeight: 'bold'}}>เลขประจำตัวนักเรียน</h2>
+                    <input className="form-check-input" type="radio" name="IDCheck" id="IDCheck" value="เลขประจำตัวนักเรียน" checked={SearchData === 'เลขประจำตัวนักเรียน'} onChange={handleCheckChange} />
                     </div>
-                    <div className=" align-items-center">   
+                    
+                    <div className="d-flex align-items-center">
+                    <label className="card-heading" style={{ fontSize: '18px', fontWeight: 'bold', padding: '10px' }}>เลขประจำตัวนักเรียน</label>
+                    </div>
+                    {ShowIDCheck && (
+
+                        <div className=" align-items-center">   
                         <input type="text" className="form-control" 
                         id="student_id" 
                         name="student_id" 
@@ -150,7 +189,9 @@ function Filter_student_information() {
                         value={StudentID}
                         onChange={handleStudentIDChange}
                         />
-                    </div>
+                        </div>
+                    )}
+                    
                     </div>
                
                 {/* <div style={{ display: 'flex', flexWrap: 'wrap'}}>
