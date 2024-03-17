@@ -109,16 +109,25 @@ const Checkgrade_info = () => {
   const [selectedStudent, setSelectedStudent] = useState("");
   const [selectedStudent_ID, setSelectedStudent_ID] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
-  const [Semesters, setSemesters] = useState([]);
+  // const [Semesters, setSemesters] = useState([]);
   const [selectedSemester, setSelectedSemester] = useState("");
   const [tableHeader, setTableHeader] = useState("");
   const [subjectObject, setSubjectObject] = useState([]);
 
+  const [useEffect_state, setuseEffect_state] = useState(
+      {
+        no1 : 0,
+        no2 : 0,
+        no3 : 0,
+        no4 : 0
+      }
+  )
   // const selectedStudent = "ID3 : Mr. Bob Smith";
 
 useEffect(() => {
     const fetchData = async () => {
         try {
+              console.log('useEffect No.1');
               const studentDataArray = await getStudentIdByParentEmail('john.doe@example.com');
               const formattedStudentData = studentDataArray.map(student => ({
                   ...student,
@@ -172,6 +181,12 @@ useEffect(() => {
                 setTableHeader(`ปีการศึกษา ${maxYear} ภาคการศึกษาที่ ${maxSemester}`);
                 setSelectedYear(maxYear);
                 setSelectedSemester(maxSemester);
+                // const years = await getYearByStudentId("ID1");
+                // const semesters = await getSemesterByStudentId(studentDataArray[0].Student_ID, maxYear);
+                // setYearData({
+                //     Year: years.map(year => year.toString()).sort(),
+                //     Semester: semesters.sort()
+                // });
               } else {
                   console.log('No student data found');
               }
@@ -196,7 +211,9 @@ const [YearData, setYearData] = useState(initialState);
 useEffect(() => {
   const fetchData = async () => {
     try {
+        // if (selectedStudent !== '' && useEffect_state.no1 === 1){
         if (selectedStudent !== ''){
+          console.log('useEffect No.2');
           // แยกค่า StudentID โดยใช้ split เพื่อแยกสตริงด้วยช่องว่างและเลือกค่าตัวแรก
           const selectedStudent_ID = selectedStudent.split(' ')[0];
           setSelectedStudent_ID(selectedStudent_ID);
@@ -224,9 +241,10 @@ useEffect(() => {
 useEffect(() => {
   const fetchData = async () => {
     if (selectedStudent_ID && selectedYear) {
+      console.log('useEffect No.3');
       try {
         const semesters = await getSemesterByStudentId(selectedStudent_ID, selectedYear);
-        setSemesters(semesters);
+        // setSemesters(semesters);
         setYearData(prevState => ({
           ...prevState,
           Semester: semesters.sort()
@@ -235,6 +253,12 @@ useEffect(() => {
         console.error('Error fetching semesters:', error);
       }
     }
+    else{
+      setYearData(prevState => ({
+        ...prevState,
+        Semester: []
+      }));
+    }
   };
 
   fetchData();
@@ -242,6 +266,7 @@ useEffect(() => {
 
 useEffect(() => {
   if (selectedStudent_ID && selectedYear && selectedSemester) {
+    console.log('useEffect No.4');
     const fetchData = async () => {
       try {
         const gradeInfo = await getGradeInfo(selectedStudent_ID, selectedYear, selectedSemester);
@@ -291,6 +316,11 @@ useEffect(() => {
     const selectedStudentValue = event.target.value;
     setSelectedStudent(selectedStudentValue);
     console.log("selectedStudentValue",selectedStudentValue);
+    setuseEffect_state(prevState => ({
+      ...prevState,
+      no1: 1
+    }));
+    console.log("useEffect_state.no1",useEffect_state.no1);
   };
   
   const handleYearChange = (event) => {
