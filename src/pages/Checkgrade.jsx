@@ -125,7 +125,7 @@ const Checkgrade = () => {
               setSelectedYear(maxYear);
               setSelectedSemester(maxSemester);
               const years = await getYearByStudentId("ID1");
-              const semesters = await getSemesterByStudentId("ID1", maxYear);
+              // const semesters = await getSemesterByStudentId("ID1", maxYear);
 
               // setYearData({
               //     Year: years.map(year => year.toString()).sort(),
