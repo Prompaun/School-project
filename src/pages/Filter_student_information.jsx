@@ -156,7 +156,11 @@ function Filter_student_information() {
 
                 <div style={{ display: 'flex', flexWrap: 'wrap', fontSize: '18px'}}>
                 <div className="align-items-center" style={{ display: 'flex', alignItems: 'center', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>  
-                    <input className="form-check-input" type="radio" name="YearCheck" id="YearCheck" value="ปีการศึกษา" checked={SearchData === 'ปีการศึกษา'} onChange={handleCheckChange} />
+                    <input className="form-check-input" type="radio" name="YearCheck" id="YearCheck" value="ปีการศึกษา" 
+                    checked={SearchData === 'ปีการศึกษา'} 
+                    onChange={handleCheckChange}
+                    style={{border: "1px solid #a7a7a7"}}
+                    />
                     </div>
                     <div className="d-flex align-items-center">
                     <label className="card-heading" style={{ fontSize: '18px', fontWeight: 'bold', padding: '10px' }}>
@@ -189,7 +193,12 @@ function Filter_student_information() {
                 <div className="align-items-center" style={{ display: 'flex', alignItems: 'center', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>           
                     {/* <div className=" d-flex align-items-center"> */}
                     {/* col-sm-5 */}
-                    <input className="form-check-input" type="radio" name="IDCheck" id="IDCheck" value="เลขประจำตัวนักเรียน" checked={SearchData === 'เลขประจำตัวนักเรียน'} onChange={handleCheckChange} />
+                    <input className="form-check-input" type="radio" name="IDCheck" id="IDCheck" value="เลขประจำตัวนักเรียน" 
+                    checked={SearchData === 'เลขประจำตัวนักเรียน'} 
+                    onChange={handleCheckChange} 
+                    style={{border: "1px solid #a7a7a7"}}
+                    
+                    />
                     </div>
                     
                     <div className="d-flex align-items-center">
@@ -202,9 +211,10 @@ function Filter_student_information() {
                         id="student_id" 
                         name="student_id" 
                         placeholder="กรอกเลขประจำตัวนักเรียน"
-                        style={{maxWidth: '100%'}} 
+                        style={{maxWidth: '100%',border: "1px solid #a7a7a7"}} 
                         value={StudentID}
                         onChange={handleStudentIDChange}
+                        
                         />
                         </div>
                     )}
