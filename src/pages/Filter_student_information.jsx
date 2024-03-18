@@ -221,7 +221,7 @@ function Filter_student_information() {
                    <div className="dropdown" style={{ maxWidth: '100%' ,marginTop:"0.5rem" }}>
                      <select value={selectedYear} onChange={handleSelectYearChange} className="custom-select" id="YearSelect">
                        <option value="">เลือกปีการศึกษา</option>
-                       {yearsList.map((year) => (
+                       {YearsList.map((year) => (
                          <option key={year} value={year}>
                            ปีการศึกษา {year}
                          </option>
