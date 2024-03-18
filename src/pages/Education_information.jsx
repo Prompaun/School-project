@@ -278,6 +278,7 @@ const Education_information = () => {
 
 
                                     </table>
+                                    <br />
                                     </div>
                                     </div>
                                     
