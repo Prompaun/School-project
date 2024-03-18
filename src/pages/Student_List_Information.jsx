@@ -125,14 +125,14 @@ const Student_List_Information = () => {
                                         {/* <table className="table-bordered" style={{ textAlign: 'center',fontFamily: 'Kanit, sans-serif'}}> */}
                                         <div className="d-flex justify-content-center" style={{ height: 'auto', overflowY: 'auto' }}>
                                         <div className="table-responsive">
-                                        <table className="table table-bordered table-striped table-hover" style={{ borderCollapse: 'collapse', textAlign: 'center',fontFamily: 'Kanit, sans-serif' }}>
+                                        <table className="table table-bordered table-hover table-striped" style={{ borderCollapse: 'collapse', textAlign: 'center',fontFamily: 'Kanit, sans-serif' }}>
                                             <thead>
-                                                <tr style={{ backgroundColor: '#FFFFFF', fontWeight: 'bolder',fontSize:"18px"}}>
-                                                    <th rowSpan="2" >เลขประจำตัวนักเรียน</th>
-                                                    <th rowSpan="2" >ชื่อ-สกุล</th>
-                                                    <th colSpan="1" >ข้อมูลส่วนบุคคล</th>
-                                                    <th colSpan="1" >ข้อมูลการศึกษา</th>
-                                                    <th colSpan="1" >ข้อมูลสุขภาพ</th>
+                                                <tr style={{ backgroundColor: '#FFFFFF', fontWeight: 'bolder',fontSize:"18px",height: '50px'}}>
+                                                    <th rowSpan="1" >เลขประจำตัวนักเรียน</th>
+                                                    <th rowSpan="1" >ชื่อ-สกุล</th>
+                                                    <th rowSpan="1" >ข้อมูลส่วนบุคคล</th>
+                                                    <th rowSpan="1" >ข้อมูลการศึกษา</th>
+                                                    <th rowSpan="1" >ข้อมูลสุขภาพ</th>
                                                 </tr>
 
                                                 {/* <tr>
@@ -152,7 +152,7 @@ const Student_List_Information = () => {
                                                     <td style={{ backgroundColor: "#FFFFFF" }}>
                                                         {subject.NameTitle}{subject.FirstName} {subject.LastName}
                                                     </td>
-                                                    <td style={{ backgroundColor: "#FFFFFF" }}>
+                                                    <td >
                                                         <Link to="/Student_info" style={{ ...fontStyle }}>
                                                         <i
                                                             className="fs-5 bi-search"
@@ -185,7 +185,7 @@ const Student_List_Information = () => {
                                                         ></i>
                                                     </td> */}
 
-                                                    <td style={{ backgroundColor: "#FFFFFF" }}>
+                                                    <td >
                                                         <Link to="/Education_information" className="d-flex justify-content-center" style={{ textDecoration: 'none' }}>
                                                         <i
                                                             className="fs-5 bi-search"
@@ -216,7 +216,7 @@ const Student_List_Information = () => {
                                                         ></i>
                                                     </td> */}
 
-                                                    <td style={{ backgroundColor: "#FFFFFF" }}>
+                                                    <td >
                                                         <Link to="/Health_info" className="d-flex justify-content-center" style={{ textDecoration: 'none' }}>
                                                         <i
                                                             className="fs-5 bi-search"
@@ -250,6 +250,7 @@ const Student_List_Information = () => {
                                                 ))}
                                                 </tbody>
                                             </table>
+                                            <br />
                                     </div>
                                     </div>
                                     

@@ -84,18 +84,35 @@ function Filter_student_information() {
         
         const YearSelect = document.getElementById('YearSelect');
         const student_id = document.getElementById('student_id');
-
-        console.log("selectedYear",YearSelect.value);
-        console.log("StudentID",student_id.value);
-        if (YearSelect.value===""&& student_id.value==="") {
+        // const YearSelect = document.querySelector('#YearSelect');
+        // const student_id = document.querySelector('#student_id');
+        // console.log("selectedYear",YearSelect.value);
+        // console.log("StudentID",student_id.value);
+        if (SearchData==="") {
             // console.log("selectedYear",selectedYear);
             // console.log("StudentID",StudentID);
 
-            alert("กรุณากรอกข้อมูลที่ต้องการค้นหา");
-            // YearSelect.focus();
-            // student_id.scrollIntoView({ behavior: 'smooth' });
-            // setTimeout(() => student_id.focus(), 100);
+            alert("กรุณาเลือกข้อมูลที่ต้องการค้นหา");
+        
             return  false;
+        }
+        if (SearchData==="ปีการศึกษา") {
+            if (YearSelect.value===""){
+                alert("กรุณากรอกข้อมูลที่ต้องการค้นหา");
+                YearSelect.focus();
+                YearSelect.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => YearSelect.focus(), 100);
+                return  false; 
+            }
+        }
+        if (SearchData==="เลขประจำตัวนักเรียน") {
+            if (student_id.value===""){
+                alert("กรุณากรอกข้อมูลที่ต้องการค้นหา");
+                student_id.focus();
+                student_id.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => student_id.focus(), 100);
+            return  false; 
+            }
         }
 
         return true;
@@ -121,9 +138,36 @@ function Filter_student_information() {
         }
     
         return true;
+      };
+
+    const handleCheckChange = (event) => {
+        setSearchData(event.target.value); 
+        // console.log(nameTitle,"kkkk")
+        // sendnameTitleToEnroll(nameTitle)s
     };
+    
+    
+    const [SearchData,setSearchData] =useState("");
+    
+    const [ShowYearCheck,setShowYearCheck] = useState(false);
+    useEffect(() => {
+       
+        if (SearchData==="ปีการศึกษา") {
+            setShowYearCheck(true); 
+            setShowIDCheck(false); 
+            setStudentID("");
+        }
+        if (SearchData==="เลขประจำตัวนักเรียน") {
+            setShowIDCheck(true); 
+            setShowYearCheck(false); 
+            setSelectedYear("");
+        }
+        }, [SearchData]);
 
-
+    const [ShowIDCheck,setShowIDCheck] = useState(false);
+   
+    
+    
     return (
         <>
 
@@ -155,31 +199,41 @@ function Filter_student_information() {
                 
                
                 <div className="d-flex align-items-center">
-                    <h2 className="card-heading" style={{ fontSize: '16px', color: '#808080',padding:"10px" }}>ค้นหารายชื่อจากปีการศึกษา</h2>
+                    <h2 className="card-heading" style={{ fontSize: '16px', color: '#808080'}}>ค้นหารายชื่อจากปีการศึกษา</h2>
                 </div>
 
                 <div style={{ display: 'flex', flexWrap: 'wrap', fontSize: '18px'}}>
+                <div className="align-items-center" style={{ display: 'flex', alignItems: 'center', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>  
+                    <input className="form-check-input" type="radio" name="YearCheck" id="YearCheck" value="ปีการศึกษา" 
+                    checked={SearchData === 'ปีการศึกษา'} 
+                    onChange={handleCheckChange}
+                    style={{border: "1px solid #a7a7a7"}}
+                    />
+                    </div>
                     <div className="d-flex align-items-center">
-                        <h2 className="card-heading" style={{ fontSize: '18px',fontWeight: 'bold',padding:"10px"}}>ปีการศึกษา</h2>
+                    <label className="card-heading" style={{ fontSize: '18px', fontWeight: 'bold', padding: '10px' }}>
+                        ปีการศึกษา
+                    </label>
                     </div>
-                    <div className="align-items-center">
-                    <div className="dropdown" style={{ maxWidth: '100%'}}>
-                             <select value={selectedYear} onChange={handleSelectYearChange} className="custom-select" id="YearSelect">     
-                       
-                                <option value="">เลือกปีการศึกษา</option>
-                                {YearsList.map((year) => (
-                                    <option key={year} value={year}>
-                                    ปีการศึกษา {year}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-
-                    </div>
+                    
+                    {ShowYearCheck && (
+                   <div className="align-items-center" >
+                   <div className="dropdown" style={{ maxWidth: '100%' ,marginTop:"0.5rem" }}>
+                     <select value={selectedYear} onChange={handleSelectYearChange} className="custom-select" id="YearSelect">
+                       <option value="">เลือกปีการศึกษา</option>
+                       {yearsList.map((year) => (
+                         <option key={year} value={year}>
+                           ปีการศึกษา {year}
+                         </option>
+                       ))}
+                     </select>
+                   </div>
+                 </div>
+                    )}
                 </div>
-               
+               <br />
                 <div className="d-flex align-items-center">
-                    <h2 className="card-heading" style={{ fontSize: '16px', color: '#808080',padding:"10px" }}>ค้นหาข้อมูลรายบุคคล</h2>
+                    <h2 className="card-heading" style={{ fontSize: '16px', color: '#808080'}}>ค้นหาข้อมูลรายบุคคล</h2>
                 </div>
 
                 
@@ -187,18 +241,32 @@ function Filter_student_information() {
                 <div className="align-items-center" style={{ display: 'flex', alignItems: 'center', fontFamily: 'Kanit, sans-serif', fontSize: '16px'}}>           
                     {/* <div className=" d-flex align-items-center"> */}
                     {/* col-sm-5 */}
-                        <h2 className="card-heading" style={{ fontSize: '18px',padding:"10px",fontWeight: 'bold'}}>เลขประจำตัวนักเรียน</h2>
+                    <input className="form-check-input" type="radio" name="IDCheck" id="IDCheck" value="เลขประจำตัวนักเรียน" 
+                    checked={SearchData === 'เลขประจำตัวนักเรียน'} 
+                    onChange={handleCheckChange} 
+                    style={{border: "1px solid #a7a7a7"}}
+                    
+                    />
                     </div>
-                    <div className=" align-items-center">   
+                    
+                    <div className="d-flex align-items-center">
+                    <label className="card-heading" style={{ fontSize: '18px', fontWeight: 'bold', padding: '10px' }}>เลขประจำตัวนักเรียน</label>
+                    </div>
+                    {ShowIDCheck && (
+
+                        <div className=" align-items-center">   
                         <input type="text" className="form-control" 
                         id="student_id" 
                         name="student_id" 
                         placeholder="กรอกเลขประจำตัวนักเรียน"
-                        style={{maxWidth: '100%'}} 
+                        style={{maxWidth: '100%',border: "1px solid #a7a7a7"}} 
                         value={StudentID}
                         onChange={handleStudentIDChange}
+                        
                         />
-                    </div>
+                        </div>
+                    )}
+                    
                     </div>
                
                 {/* <div style={{ display: 'flex', flexWrap: 'wrap'}}>

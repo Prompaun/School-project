@@ -6,7 +6,7 @@ import student_icon from "../images/student_icon.png"
 import health_icon from "../images/health_icon.png"
 import Request_cert from "../images/request_cert.png"
 import analyze from "../images/analyze.png"
-
+import Postnews from "../images/promotion.png"
 
 function Card_menu_personnel() {
     const [obj, setObj] = useState([
@@ -30,7 +30,11 @@ function Card_menu_personnel() {
           imageUrl: Request_cert, // แทนที่ด้วย URL รูปภาพจริง
           path: "/Check_Certification_Request"
         },
-
+        {
+          text: "ข่าวประชาสัมพันธ์",
+          imageUrl: Postnews, // แทนที่ด้วย URL รูปภาพจริง
+          path: "/PostNews"
+        },
         {
           text: "ระบบการรับสมัครนักเรียนใหม่",
           imageUrl: enrollment_icon,
