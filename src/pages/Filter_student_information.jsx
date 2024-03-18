@@ -48,18 +48,35 @@ function Filter_student_information() {
         
         const YearSelect = document.getElementById('YearSelect');
         const student_id = document.getElementById('student_id');
-
-        console.log("selectedYear",YearSelect.value);
-        console.log("StudentID",student_id.value);
-        if (YearSelect.value===""&& student_id.value==="") {
+        // const YearSelect = document.querySelector('#YearSelect');
+        // const student_id = document.querySelector('#student_id');
+        // console.log("selectedYear",YearSelect.value);
+        // console.log("StudentID",student_id.value);
+        if (SearchData==="") {
             // console.log("selectedYear",selectedYear);
             // console.log("StudentID",StudentID);
 
-            alert("กรุณากรอกข้อมูลที่ต้องการค้นหา");
-            // YearSelect.focus();
-            // student_id.scrollIntoView({ behavior: 'smooth' });
-            // setTimeout(() => student_id.focus(), 100);
+            alert("กรุณาเลือกข้อมูลที่ต้องการค้นหา");
+        
             return  false;
+        }
+        if (SearchData==="ปีการศึกษา") {
+            if (YearSelect.value===""){
+                alert("กรุณากรอกข้อมูลที่ต้องการค้นหา");
+                YearSelect.focus();
+                YearSelect.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => YearSelect.focus(), 100);
+                return  false; 
+            }
+        }
+        if (SearchData==="เลขประจำตัวนักเรียน") {
+            if (student_id.value===""){
+                alert("กรุณากรอกข้อมูลที่ต้องการค้นหา");
+                student_id.focus();
+                student_id.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => student_id.focus(), 100);
+            return  false; 
+            }
         }
 
         return true;

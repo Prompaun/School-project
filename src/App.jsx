@@ -48,6 +48,7 @@ import Register_info from './pages/Register_info';
 import Tab_enroll from './components/Tab_enroll';
 import Checkgrade_info from './pages/Checkgrade_info';
 import Enrollment_info_EP from './pages/Enrollment_info_EP';
+import PostNews from './pages/PostNews';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -235,6 +236,8 @@ function App() {
         <Route path="/Upload_applicant_scores" element={<UploadScores_According_toApplicantNames />} />
         <Route path="/Admission_Results" element={<Admission_Results />} />
         <Route path="/Manage_health_data" element={<Manage_health_data />} />
+        <Route path="/PostNews" element={<PostNews />} />
+
 
         <Route path="/Student_info" element={<Student_info />} />
         <Route path="/Parent_Information" element={<Parent_Information />} />
