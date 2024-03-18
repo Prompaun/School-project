@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link ,useNavigate} from 'react-router-dom';
 // import Sidebar from '../components/Sidebar';
 import logoImage from '../images/IMG_5416.png';
 import Header from '../components/Header';
+import axios from 'axios';
 
 function Filter_student_information() {
     const linkStyle = {
@@ -11,14 +12,22 @@ function Filter_student_information() {
         fontFamily: 'Kanit, sans-serif',
         fontSize: '16px',
       };
-
     
+    async function getYearFromClassroom() {
+        try {
+            const response = await axios.get('http://localhost:8080/get-distinct-years');
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching Year From Classroom:', error);
+            throw error;
+        }
+    }
 
     const handleSelectYearChange = (event) => {
       setSelectedYear(event.target.value);
     };
-    
-    const yearsList = ["2566", "2565", "2564", "2563", "2562", "2561", "2560"];
+    const [YearsList, setYearsList] = useState([]);
+    // const YearsList = ["2566", "2565", "2564", "2563", "2562", "2561", "2560"];
     const [selectedYear, setSelectedYear] = useState("");
     // const options = [
     //     { value: 'ระบุหมายเหตุ', label: 'ปีการศึกษา' },
@@ -27,6 +36,18 @@ function Filter_student_information() {
     //     { value: 'เพื่อใช้ในการสมัครเข้าศึกษาต่อ', label: 'ปริญญาเอก' },
     // ];
 
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+              const Years = await getYearFromClassroom();
+              setYearsList(Years);
+            } catch (error) {
+              console.error('Error fetching semesters:', error);
+            }
+          }
+        fetchData();
+      }, []);
+
     const fontStyle = {
         fontFamily: 'Kanit, sans-serif',
         textDecoration: 'none'
@@ -34,13 +55,13 @@ function Filter_student_information() {
 
     const handleStudentIDChange = (event) => {
         const inputValue = event.target.value;
-        const idValue = inputValue.replace(/[^0-9]/g, "");
-        if (inputValue !== idValue) {
-            alert("กรุณากรอกเฉพาะตัวเลขเท่านั้น");
-        event.target.value = idValue;
-        }
+        // const idValue = inputValue.replace(/[^0-9]/g, "");
+        // if (inputValue !== idValue) {
+        //     alert("กรุณากรอกเฉพาะตัวเลขเท่านั้น");
+        // event.target.value = idValue;
+        // }
     
-        setStudentID(idValue);
+        setStudentID(inputValue);
       };
     const [StudentID,setStudentID]=useState("");
     
@@ -69,7 +90,8 @@ function Filter_student_information() {
     const navigate = useNavigate();
     const handleButtonSearchData = (event) => {
         if (CheckInputData()) {
-            navigate("/Student_List_Information");
+            // navigate("/Student_List_Information");
+            navigate("/Student_List_Information", { state: {selectedYear: selectedYear, StudentID: StudentID} });
         }
 
         return true;
@@ -119,7 +141,7 @@ function Filter_student_information() {
                              <select value={selectedYear} onChange={handleSelectYearChange} className="custom-select" id="YearSelect">     
                        
                                 <option value="">เลือกปีการศึกษา</option>
-                                {yearsList.map((year) => (
+                                {YearsList.map((year) => (
                                     <option key={year} value={year}>
                                     ปีการศึกษา {year}
                                     </option>

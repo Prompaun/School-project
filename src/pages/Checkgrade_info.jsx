@@ -21,7 +21,7 @@ const Checkgrade_info = () => {
         console.error('Error fetching student ID by parent email:', error);
         throw error;
     }
-}
+  }
 
   async function getYearSemestersByStudentId(studentId) {
     try {
