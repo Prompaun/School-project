@@ -23,6 +23,21 @@ function Filter_student_information() {
         }
     }
 
+    async function getPersonnelStudentInfo(Student_ID) {
+        try {
+            const response = await axios.get('http://localhost:8080/personnel-get-student-info', {
+                params: {
+                    Student_ID: Student_ID
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.log('Error fetching StudentInfo From Classroom:', error);
+            // throw error;
+            return null;
+        }
+    }
+
     const handleSelectYearChange = (event) => {
       setSelectedYear(event.target.value);
     };
@@ -88,14 +103,25 @@ function Filter_student_information() {
 
 
     const navigate = useNavigate();
-    const handleButtonSearchData = (event) => {
+    const handleButtonSearchData = async (event) => { // เปลี่ยนเป็น async เพื่อให้ใช้ await ได้
         if (CheckInputData()) {
-            // navigate("/Student_List_Information");
-            navigate("/Student_List_Information", { state: {selectedYear: selectedYear, StudentID: StudentID} });
+            try {
+                const result = await getPersonnelStudentInfo(StudentID);
+                if (result === null) {
+                    alert("รหัสนักเรียน:" + StudentID + " ไม่ใช่นักเรียนของท่าน");
+                    return;
+                }
+                else{
+                    navigate("/Student_List_Information", { state: { selectedYear: selectedYear, result: result } });
+                }
+            } catch (error) {
+                console.log('Error fetching StudentInfo:', error);
+            }
+            
         }
-
+    
         return true;
-      };
+    };
 
 
     return (

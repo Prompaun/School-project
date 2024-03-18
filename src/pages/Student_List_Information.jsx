@@ -11,24 +11,25 @@ import axios from 'axios';
 const Student_List_Information = () => {
     const location = useLocation();
     const selectedYear = location.state.selectedYear;
-    const StudentID = location.state.StudentID;
+    const result = location.state.result;
 
     console.log("yourData",location.state.selectedYear);
-    console.log("yourData",location.state.StudentID);
+    console.log("yourData",location.state.result);
 
-    async function getPersonnelStudentInfo(Student_ID) {
-        try {
-            const response = await axios.get('http://localhost:8080/personnel-get-student-info', {
-                params: {
-                    Student_ID: Student_ID
-                }
-            });
-            return response.data;
-        } catch (error) {
-            console.log('Error fetching StudentInfo From Classroom:', error);
-            throw error;
-        }
-    }
+    // async function getPersonnelStudentInfo(Student_ID) {
+    //     try {
+    //         const response = await axios.get('http://localhost:8080/personnel-get-student-info', {
+    //             params: {
+    //                 Student_ID: Student_ID
+    //             }
+    //         });
+    //         return response.data;
+    //     } catch (error) {
+    //         console.log('Error fetching StudentInfo From Classroom:', error);
+    //         // throw error;
+    //         return null;
+    //     }
+    // }
 
     const linkStyle = {
         color: 'gray',
@@ -54,7 +55,7 @@ const Student_List_Information = () => {
     };
 
     
-    const [Data, setData] = useState([]);
+    const [Data, setData] = useState([{subjects: [result]}]);
     // const [Data, setData] = useState([
     //     {
     //         year: 'ปีการศึกษา 2566 ภาคการศึกษาที่ 1',
@@ -67,22 +68,25 @@ const Student_List_Information = () => {
     //     },
     // ]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-              const StudentInfo = await getPersonnelStudentInfo(StudentID);
-              console.log("StudentInfo",StudentInfo);
-            //   setData({subjects: [StudentInfo]});
-              setData([{
-                subjects: [StudentInfo]}
-              ]);
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const result = await getPersonnelStudentInfo(StudentID);
+    //             // เช็คว่าถ้า result ไม่ใช่ null ให้ใช้ค่า result แต่ถ้าเป็น null ให้ใช้วัตถุที่ว่างเปล่า
+    //             const StudentInfo = result !== null; 
+    //             // const StudentInfo = result !== null ? result : {}; 
+    //           console.log("StudentInfo",StudentInfo);
+    //         //   setData({subjects: [StudentInfo]});
+    //           setData([{
+    //             subjects: [StudentInfo]}
+    //           ]);
               
-            } catch (error) {
-              console.log('Error fetching StudentInfo:', error);
-            }
-          }
-        fetchData();
-      }, []);
+    //         } catch (error) {
+    //           console.log('Error fetching StudentInfo:', error);
+    //         }
+    //       }
+    //     fetchData();
+    //   }, []);
 
     return (
         <>
