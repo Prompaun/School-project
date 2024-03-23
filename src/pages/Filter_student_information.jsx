@@ -13,9 +13,13 @@ function Filter_student_information() {
         fontSize: '16px',
       };
     
-    async function getYearFromClassroom() {
+    async function getYearFromClassroom(Personnel_Email) {
         try {
-            const response = await axios.get('http://localhost:8080/get-distinct-years');
+            const response = await axios.get('http://localhost:8080/get-distinct-years-of-personnel', {
+                params: {
+                    Personnel_Email: Personnel_Email
+                }
+            });
             return response.data;
         } catch (error) {
             console.error('Error fetching Year From Classroom:', error);
@@ -38,6 +42,67 @@ function Filter_student_information() {
         }
     }
 
+    async function getClassroomInfoFromPersonnel(Personnel_Email) {
+        try {
+            const response = await axios.get('http://localhost:8080/get-classroom-info-from-personnel', {
+                params: {
+                    Personnel_Email: Personnel_Email
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.log('Error fetching ClassroomInfo:', error);
+            // throw error;
+            return null;
+        }
+    }
+
+    async function getClassroomInfoFromYear(Personnel_Email, Year) {
+        try {
+            const response = await axios.get('http://localhost:8080/personnel-get-classroom-info-from-year', {
+                params: {
+                    Personnel_Email: Personnel_Email,
+                    Year: Year
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.log('Error fetching ClassroomInfo:', error);
+            // throw error;
+            return null;
+        }
+    }
+
+    async function getStudentInfoByID(studentIDs) {
+        try {
+            // const studentIDs = [
+            //     { "Student_ID": "ID4" },
+            //     { "Student_ID": "ID5" }
+            // ];
+    
+            const response = await axios.post('http://localhost:8080/get-student-info-by-id', studentIDs);
+            // console.log('Response------------------:', response.data);
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching student information:', error);
+            return null;
+        }
+    };
+
+    // async function getStudentInfoByID(studentIDs) {
+    //     try {
+    //         const response = await axios.get('http://localhost:8080/get-student-info-by-id', [], {
+    //             params: { studentIDs }
+    //         });
+    //         return response.data;
+    //     } catch (error) {
+    //         console.error('Error fetching student information:', error);
+    //         throw error; // ส่ง error ออกไปเพื่อให้ caller ได้จัดการต่อ
+    //     }
+    // };
+    
+
+
     const handleSelectYearChange = (event) => {
       setSelectedYear(event.target.value);
     };
@@ -54,7 +119,7 @@ function Filter_student_information() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-              const Years = await getYearFromClassroom();
+              const Years = await getYearFromClassroom("tom.brown@example.com");
               setYearsList(Years);
             } catch (error) {
               console.error('Error fetching semesters:', error);
@@ -118,23 +183,50 @@ function Filter_student_information() {
         return true;
     }
 
+    function checkStudentID(studentID, result2) {
+        // ใช้ฟังก์ชัน Array.some() เพื่อตรวจสอบว่ามีค่า studentID ใน studentID หรือไม่
+        return result2.some(item => item.Student_ID.includes(studentID));
+      }
+
 
     const navigate = useNavigate();
     const handleButtonSearchData = async (event) => { // เปลี่ยนเป็น async เพื่อให้ใช้ await ได้
         if (CheckInputData()) {
-            try {
-                const result = await getPersonnelStudentInfo(StudentID);
-                if (result === null) {
-                    alert("รหัสนักเรียน:" + StudentID + " ไม่ใช่นักเรียนของท่าน");
+            
+            const result1 = await getClassroomInfoFromPersonnel("tom.brown@example.com");
+            if (StudentID){
+                try {
+                    if(checkStudentID(StudentID, result1)){
+                        const PersonnelStudentInfo = await getPersonnelStudentInfo(StudentID);
+                        navigate("/Student_List_Information", { state: { selectedYear: selectedYear, result: PersonnelStudentInfo } });
+                    }
+                    else{
+                        alert("รหัสนักเรียน " + StudentID + " ไม่ใช่นักเรียนของท่าน");
+                            return;
+                    }
+                } catch (error) {
+                    console.log('Error fetching StudentInfo:', error);
+                }
+            }
+      
+            if (selectedYear){
+                const result2 = await getClassroomInfoFromYear("tom.brown@example.com", selectedYear);
+                if (result2 === null) {
+                    alert("ท่านไม่ใช่ครูประจำชั้นในปีการศึกษา:" + selectedYear);
                     return;
                 }
                 else{
-                    navigate("/Student_List_Information", { state: { selectedYear: selectedYear, result: result } });
+                    const result3 = await getStudentInfoByID(result2);
+                    if (result3 === null) {
+                        alert("ยังไม่มีข้อมูลนักเรียนของท่านในฐานข้อมูล");
+                        return;
+                    }
+                    else{
+                        navigate("/Student_List_Information", { state: { selectedYear: selectedYear, result: result3 } });
+                    }
+                    
                 }
-            } catch (error) {
-                console.log('Error fetching StudentInfo:', error);
             }
-            
         }
     
         return true;
