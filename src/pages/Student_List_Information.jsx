@@ -9,12 +9,25 @@ import Header from '../components/Header';
 import axios from 'axios';
 
 const Student_List_Information = () => {
-    const location = useLocation();
-    const selectedYear = location.state.selectedYear;
-    const result = location.state.result;
 
-    console.log("yourData",location.state.selectedYear);
-    console.log("yourData",location.state.result);
+    const [Data, setData] = useState([{ subjects: [] }]);
+
+    const location = useLocation();
+
+    useEffect(() => {
+        
+        if (location.state && location.state.result) {
+            const result = location.state.result;
+            setData([{ subjects: result }]);
+        }
+    }, [location.state]);
+
+    // ตรวจสอบ Data ก่อนที่จะทำการแสดงผลหรือทำอย่างอื่น
+    console.log(Data);
+
+    // console.log("yourData",location.state.result);
+
+    
 
     // async function getPersonnelStudentInfo(Student_ID) {
     //     try {
@@ -55,7 +68,7 @@ const Student_List_Information = () => {
     };
 
     
-    const [Data, setData] = useState([{subjects: [result]}]);
+    
     // const [Data, setData] = useState([
     //     {
     //         year: 'ปีการศึกษา 2566 ภาคการศึกษาที่ 1',
@@ -152,22 +165,26 @@ const Student_List_Information = () => {
                                                     <td style={{ backgroundColor: "#FFFFFF" }}>
                                                         {subject.NameTitle}{subject.FirstName} {subject.LastName}
                                                     </td>
-                                                    <td >
-                                                        <Link to="/Student_info" style={{ ...fontStyle }}>
-                                                        <i
-                                                            className="fs-5 bi-search"
-                                                            style={{
-                                                            color: "black",
-                                                            fontSize: "20px",
-                                                            marginRight: "5px",
-                                                            cursor: "pointer",
-                                                            }}
-                                                        ></i>
-                                                        <span style={{ ...fontStyle, color: "black", fontSize: "16px" }}>
-                                                            ดูข้อมูลส่วนบุคคล
-                                                        </span>
+                                                    <td>
+                                                        <Link to={{
+                                                            pathname: "/Student_info",
+                                                            state: { selectedYear: "selectedYear", result: "PersonnelStudentInfo" }
+                                                        }} className="d-flex justify-content-center" style={{ textDecoration: 'none', ...fontStyle }}>
+                                                            <i 
+                                                                className="fs-5 bi-search" 
+                                                                style={{ 
+                                                                    color: "black", 
+                                                                    fontSize: "20px", 
+                                                                    marginRight: "5px", 
+                                                                    cursor: "pointer"
+                                                                     }}>
+                                                            </i>
+                                                            <span style={{ ...fontStyle, color: "black", fontSize: "16px" }}>
+                                                                ดูข้อมูลส่วนบุคคล
+                                                            </span>
                                                         </Link>
                                                     </td>
+
                                                     {/* <td style={{ backgroundColor: "#FFFFFF" }}>
                                                         <i
                                                         className="fs-5 bi-printer"
@@ -185,20 +202,25 @@ const Student_List_Information = () => {
                                                         ></i>
                                                     </td> */}
 
-                                                    <td >
-                                                        <Link to="/Education_information" className="d-flex justify-content-center" style={{ textDecoration: 'none' }}>
+                                                <td>
+                                                    <Link 
+                                                        to={ `/Education_information?id=${subject.Student_ID}&name=${subject.NameTitle}${subject.FirstName} ${subject.LastName}` } // This part seems incorrect, will be fixed below
+                                                        // Name: `${subject.NameTitle} ${subject.FirstName} ${subject.LastName}`
+                                                        className="d-flex justify-content-center" 
+                                                        style={{ textDecoration: 'none' }}
+                                                    >
                                                         <i
                                                             className="fs-5 bi-search"
                                                             style={{
-                                                            color: "black",
-                                                            fontSize: "20px",
-                                                            marginRight: "5px",
-                                                            cursor: "pointer",
+                                                                color: "black",
+                                                                fontSize: "20px",
+                                                                marginRight: "5px",
+                                                                cursor: "pointer",
                                                             }}
                                                         ></i>
                                                         <span style={{ ...fontStyle, color: "black", fontSize: "16px" }}>ดูข้อมูลการศึกษา</span>
-                                                        </Link>
-                                                    </td>
+                                                    </Link>
+                                                </td>
                                                     {/* <td style={{ backgroundColor: "#FFFFFF" }}>
                                                         <i
                                                         className="fs-5 bi-printer"

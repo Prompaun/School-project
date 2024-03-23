@@ -1,10 +1,13 @@
 import React, { useState,useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation  } from 'react-router-dom';
 import school_logo from "../images/IMG_5416.png";
 import printer_icon from "../images/printer_icon.png";
 import Sidebar from '../components/Sidebar';
 // import Navbar from '../components/Navbar'
 import Header from '../components/Header';
+// import { getSearchParamsForLocation } from 'react-router-dom/dist/dom';
+// import { URLSearchParams } from 'url';
+
 const Education_information = () => {
 
     const linkStyle = {
@@ -28,12 +31,19 @@ const Education_information = () => {
 
       const [StudentData,setStudentData] = useState(
         [
+            // {
+            //     StudentID : "6301012630095",
+            //     NameTitle : "เด็กหญิง",
+            //     Surname : "รักดี",
+            //     Lastname : "น้ำใจงาม"
+            // }
             {
-                StudentID : "6301012630095",
-                NameTitle : "เด็กหญิง",
-                Surname : "รักดี",
-                Lastname : "น้ำใจงาม"
-              }
+                StudentID : "",
+                Name: "",
+                NameTitle : "",
+                Surname : "",
+                Lastname : ""
+            }
         ]
 
       );
@@ -78,6 +88,35 @@ const Education_information = () => {
           setTableHeader(`ปีการศึกษา ${Year[0]} ภาคการศึกษาที่ ${Semester[0]}`);
         }
       }, [selectedYear, selectedSemester]);
+
+      const location = useLocation();
+      //   console.log("Student_ID:", location);
+      const SearchParams = new URLSearchParams(location.search);
+      const student_param = SearchParams.get("id"); // ดึงค่าของพารามิเตอร์ id ออกมา
+      const namme_param = SearchParams.get("name");
+      
+      // หาชื่อจากพารามิเตอร์ id
+      useEffect(() => {
+        if (student_param) {
+            console.log("id:", student_param); // พิมพ์ชื่อที่ได้
+            setStudentData(prevState => ({
+                ...prevState,
+                [0]: {
+                    ...prevState[0],
+                    StudentID: student_param,
+                    Name: namme_param
+                }
+            }));
+        }
+    }, []);
+    
+      
+      useEffect(() => {
+          if (namme_param) {
+              console.log("Name:", namme_param); // พิมพ์ชื่อที่ได้
+          }
+      }, [namme_param]); // สั่งให้ useEffect ทำงานเมื่อ namme_param เปลี่ยนแปลง
+      
 
     return (
         <>
@@ -153,7 +192,7 @@ const Education_information = () => {
                                                         className="form-control"
                                                         id="fullname" 
                                                         name="fullname" 
-                                                        value={`${StudentData[0].NameTitle}${StudentData[0].Surname} ${StudentData[0].Lastname}`}
+                                                        value={`${StudentData[0].Name}`}
                                                         readOnly 
                                                         style={{ backgroundColor: '#DCDCDC', color: 'black'}}
                                                         // style={{ backgroundColor: '#DCDCDC', color: 'black', borderColor: '#808080' }}
